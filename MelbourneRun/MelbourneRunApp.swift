@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct MelbourneRunApp: App {
+    @StateObject private var userData = UserData()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ActivityListView(activities: activities.list)
+                .environmentObject(userData)
         }
     }
 }

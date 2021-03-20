@@ -3,23 +3,87 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D60FC23D2602EC0D0038E9E5 /* GymRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60FC23C2602EC0D0038E9E5 /* GymRecordView.swift */; };
+		D60FC2432602EC360038E9E5 /* GymListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60FC2422602EC360038E9E5 /* GymListView.swift */; };
+		D60FC2472602EC510038E9E5 /* GymCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60FC2462602EC510038E9E5 /* GymCellView.swift */; };
+		D60FC24A2602ECA90038E9E5 /* GymModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60FC2492602ECA90038E9E5 /* GymModel.swift */; };
+		D60FC24D2602EF630038E9E5 /* HikingParkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60FC24C2602EF630038E9E5 /* HikingParkModel.swift */; };
+		D60FC2502602EFAF0038E9E5 /* DogPlayground.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60FC24F2602EFAF0038E9E5 /* DogPlayground.swift */; };
+		D60FC254260304B50038E9E5 /* CircleImagePlusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60FC253260304B50038E9E5 /* CircleImagePlusView.swift */; };
+		D60FC257260306990038E9E5 /* LocationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60FC256260306990038E9E5 /* LocationMapView.swift */; };
+		D60FC25B260309050038E9E5 /* MapHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60FC25A260309050038E9E5 /* MapHelper.swift */; };
+		D60FC25F2603128F0038E9E5 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60FC25E2603128F0038E9E5 /* ImageScrollView.swift */; };
+		D60FC262260313540038E9E5 /* ScrollBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60FC261260313540038E9E5 /* ScrollBoxView.swift */; };
+		D60FC265260316CC0038E9E5 /* ScrollImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60FC264260316CC0038E9E5 /* ScrollImageHelper.swift */; };
+		D60FC26926032ECA0038E9E5 /* NavigationBarColorModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60FC26826032ECA0038E9E5 /* NavigationBarColorModifier.swift */; };
+		D60FC26D2603387E0038E9E5 /* DirectButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60FC26C2603387E0038E9E5 /* DirectButtonView.swift */; };
+		D60FC271260342D90038E9E5 /* StarButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60FC270260342D90038E9E5 /* StarButtonView.swift */; };
+		D60FC27826037CF00038E9E5 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D60FC27726037CF00038E9E5 /* Alamofire */; };
+		D60FC27B26037D1F0038E9E5 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60FC27A26037D1F0038E9E5 /* NetworkManager.swift */; };
+		D60FC27F26037E9A0038E9E5 /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60FC27E26037E9A0038E9E5 /* NetworkAPI.swift */; };
+		D60FC282260381610038E9E5 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60FC281260381610038E9E5 /* UserData.swift */; };
+		D60FC288260443570038E9E5 /* Polyline in Frameworks */ = {isa = PBXBuildFile; productRef = D60FC287260443570038E9E5 /* Polyline */; };
+		D60FC28B260443C80038E9E5 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60FC28A260443C80038E9E5 /* LocationViewModel.swift */; };
+		D60FC28F26044B7F0038E9E5 /* JoggingGoalInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60FC28E26044B7F0038E9E5 /* JoggingGoalInputView.swift */; };
+		D61A147E260459660049B377 /* UBottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = D61A147D260459660049B377 /* UBottomSheet */; };
+		D61A148226045A830049B377 /* PullUpController in Frameworks */ = {isa = PBXBuildFile; productRef = D61A148126045A830049B377 /* PullUpController */; };
+		D61A1485260464030049B377 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61A1484260464030049B377 /* BottomView.swift */; };
+		D61A1488260467130049B377 /* BottomContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61A1487260467130049B377 /* BottomContentView.swift */; };
+		D63D18CB25FDFF6C0049C1AC /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63D18CA25FDFF6C0049C1AC /* ActivityView.swift */; };
+		D63D18CE25FE09460049C1AC /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63D18CD25FE09460049C1AC /* ActivityModel.swift */; };
+		D63D18D225FE09C50049C1AC /* ActivityListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63D18D125FE09C50049C1AC /* ActivityListView.swift */; };
+		D63D18D925FF787F0049C1AC /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63D18D825FF787E0049C1AC /* CircleImageView.swift */; };
 		D65200F825F757B800BA04E9 /* MelbourneRunApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65200F725F757B800BA04E9 /* MelbourneRunApp.swift */; };
-		D65200FA25F757B800BA04E9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65200F925F757B800BA04E9 /* ContentView.swift */; };
 		D65200FC25F757B900BA04E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D65200FB25F757B900BA04E9 /* Assets.xcassets */; };
 		D65200FF25F757B900BA04E9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D65200FE25F757B900BA04E9 /* Preview Assets.xcassets */; };
+		D652011025F7604900BA04E9 /* LocationProvider in Frameworks */ = {isa = PBXBuildFile; productRef = D652010F25F7604900BA04E9 /* LocationProvider */; };
+		D6CD21D825F79E4A00861495 /* MapMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD21D725F79E4A00861495 /* MapMainView.swift */; };
+		D6CD21DD25F7A3B700861495 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD21DC25F7A3B700861495 /* MapView.swift */; };
+		D6CD21EA25F8587900861495 /* CommonVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD21E925F8587900861495 /* CommonVariable.swift */; };
+		D6CD21F725F8642500861495 /* ImageScrollModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD21F625F8642500861495 /* ImageScrollModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D60FC23C2602EC0D0038E9E5 /* GymRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymRecordView.swift; sourceTree = "<group>"; };
+		D60FC2422602EC360038E9E5 /* GymListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymListView.swift; sourceTree = "<group>"; };
+		D60FC2462602EC510038E9E5 /* GymCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymCellView.swift; sourceTree = "<group>"; };
+		D60FC2492602ECA90038E9E5 /* GymModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymModel.swift; sourceTree = "<group>"; };
+		D60FC24C2602EF630038E9E5 /* HikingParkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HikingParkModel.swift; sourceTree = "<group>"; };
+		D60FC24F2602EFAF0038E9E5 /* DogPlayground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogPlayground.swift; sourceTree = "<group>"; };
+		D60FC253260304B50038E9E5 /* CircleImagePlusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImagePlusView.swift; sourceTree = "<group>"; };
+		D60FC256260306990038E9E5 /* LocationMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapView.swift; sourceTree = "<group>"; };
+		D60FC25A260309050038E9E5 /* MapHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapHelper.swift; sourceTree = "<group>"; };
+		D60FC25E2603128F0038E9E5 /* ImageScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
+		D60FC261260313540038E9E5 /* ScrollBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollBoxView.swift; sourceTree = "<group>"; };
+		D60FC264260316CC0038E9E5 /* ScrollImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollImageHelper.swift; sourceTree = "<group>"; };
+		D60FC26826032ECA0038E9E5 /* NavigationBarColorModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarColorModifier.swift; sourceTree = "<group>"; };
+		D60FC26C2603387E0038E9E5 /* DirectButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectButtonView.swift; sourceTree = "<group>"; };
+		D60FC270260342D90038E9E5 /* StarButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarButtonView.swift; sourceTree = "<group>"; };
+		D60FC27A26037D1F0038E9E5 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		D60FC27E26037E9A0038E9E5 /* NetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
+		D60FC281260381610038E9E5 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		D60FC28A260443C80038E9E5 /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
+		D60FC28E26044B7F0038E9E5 /* JoggingGoalInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoggingGoalInputView.swift; sourceTree = "<group>"; };
+		D61A1484260464030049B377 /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
+		D61A1487260467130049B377 /* BottomContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomContentView.swift; sourceTree = "<group>"; };
+		D63D18CA25FDFF6C0049C1AC /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		D63D18CD25FE09460049C1AC /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
+		D63D18D125FE09C50049C1AC /* ActivityListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListView.swift; sourceTree = "<group>"; };
+		D63D18D825FF787E0049C1AC /* CircleImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
 		D65200F425F757B800BA04E9 /* MelbourneRun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MelbourneRun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D65200F725F757B800BA04E9 /* MelbourneRunApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MelbourneRunApp.swift; sourceTree = "<group>"; };
-		D65200F925F757B800BA04E9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D65200FB25F757B900BA04E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D65200FE25F757B900BA04E9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D652010025F757B900BA04E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D6CD21D725F79E4A00861495 /* MapMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMainView.swift; sourceTree = "<group>"; };
+		D6CD21DC25F7A3B700861495 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		D6CD21E125F7B14100861495 /* home.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = home.gpx; path = ../../../Downloads/home.gpx; sourceTree = "<group>"; };
+		D6CD21E925F8587900861495 /* CommonVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonVariable.swift; sourceTree = "<group>"; };
+		D6CD21F625F8642500861495 /* ImageScrollModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScrollModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,15 +91,74 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D61A148226045A830049B377 /* PullUpController in Frameworks */,
+				D652011025F7604900BA04E9 /* LocationProvider in Frameworks */,
+				D60FC27826037CF00038E9E5 /* Alamofire in Frameworks */,
+				D60FC288260443570038E9E5 /* Polyline in Frameworks */,
+				D61A147E260459660049B377 /* UBottomSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D60FC2382602EB870038E9E5 /* Gym */ = {
+			isa = PBXGroup;
+			children = (
+				D60FC23C2602EC0D0038E9E5 /* GymRecordView.swift */,
+				D60FC2462602EC510038E9E5 /* GymCellView.swift */,
+				D60FC2422602EC360038E9E5 /* GymListView.swift */,
+			);
+			path = Gym;
+			sourceTree = "<group>";
+		};
+		D60FC2392602EB910038E9E5 /* WalkDog */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = WalkDog;
+			sourceTree = "<group>";
+		};
+		D60FC23A2602EB9F0038E9E5 /* Jogging */ = {
+			isa = PBXGroup;
+			children = (
+				D6CD21D725F79E4A00861495 /* MapMainView.swift */,
+				D6CD21DC25F7A3B700861495 /* MapView.swift */,
+				D60FC28E26044B7F0038E9E5 /* JoggingGoalInputView.swift */,
+			);
+			path = Jogging;
+			sourceTree = "<group>";
+		};
+		D60FC23B2602EBA80038E9E5 /* Hiking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Hiking;
+			sourceTree = "<group>";
+		};
+		D60FC259260308F90038E9E5 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				D60FC25A260309050038E9E5 /* MapHelper.swift */,
+				D60FC264260316CC0038E9E5 /* ScrollImageHelper.swift */,
+				D60FC27A26037D1F0038E9E5 /* NetworkManager.swift */,
+				D60FC27E26037E9A0038E9E5 /* NetworkAPI.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		D60FC26726032E760038E9E5 /* Modifier */ = {
+			isa = PBXGroup;
+			children = (
+				D60FC26826032ECA0038E9E5 /* NavigationBarColorModifier.swift */,
+			);
+			path = Modifier;
+			sourceTree = "<group>";
+		};
 		D65200EB25F757B800BA04E9 = {
 			isa = PBXGroup;
 			children = (
+				D6CD21E125F7B14100861495 /* home.gpx */,
 				D65200F625F757B800BA04E9 /* MelbourneRun */,
 				D65200F525F757B800BA04E9 /* Products */,
 			);
@@ -52,11 +175,14 @@
 		D65200F625F757B800BA04E9 /* MelbourneRun */ = {
 			isa = PBXGroup;
 			children = (
+				D60FC259260308F90038E9E5 /* Helper */,
+				D6CD21F025F860C300861495 /* Model */,
+				D6CD21E325F7B17E00861495 /* Views */,
 				D65200F725F757B800BA04E9 /* MelbourneRunApp.swift */,
-				D65200F925F757B800BA04E9 /* ContentView.swift */,
 				D65200FB25F757B900BA04E9 /* Assets.xcassets */,
 				D652010025F757B900BA04E9 /* Info.plist */,
 				D65200FD25F757B900BA04E9 /* Preview Content */,
+				D6CD21E925F8587900861495 /* CommonVariable.swift */,
 			);
 			path = MelbourneRun;
 			sourceTree = "<group>";
@@ -67,6 +193,51 @@
 				D65200FE25F757B900BA04E9 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D6CD21E325F7B17E00861495 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D60FC26726032E760038E9E5 /* Modifier */,
+				D60FC23B2602EBA80038E9E5 /* Hiking */,
+				D60FC23A2602EB9F0038E9E5 /* Jogging */,
+				D60FC2392602EB910038E9E5 /* WalkDog */,
+				D60FC2382602EB870038E9E5 /* Gym */,
+				D6CD21EF25F85FDA00861495 /* Button */,
+				D63D18CA25FDFF6C0049C1AC /* ActivityView.swift */,
+				D63D18D125FE09C50049C1AC /* ActivityListView.swift */,
+				D63D18D825FF787E0049C1AC /* CircleImageView.swift */,
+				D60FC256260306990038E9E5 /* LocationMapView.swift */,
+				D60FC253260304B50038E9E5 /* CircleImagePlusView.swift */,
+				D60FC25E2603128F0038E9E5 /* ImageScrollView.swift */,
+				D60FC261260313540038E9E5 /* ScrollBoxView.swift */,
+				D61A1484260464030049B377 /* BottomView.swift */,
+				D61A1487260467130049B377 /* BottomContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D6CD21EF25F85FDA00861495 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				D60FC26C2603387E0038E9E5 /* DirectButtonView.swift */,
+				D60FC270260342D90038E9E5 /* StarButtonView.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
+		D6CD21F025F860C300861495 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D6CD21F625F8642500861495 /* ImageScrollModel.swift */,
+				D63D18CD25FE09460049C1AC /* ActivityModel.swift */,
+				D60FC2492602ECA90038E9E5 /* GymModel.swift */,
+				D60FC24C2602EF630038E9E5 /* HikingParkModel.swift */,
+				D60FC24F2602EFAF0038E9E5 /* DogPlayground.swift */,
+				D60FC281260381610038E9E5 /* UserData.swift */,
+				D60FC28A260443C80038E9E5 /* LocationViewModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -85,6 +256,13 @@
 			dependencies = (
 			);
 			name = MelbourneRun;
+			packageProductDependencies = (
+				D652010F25F7604900BA04E9 /* LocationProvider */,
+				D60FC27726037CF00038E9E5 /* Alamofire */,
+				D60FC287260443570038E9E5 /* Polyline */,
+				D61A147D260459660049B377 /* UBottomSheet */,
+				D61A148126045A830049B377 /* PullUpController */,
+			);
 			productName = MelbourneRun;
 			productReference = D65200F425F757B800BA04E9 /* MelbourneRun.app */;
 			productType = "com.apple.product-type.application";
@@ -112,6 +290,13 @@
 				Base,
 			);
 			mainGroup = D65200EB25F757B800BA04E9;
+			packageReferences = (
+				D652010E25F7604900BA04E9 /* XCRemoteSwiftPackageReference "LocationProvider" */,
+				D60FC27626037CF00038E9E5 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				D60FC286260443570038E9E5 /* XCRemoteSwiftPackageReference "Polyline" */,
+				D61A147C260459660049B377 /* XCRemoteSwiftPackageReference "UBottomSheet" */,
+				D61A148026045A830049B377 /* XCRemoteSwiftPackageReference "PullUpController" */,
+			);
 			productRefGroup = D65200F525F757B800BA04E9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,8 +323,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D65200FA25F757B800BA04E9 /* ContentView.swift in Sources */,
+				D60FC27B26037D1F0038E9E5 /* NetworkManager.swift in Sources */,
+				D60FC26926032ECA0038E9E5 /* NavigationBarColorModifier.swift in Sources */,
+				D60FC282260381610038E9E5 /* UserData.swift in Sources */,
+				D61A1488260467130049B377 /* BottomContentView.swift in Sources */,
+				D60FC27F26037E9A0038E9E5 /* NetworkAPI.swift in Sources */,
+				D60FC26D2603387E0038E9E5 /* DirectButtonView.swift in Sources */,
+				D60FC28F26044B7F0038E9E5 /* JoggingGoalInputView.swift in Sources */,
+				D60FC2432602EC360038E9E5 /* GymListView.swift in Sources */,
+				D60FC254260304B50038E9E5 /* CircleImagePlusView.swift in Sources */,
+				D60FC257260306990038E9E5 /* LocationMapView.swift in Sources */,
+				D61A1485260464030049B377 /* BottomView.swift in Sources */,
+				D60FC24A2602ECA90038E9E5 /* GymModel.swift in Sources */,
+				D60FC265260316CC0038E9E5 /* ScrollImageHelper.swift in Sources */,
+				D63D18CB25FDFF6C0049C1AC /* ActivityView.swift in Sources */,
+				D60FC25F2603128F0038E9E5 /* ImageScrollView.swift in Sources */,
+				D6CD21D825F79E4A00861495 /* MapMainView.swift in Sources */,
+				D60FC24D2602EF630038E9E5 /* HikingParkModel.swift in Sources */,
+				D60FC28B260443C80038E9E5 /* LocationViewModel.swift in Sources */,
+				D60FC2472602EC510038E9E5 /* GymCellView.swift in Sources */,
+				D6CD21DD25F7A3B700861495 /* MapView.swift in Sources */,
+				D60FC23D2602EC0D0038E9E5 /* GymRecordView.swift in Sources */,
+				D60FC262260313540038E9E5 /* ScrollBoxView.swift in Sources */,
+				D63D18D225FE09C50049C1AC /* ActivityListView.swift in Sources */,
+				D63D18D925FF787F0049C1AC /* CircleImageView.swift in Sources */,
+				D6CD21EA25F8587900861495 /* CommonVariable.swift in Sources */,
+				D60FC2502602EFAF0038E9E5 /* DogPlayground.swift in Sources */,
+				D60FC271260342D90038E9E5 /* StarButtonView.swift in Sources */,
+				D63D18CE25FE09460049C1AC /* ActivityModel.swift in Sources */,
+				D6CD21F725F8642500861495 /* ImageScrollModel.swift in Sources */,
 				D65200F825F757B800BA04E9 /* MelbourneRunApp.swift in Sources */,
+				D60FC25B260309050038E9E5 /* MapHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +542,77 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D60FC27626037CF00038E9E5 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.1;
+			};
+		};
+		D60FC286260443570038E9E5 /* XCRemoteSwiftPackageReference "Polyline" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/raphaelmor/Polyline.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.2;
+			};
+		};
+		D61A147C260459660049B377 /* XCRemoteSwiftPackageReference "UBottomSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/OfTheWolf/UBottomSheet.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.9;
+			};
+		};
+		D61A148026045A830049B377 /* XCRemoteSwiftPackageReference "PullUpController" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MarioIannotta/PullUpController.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.8.0;
+			};
+		};
+		D652010E25F7604900BA04E9 /* XCRemoteSwiftPackageReference "LocationProvider" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/himbeles/LocationProvider.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D60FC27726037CF00038E9E5 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D60FC27626037CF00038E9E5 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		D60FC287260443570038E9E5 /* Polyline */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D60FC286260443570038E9E5 /* XCRemoteSwiftPackageReference "Polyline" */;
+			productName = Polyline;
+		};
+		D61A147D260459660049B377 /* UBottomSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D61A147C260459660049B377 /* XCRemoteSwiftPackageReference "UBottomSheet" */;
+			productName = UBottomSheet;
+		};
+		D61A148126045A830049B377 /* PullUpController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D61A148026045A830049B377 /* XCRemoteSwiftPackageReference "PullUpController" */;
+			productName = PullUpController;
+		};
+		D652010F25F7604900BA04E9 /* LocationProvider */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D652010E25F7604900BA04E9 /* XCRemoteSwiftPackageReference "LocationProvider" */;
+			productName = LocationProvider;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D65200EC25F757B800BA04E9 /* Project object */;
 }

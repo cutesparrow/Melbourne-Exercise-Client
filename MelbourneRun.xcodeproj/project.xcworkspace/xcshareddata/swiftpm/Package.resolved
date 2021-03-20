@@ -1,0 +1,52 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Alamofire",
+        "repositoryURL": "https://github.com/Alamofire/Alamofire.git",
+        "state": {
+          "branch": null,
+          "revision": "eaf6e622dd41b07b251d8f01752eab31bc811493",
+          "version": "5.4.1"
+        }
+      },
+      {
+        "package": "LocationProvider",
+        "repositoryURL": "https://github.com/himbeles/LocationProvider.git",
+        "state": {
+          "branch": null,
+          "revision": "970f00b5f7294f2af0bb55dadd160a2eba9b8890",
+          "version": "1.5.0"
+        }
+      },
+      {
+        "package": "Polyline",
+        "repositoryURL": "https://github.com/raphaelmor/Polyline.git",
+        "state": {
+          "branch": null,
+          "revision": "36f7b1222aaf8fa741d0d179c12e186998d97f42",
+          "version": "5.0.2"
+        }
+      },
+      {
+        "package": "PullUpController",
+        "repositoryURL": "https://github.com/MarioIannotta/PullUpController.git",
+        "state": {
+          "branch": null,
+          "revision": "6192b4745a4423e8fd2dc0a4eb8d34ca247a5163",
+          "version": "0.8.0"
+        }
+      },
+      {
+        "package": "UBottomSheet",
+        "repositoryURL": "https://github.com/OfTheWolf/UBottomSheet.git",
+        "state": {
+          "branch": null,
+          "revision": "35071cb950fe40b3835075e3035e18b9d270c749",
+          "version": "1.0.9"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
