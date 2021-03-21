@@ -44,6 +44,7 @@ struct ActivityListView: View {
                     }
                     Spacer()
                 }
+                .navigationTitle("Home")
                 .navigationBarHidden(true)}
         }
     }

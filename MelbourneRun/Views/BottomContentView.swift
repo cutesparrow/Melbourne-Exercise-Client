@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct BottomContentView: View {
+    @EnvironmentObject var userData:UserData
     var body: some View {
         VStack{
             HStack{
@@ -34,5 +35,6 @@ struct BottomContentView: View {
 struct BottomContentView_Previews: PreviewProvider {
     static var previews: some View {
         BottomContentView()
+            .environmentObject(UserData())
     }
 }

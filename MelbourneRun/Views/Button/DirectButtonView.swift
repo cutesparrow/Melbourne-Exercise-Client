@@ -15,7 +15,7 @@ struct DirectButtonView: View {
             .fontWeight(.regular)
             .font(.caption)
             .padding()
-            .frame(width: 100, height: 40, alignment: .center)
+            .frame(width: 90, height: 40, alignment: .center)
             .background(color)
             .cornerRadius(40)
             .foregroundColor(.white)

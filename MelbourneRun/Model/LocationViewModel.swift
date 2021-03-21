@@ -13,8 +13,12 @@ class LocationViewModel: ObservableObject {
     
     var locations = [CLLocationCoordinate2D]()
     
-    func load(coordinates:[CLLocationCoordinate2D]) {
-        fetchLocations(coordinates: coordinates)
+    func load(coordinates:[Coordinate]) {
+        var locations:[CLLocationCoordinate2D] = []
+        for i in coordinates{
+            locations.append(i.locationCoordinate())
+        }
+        fetchLocations(coordinates: locations)
     }
     
     private func fetchLocations(coordinates:[CLLocationCoordinate2D]) {
@@ -41,7 +45,6 @@ final class MapViewCoordinator: NSObject, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
         if let annotationView = views.first, let annotation = annotationView.annotation {
             if annotation is MKUserLocation {
-                print(1)
                 let region = MKCoordinateRegion(center: annotation.coordinate, latitudinalMeters: 700, longitudinalMeters: 700)
                 mapView.setRegion(region, animated: true)
             }

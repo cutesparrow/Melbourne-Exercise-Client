@@ -9,11 +9,11 @@ import SwiftUI
 import MapKit
 
 struct MapView: UIViewRepresentable {
-    var coordinates:[CLLocationCoordinate2D]
+    var coordinates:[Coordinate]
     private let locationViewModel = LocationViewModel()
     private let mapZoomEdgeInsets = UIEdgeInsets(top: 30.0, left: 30.0, bottom: 30.0, right: 30.0)
     
-    init(coordinates:[CLLocationCoordinate2D]) {
+    init(coordinates:[Coordinate]) {
         self.coordinates = coordinates
         locationViewModel.load(coordinates: coordinates)
     }
@@ -49,8 +49,8 @@ struct MapView: UIViewRepresentable {
 struct MapView_Previews: PreviewProvider {
     static let data = UserData()
     static var previews: some View {
-        MapView(coordinates: [CLLocationCoordinate2D(latitude: -37.81228028830977, longitude: 144.96229225616813),
-                              CLLocationCoordinate2D(latitude: -37.816196112093316, longitude: 144.96404105636753),CLLocationCoordinate2D(latitude: -37.81470439418989, longitude: 144.96899777840505)])
+        MapView(coordinates: [Coordinate(latitude: -37.81228028830977, longitude: 144.96229225616813),
+                              Coordinate(latitude: -37.816196112093316, longitude: 144.96404105636753),Coordinate(latitude: -37.81470439418989, longitude: 144.96899777840505)])
             
     }
 }

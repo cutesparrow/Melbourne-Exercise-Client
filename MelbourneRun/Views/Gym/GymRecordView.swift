@@ -24,7 +24,7 @@ struct GymRecordView: View {
     }
     
     func LocationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])->CLLocationCoordinate2D {
-        manager.location!.coordinate
+        manager.location?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
     }
     
     func openMapApp()->Void{
@@ -48,59 +48,62 @@ struct GymRecordView: View {
                 LocationMapView(lat: gym.lat, long: gym.long)
                     .ignoresSafeArea(edges: .top)
                     .frame(height: UIScreen.main.bounds.width/1.2)
-                CircleImagePlusView(name: gym.Images[0])
-                    .offset(x:UIScreen.main.bounds.width/4, y: -UIScreen.main.bounds.width/6)
-                    
-                VStack(alignment:.leading) {
+                HStack{
+                    VStack(alignment:.leading){
+                        Spacer()
                     Text(gym.name)
-                        .font(.title)
-                        .bold()
-                        .frame(width: 200, height: 100)
+                        .font(.body)
+                        
+                    
                     HStack{
-                        HStack{
-                            HStack{
-                                Button(action: openMapApp, label: {
-                                    DirectButtonView(color:Color.blue,text:"GO")
-                                })
-                                Divider()
-                                    .frame(width: 30, height: 30, alignment: .center)
-                                Button(action: {self.userData.gymList.list[gymIndex].star.toggle()}, label: {
-                                    Image(systemName: "star")
-                                        .font(.system(size: 30))
-                                        .padding(5)
-                                        .background(self.userData.gymList.list[gymIndex].star ? Color.yellow:.white)
-                                        .cornerRadius(40)
-                                        .foregroundColor(self.userData.gymList.list[gymIndex].star ? .white:Color.yellow) //changed
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 40)
-                                                .stroke(Color.yellow, lineWidth: 3)
-                                        )
-                                })
-                            }
-                            Spacer()
-                            HStack{
-                                Text("Limit:")
-                                    .font(.title3)
-                                    .bold()
-                                    .italic()
-                                Image(systemName: "\(gym.limitation).circle")
-                                    .font(.system(size: 22, weight: .regular))
-                            }.foregroundColor(Color.black.opacity(0.65))
-                        }.padding(.leading).padding(.trailing)
+                            Text("Limit:")
+                                .font(.title3)
+                                .bold()
+                                .italic()
+                            Image(systemName: "\(gym.limitation).circle")
+                                .font(.system(size: 22, weight: .regular))
+                        }.foregroundColor(Color.black.opacity(0.65))
                     }
-                    Divider()
+                    Spacer()
+                    CircleImagePlusView(name: gym.Images[0])
+                    
+                }
+                .padding(.leading)
+                .padding(.trailing)
+                .offset(y: -UIScreen.main.bounds.width/6)
+                
+                VStack(alignment:.leading) {
+                    
+                      
                     HStack(alignment: .top){
                         Text(gym.address)
-                            .frame(width: UIScreen.main.bounds.width/1.4, alignment: .center)
                             .font(.subheadline)
                         Spacer()
                         Text("\(gym.distance.description)KM")
                             .font(.subheadline)
-                    }.padding(.leading).padding(.trailing)
-                }.offset(y:-155)
+                    }
+                    .padding(.leading)
+                    .padding(.trailing)
+                    Divider()
+                    HStack{
+                        Spacer()
+                        Button(action: openMapApp, label: {
+                            DirectButtonView(color:Color.blue,text:"GO NOW")
+                        })
+                        Spacer()
+                        Divider()
+                            .frame(width: 5, height: 30, alignment: .center)
+                        Spacer()
+                        Button(action: openMapApp, label: {
+                            DirectButtonView(color:Color.yellow,text:"PLAN")
+                        })
+                        Spacer()
+                    }.padding(.top,15)
+                }
+                .offset(y: -UIScreen.main.bounds.width/6.5)
                 
                 ImageScrollView(Images: getScrollImageList(images: gym.Images))
-                    .offset(y:-175)
+                    .offset(y: -UIScreen.main.bounds.width/6)
                 
             }.background(AppColor.shared.backgroundColor)
         }).ignoresSafeArea()

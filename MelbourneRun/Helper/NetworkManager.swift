@@ -12,10 +12,12 @@ typealias NetworkRequestResult = Result<Data, Error>
 typealias NetworkRequestCompletion = (NetworkRequestResult) -> Void
 
 
-let NetworkAPIBaseURL = "https://raw.githubusercontent.com/cutesparrow/DeepLearningFromScratch/main/"
+let NetworkAPIBaseURL = "http://127.0.0.1:8000/"
 
 class NetworkManager {
     static let shared = NetworkManager()
+    
+    let urlBasePath:String = NetworkAPIBaseURL + "gym/static/"
     
     var commonHeaders: HTTPHeaders { ["user_id": "123", "token": "XXXXXX"] } //headers used for server validation
     
@@ -72,6 +74,7 @@ class NetworkManager {
     }
     
     static func parseData<T: Decodable>(_ data: Data) -> Result<T, Error> {
+        print(data)
             guard let decodedData = try? JSONDecoder().decode(T.self, from: data) else {
                 let error = NSError(domain: "NetworkAPIError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Can not parse data"])
                 return .failure(error)

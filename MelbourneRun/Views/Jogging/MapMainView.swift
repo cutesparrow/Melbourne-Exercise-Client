@@ -12,6 +12,7 @@ import MapKit
 struct MapMainView: View {
     @EnvironmentObject var userData:UserData
     @State private var bottomSheetShown = true
+    
     var body: some View {
         
         GeometryReader { geometry in
@@ -21,10 +22,12 @@ struct MapMainView: View {
                 maxHeight: geometry.size.height * 0.45
             ) {
                 BottomContentView()
+                    .environmentObject(userData)
             }
         }.edgesIgnoringSafeArea(.all)
         .onAppear(perform: {
-            self.userData.getJoggingPath(location: CLLocationCoordinate2D(latitude: 1, longitude: 1))//should use user location later
+            self.userData.getJoggingPath(location: CLLocationCoordinate2D(latitude: 1, longitude: 1), ifreturn: "False")
+           
         })
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarColor(backgroundColor: UIColor(Color(.tertiarySystemBackground).opacity(0.3)), tintColor: UIColor(Color.blue))

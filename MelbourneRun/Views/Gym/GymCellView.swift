@@ -11,41 +11,35 @@ struct GymCellView: View {
     var gym:Gym
     var body: some View {
         HStack(alignment:.center){
-            
             ZStack{
-                
-                VStack{
-                    HStack(alignment:.center){
+                HStack{
+                    VStack(alignment:.leading){
                         Text(gym.name)
                             .foregroundColor(Color(.black).opacity(0.8))
-                            .font(.title2)
+                            .font(.body)
                             .italic()
                             .bold()
-                            
-                        Spacer()
-                        CircleImageView(imageName: gym.Images[0],size: 80)
-                            .font(.system(size: UIScreen.main.bounds.width/9, weight: .regular))
-                    }.frame(width: UIScreen.main.bounds.width/1.2)
-                    
-                    HStack(alignment:.bottom){
-                        Text(gym.address)
-                            .font(.body)
-                            .foregroundColor(Color(.black).opacity(0.6))
-                        Spacer()
                         Text("\(gym.distance.description)KM")
                             .foregroundColor(.gray)
+                            .font(.caption)
+                            
+                        Text(gym.address)
+                            .font(.caption)
+                            .foregroundColor(Color(.black).opacity(0.6))
                     }
-                    .frame(width: UIScreen.main.bounds.width/1.2)
-                    .offset(y:-15)
+                    Spacer()
+                    CircleImageView(imageName: gym.Images[0],size: 80)
+                        .font(.system(size: UIScreen.main.bounds.width/9, weight: .regular))
                 }
+                .frame(width: UIScreen.main.bounds.width/1.2,height: 80, alignment: .center)
                 .padding(10)
-                .background(Color.gray.opacity(0.4))
+                .background(Color.gray.opacity(0.13))
                 .cornerRadius(40)
                 .foregroundColor(.white)
                 .padding(3)
                 .overlay(
                     RoundedRectangle(cornerRadius: 40)
-                        .stroke(Color.gray.opacity(0.4), lineWidth: 3)
+                        .stroke(Color.pink.opacity(0.2), lineWidth: 2)
                 )
                 
                 

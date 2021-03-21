@@ -6,11 +6,18 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
+
+
 
 struct CircleImagePlusView: View {
     var name:String
+    var url:URL?
     var body: some View {
-        Image(name)
+        WebImage(url: URL(string: NetworkManager.shared.urlBasePath + name + ".jpg"))
+            .placeholder{
+                Color.gray
+            }
             .resizable(capInsets: EdgeInsets(), resizingMode: .stretch)
             .scaledToFill()
             .frame(width: UIScreen.main.bounds.width/3, height: UIScreen.main.bounds.width/3, alignment: .center)

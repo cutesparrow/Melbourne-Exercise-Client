@@ -6,13 +6,21 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
+
+
+
 
 struct CircleImageView: View {
     var imageName:String
     var size: CGFloat
     var body: some View {
-        Image(imageName)
+        WebImage(url: URL(string: NetworkManager.shared.urlBasePath + imageName + ".jpg"))
+            .placeholder{
+                Color.gray
+            }
             .resizable()
+            .scaledToFill()
             .aspectRatio(contentMode: .fill)
             .frame(width: size, height: size, alignment: .center)
             .clipShape(Circle())

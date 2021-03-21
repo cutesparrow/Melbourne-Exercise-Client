@@ -6,11 +6,17 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
+
 
 struct ScrollBoxView: View {
+    var url:URL?
     var image:ScrollImage
     var body: some View {
-        Image(image.image)
+        WebImage(url: URL(string: NetworkManager.shared.urlBasePath + image.image + ".jpg"))
+            .placeholder{
+                Color.gray
+            }
             .resizable(capInsets: EdgeInsets(), resizingMode: .stretch)
             .scaledToFill()
             .frame(width: UIScreen.main.bounds.width/1.5, height: UIScreen.main.bounds.height/2)

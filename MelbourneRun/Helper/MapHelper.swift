@@ -15,3 +15,14 @@ func getMK(lat:Double, long: Double)->MKCoordinateRegion{
         span: MKCoordinateSpan(latitudeDelta: 0.002, longitudeDelta: 0.002)
     )
 }
+
+
+struct Coordinate: Codable {
+    let latitude: Double
+    let longitude: Double
+
+    func locationCoordinate() -> CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: self.latitude,
+                                      longitude: self.longitude)
+    }
+}
