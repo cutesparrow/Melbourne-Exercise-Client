@@ -34,6 +34,15 @@
 		D61A1485260464030049B377 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61A1484260464030049B377 /* BottomView.swift */; };
 		D61A1488260467130049B377 /* BottomContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61A1487260467130049B377 /* BottomContentView.swift */; };
 		D630CA5B2607404E008B9FA9 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D630CA5A2607404E008B9FA9 /* SDWebImageSwiftUI */; };
+		D630CA6326088662008B9FA9 /* RoadSituationContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D630CA6226088662008B9FA9 /* RoadSituationContentView.swift */; };
+		D630CA68260888CA008B9FA9 /* RoadSituationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D630CA67260888CA008B9FA9 /* RoadSituationModel.swift */; };
+		D630CA6B26088FA2008B9FA9 /* GraphCapsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D630CA6A26088FA2008B9FA9 /* GraphCapsule.swift */; };
+		D630CA6E260891C1008B9FA9 /* TrendGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D630CA6D260891C1008B9FA9 /* TrendGraphView.swift */; };
+		D630CA7526089F54008B9FA9 /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = D630CA7426089F54008B9FA9 /* Sliders */; };
+		D630CA7C2608B47B008B9FA9 /* DigitalClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D630CA7B2608B47B008B9FA9 /* DigitalClockView.swift */; };
+		D630CA852608BF0F008B9FA9 /* BottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = D630CA842608BF0F008B9FA9 /* BottomSheet */; };
+		D630CA882608C20A008B9FA9 /* PlanButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D630CA872608C20A008B9FA9 /* PlanButtonView.swift */; };
+		D630CA8B2608C542008B9FA9 /* PlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D630CA8A2608C542008B9FA9 /* PlanView.swift */; };
 		D63D18CB25FDFF6C0049C1AC /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63D18CA25FDFF6C0049C1AC /* ActivityView.swift */; };
 		D63D18CE25FE09460049C1AC /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63D18CD25FE09460049C1AC /* ActivityModel.swift */; };
 		D63D18D225FE09C50049C1AC /* ActivityListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63D18D125FE09C50049C1AC /* ActivityListView.swift */; };
@@ -71,6 +80,13 @@
 		D60FC28E26044B7F0038E9E5 /* JoggingGoalInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoggingGoalInputView.swift; sourceTree = "<group>"; };
 		D61A1484260464030049B377 /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
 		D61A1487260467130049B377 /* BottomContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomContentView.swift; sourceTree = "<group>"; };
+		D630CA6226088662008B9FA9 /* RoadSituationContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadSituationContentView.swift; sourceTree = "<group>"; };
+		D630CA67260888CA008B9FA9 /* RoadSituationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadSituationModel.swift; sourceTree = "<group>"; };
+		D630CA6A26088FA2008B9FA9 /* GraphCapsule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphCapsule.swift; sourceTree = "<group>"; };
+		D630CA6D260891C1008B9FA9 /* TrendGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendGraphView.swift; sourceTree = "<group>"; };
+		D630CA7B2608B47B008B9FA9 /* DigitalClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalClockView.swift; sourceTree = "<group>"; };
+		D630CA872608C20A008B9FA9 /* PlanButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanButtonView.swift; sourceTree = "<group>"; };
+		D630CA8A2608C542008B9FA9 /* PlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanView.swift; sourceTree = "<group>"; };
 		D63D18CA25FDFF6C0049C1AC /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		D63D18CD25FE09460049C1AC /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 		D63D18D125FE09C50049C1AC /* ActivityListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListView.swift; sourceTree = "<group>"; };
@@ -93,7 +109,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D630CA5B2607404E008B9FA9 /* SDWebImageSwiftUI in Frameworks */,
+				D630CA852608BF0F008B9FA9 /* BottomSheet in Frameworks */,
 				D61A148226045A830049B377 /* PullUpController in Frameworks */,
+				D630CA7526089F54008B9FA9 /* Sliders in Frameworks */,
 				D652011025F7604900BA04E9 /* LocationProvider in Frameworks */,
 				D60FC27826037CF00038E9E5 /* Alamofire in Frameworks */,
 				D60FC288260443570038E9E5 /* Polyline in Frameworks */,
@@ -157,6 +175,25 @@
 			path = Modifier;
 			sourceTree = "<group>";
 		};
+		D630CA61260885FB008B9FA9 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				D60FC253260304B50038E9E5 /* CircleImagePlusView.swift */,
+				D60FC256260306990038E9E5 /* LocationMapView.swift */,
+				D60FC261260313540038E9E5 /* ScrollBoxView.swift */,
+				D61A1487260467130049B377 /* BottomContentView.swift */,
+				D61A1484260464030049B377 /* BottomView.swift */,
+				D60FC25E2603128F0038E9E5 /* ImageScrollView.swift */,
+				D63D18D825FF787E0049C1AC /* CircleImageView.swift */,
+				D630CA6226088662008B9FA9 /* RoadSituationContentView.swift */,
+				D630CA6A26088FA2008B9FA9 /* GraphCapsule.swift */,
+				D630CA6D260891C1008B9FA9 /* TrendGraphView.swift */,
+				D630CA7B2608B47B008B9FA9 /* DigitalClockView.swift */,
+				D630CA8A2608C542008B9FA9 /* PlanView.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		D65200EB25F757B800BA04E9 = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +237,7 @@
 		D6CD21E325F7B17E00861495 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D630CA61260885FB008B9FA9 /* Helper */,
 				D60FC26726032E760038E9E5 /* Modifier */,
 				D60FC23B2602EBA80038E9E5 /* Hiking */,
 				D60FC23A2602EB9F0038E9E5 /* Jogging */,
@@ -208,13 +246,6 @@
 				D6CD21EF25F85FDA00861495 /* Button */,
 				D63D18CA25FDFF6C0049C1AC /* ActivityView.swift */,
 				D63D18D125FE09C50049C1AC /* ActivityListView.swift */,
-				D63D18D825FF787E0049C1AC /* CircleImageView.swift */,
-				D60FC256260306990038E9E5 /* LocationMapView.swift */,
-				D60FC253260304B50038E9E5 /* CircleImagePlusView.swift */,
-				D60FC25E2603128F0038E9E5 /* ImageScrollView.swift */,
-				D60FC261260313540038E9E5 /* ScrollBoxView.swift */,
-				D61A1484260464030049B377 /* BottomView.swift */,
-				D61A1487260467130049B377 /* BottomContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -224,6 +255,7 @@
 			children = (
 				D60FC26C2603387E0038E9E5 /* DirectButtonView.swift */,
 				D60FC270260342D90038E9E5 /* StarButtonView.swift */,
+				D630CA872608C20A008B9FA9 /* PlanButtonView.swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -238,6 +270,7 @@
 				D60FC24F2602EFAF0038E9E5 /* DogPlayground.swift */,
 				D60FC281260381610038E9E5 /* UserData.swift */,
 				D60FC28A260443C80038E9E5 /* LocationViewModel.swift */,
+				D630CA67260888CA008B9FA9 /* RoadSituationModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -265,6 +298,8 @@
 				D61A147D260459660049B377 /* UBottomSheet */,
 				D61A148126045A830049B377 /* PullUpController */,
 				D630CA5A2607404E008B9FA9 /* SDWebImageSwiftUI */,
+				D630CA7426089F54008B9FA9 /* Sliders */,
+				D630CA842608BF0F008B9FA9 /* BottomSheet */,
 			);
 			productName = MelbourneRun;
 			productReference = D65200F425F757B800BA04E9 /* MelbourneRun.app */;
@@ -300,6 +335,8 @@
 				D61A147C260459660049B377 /* XCRemoteSwiftPackageReference "UBottomSheet" */,
 				D61A148026045A830049B377 /* XCRemoteSwiftPackageReference "PullUpController" */,
 				D630CA592607404E008B9FA9 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				D630CA7326089F54008B9FA9 /* XCRemoteSwiftPackageReference "swiftui-sliders" */,
+				D630CA832608BF0F008B9FA9 /* XCRemoteSwiftPackageReference "bottom-sheet" */,
 			);
 			productRefGroup = D65200F525F757B800BA04E9 /* Products */;
 			projectDirPath = "";
@@ -331,6 +368,7 @@
 				D60FC26926032ECA0038E9E5 /* NavigationBarColorModifier.swift in Sources */,
 				D60FC282260381610038E9E5 /* UserData.swift in Sources */,
 				D61A1488260467130049B377 /* BottomContentView.swift in Sources */,
+				D630CA7C2608B47B008B9FA9 /* DigitalClockView.swift in Sources */,
 				D60FC27F26037E9A0038E9E5 /* NetworkAPI.swift in Sources */,
 				D60FC26D2603387E0038E9E5 /* DirectButtonView.swift in Sources */,
 				D60FC28F26044B7F0038E9E5 /* JoggingGoalInputView.swift in Sources */,
@@ -346,16 +384,22 @@
 				D60FC24D2602EF630038E9E5 /* HikingParkModel.swift in Sources */,
 				D60FC28B260443C80038E9E5 /* LocationViewModel.swift in Sources */,
 				D60FC2472602EC510038E9E5 /* GymCellView.swift in Sources */,
+				D630CA882608C20A008B9FA9 /* PlanButtonView.swift in Sources */,
 				D6CD21DD25F7A3B700861495 /* MapView.swift in Sources */,
+				D630CA6B26088FA2008B9FA9 /* GraphCapsule.swift in Sources */,
+				D630CA8B2608C542008B9FA9 /* PlanView.swift in Sources */,
 				D60FC23D2602EC0D0038E9E5 /* GymRecordView.swift in Sources */,
+				D630CA6326088662008B9FA9 /* RoadSituationContentView.swift in Sources */,
 				D60FC262260313540038E9E5 /* ScrollBoxView.swift in Sources */,
 				D63D18D225FE09C50049C1AC /* ActivityListView.swift in Sources */,
 				D63D18D925FF787F0049C1AC /* CircleImageView.swift in Sources */,
 				D6CD21EA25F8587900861495 /* CommonVariable.swift in Sources */,
 				D60FC2502602EFAF0038E9E5 /* DogPlayground.swift in Sources */,
 				D60FC271260342D90038E9E5 /* StarButtonView.swift in Sources */,
+				D630CA68260888CA008B9FA9 /* RoadSituationModel.swift in Sources */,
 				D63D18CE25FE09460049C1AC /* ActivityModel.swift in Sources */,
 				D6CD21F725F8642500861495 /* ImageScrollModel.swift in Sources */,
+				D630CA6E260891C1008B9FA9 /* TrendGraphView.swift in Sources */,
 				D65200F825F757B800BA04E9 /* MelbourneRunApp.swift in Sources */,
 				D60FC25B260309050038E9E5 /* MapHelper.swift in Sources */,
 			);
@@ -588,6 +632,22 @@
 				minimumVersion = 2.0.2;
 			};
 		};
+		D630CA7326089F54008B9FA9 /* XCRemoteSwiftPackageReference "swiftui-sliders" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/spacenation/swiftui-sliders.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		D630CA832608BF0F008B9FA9 /* XCRemoteSwiftPackageReference "bottom-sheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/weitieda/bottom-sheet.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.6;
+			};
+		};
 		D652010E25F7604900BA04E9 /* XCRemoteSwiftPackageReference "LocationProvider" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/himbeles/LocationProvider.git";
@@ -623,6 +683,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D630CA592607404E008B9FA9 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
+		};
+		D630CA7426089F54008B9FA9 /* Sliders */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D630CA7326089F54008B9FA9 /* XCRemoteSwiftPackageReference "swiftui-sliders" */;
+			productName = Sliders;
+		};
+		D630CA842608BF0F008B9FA9 /* BottomSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D630CA832608BF0F008B9FA9 /* XCRemoteSwiftPackageReference "bottom-sheet" */;
+			productName = BottomSheet;
 		};
 		D652010F25F7604900BA04E9 /* LocationProvider */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -8,9 +8,11 @@
 import SwiftUI
 import MapKit
 import CoreLocation
+import BottomSheet
 
 struct GymRecordView: View {
     @EnvironmentObject var userData:UserData
+    @State var bottomSheetIsShow:Bool = false
     var gym:Gym
     var gymIndex: Int {
         userData.gymList.list.firstIndex(where: { $0.id == gym.id })!
@@ -53,10 +55,7 @@ struct GymRecordView: View {
                         Spacer()
                     Text(gym.name)
                         .font(.body)
-                        
-                    
-                    HStack{
-                            Text("Limit:")
+                    HStack{Text("Limit:")
                                 .font(.title3)
                                 .bold()
                                 .italic()
@@ -66,15 +65,12 @@ struct GymRecordView: View {
                     }
                     Spacer()
                     CircleImagePlusView(name: gym.Images[0])
-                    
                 }
                 .padding(.leading)
                 .padding(.trailing)
                 .offset(y: -UIScreen.main.bounds.width/6)
                 
                 VStack(alignment:.leading) {
-                    
-                      
                     HStack(alignment: .top){
                         Text(gym.address)
                             .font(.subheadline)
@@ -94,22 +90,18 @@ struct GymRecordView: View {
                         Divider()
                             .frame(width: 5, height: 30, alignment: .center)
                         Spacer()
-                        Button(action: openMapApp, label: {
-                            DirectButtonView(color:Color.yellow,text:"PLAN")
-                        })
+                        PlanButtonView(bottomSheetIsShow:$bottomSheetIsShow)
                         Spacer()
                     }.padding(.top,15)
                 }
                 .offset(y: -UIScreen.main.bounds.width/6.5)
-                
                 ImageScrollView(Images: getScrollImageList(images: gym.Images))
                     .offset(y: -UIScreen.main.bounds.width/6)
-                
             }.background(AppColor.shared.backgroundColor)
-        }).ignoresSafeArea()
-        
-        
-        
+        })
+        .bottomSheet(isPresented: $bottomSheetIsShow, height: 600, content: {PlanView(isShown: $bottomSheetIsShow).environmentObject(userData)
+        })
+        .ignoresSafeArea()
     }
 }
 
