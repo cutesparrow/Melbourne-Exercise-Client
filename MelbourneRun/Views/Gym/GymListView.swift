@@ -17,16 +17,9 @@ struct GymListView: View {
                     .padding(.top,10)
                     .padding(.bottom,10)
                     .shadow(radius: 10 )
-                
             }
             
         }
-        .navigationTitle("Gyms")
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarColor(backgroundColor: UIColor(AppColor.shared.gymColor), tintColor: .white)
-        .onAppear(perform: {
-            self.userData.getGymList(location: CLLocationCoordinate2D(latitude: -37.811822947, longitude: 144.963963))
-        })
         
         
     }

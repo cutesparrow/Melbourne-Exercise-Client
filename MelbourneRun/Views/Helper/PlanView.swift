@@ -22,7 +22,7 @@ struct PlanView: View {
             })
             Spacer()
             Button(action: {}, label: {
-                DirectButtonView(color: Color.yellow, text: "Plan")
+                DirectButtonView(color: AppColor.shared.gymColor, text: "Plan")
             })
             Spacer()
         }

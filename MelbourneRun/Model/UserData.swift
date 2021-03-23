@@ -12,6 +12,7 @@ import MapKit
 
 
 class UserData: ObservableObject {
+    @Published var locationFetcher = LocationFetcher()
     @Published var gymList: GymList = GymList(list: [ ])
     @Published var parkList: ParkList = ParkList(list: [])
     @Published var playgroundList: PlaygroundList = PlaygroundList(list: [])

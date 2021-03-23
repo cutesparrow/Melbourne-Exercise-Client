@@ -12,7 +12,7 @@ typealias NetworkRequestResult = Result<Data, Error>
 typealias NetworkRequestCompletion = (NetworkRequestResult) -> Void
 
 
-let NetworkAPIBaseURL = "http://127.0.0.1:8000/"
+let NetworkAPIBaseURL = "http://192.168.50.25:8000/"
 
 class NetworkManager {
     static let shared = NetworkManager()

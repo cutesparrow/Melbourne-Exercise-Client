@@ -21,17 +21,17 @@ struct ActivityListView: View {
                         .foregroundColor(.blue)
                     VStack(alignment: .center, spacing: 30){
                         NavigationLink(
-                            destination: Text("Hiking"),
+                            destination: HikingHomeView().environmentObject(userData),
                             label: {
                                 ActivityView(activity:activities[0])
                             })
                         NavigationLink(
-                            destination: GymListView()          .environmentObject(userData),
+                            destination: GymHomeView().environmentObject(userData),
                             label: {
                                 ActivityView(activity:activities[1])
                             })
                         NavigationLink(
-                            destination: Text("WalkDog"),
+                            destination: WalkDogHomeView().environmentObject(userData),
                             label: {
                                 ActivityView(activity:activities[2])
                             })
@@ -44,7 +44,6 @@ struct ActivityListView: View {
                     }
                     Spacer()
                 }
-                .navigationTitle("Home")
                 .navigationBarHidden(true)}
         }
     }

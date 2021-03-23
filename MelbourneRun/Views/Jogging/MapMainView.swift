@@ -26,15 +26,12 @@ struct MapMainView: View {
             }
         }.edgesIgnoringSafeArea(.all)
         .onAppear(perform: {
-            self.userData.getJoggingPath(location: CLLocationCoordinate2D(latitude: 1, longitude: 1), ifreturn: "False")
-           
+            self.userData.getJoggingPath(location: CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation!.latitude, longitude: userData.locationFetcher.lastKnownLocation!.longitude), ifreturn: "False")
         })
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarColor(backgroundColor: UIColor(Color(.tertiarySystemBackground).opacity(0.3)), tintColor: UIColor(Color.blue))
     }
 }
-
-
 
 struct MapMainView_Previews: PreviewProvider {
     static let data = UserData()
