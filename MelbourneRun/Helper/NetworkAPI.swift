@@ -46,10 +46,13 @@ extension UserData{
     func getGymList(location:CLLocationCoordinate2D){
         if !self.gymList.list.isEmpty{
             return
-        
         } else{
             loadGymListData(location:location)
         }
+        
+    }
+    func reloadGymList(location:CLLocationCoordinate2D){
+            loadGymListData(location:location)
         
     }
     func loadGymListData(location:CLLocationCoordinate2D){

@@ -8,8 +8,10 @@
 import SwiftUI
 import MapKit
 
+
 struct GymHomeView: View {
     @EnvironmentObject var userData:UserData
+    
     var body: some View {
         GymListView()
             .environmentObject(userData)
@@ -17,7 +19,7 @@ struct GymHomeView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarColor(backgroundColor: UIColor(AppColor.shared.gymColor), tintColor: .white)
             .onAppear(perform: {
-                self.userData.getGymList(location: CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation!.latitude, longitude: userData.locationFetcher.lastKnownLocation!.longitude))
+                self.userData.getGymList(location: CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503))
             })
     }
 }

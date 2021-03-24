@@ -26,7 +26,7 @@ struct MapMainView: View {
             }
         }.edgesIgnoringSafeArea(.all)
         .onAppear(perform: {
-            self.userData.getJoggingPath(location: CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation!.latitude, longitude: userData.locationFetcher.lastKnownLocation!.longitude), ifreturn: "False")
+            self.userData.getJoggingPath(location: CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503), ifreturn: "False")
         })
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarColor(backgroundColor: UIColor(Color(.tertiarySystemBackground).opacity(0.3)), tintColor: UIColor(Color.blue))
