@@ -15,32 +15,32 @@ struct GymCellView: View {
                 HStack{
                     VStack(alignment:.leading){
                         Text(gym.name)
-                            .foregroundColor(Color(.black).opacity(0.8))
+                            .foregroundColor(Color(.label))
                             .font(.body)
                             .italic()
                             .bold()
+                            .lineLimit(1)
                         Text("\(gym.distance.description)KM")
-                            .foregroundColor(.gray)
+                            .foregroundColor(Color(.label))
                             .font(.caption)
+                            .lineLimit(1)
                             
                         Text(gym.address)
+                            .foregroundColor(Color(.label))
                             .font(.caption)
-                            .foregroundColor(Color(.black).opacity(0.6))
+                            .lineLimit(1)
                     }
                     Spacer()
                     CircleImageView(imageName: gym.Images[0],size: 80)
                         .font(.system(size: UIScreen.main.bounds.width/9, weight: .regular))
                 }
-                .frame(width: UIScreen.main.bounds.width/1.2,height: 80, alignment: .center)
+                .frame(width: UIScreen.main.bounds.width/1.3,height: 80, alignment: .center)
                 .padding(10)
-                .background(Color.gray.opacity(0.13))
-                .cornerRadius(40)
+                .background(Color(.label).opacity(0.13))
+                .cornerRadius(25)
                 .foregroundColor(.white)
                 .padding(3)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 40)
-                        .stroke(Color.pink.opacity(0.2), lineWidth: 2)
-                )
+               
                 
                 
             }

@@ -38,6 +38,20 @@ class NetworkManager {
     }
     
     @discardableResult
+    func requestString(path: String, parameters: Parameters?, completion: @escaping (Result<String,Error>) -> Void) -> DataRequest {
+        AF.request(NetworkAPIBaseURL + path,
+                   parameters: parameters,
+                   headers: commonHeaders,
+                   requestModifier: { $0.timeoutInterval = 15 })
+            .responseString { response in
+                switch response.result {
+                case let .success(data): completion(.success(data))
+                case let .failure(error): completion(.failure(error))
+                }
+        }
+    }
+    
+    @discardableResult
     func requestPost(path: String, parameters: Parameters?, completion: @escaping NetworkRequestCompletion) -> DataRequest {
         AF.request(NetworkAPIBaseURL + path,
                    method: .post,

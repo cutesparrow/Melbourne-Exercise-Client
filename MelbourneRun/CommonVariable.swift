@@ -11,17 +11,20 @@ import SwiftUI
 
 struct AppColor {
     public static let shared = AppColor()
-    let gymColor:Color = Color(.systemPink).opacity(0.3)
-    let parkColor:Color = Color(.systemGray5).opacity(0.8)
-    let playgroundColor:Color = Color(.systemBlue).opacity(0.3)
-    let joggingColor:Color = Color(.systemGreen).opacity(0.3)
-    let backgroundColor:Color = Color(.systemYellow).opacity(0.07)
+    let gymColor:Color = .pink
+    let outDoorColor:Color = .orange
+    let parkColor:Color = Color(.systemGray5)
+    let playgroundColor:Color = Color(.systemBlue)
+    let joggingColor:Color = .blue
+    let backgroundColor:Color = Color(.systemYellow)
     let buttonColor:Color = Color(.systemGray2)
     let trendGraphColor:Color = Color(.gray)
     let highRiskColor:Color = Color.red
     let midRiskColor:Color = Color.orange
     let lowRiskColor:Color = Color.yellow
     let noRiskColor:Color = Color.green
+    let homeColor:Color = .purple
+
 }
 
 

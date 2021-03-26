@@ -14,11 +14,11 @@ struct PreLaunch: View {
     var body: some View {
         Group{
             if showMainView{
-            ActivityListView(activities: activities.list)
+            BottomBarView()
                 .environmentObject(userData)
         } else{
             ZStack{
-                Color("launchScreenBackground")
+                Color(.clear)
                     .edgesIgnoringSafeArea(.all)
                 Image("LaunchImage")
                     .resizable()

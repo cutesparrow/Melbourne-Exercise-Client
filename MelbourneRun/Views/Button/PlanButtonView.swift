@@ -14,7 +14,8 @@ struct PlanButtonView: View {
         Button(action: {
             bottomSheetIsShow.toggle()
         }) {
-            DirectButtonView(color:Color.yellow,text:"PLAN")
+            
+            DetailPageButton(icon: "book.closed", color: .red, text: "PLAN")
         }
     }
 }

@@ -39,8 +39,87 @@ class NetworkAPI{
             }
         }
     }
+    
+    static public func getImageName(completion: @escaping (Result<String,Error>) -> Void) -> DataRequest{
+        NetworkManager.shared.requestString(path: "poster/", parameters: nil) { result in
+            switch result{
+            case let .success(data):
+                let requestResult = data
+                completion(.success(requestResult))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    static public func getSlogan(completion: @escaping (Result<String,Error>) -> Void) -> DataRequest{
+        NetworkManager.shared.requestString(path: "slogan/", parameters: nil) { result in
+            switch result{
+            case let .success(data):
+                let requestResult = data
+                completion(.success(requestResult))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+    static public func getSafeTips(completion: @escaping (Result<String,Error>) -> Void) -> DataRequest{
+        NetworkManager.shared.requestString(path: "safeTips/", parameters: nil) { result in
+            switch result{
+            case let .success(data):
+                let requestResult = data
+                completion(.success(requestResult))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
 }
 
+extension UserData{
+    func getSafeTips(){
+        let completion: (Result<String,Error>) -> Void = {
+            result in
+            switch result {
+            case let .success(name):
+                self.safeTips = name
+            case let .failure(error):
+                print(error)
+            }
+        }
+        _ = NetworkAPI.getSafeTips(completion: completion)
+    }
+}
+
+extension UserData{
+    func getPosterName(){
+        let completion: (Result<String,Error>) -> Void = {
+            result in
+            switch result {
+            case let .success(name):
+                self.image = name
+            case let .failure(error):
+                print(error)
+            }
+        }
+        _ = NetworkAPI.getImageName(completion: completion)
+    }
+}
+
+extension UserData{
+    func getSlogan(){
+        let completion: (Result<String,Error>) -> Void = {
+            result in
+            switch result {
+            case let .success(name):
+                self.slogan = name
+            case let .failure(error):
+                print(error)
+            }
+        }
+        _ = NetworkAPI.getSlogan(completion: completion)
+    }
+}
 
 extension UserData{
     func getGymList(location:CLLocationCoordinate2D){

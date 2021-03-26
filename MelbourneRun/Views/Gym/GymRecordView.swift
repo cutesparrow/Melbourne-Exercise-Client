@@ -54,14 +54,16 @@ struct GymRecordView: View {
                     VStack(alignment:.leading){
                         Spacer()
                     Text(gym.name)
-                        .font(.body)
-                    HStack{Text("Limit:")
+                        .lineLimit(1)
+                        .font(.title3)
+                    
+                    HStack{Text("Limitation:")
                                 .font(.title3)
                                 .bold()
-                                .italic()
+                                
                             Image(systemName: "\(gym.limitation).circle")
                                 .font(.system(size: 22, weight: .regular))
-                        }.foregroundColor(Color.black.opacity(0.65))
+                    }.foregroundColor(Color(.label).opacity(0.65))
                     }
                     Spacer()
                     CircleImagePlusView(name: gym.Images[0])
@@ -84,7 +86,7 @@ struct GymRecordView: View {
                     HStack{
                         Spacer()
                         Button(action: openMapApp, label: {
-                            DirectButtonView(color:Color.blue,text:"GO NOW")
+                            DetailPageButton(icon: "arrow.up.circle", color: .blue, text: "GO")
                         })
                         Spacer()
                         Divider()
@@ -92,12 +94,13 @@ struct GymRecordView: View {
                         Spacer()
                         PlanButtonView(bottomSheetIsShow:$bottomSheetIsShow)
                         Spacer()
-                    }.padding(.top,15)
+                    }.padding(.top,5)
+                    .padding(.bottom,-5)
                 }
                 .offset(y: -UIScreen.main.bounds.width/6.5)
                 ImageScrollView(Images: getScrollImageList(images: gym.Images))
                     .offset(y: -UIScreen.main.bounds.width/6)
-            }.background(AppColor.shared.backgroundColor)
+            }.background(Color.clear)
         })
         .bottomSheet(isPresented: $bottomSheetIsShow, height: 600, content: {PlanView(isShown: $bottomSheetIsShow).environmentObject(userData)
         })

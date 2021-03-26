@@ -16,21 +16,22 @@ struct GymListView: View {
     @EnvironmentObject var userData:UserData
     @State private var isShowing = false
     var body: some View {
-        List(userData.gymList.list) { gym in
-            NavigationLink(destination: GymRecordView(gym: gym)) {
-                GymCellView(gym: gym)
-                    .padding(.top,10)
-                    .padding(.bottom,10)
-                    .shadow(radius: 10 )
+            List(userData.gymList.list) { gym in
+                NavigationLink(destination: GymRecordView(gym: gym)) {
+                    GymCellView(gym: gym)
+                        .padding(.top,10)
+                        .padding(.bottom,10)
+                        .shadow(radius: 10 )
+                }
             }
             
-        }.pullToRefresh(isShowing: $isShowing) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.userData.reloadGymList(location: CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503))
-                self.isShowing = false
+            .pullToRefresh(isShowing: $isShowing) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.userData.reloadGymList(location: CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503))
+                    self.isShowing = false
+                }
+            }.onChange(of: self.isShowing) { value in
             }
-        }.onChange(of: self.isShowing) { value in
-        }
     }
     
     
