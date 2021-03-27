@@ -32,13 +32,13 @@ struct StandardRiskAssessment{
     public static let shared = StandardRiskAssessment()
     func getRiskLevel(average:Int) -> RiskLevel{
         switch average {
-        case 0..<30:
+        case 0..<50:
             return .no
-        case 30..<50:
+        case 50..<80:
             return .low
-        case 50..<70:
+        case 80..<160:
             return .mid
-        case 70...:
+        case 160...:
             return .high
         default:
             return .low

@@ -88,7 +88,7 @@ class NetworkManager {
     }
     
     static func parseData<T: Decodable>(_ data: Data) -> Result<T, Error> {
-        print(data)
+        print(data.base64EncodedData())
             guard let decodedData = try? JSONDecoder().decode(T.self, from: data) else {
                 let error = NSError(domain: "NetworkAPIError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Can not parse data"])
                 return .failure(error)

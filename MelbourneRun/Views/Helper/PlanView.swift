@@ -12,9 +12,11 @@ struct PlanView: View {
     @Binding var isShown:Bool
     var body: some View {
         VStack{
-            RoadSituationContentView()
+            RoadSituationContentView(day: 0)
             .environmentObject(userDate)
             .padding()
+            
+            
         HStack{
             Spacer()
             Button(action: {isShown.toggle()}, label: {
@@ -26,7 +28,7 @@ struct PlanView: View {
             })
             Spacer()
         }
-    }
+        }.frame(width:UIScreen.main.bounds.width)
 }
 }
 
