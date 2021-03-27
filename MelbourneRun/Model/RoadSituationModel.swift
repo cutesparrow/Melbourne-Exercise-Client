@@ -21,12 +21,18 @@ struct OneHourRoadSituation: Codable,Hashable{
 }
 
 
+class RecentlyRoadSituation: Codable{
+    var list:[RoadSituation]
+    init(list:[RoadSituation]) {
+        self.list = list
+    }
+}
 
 class RoadSituation: Codable {
-    var day: WeekDay
+    var day: String
     var situation:[OneHourRoadSituation]
     var hours:Int
-    init(day:WeekDay,situation:[OneHourRoadSituation]) {
+    init(day:String,situation:[OneHourRoadSituation]) {
         self.day = day
         self.situation = situation
         self.hours = self.situation.count
@@ -34,11 +40,11 @@ class RoadSituation: Codable {
 }
 
 enum WeekDay:String,Codable {
-    case Mon
-    case Tue
-    case Wed
-    case Thu
-    case Fri
-    case Sat
-    case Sun
+    case monday
+    case tuesday
+    case wednesday
+    case thursday
+    case friday
+    case saturday
+    case sunday
 }

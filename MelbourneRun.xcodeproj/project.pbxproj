@@ -67,6 +67,7 @@
 		D6977BB3260C6A97001F4B48 /* MainStyleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6977BB2260C6A97001F4B48 /* MainStyleButton.swift */; };
 		D6977BB7260C855C001F4B48 /* OutDoorHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6977BB6260C855C001F4B48 /* OutDoorHomeView.swift */; };
 		D6977BBB260C85BF001F4B48 /* JoggingHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6977BBA260C85BF001F4B48 /* JoggingHomeView.swift */; };
+		D6977BBE260F5F63001F4B48 /* testView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6977BBD260F5F63001F4B48 /* testView.swift */; };
 		D6CD21D825F79E4A00861495 /* MapMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD21D725F79E4A00861495 /* MapMainView.swift */; };
 		D6CD21DD25F7A3B700861495 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD21DC25F7A3B700861495 /* MapView.swift */; };
 		D6CD21EA25F8587900861495 /* CommonVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD21E925F8587900861495 /* CommonVariable.swift */; };
@@ -125,6 +126,7 @@
 		D6977BB2260C6A97001F4B48 /* MainStyleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStyleButton.swift; sourceTree = "<group>"; };
 		D6977BB6260C855C001F4B48 /* OutDoorHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutDoorHomeView.swift; sourceTree = "<group>"; };
 		D6977BBA260C85BF001F4B48 /* JoggingHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoggingHomeView.swift; sourceTree = "<group>"; };
+		D6977BBD260F5F63001F4B48 /* testView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testView.swift; sourceTree = "<group>"; };
 		D6CD21D725F79E4A00861495 /* MapMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMainView.swift; sourceTree = "<group>"; };
 		D6CD21DC25F7A3B700861495 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		D6CD21E125F7B14100861495 /* home.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = home.gpx; path = ../../../Downloads/home.gpx; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 				D6977BA5260C35A9001F4B48 /* BottomBarView.swift */,
 				D6977BA8260C3A74001F4B48 /* MainSwitchView.swift */,
 				D6977BAB260C3C15001F4B48 /* HomeView.swift */,
+				D6977BBD260F5F63001F4B48 /* testView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				D60FC2432602EC360038E9E5 /* GymListView.swift in Sources */,
 				D60FC254260304B50038E9E5 /* CircleImagePlusView.swift in Sources */,
 				D60FC257260306990038E9E5 /* LocationMapView.swift in Sources */,
+				D6977BBE260F5F63001F4B48 /* testView.swift in Sources */,
 				D61A1485260464030049B377 /* BottomView.swift in Sources */,
 				D60FC24A2602ECA90038E9E5 /* GymModel.swift in Sources */,
 				D630CA91260991DF008B9FA9 /* WalkDogHomeView.swift in Sources */,

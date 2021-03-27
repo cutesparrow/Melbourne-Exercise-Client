@@ -15,7 +15,7 @@ struct MainSwitchView: View {
         case 0:HomeView()
             .environmentObject(userData)
             .navigationTitle("Home")
-            .navigationBarTitleDisplayMode(.automatic)
+            .navigationBarTitleDisplayMode(.large)
         case 1:GymHomeView()
             .environmentObject(userData)
             

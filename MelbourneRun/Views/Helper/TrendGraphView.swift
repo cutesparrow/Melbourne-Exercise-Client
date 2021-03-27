@@ -10,16 +10,21 @@ import SwiftUI
 
 
 struct TrendGraphView: View {
-    let trendList:[OneHourRoadSituation]
+    var fullTrendList:[OneHourRoadSituation]
+    var idtoday:Int
     @Binding var point:Float
     var body: some View {
+        let trendList = Array(fullTrendList[8...])
         let high:Int = findLargest(trendList: trendList)
-        let rate:CGFloat = UIScreen.main.bounds.height/CGFloat(4*high)
+        let rate:CGFloat = UIScreen.main.bounds.height/CGFloat(5*high)
         let onFocus:Int = Int(point*Float(trendList.count)*0.99)
         return GeometryReader { proxy in
-            HStack(alignment: .bottom, spacing: proxy.size.width / 120) {
+            VStack{
+                Text(idtoday==0 ? "Today" : "Tomorrow")
+                    .offset(x:-UIScreen.main.bounds.width/3,y:-UIScreen.main.bounds.height/20)
+                HStack(alignment: .bottom, spacing: proxy.size.width / 120) {
                 ForEach(trendList, id: \.hour) { hour in
-                    GraphCapsule(high: hour.high, low: hour.low, rate: Float(rate))
+                    GraphCapsule(high: hour.high, low: hour.low,  rate: Float(rate))
                         .colorMultiply(hour.hour == getHour(index: onFocus, trendList: trendList) ? getColorOfCapsule(OnHourRoadSituation: hour) : AppColor.shared.trendGraphColor)
                         .transition(.slide)
                         .animation(.spring())
@@ -27,8 +32,8 @@ struct TrendGraphView: View {
                         //.padding()
                 }
                 
-            }.offset(y:proxy.size.height/1.8)
-        }
+            }.offset(y:proxy.size.height/2.5)}
+        }.padding(.bottom,80)
     }
     
     func getColorOfCapsule(OnHourRoadSituation:OneHourRoadSituation) -> Color{
@@ -72,6 +77,6 @@ struct TrendGraphView: View {
 
 struct TrendGraphView_Previews: PreviewProvider {
     static var previews: some View {
-        TrendGraphView(trendList: [OneHourRoadSituation(hour: 8,high: 17, low: 1, average: 16),OneHourRoadSituation(hour: 9,high: 23, low: 21, average: 22),OneHourRoadSituation(hour: 10,high: 33, low: 26, average: 22),OneHourRoadSituation(hour: 11,high: 47, low: 46, average: 52),OneHourRoadSituation(hour: 12,high: 67, low: 44, average: 52),OneHourRoadSituation(hour: 13,high: 87, low: 76, average: 82),OneHourRoadSituation(hour: 14,high: 67, low: 46, average: 52),OneHourRoadSituation(hour: 15,high: 55, low: 46, average: 52)], point: .constant(0.99))
+        TrendGraphView(fullTrendList: [OneHourRoadSituation(hour: 8,high: 17, low: 1, average: 16),OneHourRoadSituation(hour: 9,high: 23, low: 21, average: 22),OneHourRoadSituation(hour: 10,high: 33, low: 26, average: 22),OneHourRoadSituation(hour: 11,high: 47, low: 46, average: 52),OneHourRoadSituation(hour: 12,high: 67, low: 44, average: 52),OneHourRoadSituation(hour: 13,high: 87, low: 76, average: 82),OneHourRoadSituation(hour: 14,high: 67, low: 46, average: 52),OneHourRoadSituation(hour: 15,high: 55, low: 46, average: 52)], idtoday: 0, point: .constant(0.99))
     }
 }

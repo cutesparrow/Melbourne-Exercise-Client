@@ -14,6 +14,18 @@ import MapKit
 
 class NetworkAPI{
     
+    static public func loadRoadSituation(location:CLLocationCoordinate2D,gymId:Int,completion: @escaping (Result<RecentlyRoadSituation, Error>) -> Void)->DataRequest{
+        NetworkManager.shared.requestGet(path: "gym/roadSituation", parameters: ["gym_id":gymId,"user_lat":location.latitude,"user_long":location.longitude]) { result in
+        switch result {
+                    case let .success(data):
+                        let parseResult: Result<RecentlyRoadSituation, Error> = NetworkManager.parseData(data)
+                        completion(parseResult)
+                    case let .failure(error):
+                        completion(.failure(error))
+                    }
+    }
+}
+    
     
     static public func loadGymList(location:CLLocationCoordinate2D,completion: @escaping (Result<GymList, Error>) -> Void)->DataRequest{
         NetworkManager.shared.requestGet(path: "gym/list", parameters: ["lat":location.latitude,"long":location.longitude]) { result in
@@ -75,6 +87,27 @@ class NetworkAPI{
         }
     }
 }
+
+
+extension UserData{
+    func getRoadSituation(location:CLLocationCoordinate2D,gymId:Int){
+        
+            loadRoadSituation(location: location,gymId:gymId)
+        
+    }
+    func loadRoadSituation(location:CLLocationCoordinate2D,gymId:Int){
+        let completion: (Result<RecentlyRoadSituation,Error>) -> Void = { result in
+            switch result {
+            case let .success(list): self.roadSituation = list
+            case let .failure(error): print(error)
+            }
+        }
+        _ = NetworkAPI.loadRoadSituation(location: location,gymId: gymId, completion: completion)
+        
+    }
+}
+
+
 
 extension UserData{
     func getSafeTips(){
