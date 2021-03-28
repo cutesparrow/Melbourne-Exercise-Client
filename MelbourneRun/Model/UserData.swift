@@ -23,5 +23,14 @@ class UserData: ObservableObject {
     @Published var safeTips:String = ""
     @Published var selectedGym:Gym = Gym(id: 0, lat: 0, long: 0, name: "", Images: [""], limitation: 0, distance: 0, star: true, address: "")
     @Published var selectedTime:Date = Date()
+    @Published var weather:WeatherNow = WeatherNow(location: Position(name: "Melbourne", region: "Victoria", country: "", lat: 1, lon: 1, tz_id: "", localtime_epoch: 1, localtime: ""), current: Weather(temp_c: 12.4, text: "good weather", feelslike_c: 14.1, icon: "//cdn.weatherapi.com/weather/128x128/day/116.png"))
    
+}
+
+struct weather:Codable {
+    var currentTemperature: Float
+    var dailyMaxTemperature: Float
+    var dailyMinTemperature: Float
+    var averageTemperature: String
+    var currentConditionsText: String
 }

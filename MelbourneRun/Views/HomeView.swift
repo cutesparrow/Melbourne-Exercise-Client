@@ -48,7 +48,7 @@ struct ExpandableCardView: View {
     @EnvironmentObject var userData:UserData
     
     //MARK: Card size
-    let normalCardHeight: CGFloat = 400
+    let normalCardHeight: CGFloat = 300
     let normalCardHorizontalPadding: CGFloat = 20
 
     let openCardAnimation = Animation.timingCurve(0.7, -0.35, 0.2, 0.9, duration: 0.45)
@@ -94,7 +94,8 @@ struct ExpandableCardView: View {
     //MARK: View Body
     var body: some View {
         
-        VStack{GeometryReader { geometry in
+        VStack{
+            GeometryReader { geometry in
             ZStack {
                 VStack {
                     TopView(isSelected: self.$isSelected)
@@ -138,7 +139,8 @@ struct ExpandableCardView: View {
         .frame(width: screen.width - (normalCardHorizontalPadding * 2))
         .frame(height: normalCardHeight)
         if isSelected == false
-        {HStack{
+        {
+        HStack{
             Text(Date(),style: .date)
                 .font(.system(.title))
                 .foregroundColor(Color(.label))
@@ -149,11 +151,17 @@ struct ExpandableCardView: View {
                     self.userData.getSafeTips()}, label: {
                         MainStyleButton(icon: "arrow.triangle.2.circlepath", color: Color(.label), text: "")
             })
-        }.padding()
-        .padding(.trailing,4)
-        .padding(.leading,4)}
-            }
-        //MARK: Appearance of other Cards when the selected Card opens
+        }
+        .frame(width:UIScreen.main.bounds.width/1.13)
+        .padding()
+        }
+            if isSelected == false{
+                    MainWeatherView()
+                        
+                        .frame(width:UIScreen.main.bounds.width/1.03,height:130)
+                    
+                }
+        }
     }
 
 }
@@ -185,9 +193,6 @@ struct TopView: View {
                             .frame(height: 65)
                     }
                 }
-                
-                    
-                
                 VStack(alignment: .center, spacing: 0) {
                     if self.isSelected {
                         Rectangle()
@@ -260,15 +265,16 @@ struct HomeView: View {
     @EnvironmentObject var userData:UserData
     
     var body: some View {
-        
-       
-            ExpandableCardView().environmentObject(userData)
+ 
+            ExpandableCardView()
+                .environmentObject(userData)
             
         .offset(y:-UIScreen.main.bounds.height/15)
         .onAppear(perform: {
             self.userData.getPosterName()
             self.userData.getSlogan()
             self.userData.getSafeTips()
+            self.userData.getWeatherDataNow()
         })
         
     

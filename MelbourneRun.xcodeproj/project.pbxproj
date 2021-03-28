@@ -68,6 +68,13 @@
 		D6977BB7260C855C001F4B48 /* OutDoorHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6977BB6260C855C001F4B48 /* OutDoorHomeView.swift */; };
 		D6977BBB260C85BF001F4B48 /* JoggingHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6977BBA260C85BF001F4B48 /* JoggingHomeView.swift */; };
 		D6977BBE260F5F63001F4B48 /* testView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6977BBD260F5F63001F4B48 /* testView.swift */; };
+		D69B1213261073CC00C086FA /* BuluttanBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B120F261073CC00C086FA /* BuluttanBackgroundView.swift */; };
+		D69B1214261073CC00C086FA /* CurrentObservationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B1210261073CC00C086FA /* CurrentObservationView.swift */; };
+		D69B1215261073CC00C086FA /* MainWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B1211261073CC00C086FA /* MainWeatherView.swift */; };
+		D69B1216261073CC00C086FA /* TopNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B1212261073CC00C086FA /* TopNavigationBarView.swift */; };
+		D69B1219261073EF00C086FA /* PreviewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B1218261073EF00C086FA /* PreviewFactory.swift */; };
+		D69B121D26108CA900C086FA /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = D69B121C26108CA900C086FA /* SwiftyJSON */; };
+		D69B1220261092B000C086FA /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B121F261092B000C086FA /* WeatherModel.swift */; };
 		D6BC562426103BFC0033341E /* AlertX in Frameworks */ = {isa = PBXBuildFile; productRef = D6BC562326103BFC0033341E /* AlertX */; };
 		D6BC5628261042B70033341E /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = D6BC5627261042B70033341E /* AlertToast */; };
 		D6BC562C261048E20033341E /* PositionScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = D6BC562B261048E20033341E /* PositionScrollView */; };
@@ -130,6 +137,12 @@
 		D6977BB6260C855C001F4B48 /* OutDoorHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutDoorHomeView.swift; sourceTree = "<group>"; };
 		D6977BBA260C85BF001F4B48 /* JoggingHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoggingHomeView.swift; sourceTree = "<group>"; };
 		D6977BBD260F5F63001F4B48 /* testView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testView.swift; sourceTree = "<group>"; };
+		D69B120F261073CC00C086FA /* BuluttanBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuluttanBackgroundView.swift; sourceTree = "<group>"; };
+		D69B1210261073CC00C086FA /* CurrentObservationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentObservationView.swift; sourceTree = "<group>"; };
+		D69B1211261073CC00C086FA /* MainWeatherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWeatherView.swift; sourceTree = "<group>"; };
+		D69B1212261073CC00C086FA /* TopNavigationBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopNavigationBarView.swift; sourceTree = "<group>"; };
+		D69B1218261073EF00C086FA /* PreviewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewFactory.swift; sourceTree = "<group>"; };
+		D69B121F261092B000C086FA /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		D6CD21D725F79E4A00861495 /* MapMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMainView.swift; sourceTree = "<group>"; };
 		D6CD21DC25F7A3B700861495 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		D6CD21E125F7B14100861495 /* home.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = home.gpx; path = ../../../Downloads/home.gpx; sourceTree = "<group>"; };
@@ -145,6 +158,7 @@
 				D6977B8E260B3A73001F4B48 /* SwiftUIRefresh in Frameworks */,
 				D630CA5B2607404E008B9FA9 /* SDWebImageSwiftUI in Frameworks */,
 				D6BC562426103BFC0033341E /* AlertX in Frameworks */,
+				D69B121D26108CA900C086FA /* SwiftyJSON in Frameworks */,
 				D6BC5628261042B70033341E /* AlertToast in Frameworks */,
 				D6977B49260AE845001F4B48 /* PermissionsSwiftUI in Frameworks */,
 				D630CA852608BF0F008B9FA9 /* BottomSheet in Frameworks */,
@@ -287,9 +301,22 @@
 			path = OutDoor;
 			sourceTree = "<group>";
 		};
+		D69B120E261073A000C086FA /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				D69B120F261073CC00C086FA /* BuluttanBackgroundView.swift */,
+				D69B1218261073EF00C086FA /* PreviewFactory.swift */,
+				D69B1210261073CC00C086FA /* CurrentObservationView.swift */,
+				D69B1211261073CC00C086FA /* MainWeatherView.swift */,
+				D69B1212261073CC00C086FA /* TopNavigationBarView.swift */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
 		D6CD21E325F7B17E00861495 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D69B120E261073A000C086FA /* Weather */,
 				D6977BB5260C854D001F4B48 /* OutDoor */,
 				D630CA61260885FB008B9FA9 /* Helper */,
 				D60FC26726032E760038E9E5 /* Modifier */,
@@ -333,6 +360,7 @@
 				D630CA67260888CA008B9FA9 /* RoadSituationModel.swift */,
 				D630CA9626099591008B9FA9 /* LocationFetcher.swift */,
 				D6977B4F260AFB82001F4B48 /* LocationStatusModel.swift */,
+				D69B121F261092B000C086FA /* WeatherModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -368,6 +396,7 @@
 				D6BC562326103BFC0033341E /* AlertX */,
 				D6BC5627261042B70033341E /* AlertToast */,
 				D6BC562B261048E20033341E /* PositionScrollView */,
+				D69B121C26108CA900C086FA /* SwiftyJSON */,
 			);
 			productName = MelbourneRun;
 			productReference = D65200F425F757B800BA04E9 /* MelbourneRun.app */;
@@ -411,6 +440,7 @@
 				D6BC562226103BFC0033341E /* XCRemoteSwiftPackageReference "AlertX" */,
 				D6BC5626261042B70033341E /* XCRemoteSwiftPackageReference "AlertToast" */,
 				D6BC562A261048E20033341E /* XCRemoteSwiftPackageReference "PositionScrollView" */,
+				D69B121B26108CA900C086FA /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = D65200F525F757B800BA04E9 /* Products */;
 			projectDirPath = "";
@@ -454,6 +484,7 @@
 				D61A1485260464030049B377 /* BottomView.swift in Sources */,
 				D60FC24A2602ECA90038E9E5 /* GymModel.swift in Sources */,
 				D630CA91260991DF008B9FA9 /* WalkDogHomeView.swift in Sources */,
+				D69B1216261073CC00C086FA /* TopNavigationBarView.swift in Sources */,
 				D60FC265260316CC0038E9E5 /* ScrollImageHelper.swift in Sources */,
 				D6977BA9260C3A74001F4B48 /* MainSwitchView.swift in Sources */,
 				D63D18CB25FDFF6C0049C1AC /* ActivityView.swift in Sources */,
@@ -467,12 +498,14 @@
 				D6CD21DD25F7A3B700861495 /* MapView.swift in Sources */,
 				D630CA6B26088FA2008B9FA9 /* GraphCapsule.swift in Sources */,
 				D630CA8E260991D1008B9FA9 /* HikingHomeView.swift in Sources */,
+				D69B1220261092B000C086FA /* WeatherModel.swift in Sources */,
 				D6977BAC260C3C15001F4B48 /* HomeView.swift in Sources */,
 				D630CA8B2608C542008B9FA9 /* PlanView.swift in Sources */,
 				D60FC23D2602EC0D0038E9E5 /* GymRecordView.swift in Sources */,
 				D630CA94260991F2008B9FA9 /* GymHomeView.swift in Sources */,
 				D630CA6326088662008B9FA9 /* RoadSituationContentView.swift in Sources */,
 				D60FC262260313540038E9E5 /* ScrollBoxView.swift in Sources */,
+				D69B1213261073CC00C086FA /* BuluttanBackgroundView.swift in Sources */,
 				D63D18D225FE09C50049C1AC /* ActivityListView.swift in Sources */,
 				D63D18D925FF787F0049C1AC /* CircleImageView.swift in Sources */,
 				D6CD21EA25F8587900861495 /* CommonVariable.swift in Sources */,
@@ -480,15 +513,18 @@
 				D60FC271260342D90038E9E5 /* StarButtonView.swift in Sources */,
 				D630CA68260888CA008B9FA9 /* RoadSituationModel.swift in Sources */,
 				D63D18CE25FE09460049C1AC /* ActivityModel.swift in Sources */,
+				D69B1219261073EF00C086FA /* PreviewFactory.swift in Sources */,
 				D6CD21F725F8642500861495 /* ImageScrollModel.swift in Sources */,
 				D630CA9726099591008B9FA9 /* LocationFetcher.swift in Sources */,
 				D630CA6E260891C1008B9FA9 /* TrendGraphView.swift in Sources */,
 				D6977BB7260C855C001F4B48 /* OutDoorHomeView.swift in Sources */,
 				D6977BBB260C85BF001F4B48 /* JoggingHomeView.swift in Sources */,
 				D6977B9F260B4BAF001F4B48 /* PreLaunch.swift in Sources */,
+				D69B1214261073CC00C086FA /* CurrentObservationView.swift in Sources */,
 				D65200F825F757B800BA04E9 /* MelbourneRunApp.swift in Sources */,
 				D60FC25B260309050038E9E5 /* MapHelper.swift in Sources */,
 				D6977BB0260C5A56001F4B48 /* NoDivider.swift in Sources */,
+				D69B1215261073CC00C086FA /* MainWeatherView.swift in Sources */,
 				D6977B50260AFB82001F4B48 /* LocationStatusModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -768,6 +804,14 @@
 				kind = branch;
 			};
 		};
+		D69B121B26108CA900C086FA /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
 		D6BC562226103BFC0033341E /* XCRemoteSwiftPackageReference "AlertX" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/neel-makhecha/AlertX.git";
@@ -849,6 +893,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D6977BA1260C34F4001F4B48 /* XCRemoteSwiftPackageReference "bottombar-swiftui" */;
 			productName = "BottomBar-SwiftUI";
+		};
+		D69B121C26108CA900C086FA /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D69B121B26108CA900C086FA /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
 		};
 		D6BC562326103BFC0033341E /* AlertX */ = {
 			isa = XCSwiftPackageProductDependency;
