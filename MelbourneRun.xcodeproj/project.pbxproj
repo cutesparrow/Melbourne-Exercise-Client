@@ -68,6 +68,9 @@
 		D6977BB7260C855C001F4B48 /* OutDoorHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6977BB6260C855C001F4B48 /* OutDoorHomeView.swift */; };
 		D6977BBB260C85BF001F4B48 /* JoggingHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6977BBA260C85BF001F4B48 /* JoggingHomeView.swift */; };
 		D6977BBE260F5F63001F4B48 /* testView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6977BBD260F5F63001F4B48 /* testView.swift */; };
+		D6BC562426103BFC0033341E /* AlertX in Frameworks */ = {isa = PBXBuildFile; productRef = D6BC562326103BFC0033341E /* AlertX */; };
+		D6BC5628261042B70033341E /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = D6BC5627261042B70033341E /* AlertToast */; };
+		D6BC562C261048E20033341E /* PositionScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = D6BC562B261048E20033341E /* PositionScrollView */; };
 		D6CD21D825F79E4A00861495 /* MapMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD21D725F79E4A00861495 /* MapMainView.swift */; };
 		D6CD21DD25F7A3B700861495 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD21DC25F7A3B700861495 /* MapView.swift */; };
 		D6CD21EA25F8587900861495 /* CommonVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD21E925F8587900861495 /* CommonVariable.swift */; };
@@ -141,6 +144,8 @@
 			files = (
 				D6977B8E260B3A73001F4B48 /* SwiftUIRefresh in Frameworks */,
 				D630CA5B2607404E008B9FA9 /* SDWebImageSwiftUI in Frameworks */,
+				D6BC562426103BFC0033341E /* AlertX in Frameworks */,
+				D6BC5628261042B70033341E /* AlertToast in Frameworks */,
 				D6977B49260AE845001F4B48 /* PermissionsSwiftUI in Frameworks */,
 				D630CA852608BF0F008B9FA9 /* BottomSheet in Frameworks */,
 				D61A148226045A830049B377 /* PullUpController in Frameworks */,
@@ -148,6 +153,7 @@
 				D652011025F7604900BA04E9 /* LocationProvider in Frameworks */,
 				D60FC27826037CF00038E9E5 /* Alamofire in Frameworks */,
 				D60FC288260443570038E9E5 /* Polyline in Frameworks */,
+				D6BC562C261048E20033341E /* PositionScrollView in Frameworks */,
 				D61A147E260459660049B377 /* UBottomSheet in Frameworks */,
 				D6977BA3260C34F4001F4B48 /* BottomBar-SwiftUI in Frameworks */,
 			);
@@ -359,6 +365,9 @@
 				D6977B48260AE845001F4B48 /* PermissionsSwiftUI */,
 				D6977B8D260B3A73001F4B48 /* SwiftUIRefresh */,
 				D6977BA2260C34F4001F4B48 /* BottomBar-SwiftUI */,
+				D6BC562326103BFC0033341E /* AlertX */,
+				D6BC5627261042B70033341E /* AlertToast */,
+				D6BC562B261048E20033341E /* PositionScrollView */,
 			);
 			productName = MelbourneRun;
 			productReference = D65200F425F757B800BA04E9 /* MelbourneRun.app */;
@@ -399,6 +408,9 @@
 				D6977B47260AE845001F4B48 /* XCRemoteSwiftPackageReference "PermissionsSwiftUI" */,
 				D6977B8C260B3A73001F4B48 /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */,
 				D6977BA1260C34F4001F4B48 /* XCRemoteSwiftPackageReference "bottombar-swiftui" */,
+				D6BC562226103BFC0033341E /* XCRemoteSwiftPackageReference "AlertX" */,
+				D6BC5626261042B70033341E /* XCRemoteSwiftPackageReference "AlertToast" */,
+				D6BC562A261048E20033341E /* XCRemoteSwiftPackageReference "PositionScrollView" */,
 			);
 			productRefGroup = D65200F525F757B800BA04E9 /* Products */;
 			projectDirPath = "";
@@ -756,6 +768,30 @@
 				kind = branch;
 			};
 		};
+		D6BC562226103BFC0033341E /* XCRemoteSwiftPackageReference "AlertX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/neel-makhecha/AlertX.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.1;
+			};
+		};
+		D6BC5626261042B70033341E /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.3;
+			};
+		};
+		D6BC562A261048E20033341E /* XCRemoteSwiftPackageReference "PositionScrollView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kazuooooo/PositionScrollView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -813,6 +849,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D6977BA1260C34F4001F4B48 /* XCRemoteSwiftPackageReference "bottombar-swiftui" */;
 			productName = "BottomBar-SwiftUI";
+		};
+		D6BC562326103BFC0033341E /* AlertX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D6BC562226103BFC0033341E /* XCRemoteSwiftPackageReference "AlertX" */;
+			productName = AlertX;
+		};
+		D6BC5627261042B70033341E /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D6BC5626261042B70033341E /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
+		};
+		D6BC562B261048E20033341E /* PositionScrollView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D6BC562A261048E20033341E /* XCRemoteSwiftPackageReference "PositionScrollView" */;
+			productName = PositionScrollView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

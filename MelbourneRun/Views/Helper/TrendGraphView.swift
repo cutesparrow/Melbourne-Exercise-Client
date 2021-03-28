@@ -18,6 +18,7 @@ struct TrendGraphView: View {
         let high:Int = findLargest(trendList: trendList)
         let rate:CGFloat = UIScreen.main.bounds.height/CGFloat(5*high)
         let onFocus:Int = Int(point*Float(trendList.count)*0.99)
+        
         return GeometryReader { proxy in
             VStack{
                 Text(idtoday==0 ? "Today" : "Tomorrow")

@@ -107,6 +107,7 @@ struct GymRecordView: View {
         .ignoresSafeArea()
         .onAppear(perform: {
             userData.getRoadSituation(location: CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503), gymId: gym.id)
+            userData.selectedGym = gym
         })
     }
 }
