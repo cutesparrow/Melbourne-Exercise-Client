@@ -7,19 +7,23 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 typealias NetworkRequestResult = Result<Data, Error>
 typealias NetworkRequestCompletion = (NetworkRequestResult) -> Void
 
 
 let NetworkAPIBaseURL = "http://192.168.50.25:8000/"
+let weatherWebsite = "http://api.weatherapi.com/v1/current.json"
+let parameter:Parameters = ["key":"6ea4cd893fce4e32812101751212803","q":"Melbourne","aqi":"no"]
 
 class NetworkManager {
     static let shared = NetworkManager()
     
     let urlBasePath:String = NetworkAPIBaseURL + "gym/static/"
     
-    var commonHeaders: HTTPHeaders { ["user_id": "123", "token": "XXXXXX"] } //headers used for server validation
+    var commonHeaders: HTTPHeaders { ["user_id": "123", "token": "XXXXXX"] }
+    var headers:HTTPHeaders{["x-rapidapi-key": "7fb741c52emsh947579efc8a61c6p12020ajsn22817aa1fd55","x-rapidapi-host": "community-open-weather-map.p.rapidapi.com"]}
     
     private init() {}
     
@@ -36,6 +40,21 @@ class NetworkManager {
                 }
         }
     }
+    
+    @discardableResult
+    func requestWeather(completion: @escaping NetworkRequestCompletion) -> DataRequest {
+        AF.request(weatherWebsite,
+                   parameters: parameter,
+                   requestModifier: { $0.timeoutInterval = 15 })
+            .responseData { response in
+                switch response.result {
+                case let .success(data): completion(.success(data))
+                case let .failure(error): completion(self.handleError(error))
+                }
+        }
+    }
+   
+    
     
     @discardableResult
     func requestString(path: String, parameters: Parameters?, completion: @escaping (Result<String,Error>) -> Void) -> DataRequest {

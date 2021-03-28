@@ -14,6 +14,8 @@ import MapKit
 
 class NetworkAPI{
     
+    
+    
     static public func loadRoadSituation(location:CLLocationCoordinate2D,gymId:Int,completion: @escaping (Result<RecentlyRoadSituation, Error>) -> Void)->DataRequest{
         NetworkManager.shared.requestGet(path: "gym/roadSituation", parameters: ["gym_id":gymId,"user_lat":location.latitude,"user_long":location.longitude]) { result in
         switch result {
@@ -45,6 +47,18 @@ class NetworkAPI{
             switch result{
             case let .success(data):
                 let parseResult: Result<[Coordinate],Error> = NetworkManager.parseData(data)
+                completion(parseResult)
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    static public func getWeatherInfo(completion: @escaping (Result<WeatherNow,Error>) -> Void)->DataRequest{
+        NetworkManager.shared.requestWeather() { result in
+            switch result{
+            case let .success(data):
+                let parseResult: Result<WeatherNow,Error> = NetworkManager.parseData(data)
                 completion(parseResult)
             case let .failure(error):
                 completion(.failure(error))
@@ -88,6 +102,19 @@ class NetworkAPI{
     }
 }
 
+
+extension UserData{
+    func getWeatherDataNow(){
+        let completion: (Result<WeatherNow,Error>) -> Void = { result in
+            switch result {
+            case let .success(weather): self.weather = weather
+            case let .failure(error): print(error)
+            }
+        }
+        _ = NetworkAPI.getWeatherInfo(completion: completion)
+        
+    }
+}
 
 extension UserData{
     
