@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DigitalClockView: View {
+
     @Binding var rate: Float
     let start:Int
     let end:Int
@@ -19,6 +20,7 @@ struct DigitalClockView: View {
         formatter.dateFormat = "HH:mm"
         let startTime = formatter.date(from: String(start) + ":00")!
         let nowTime = Date(timeInterval: Double(gapMinutes), since: startTime)
+        //userData.selectedTime = nowTime
         return Text(nowTime,style: .time)
             .font(.system(.largeTitle, design: .rounded))
             .foregroundColor(color)
@@ -29,5 +31,6 @@ struct DigitalClockView: View {
 struct DigitalClockView_Previews: PreviewProvider {
     static var previews: some View {
         DigitalClockView(rate: .constant(0.8), start: 6, end: 17,color: Color.blue)
+           
     }
 }

@@ -15,7 +15,7 @@ struct GraphCapsule: View {
     var body: some View {
         Capsule()
             .fill(Color.white)
-            .frame(height: CGFloat(Float(high-low)*rate))
+            .frame(height: (Float(high-low)*rate)>20 ? CGFloat(Float(high-low)*rate) : 23)
     }
 }
 

@@ -90,11 +90,11 @@ class NetworkAPI{
 
 
 extension UserData{
+    
     func getRoadSituation(location:CLLocationCoordinate2D,gymId:Int){
-        
             loadRoadSituation(location: location,gymId:gymId)
-        
     }
+    
     func loadRoadSituation(location:CLLocationCoordinate2D,gymId:Int){
         let completion: (Result<RecentlyRoadSituation,Error>) -> Void = { result in
             switch result {

@@ -11,6 +11,24 @@
         }
       },
       {
+        "package": "AlertToast",
+        "repositoryURL": "https://github.com/elai950/AlertToast.git",
+        "state": {
+          "branch": null,
+          "revision": "0d45a0959565801126ce4ed57e7c7090ac449c8d",
+          "version": "1.2.3"
+        }
+      },
+      {
+        "package": "AlertX",
+        "repositoryURL": "https://github.com/neel-makhecha/AlertX.git",
+        "state": {
+          "branch": null,
+          "revision": "8a360e662b6347735140b3216ff4aa5fe97af681",
+          "version": "1.2.1"
+        }
+      },
+      {
         "package": "BottomSheet",
         "repositoryURL": "https://github.com/weitieda/bottom-sheet.git",
         "state": {
@@ -53,6 +71,15 @@
           "branch": null,
           "revision": "36f7b1222aaf8fa741d0d179c12e186998d97f42",
           "version": "5.0.2"
+        }
+      },
+      {
+        "package": "PositionScrollView",
+        "repositoryURL": "https://github.com/kazuooooo/PositionScrollView.git",
+        "state": {
+          "branch": null,
+          "revision": "27cac224d2a483a727e3cd168e31186f095d35b2",
+          "version": "1.0.2"
         }
       },
       {

@@ -14,13 +14,15 @@ struct RoadSituationContentView: View {
     @State var positionOfSelector:Float = 0
     var body: some View {
         let high = findLargest(trendList: userData.roadSituation.list[day].situation)
-        VStack{
+        return VStack{
             ScrollView{
                 LazyHStack{
                     TabView{
                         ForEach(0..<2){i in
                             TrendGraphView(fullTrendList: userData.roadSituation.list[i].situation, idtoday: i, point: $positionOfSelector)
                                     .frame(height: UIScreen.main.bounds.height/CGFloat(4*high)*CGFloat(high), alignment: .center)
+                                
+                                
                         }
                     }.frame(width: UIScreen.main.bounds.width,height: UIScreen.main.bounds.height/CGFloat(2.8*Double(high))*CGFloat(high))
                     .tabViewStyle(PageTabViewStyle())
@@ -29,6 +31,7 @@ struct RoadSituationContentView: View {
             }.padding(.top,-40)
             .frame(height:UIScreen.main.bounds.height/CGFloat(3*Double(high))*CGFloat(high))
             DigitalClockView(rate: $positionOfSelector, start: userData.roadSituation.list[day].situation[8].hour, end: userData.roadSituation.list[day].situation[userData.roadSituation.list[day].situation.count-1].hour, color: .blue)
+                .environmentObject(userData)
             ValueSlider(value: $positionOfSelector)
                 .frame(height:UIScreen.main.bounds.height/20)
                 .padding(.horizontal)
