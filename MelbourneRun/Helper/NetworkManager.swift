@@ -13,17 +13,16 @@ typealias NetworkRequestResult = Result<Data, Error>
 typealias NetworkRequestCompletion = (NetworkRequestResult) -> Void
 
 
-let NetworkAPIBaseURL = "http://192.168.50.25:8000/"
+let NetworkAPIBaseURL = "http://www.melbournesafeexercise.tk/"
 let weatherWebsite = "http://api.weatherapi.com/v1/current.json"
 let parameter:Parameters = ["key":"6ea4cd893fce4e32812101751212803","q":"Melbourne","aqi":"no"]
 
 class NetworkManager {
     static let shared = NetworkManager()
     
-    let urlBasePath:String = NetworkAPIBaseURL + "gym/static/"
+    let urlBasePath:String = NetworkAPIBaseURL + "static/"
     
     var commonHeaders: HTTPHeaders { ["access-token": "2c4092daa53543069e0800b12522463c", "token": "sdkjfhldaksjfghlkjdshflalfgjk8g334jsh35h34ljk5h34543543"] }
-    var headers:HTTPHeaders{["x-rapidapi-key": "7fb741c52emsh947579efc8a61c6p12020ajsn22817aa1fd55","x-rapidapi-host": "community-open-weather-map.p.rapidapi.com"]}
     
     private init() {}
     
