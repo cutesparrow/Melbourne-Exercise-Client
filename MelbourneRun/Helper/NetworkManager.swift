@@ -22,7 +22,7 @@ class NetworkManager {
     
     let urlBasePath:String = NetworkAPIBaseURL + "gym/static/"
     
-    var commonHeaders: HTTPHeaders { ["user_id": "123", "token": "XXXXXX"] }
+    var commonHeaders: HTTPHeaders { ["access-token": "2c4092daa53543069e0800b12522463c", "token": "sdkjfhldaksjfghlkjdshflalfgjk8g334jsh35h34ljk5h34543543"] }
     var headers:HTTPHeaders{["x-rapidapi-key": "7fb741c52emsh947579efc8a61c6p12020ajsn22817aa1fd55","x-rapidapi-host": "community-open-weather-map.p.rapidapi.com"]}
     
     private init() {}
