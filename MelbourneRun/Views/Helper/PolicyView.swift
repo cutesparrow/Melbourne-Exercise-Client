@@ -11,9 +11,7 @@ struct PolicyView: View {
     let policy:SafetyPolicy
     var body: some View {
         VStack{
-            
                 Text(policy.title)
-                
                 .font(.title3)
                 .bold()
                     .lineLimit(1)
@@ -21,10 +19,6 @@ struct PolicyView: View {
             Text(policy.date)
                 .font(.caption)
                 .foregroundColor(Color(.label))
-            
-            
-          
-            
             Text(policy.content)
                 .padding(.top)
         }
