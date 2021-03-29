@@ -21,7 +21,7 @@ struct CurrentObservationView: View {
 	var body: some View {
 
 		HStack {
-            WebImage(url: URL(string: "http:" + self.userData.weather.current.icon))
+            WebImage(url: URL(string: "http:" + self.userData.weather.current.condition.icon.replacingOccurrences(of: "64", with: "128")))
 				.resizable()
                 .scaledToFill()
 				.frame(width: 100, height: 100)
@@ -39,7 +39,7 @@ struct CurrentObservationView: View {
                 Text("Feels like \(Int(self.userData.weather.current.feelslike_c))°C")
 					.padding([.bottom], 5)
                     .foregroundColor(Color(.label))
-                Text(self.userData.weather.current.text)
+                Text(self.userData.weather.current.condition.text)
                     .foregroundColor(Color(.label))
 			}
             .padding()

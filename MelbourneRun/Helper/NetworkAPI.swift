@@ -78,8 +78,8 @@ class NetworkAPI{
         }
     }
     
-    static public func getSlogan(completion: @escaping (Result<String,Error>) -> Void) -> DataRequest{
-        NetworkManager.shared.requestString(path: "slogan/", parameters: nil) { result in
+    static public func getExercise(completion: @escaping (Result<String,Error>) -> Void) -> DataRequest{
+        NetworkManager.shared.requestString(path: "exerciseTips/", parameters: nil) { result in
             switch result{
             case let .success(data):
                 let requestResult = data
@@ -89,6 +89,21 @@ class NetworkAPI{
             }
         }
     }
+    
+    static public func loadSafetyPolicy(completion: @escaping (Result<[SafetyPolicy],Error>) -> Void)->DataRequest{
+        NetworkManager.shared.requestGet(path: "safePolicy/",parameters: nil) { result in
+            switch result{
+            case let .success(data):
+                let parseResult: Result<[SafetyPolicy],Error> = NetworkManager.parseData(data)
+                completion(parseResult)
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    
+    
     static public func getSafeTips(completion: @escaping (Result<String,Error>) -> Void) -> DataRequest{
         NetworkManager.shared.requestString(path: "safeTips/", parameters: nil) { result in
             switch result{
@@ -101,6 +116,8 @@ class NetworkAPI{
         }
     }
 }
+
+
 
 
 extension UserData{
@@ -130,6 +147,19 @@ extension UserData{
             }
         }
         _ = NetworkAPI.loadRoadSituation(location: location,gymId: gymId, completion: completion)
+        
+    }
+}
+
+extension UserData{
+    func loadJoggingPath(){
+        let completion: (Result<[SafetyPolicy],Error>) -> Void = { result in
+            switch result {
+            case let .success(list): self.safetyPolicy = list
+            case let .failure(error): print(error)
+            }
+        }
+        _ = NetworkAPI.loadSafetyPolicy(completion: completion)
         
     }
 }
@@ -167,17 +197,17 @@ extension UserData{
 }
 
 extension UserData{
-    func getSlogan(){
+    func getExercise(){
         let completion: (Result<String,Error>) -> Void = {
             result in
             switch result {
             case let .success(name):
-                self.slogan = name
+                self.exerciseTips = name
             case let .failure(error):
                 print(error)
             }
         }
-        _ = NetworkAPI.getSlogan(completion: completion)
+        _ = NetworkAPI.getExercise(completion: completion)
     }
 }
 
@@ -226,6 +256,18 @@ extension UserData{
     }
 }
 
+extension UserData{
+    func getSafePolicy(){
+        let completion: (Result<[SafetyPolicy],Error>) -> Void = { result in
+            switch result {
+            case let .success(list): self.safetyPolicy = list
+            case let .failure(error): print(error)
+            }
+        }
+        _ = NetworkAPI.loadSafetyPolicy(completion: completion)
+        
+    }
+}
 
 
 

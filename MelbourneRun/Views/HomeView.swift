@@ -147,7 +147,7 @@ struct ExpandableCardView: View {
                 .lineLimit(1)
             Spacer()
             Button(action: {self.userData.getPosterName()
-                    self.userData.getSlogan()
+                    self.userData.getExercise()
                     self.userData.getSafeTips()}, label: {
                         MainStyleButton(icon: "arrow.triangle.2.circlepath", color: Color(.label), text: "")
             })
@@ -173,6 +173,18 @@ struct TopView: View {
     @Binding var isSelected: Bool
     
 
+    func getNumberOfLines(tips:String) -> Int{
+        if tips.count <= 55{
+            return 1
+        }
+        if tips.count <= 110{
+            return 2
+        }
+        if tips.count <= 180{
+            return 3
+        }
+        return 3
+    }
     
     
     var body: some View {
@@ -190,7 +202,7 @@ struct TopView: View {
                     VStack {
                         Spacer()
                         SystemMaterialView(style: .regular)
-                            .frame(height: 65)
+                            .frame(height: CGFloat(getNumberOfLines(tips: self.isSelected ? userData.safeTips : userData.exerciseTips) * 55) / 3 + 10)
                     }
                 }
                 VStack(alignment: .center, spacing: 0) {
@@ -203,9 +215,6 @@ struct TopView: View {
                     
                     //MARK: Upper part
                     HStack {
-                        VStack(alignment: .leading) {
-                        }
-                        
                         Spacer()
                         
                         if self.isSelected {
@@ -230,10 +239,11 @@ struct TopView: View {
                     
                     //MARK: Bottom part
                     HStack(alignment: .center) {
-                        Text(userData.slogan)
+                        Text(self.isSelected ? userData.safeTips : userData.exerciseTips)
                             .foregroundColor(Color(.label))
                             .font(.caption)
-                            .lineLimit(3)
+                            .lineLimit(getNumberOfLines(tips: self.isSelected ? userData.safeTips : userData.exerciseTips))
+                            
                         Spacer()
                     }
                     .padding(.horizontal)
@@ -254,12 +264,29 @@ struct ExpandableView: View {
     
     
     var body: some View {
-        Text(userData.safeTips)
-            .font(.body)
-            .foregroundColor(Color(.label))
-            .padding()
+        TabView{
+            ForEach(userData.safetyPolicy){ policy in
+              ScrollView{VStack{
+                PolicyView(policy: policy)
+                .padding(.horizontal)
+                Spacer()
+              }}
+              .frame(height:UIScreen.main.bounds.height/2.5)
+                
+            }
+        }.indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode:.automatic))
+       
+        .frame(height:UIScreen.main.bounds.height/2)
+//        Text(userData.safetyPolicy[1].content)
+//            .font(.body)
+//            .foregroundColor(Color(.label))
+//            .padding()
+//
+        
     }
 }
+
 
 struct HomeView: View {
     @EnvironmentObject var userData:UserData
@@ -268,16 +295,14 @@ struct HomeView: View {
  
             ExpandableCardView()
                 .environmentObject(userData)
-            
         .offset(y:-UIScreen.main.bounds.height/15)
         .onAppear(perform: {
             self.userData.getPosterName()
-            self.userData.getSlogan()
+            self.userData.getExercise()
             self.userData.getSafeTips()
             self.userData.getWeatherDataNow()
+            self.userData.getSafePolicy()
         })
-        
-    
     }
 }
 

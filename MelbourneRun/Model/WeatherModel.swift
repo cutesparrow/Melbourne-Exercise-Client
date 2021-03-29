@@ -26,7 +26,13 @@ struct Position:Codable {
 
 struct Weather:Codable {
     var temp_c:Double
-    var text:String
+    var condition:Condition
     var feelslike_c:Double
+    
+}
+
+
+struct Condition:Codable {
+    var text:String
     var icon:String
 }
