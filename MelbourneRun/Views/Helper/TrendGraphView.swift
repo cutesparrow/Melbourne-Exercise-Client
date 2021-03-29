@@ -21,7 +21,7 @@ struct TrendGraphView: View {
         
         return GeometryReader { proxy in
             VStack{
-                Text(idtoday==0 ? "Today" : "Tomorrow")
+                Text(idtoday==0 ? Date() : Date(timeInterval: 24*60*60, since: Date()),style: .date)
                     .offset(x:-UIScreen.main.bounds.width/3,y:-UIScreen.main.bounds.height/20)
                 HStack(alignment: .bottom, spacing: proxy.size.width / 120) {
                 ForEach(trendList, id: \.hour) { hour in

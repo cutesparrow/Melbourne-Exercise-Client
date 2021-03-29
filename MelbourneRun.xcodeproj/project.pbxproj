@@ -75,6 +75,9 @@
 		D69B1219261073EF00C086FA /* PreviewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B1218261073EF00C086FA /* PreviewFactory.swift */; };
 		D69B121D26108CA900C086FA /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = D69B121C26108CA900C086FA /* SwiftyJSON */; };
 		D69B1220261092B000C086FA /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B121F261092B000C086FA /* WeatherModel.swift */; };
+		D69B12232611CC9C00C086FA /* SafetyPolicyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B12222611CC9C00C086FA /* SafetyPolicyModel.swift */; };
+		D69B12262611D9AF00C086FA /* PolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B12252611D9AF00C086FA /* PolicyView.swift */; };
+		D69B12292611EE9700C086FA /* LegendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B12282611EE9700C086FA /* LegendView.swift */; };
 		D6BC562426103BFC0033341E /* AlertX in Frameworks */ = {isa = PBXBuildFile; productRef = D6BC562326103BFC0033341E /* AlertX */; };
 		D6BC5628261042B70033341E /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = D6BC5627261042B70033341E /* AlertToast */; };
 		D6BC562C261048E20033341E /* PositionScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = D6BC562B261048E20033341E /* PositionScrollView */; };
@@ -143,6 +146,9 @@
 		D69B1212261073CC00C086FA /* TopNavigationBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopNavigationBarView.swift; sourceTree = "<group>"; };
 		D69B1218261073EF00C086FA /* PreviewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewFactory.swift; sourceTree = "<group>"; };
 		D69B121F261092B000C086FA /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		D69B12222611CC9C00C086FA /* SafetyPolicyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafetyPolicyModel.swift; sourceTree = "<group>"; };
+		D69B12252611D9AF00C086FA /* PolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyView.swift; sourceTree = "<group>"; };
+		D69B12282611EE9700C086FA /* LegendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegendView.swift; sourceTree = "<group>"; };
 		D6CD21D725F79E4A00861495 /* MapMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMainView.swift; sourceTree = "<group>"; };
 		D6CD21DC25F7A3B700861495 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		D6CD21E125F7B14100861495 /* home.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = home.gpx; path = ../../../Downloads/home.gpx; sourceTree = "<group>"; };
@@ -249,6 +255,8 @@
 				D630CA6D260891C1008B9FA9 /* TrendGraphView.swift */,
 				D630CA7B2608B47B008B9FA9 /* DigitalClockView.swift */,
 				D630CA8A2608C542008B9FA9 /* PlanView.swift */,
+				D69B12252611D9AF00C086FA /* PolicyView.swift */,
+				D69B12282611EE9700C086FA /* LegendView.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -361,6 +369,7 @@
 				D630CA9626099591008B9FA9 /* LocationFetcher.swift */,
 				D6977B4F260AFB82001F4B48 /* LocationStatusModel.swift */,
 				D69B121F261092B000C086FA /* WeatherModel.swift */,
+				D69B12222611CC9C00C086FA /* SafetyPolicyModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -473,6 +482,7 @@
 				D6977BB3260C6A97001F4B48 /* MainStyleButton.swift in Sources */,
 				D60FC282260381610038E9E5 /* UserData.swift in Sources */,
 				D61A1488260467130049B377 /* BottomContentView.swift in Sources */,
+				D69B12232611CC9C00C086FA /* SafetyPolicyModel.swift in Sources */,
 				D630CA7C2608B47B008B9FA9 /* DigitalClockView.swift in Sources */,
 				D60FC27F26037E9A0038E9E5 /* NetworkAPI.swift in Sources */,
 				D60FC26D2603387E0038E9E5 /* DirectButtonView.swift in Sources */,
@@ -484,6 +494,7 @@
 				D61A1485260464030049B377 /* BottomView.swift in Sources */,
 				D60FC24A2602ECA90038E9E5 /* GymModel.swift in Sources */,
 				D630CA91260991DF008B9FA9 /* WalkDogHomeView.swift in Sources */,
+				D69B12292611EE9700C086FA /* LegendView.swift in Sources */,
 				D69B1216261073CC00C086FA /* TopNavigationBarView.swift in Sources */,
 				D60FC265260316CC0038E9E5 /* ScrollImageHelper.swift in Sources */,
 				D6977BA9260C3A74001F4B48 /* MainSwitchView.swift in Sources */,
@@ -501,6 +512,7 @@
 				D69B1220261092B000C086FA /* WeatherModel.swift in Sources */,
 				D6977BAC260C3C15001F4B48 /* HomeView.swift in Sources */,
 				D630CA8B2608C542008B9FA9 /* PlanView.swift in Sources */,
+				D69B12262611D9AF00C086FA /* PolicyView.swift in Sources */,
 				D60FC23D2602EC0D0038E9E5 /* GymRecordView.swift in Sources */,
 				D630CA94260991F2008B9FA9 /* GymHomeView.swift in Sources */,
 				D630CA6326088662008B9FA9 /* RoadSituationContentView.swift in Sources */,

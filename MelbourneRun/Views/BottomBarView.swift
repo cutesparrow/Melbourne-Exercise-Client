@@ -39,6 +39,7 @@ struct BottomBarView: View {
             }
         }
         .JMAlert(showModal: $locationManager.permissionIsNotOk, for: [.location], autoCheckAuthorization: false)
+        .changeBottomDescriptionTo("you have to enable permissions in settings,otherwise in order to provide you with all the functions of this application, we will locate your default location in Melbourne Central")
         .background(Color.clear)
     }
     

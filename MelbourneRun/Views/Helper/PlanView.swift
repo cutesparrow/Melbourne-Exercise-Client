@@ -62,16 +62,13 @@ struct PlanView: View,PositionScrollViewDelegate {
                         ForEach(0..<2){i in
                             TrendGraphView(fullTrendList: userData.roadSituation.list[i].situation, idtoday: i, point: $positionOfSelector)
                                 .frame(width:UIScreen.main.bounds.width-8 ,height: UIScreen.main.bounds.height/CGFloat(4*high)*CGFloat(high), alignment: .center)
-                            
                         }
                         
                     }
-                    
-                    
-                    
                 }
                 .padding(.top,-40)
                 .frame(height:UIScreen.main.bounds.height/CGFloat(3*Double(high))*CGFloat(high))
+                LegendView()
                 DigitalClockView(rate: $positionOfSelector, start: userData.roadSituation.list[day].situation[8].hour, end: userData.roadSituation.list[day].situation[userData.roadSituation.list[day].situation.count-1].hour, color: .blue)
                     .environmentObject(userData)
                 ValueSlider(value: $positionOfSelector)
