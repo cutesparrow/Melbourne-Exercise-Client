@@ -9,16 +9,21 @@ import Foundation
 import CoreLocation
 import Combine
 
+var hasChecked:Bool = false
+
 class LocationManager: NSObject, ObservableObject {
 
     override init() {
         self.permissionIsNotOk = false
+    
         super.init()
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
     }
+    
+
 
     @Published var locationStatus: CLAuthorizationStatus? {
         willSet {
@@ -67,9 +72,17 @@ extension LocationManager: CLLocationManagerDelegate {
         case .authorizedAlways,.authorizedWhenInUse:
             self.permissionIsNotOk = false
         default:
-            self.permissionIsNotOk = true
+            if !hasChecked {
+                print(1)
+                hasChecked = true
+                self.permissionIsNotOk = true
+            } else {
+                print(2)
+                hasChecked = true
+                
+            }
         }
-        print(#function, statusString)
+        print(#function, statusString,self.permissionIsNotOk,hasChecked)
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

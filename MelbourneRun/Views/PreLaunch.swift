@@ -6,10 +6,14 @@
 //
 
 import SwiftUI
+import BottomBar_SwiftUI
+import PermissionsSwiftUI
+
 
 struct PreLaunch: View {
     @EnvironmentObject var userData:UserData
     @State var showMainView:Bool = false
+   
     
     var body: some View {
         Group{
@@ -27,7 +31,10 @@ struct PreLaunch: View {
             }
         }
             
-        }.onAppear{
+        }
+        .JMAlert(showModal: $userData.locationManager.permissionIsNotOk, for: [.location], autoCheckAuthorization: false)
+        .changeBottomDescriptionTo("Enable permissions in settings,Or default location in Melbourne Central. Now, we only provide services to Melbourne CBD users. If your current location exceeds this range, please turn off the location permission and use the default location we provide.")
+        .onAppear{
             withAnimation(.timingCurve(1, 0.01, 0.71, 0.11, duration: 2.4)){
                 showMainView = true
             }

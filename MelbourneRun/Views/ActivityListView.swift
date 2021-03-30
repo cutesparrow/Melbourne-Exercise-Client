@@ -12,7 +12,7 @@ import PermissionsSwiftUI
 struct ActivityListView: View {
     
     @EnvironmentObject var userData:UserData
-    @ObservedObject var locationManager = LocationManager()
+    
     var activities:[Activity]
     var body: some View {
         ZStack{
@@ -49,7 +49,7 @@ struct ActivityListView: View {
                     Spacer()
                 }
                 .navigationBarHidden(true)}
-        }.JMAlert(showModal: $locationManager.permissionIsNotOk, for: [.location], autoCheckAuthorization: false)
+        }.JMAlert(showModal: $userData.locationManager.permissionIsNotOk, for: [.location], autoCheckAuthorization: false)
     }
     
     
