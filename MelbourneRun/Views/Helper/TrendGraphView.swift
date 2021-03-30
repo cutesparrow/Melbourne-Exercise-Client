@@ -16,6 +16,7 @@ struct TrendGraphView: View {
     var body: some View {
         let trendList = Array(fullTrendList[8...])
         let high:Int = findLargest(trendList: trendList)
+        let low:Int = findLowest(trendList: trendList)
         let rate:CGFloat = UIScreen.main.bounds.height/CGFloat(5*high)
         let onFocus:Int = Int(point*Float(trendList.count)*0.99)
         
@@ -29,7 +30,7 @@ struct TrendGraphView: View {
                         .colorMultiply(hour.hour == getHour(index: onFocus, trendList: trendList) ? getColorOfCapsule(OnHourRoadSituation: hour) : AppColor.shared.trendGraphColor)
                         .transition(.slide)
                         .animation(.spring())
-                        .offset(x:0,y:-CGFloat(hour.low)*rate)
+                        .offset(x:0,y:-CGFloat(hour.low)*rate + CGFloat(low/9))
                         //.padding()
                 }
                 
@@ -61,6 +62,16 @@ struct TrendGraphView: View {
             }
         }
         return largest
+    }
+    func findLowest(trendList:[OneHourRoadSituation]) -> Int{
+        var lowest:Int = 0
+        for i in trendList{
+            if i.low>lowest{
+                lowest = i.low
+            }
+        }
+    
+        return lowest
     }
     
     func getHour(index:Int,trendList:[OneHourRoadSituation]) -> Int{
