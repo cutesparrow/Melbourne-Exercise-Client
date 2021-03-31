@@ -42,7 +42,14 @@ class UserData: ObservableObject {
             showMemberShipSelection = false
             hasMemberShip = UserDefaults.standard.string(forKey: "membership") ?? "No membership"
         }
+        if checkUserLocation(lat: LocationFetcher().lastKnownLocation?.latitude ?? -37.810489070978186, long: LocationFetcher().lastKnownLocation?.longitude ?? 144.96290632581503){
+            showeLocationWarning = false
+        } else{
+            showeLocationWarning = true
+        }
     }
+
+    @Published var showeLocationWarning:Bool
     @Published var new:Bool
     @Published var hasMemberShip:String
     @Published var showMemberShipSelection:Bool
@@ -56,3 +63,17 @@ struct weather:Codable {
     var averageTemperature: String
     var currentConditionsText: String
 }
+
+
+func checkUserLocation(lat:Double,long:Double) -> Bool{
+    if (-37.821088204348065 <= lat && lat <= -37.80128789662342) && (144.93188435005916 <= long && long <= 144.9741130468984){
+       
+        return true
+    }
+    else{
+        
+        return false
+    }
+}
+//-37.80128789662342, 144.9741130468984
+//-37.821088204348065, 144.93188435005916

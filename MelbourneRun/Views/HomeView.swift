@@ -288,19 +288,17 @@ struct ExpandableView: View {
 
 struct HomeView: View {
     @EnvironmentObject var userData:UserData
-    
+   
     var body: some View {
-        
-        ExpandableCardView()
+            ExpandableCardView()
             .environmentObject(userData)
             .offset(y:-UIScreen.main.bounds.height/15)
+                
             .onAppear(perform: {
                 self.userData.getShowInformation()
                 self.userData.getWeatherDataNow()
                 self.userData.getSafePolicy()
             })
-        
-        
     }
 }
 

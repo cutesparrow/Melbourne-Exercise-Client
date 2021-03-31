@@ -74,6 +74,12 @@
 		D6708FE92614736A008FDD79 /* AlertXViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6708FE12614736A008FDD79 /* AlertXViewController.swift */; };
 		D6708FEA2614736A008FDD79 /* AlertX_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6708FE22614736A008FDD79 /* AlertX_View.swift */; };
 		D6708FEE26147598008FDD79 /* ShowInformationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6708FED26147598008FDD79 /* ShowInformationModel.swift */; };
+		D6708FF226149CCC008FDD79 /* OnboardingOneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6708FF126149CCC008FDD79 /* OnboardingOneView.swift */; };
+		D6708FF62614A128008FDD79 /* OnboardingTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6708FF52614A128008FDD79 /* OnboardingTwo.swift */; };
+		D6708FF92614A57C008FDD79 /* OnboardingThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6708FF82614A57C008FDD79 /* OnboardingThree.swift */; };
+		D6708FFC2614A73F008FDD79 /* OnboardingFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6708FFB2614A73F008FDD79 /* OnboardingFour.swift */; };
+		D6708FFF2614A86B008FDD79 /* OnboardingFive.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6708FFE2614A86B008FDD79 /* OnboardingFive.swift */; };
+		D67090022614A929008FDD79 /* OnboardingSix.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67090012614A929008FDD79 /* OnboardingSix.swift */; };
 		D6977B49260AE845001F4B48 /* PermissionsSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D6977B48260AE845001F4B48 /* PermissionsSwiftUI */; };
 		D6977B50260AFB82001F4B48 /* LocationStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6977B4F260AFB82001F4B48 /* LocationStatusModel.swift */; };
 		D6977B8E260B3A73001F4B48 /* SwiftUIRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = D6977B8D260B3A73001F4B48 /* SwiftUIRefresh */; };
@@ -164,6 +170,12 @@
 		D6708FE12614736A008FDD79 /* AlertXViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertXViewController.swift; sourceTree = "<group>"; };
 		D6708FE22614736A008FDD79 /* AlertX_View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertX_View.swift; sourceTree = "<group>"; };
 		D6708FED26147598008FDD79 /* ShowInformationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowInformationModel.swift; sourceTree = "<group>"; };
+		D6708FF126149CCC008FDD79 /* OnboardingOneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingOneView.swift; sourceTree = "<group>"; };
+		D6708FF52614A128008FDD79 /* OnboardingTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTwo.swift; sourceTree = "<group>"; };
+		D6708FF82614A57C008FDD79 /* OnboardingThree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingThree.swift; sourceTree = "<group>"; };
+		D6708FFB2614A73F008FDD79 /* OnboardingFour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFour.swift; sourceTree = "<group>"; };
+		D6708FFE2614A86B008FDD79 /* OnboardingFive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFive.swift; sourceTree = "<group>"; };
+		D67090012614A929008FDD79 /* OnboardingSix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSix.swift; sourceTree = "<group>"; };
 		D6977B4F260AFB82001F4B48 /* LocationStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationStatusModel.swift; sourceTree = "<group>"; };
 		D6977B9E260B4BAF001F4B48 /* PreLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreLaunch.swift; sourceTree = "<group>"; };
 		D6977BA5260C35A9001F4B48 /* BottomBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarView.swift; sourceTree = "<group>"; };
@@ -397,6 +409,19 @@
 			path = Essentials;
 			sourceTree = "<group>";
 		};
+		D6708FF026149CBD008FDD79 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				D6708FF126149CCC008FDD79 /* OnboardingOneView.swift */,
+				D6708FF52614A128008FDD79 /* OnboardingTwo.swift */,
+				D6708FF82614A57C008FDD79 /* OnboardingThree.swift */,
+				D6708FFB2614A73F008FDD79 /* OnboardingFour.swift */,
+				D6708FFE2614A86B008FDD79 /* OnboardingFive.swift */,
+				D67090012614A929008FDD79 /* OnboardingSix.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		D6977BB5260C854D001F4B48 /* OutDoor */ = {
 			isa = PBXGroup;
 			children = (
@@ -420,6 +445,7 @@
 		D6CD21E325F7B17E00861495 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D6708FF026149CBD008FDD79 /* Onboarding */,
 				D6708FC1261403F2008FDD79 /* Sources */,
 				D69B120E261073A000C086FA /* Weather */,
 				D6977BB5260C854D001F4B48 /* OutDoor */,
@@ -587,6 +613,7 @@
 				D6708FE52614736A008FDD79 /* AlertX.swift in Sources */,
 				D6708FEA2614736A008FDD79 /* AlertX_View.swift in Sources */,
 				D630CA7C2608B47B008B9FA9 /* DigitalClockView.swift in Sources */,
+				D6708FFF2614A86B008FDD79 /* OnboardingFive.swift in Sources */,
 				D60FC27F26037E9A0038E9E5 /* NetworkAPI.swift in Sources */,
 				D60FC26D2603387E0038E9E5 /* DirectButtonView.swift in Sources */,
 				D60FC28F26044B7F0038E9E5 /* JoggingGoalInputView.swift in Sources */,
@@ -596,6 +623,7 @@
 				D6977BBE260F5F63001F4B48 /* OnboardingShowView.swift in Sources */,
 				D61A1485260464030049B377 /* BottomView.swift in Sources */,
 				D60FC24A2602ECA90038E9E5 /* GymModel.swift in Sources */,
+				D6708FFC2614A73F008FDD79 /* OnboardingFour.swift in Sources */,
 				D630CA91260991DF008B9FA9 /* WalkDogHomeView.swift in Sources */,
 				D69B12292611EE9700C086FA /* LegendView.swift in Sources */,
 				D69B1216261073CC00C086FA /* TopNavigationBarView.swift in Sources */,
@@ -610,6 +638,7 @@
 				D60FC24D2602EF630038E9E5 /* HikingParkModel.swift in Sources */,
 				D6708FCA261403F2008FDD79 /* BarBuilder.swift in Sources */,
 				D6708FD226141002008FDD79 /* testview.swift in Sources */,
+				D6708FF226149CCC008FDD79 /* OnboardingOneView.swift in Sources */,
 				D60FC28B260443C80038E9E5 /* LocationViewModel.swift in Sources */,
 				D60FC2472602EC510038E9E5 /* GymCellView.swift in Sources */,
 				D630CA882608C20A008B9FA9 /* PlanButtonView.swift in Sources */,
@@ -631,9 +660,12 @@
 				D60FC262260313540038E9E5 /* ScrollBoxView.swift in Sources */,
 				D69B1213261073CC00C086FA /* BuluttanBackgroundView.swift in Sources */,
 				D63D18D225FE09C50049C1AC /* ActivityListView.swift in Sources */,
+				D6708FF92614A57C008FDD79 /* OnboardingThree.swift in Sources */,
 				D63D18D925FF787F0049C1AC /* CircleImageView.swift in Sources */,
 				D6CD21EA25F8587900861495 /* CommonVariable.swift in Sources */,
+				D67090022614A929008FDD79 /* OnboardingSix.swift in Sources */,
 				D60FC2502602EFAF0038E9E5 /* DogPlayground.swift in Sources */,
+				D6708FF62614A128008FDD79 /* OnboardingTwo.swift in Sources */,
 				D60FC271260342D90038E9E5 /* StarButtonView.swift in Sources */,
 				D630CA68260888CA008B9FA9 /* RoadSituationModel.swift in Sources */,
 				D63D18CE25FE09460049C1AC /* ActivityModel.swift in Sources */,

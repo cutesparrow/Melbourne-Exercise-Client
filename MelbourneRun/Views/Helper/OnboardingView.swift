@@ -11,13 +11,13 @@ struct OnboardingView: View {
     let viewPage:Int
     var body: some View {
         if viewPage == 1{
-            Text("1")
+            OnboardingThree()
         } else if viewPage == 2{
-            Text("2")
+            OnboardingFour()
         } else if viewPage == 3{
-            Text("3")
+            OnboardingFive()
         } else if viewPage == 4{
-            Text("4")
+            OnboardingSix()
         }
     }
 }
