@@ -57,7 +57,7 @@ struct GymCellView_Previews: PreviewProvider {
                              Images: ["gym1","gym2","gym3"],
                              limitation: 21, distance: 3.23,
                              star: false,
-                             address: "Level 2/341-345 Bourke St, Melbourne VIC 3000")
+                             address: "Level 2/341-345 Bourke St, Melbourne VIC 3000",classType: "")
     static var previews: some View {
         GymCellView(gym: gym)
     }

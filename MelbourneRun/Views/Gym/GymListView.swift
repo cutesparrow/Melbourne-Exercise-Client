@@ -16,14 +16,16 @@ struct GymListView: View {
     @EnvironmentObject var userData:UserData
     @State private var isShowing = false
     var body: some View {
-            List(userData.gymList.list) { gym in
-                NavigationLink(destination: GymRecordView(gym: gym)) {
+            
+            
+            List{ForEach(userData.gymList.list) { gym in
+                if gym.classType == userData.hasMemberShip || userData.hasMemberShip == "No membership" {NavigationLink(destination: GymRecordView(gym: gym)) {
                     GymCellView(gym: gym)
                         .padding(.top,10)
                         .padding(.bottom,10)
                         .shadow(radius: 10 )
-                }
-            }
+                }}
+            }}
             
             .pullToRefresh(isShowing: $isShowing) {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {

@@ -8,7 +8,6 @@
 import SwiftUI
 import MapKit
 import EventKit
-import AlertX
 import Sliders
 import AlertToast
 import PositionScrollView
@@ -102,9 +101,11 @@ struct PlanView: View,PositionScrollViewDelegate {
         .frame(width:UIScreen.main.bounds.width)
         .alertX(isPresented: $showAlertX) {
             AlertX(title: Text("Confirm Plan"), message: Text("""
-Target Gym: \(userData.selectedGym.name)
+Gym: \(userData.selectedGym.name)
 Time: \(getTimeString(date: getTime(start: userData.roadSituation.list[day].situation[8].hour, end: userData.roadSituation.list[day].situation[userData.roadSituation.list[day].situation.count-1].hour, rate: positionOfSelector)))
 Note: \(userData.selectedGym.address)
+
+
 """), primaryButton: .cancel(), secondaryButton: .default(Text("Save"), action: {
     saveIntoEvent(title: "Go to \(userData.selectedGym.name)", date: getTime(start: userData.roadSituation.list[day].situation[8].hour, end: userData.roadSituation.list[day].situation[userData.roadSituation.list[day].situation.count-1].hour, rate: positionOfSelector), notes: userData.selectedGym.address)
 }), theme: .graphite(withTransparency: true, roundedCorners: true), animation: .classicEffect())

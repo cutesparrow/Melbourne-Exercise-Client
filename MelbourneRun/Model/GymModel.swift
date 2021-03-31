@@ -12,6 +12,8 @@ import MapKit
 
 struct GymList:Codable{
     var list:[Gym]
+
+        
 }
 
 struct Gym:Hashable, Codable,Identifiable {
@@ -27,5 +29,6 @@ struct Gym:Hashable, Codable,Identifiable {
     var coordinate: CLLocationCoordinate2D {
             CLLocationCoordinate2D(latitude: lat, longitude: long)
         }
+    var classType:String
 }
 
