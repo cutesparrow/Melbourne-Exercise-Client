@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "ActionOver",
+        "repositoryURL": "https://github.com/AndreaMiotto/ActionOver.git",
+        "state": {
+          "branch": null,
+          "revision": "06b0918c491232af1ce483ed528802522b9f201d",
+          "version": "1.0.3"
+        }
+      },
+      {
         "package": "Alamofire",
         "repositoryURL": "https://github.com/Alamofire/Alamofire.git",
         "state": {
@@ -20,15 +29,6 @@
         }
       },
       {
-        "package": "AlertX",
-        "repositoryURL": "https://github.com/neel-makhecha/AlertX.git",
-        "state": {
-          "branch": null,
-          "revision": "8a360e662b6347735140b3216ff4aa5fe97af681",
-          "version": "1.2.1"
-        }
-      },
-      {
         "package": "BottomSheet",
         "repositoryURL": "https://github.com/weitieda/bottom-sheet.git",
         "state": {
@@ -38,12 +38,12 @@
         }
       },
       {
-        "package": "BottomBar-SwiftUI",
-        "repositoryURL": "https://github.com/smartvipere75/bottombar-swiftui",
+        "package": "ConcentricOnboarding",
+        "repositoryURL": "https://github.com/exyte/ConcentricOnboarding.git",
         "state": {
-          "branch": "master",
-          "revision": "838ce6316f8282467ebd00cf4d9706dc58978633",
-          "version": null
+          "branch": null,
+          "revision": "8ec6051f638f7de72c629368014777ad1346d653",
+          "version": "0.0.6"
         }
       },
       {

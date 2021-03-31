@@ -27,6 +27,17 @@ class NetworkAPI{
                     }
     }
 }
+    static public func loadShowInformation(completion: @escaping (Result<ShowInformation, Error>) -> Void)->DataRequest{
+        NetworkManager.shared.requestGet(path: "showInformation/", parameters: nil) { result in
+        switch result {
+                    case let .success(data):
+                        let parseResult: Result<ShowInformation, Error> = NetworkManager.parseData(data)
+                        completion(parseResult)
+                    case let .failure(error):
+                        completion(.failure(error))
+                    }
+    }
+}
     
     
     static public func loadGymList(location:CLLocationCoordinate2D,completion: @escaping (Result<GymList, Error>) -> Void)->DataRequest{
@@ -118,7 +129,18 @@ class NetworkAPI{
 }
 
 
-
+extension UserData{
+    func getShowInformation(){
+        let completion: (Result<ShowInformation,Error>) -> Void = { result in
+            switch result {
+            case let .success(information): self.showInformation = information
+            case let .failure(error): print(error)
+            }
+        }
+        _ = NetworkAPI.loadShowInformation(completion: completion)
+        
+    }
+}
 
 extension UserData{
     func getWeatherDataNow(){

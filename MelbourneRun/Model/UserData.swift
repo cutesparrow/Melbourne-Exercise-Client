@@ -21,11 +21,32 @@ class UserData: ObservableObject {
     @Published var image:String = "gym12.jpg"
     @Published var exerciseTips:String = ""
     @Published var safeTips:String = ""
-    @Published var selectedGym:Gym = Gym(id: 0, lat: 0, long: 0, name: "", Images: [""], limitation: 0, distance: 0, star: true, address: "")
+    @Published var selectedGym:Gym = Gym(id: 0, lat: 0, long: 0, name: "", Images: [""], limitation: 0, distance: 0, star: true, address: "",classType: "")
     @Published var selectedTime:Date = Date()
     @Published var weather:WeatherNow = WeatherNow(location: Position(name: "Melbourne", region: "Victoria", country: "", lat: 1, lon: 1, tz_id: "", localtime_epoch: 1, localtime: ""), current: Weather(temp_c: 12.4, condition: Condition(text: "Clear", icon: "//cdn.weatherapi.com/weather/128x128/day/116.png"),feelslike_c: 12.1))
     @Published var safetyPolicy:[SafetyPolicy] = [SafetyPolicy(id:1,date: "", title: "", content: "")]
     @Published var locationManager:LocationManager = LocationManager()
+    init() {
+        if !UserDefaults.standard.bool(forKey: "didLaunchBefore") {
+                    UserDefaults.standard.set(true, forKey: "didLaunchBefore")
+                    new = true
+                } else {
+                    new = false
+                }
+        if !UserDefaults.standard.bool(forKey: "showMemberShipSelection"){
+            UserDefaults.standard.set(true,forKey: "showMemberShipSelection")
+            showMemberShipSelection = true
+            UserDefaults.standard.set("No membership",forKey: "membership")
+            hasMemberShip = UserDefaults.standard.string(forKey: "membership")!
+        } else{
+            showMemberShipSelection = false
+            hasMemberShip = UserDefaults.standard.string(forKey: "membership") ?? "No membership"
+        }
+    }
+    @Published var new:Bool
+    @Published var hasMemberShip:String
+    @Published var showMemberShipSelection:Bool
+    @Published var showInformation:ShowInformation = ShowInformation(imageName: "", safetyTips: "", exerciseTips: "", exerciseBenefits: "")
 }
 
 struct weather:Codable {

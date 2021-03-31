@@ -11,9 +11,9 @@ let screen = UIScreen.main.bounds
 
 
 struct SystemMaterialView: UIViewRepresentable {
-
+    
     let style: UIBlurEffect.Style
-
+    
     func makeUIView(context: UIViewRepresentableContext<SystemMaterialView>) -> UIView {
         let view = UIView(frame: .zero)
         view.backgroundColor = .clear
@@ -27,12 +27,12 @@ struct SystemMaterialView: UIViewRepresentable {
         ])
         return view
     }
-
+    
     func updateUIView(_ uiView: UIView,
                       context: UIViewRepresentableContext<SystemMaterialView>) {
-
+        
     }
-
+    
 }
 
 class TicketCardView_Control: ObservableObject {
@@ -50,7 +50,7 @@ struct ExpandableCardView: View {
     //MARK: Card size
     let normalCardHeight: CGFloat = 300
     let normalCardHorizontalPadding: CGFloat = 20
-
+    
     let openCardAnimation = Animation.timingCurve(0.7, -0.35, 0.2, 0.9, duration: 0.45)
     
     //MARK: Gestures
@@ -70,7 +70,7 @@ struct ExpandableCardView: View {
             .onChanged { _ in
                 withAnimation(.easeIn(duration: 0.15)) {
                     self.isDetectingLongPress = true
-               }
+                }
             }
             .onEnded { _ in
                 withAnimation(self.openCardAnimation) {
@@ -79,7 +79,7 @@ struct ExpandableCardView: View {
                 }
             }
     }
-
+    
     var dragSelectedCard: some Gesture {
         DragGesture()
             .onChanged { value in
@@ -89,81 +89,79 @@ struct ExpandableCardView: View {
                 self.viewState = .zero
             }
     }
-
+    
     
     //MARK: View Body
     var body: some View {
         
         VStack{
             GeometryReader { geometry in
-            ZStack {
-                VStack {
-                    TopView(isSelected: self.$isSelected)
-                        .environmentObject(userData)
-                        .frame(height: self.normalCardHeight)
-                    
-                    if self.isSelected {
-                        ExpandableView(isSelected: self.$isSelected)
+                ZStack {
+                    VStack {
+                        TopView(isSelected: self.$isSelected)
                             .environmentObject(userData)
+                            .frame(height: self.normalCardHeight)
                         
-                        Spacer()
-                    }
-                } //VStack
-                .background(Color.white.opacity(0.01))
-                .offset(y: self.isSelected ? self.viewState.height/2 : 0)
-                .animation(.interpolatingSpring(mass: 1, stiffness: 90, damping: 15, initialVelocity: 1))
-                .gesture(self.isSelected ? (self.dragSelectedCard) : (nil))
-            } //ZStack
-            //.drawingGroup() //test it
+                        if self.isSelected {
+                            ExpandableView(isSelected: self.$isSelected)
+                                .environmentObject(userData)
+                            
+                            Spacer()
+                        }
+                    } //VStack
+                    .background(Color.white.opacity(0.01))
+                    .offset(y: self.isSelected ? self.viewState.height/2 : 0)
+                    .animation(.interpolatingSpring(mass: 1, stiffness: 90, damping: 15, initialVelocity: 1))
+                    .gesture(self.isSelected ? (self.dragSelectedCard) : (nil))
+                } //ZStack
+                //.drawingGroup() //test it
                 
-            //MARK: Card Appearance
-            .background(Color(.secondarySystemGroupedBackground))
-            .clipShape(RoundedRectangle(cornerRadius: self.isSelected ? 0 : 15, style: .continuous))
-            .shadow(color: Color.black.opacity(0.15), radius: 30, x: 0, y: 10)
-            .shadow(color: Color.black.opacity(0.03), radius: 4, x: 0, y: 7)
-            
-            //MARK: Animation end effect (globa/local)
-            .scaleEffect(self.isDetectingLongPress ? 0.95 : 1)
-///           to test on preview change (in: .global) to (in: .local)
-///            .offset(x: self.isSelected ? -geometry.frame(in: .local).minX : 0,
-///                 y: self.isSelected ? -geometry.frame(in: .local).minY : 0)
-            .offset(x: self.isSelected ? -geometry.frame(in: .global).minX : 0,
-                    y: self.isSelected ? -geometry.frame(in: .global).minY : 0)
-            
-            .frame(height: self.isSelected ? screen.height : nil)
-            .frame(width: self.isSelected ? screen.width : nil)
-            
-            .gesture(self.press)
-            .gesture(self.longPressAndRelese)
-        } //GeometryReader
-        .frame(width: screen.width - (normalCardHorizontalPadding * 2))
-        .frame(height: normalCardHeight)
-        if isSelected == false
-        {
-        HStack{
-            Text(Date(),style: .date)
-                .font(.system(.title))
-                .foregroundColor(Color(.label))
-                .lineLimit(1)
-            Spacer()
-            Button(action: {self.userData.getPosterName()
-                    self.userData.getExercise()
-                    self.userData.getSafeTips()}, label: {
-                        MainStyleButton(icon: "arrow.triangle.2.circlepath", color: Color(.label), text: "")
-            })
-        }
-        .frame(width:UIScreen.main.bounds.width/1.13)
-        .padding()
-        }
-            if isSelected == false{
-                    MainWeatherView()
-                        
-                        .frame(width:UIScreen.main.bounds.width/1.03,height:130)
-                    
+                //MARK: Card Appearance
+                .background(Color(.secondarySystemGroupedBackground))
+                .clipShape(RoundedRectangle(cornerRadius: self.isSelected ? 0 : 15, style: .continuous))
+                .shadow(color: Color.black.opacity(0.15), radius: 30, x: 0, y: 10)
+                .shadow(color: Color.black.opacity(0.03), radius: 4, x: 0, y: 7)
+                
+                //MARK: Animation end effect (globa/local)
+                .scaleEffect(self.isDetectingLongPress ? 0.95 : 1)
+                ///           to test on preview change (in: .global) to (in: .local)
+                ///            .offset(x: self.isSelected ? -geometry.frame(in: .local).minX : 0,
+                ///                 y: self.isSelected ? -geometry.frame(in: .local).minY : 0)
+                .offset(x: self.isSelected ? -geometry.frame(in: .global).minX : 0,
+                        y: self.isSelected ? -geometry.frame(in: .global).minY : 0)
+                
+                .frame(height: self.isSelected ? screen.height : nil)
+                .frame(width: self.isSelected ? screen.width : nil)
+                
+                .gesture(self.press)
+                .gesture(self.longPressAndRelese)
+            } //GeometryReader
+            .frame(width: screen.width - (normalCardHorizontalPadding * 2))
+            .frame(height: normalCardHeight)
+            if isSelected == false
+            {
+                HStack{
+                    Text(Date(),style: .date)
+                        .font(.system(.title))
+                        .foregroundColor(Color(.label))
+                        .lineLimit(1)
+                    Spacer()
+                    Button(action: {self.userData.getPosterName()
+                            self.userData.getShowInformation()}, label: {
+                                MainStyleButton(icon: "arrow.triangle.2.circlepath", color: Color(.label), text: "")
+                            })
                 }
+                .frame(width:UIScreen.main.bounds.width/1.13)
+                .padding()
+            }
+            if isSelected == false{
+                MainWeatherView()
+                    .frame(width:UIScreen.main.bounds.width/1.03,height:130)
+                
+            }
         }
     }
-
+    
 }
 
 
@@ -172,7 +170,7 @@ struct TopView: View {
     @EnvironmentObject var userData: UserData
     @Binding var isSelected: Bool
     
-
+    
     func getNumberOfLines(tips:String) -> Int{
         if tips.count <= 55{
             return 1
@@ -191,7 +189,7 @@ struct TopView: View {
         GeometryReader { geometry in
             ZStack {
                 ZStack {
-                    WebImage(url: URL(string: NetworkManager.shared.urlBasePath + userData.image))
+                    WebImage(url: URL(string: NetworkManager.shared.urlBasePath + userData.showInformation.imageName))
                         .resizable()
                         .placeholder{
                             Color.gray
@@ -202,7 +200,7 @@ struct TopView: View {
                     VStack {
                         Spacer()
                         SystemMaterialView(style: .regular)
-                            .frame(height: CGFloat(getNumberOfLines(tips: self.isSelected ? userData.safeTips : userData.exerciseTips) * 55) / 3 + 10)
+                            .frame(height: CGFloat(getNumberOfLines(tips: self.isSelected ? userData.showInformation.safetyTips : userData.showInformation.exerciseBenefits) * 55) / 3 + 10)
                     }
                 }
                 VStack(alignment: .center, spacing: 0) {
@@ -219,12 +217,12 @@ struct TopView: View {
                         
                         if self.isSelected {
                             Button(action: {
-                                withAnimation(Animation.timingCurve(0.7, -0.35, 0.2, 0.9, duration: 0.45)) {
-                                    self.isSelected = false
-                                     }}) {
-                                        Image(systemName: "xmark.circle.fill").foregroundColor(Color(.label))
-                                            .font(.system(size: 30, weight: .medium))
-                                            .opacity(0.7)
+                                    withAnimation(Animation.timingCurve(0.7, -0.35, 0.2, 0.9, duration: 0.45)) {
+                                        self.isSelected = false
+                                    }}) {
+                                Image(systemName: "xmark.circle.fill").foregroundColor(Color(.label))
+                                    .font(.system(size: 30, weight: .medium))
+                                    .opacity(0.7)
                             }
                         }
                     } //HStack
@@ -239,11 +237,11 @@ struct TopView: View {
                     
                     //MARK: Bottom part
                     HStack(alignment: .center) {
-                        Text(self.isSelected ? userData.safeTips : userData.exerciseTips)
+                        Text(self.isSelected ? userData.showInformation.safetyTips : userData.showInformation.exerciseBenefits)
                             .foregroundColor(Color(.label))
                             .font(.caption)
-                            .lineLimit(getNumberOfLines(tips: self.isSelected ? userData.safeTips : userData.exerciseTips))
-                            
+                            .lineLimit(getNumberOfLines(tips: self.isSelected ? userData.showInformation.safetyTips : userData.showInformation.exerciseBenefits))
+                        
                         Spacer()
                     }
                     .padding(.horizontal)
@@ -266,23 +264,23 @@ struct ExpandableView: View {
     var body: some View {
         TabView{
             ForEach(userData.safetyPolicy){ policy in
-              ScrollView{VStack{
-                PolicyView(policy: policy)
-                .padding(.horizontal)
-                Spacer()
-              }}
-              .frame(height:UIScreen.main.bounds.height/2.5)
+                ScrollView{VStack{
+                    PolicyView(policy: policy)
+                        .padding(.horizontal)
+                    Spacer()
+                }}
+                .frame(height:UIScreen.main.bounds.height/2.5)
                 
             }
         }.indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
         .tabViewStyle(PageTabViewStyle(indexDisplayMode:.automatic))
-       
+        
         .frame(height:UIScreen.main.bounds.height/2)
-//        Text(userData.safetyPolicy[1].content)
-//            .font(.body)
-//            .foregroundColor(Color(.label))
-//            .padding()
-//
+        //        Text(userData.safetyPolicy[1].content)
+        //            .font(.body)
+        //            .foregroundColor(Color(.label))
+        //            .padding()
+        //
         
     }
 }
@@ -292,17 +290,17 @@ struct HomeView: View {
     @EnvironmentObject var userData:UserData
     
     var body: some View {
- 
-            ExpandableCardView()
-                .environmentObject(userData)
-        .offset(y:-UIScreen.main.bounds.height/15)
-        .onAppear(perform: {
-            self.userData.getPosterName()
-            self.userData.getExercise()
-            self.userData.getSafeTips()
-            self.userData.getWeatherDataNow()
-            self.userData.getSafePolicy()
-        })
+        
+        ExpandableCardView()
+            .environmentObject(userData)
+            .offset(y:-UIScreen.main.bounds.height/15)
+            .onAppear(perform: {
+                self.userData.getShowInformation()
+                self.userData.getWeatherDataNow()
+                self.userData.getSafePolicy()
+            })
+        
+        
     }
 }
 

@@ -13,7 +13,7 @@ typealias NetworkRequestResult = Result<Data, Error>
 typealias NetworkRequestCompletion = (NetworkRequestResult) -> Void
 
 
-let NetworkAPIBaseURL = "http://www.melbournesafeexercise.tk/"
+let NetworkAPIBaseURL = "http://192.168.50.25:8000/"//"http://www.melbournesafeexercise.tk/"
 let weatherWebsite = "http://api.weatherapi.com/v1/current.json"
 let parameter:Parameters = ["key":"6ea4cd893fce4e32812101751212803","q":"Melbourne","aqi":"no"]
 
