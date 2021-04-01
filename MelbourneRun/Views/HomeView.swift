@@ -220,7 +220,8 @@ struct TopView: View {
                                     withAnimation(Animation.timingCurve(0.7, -0.35, 0.2, 0.9, duration: 0.45)) {
                                         self.isSelected = false
                                     }}) {
-                                Image(systemName: "xmark.circle.fill").foregroundColor(Color(.label))
+                                Image(systemName: "xmark.circle.fill")
+                                    .foregroundColor(Color(.white))
                                     .font(.system(size: 30, weight: .medium))
                                     .opacity(0.7)
                             }

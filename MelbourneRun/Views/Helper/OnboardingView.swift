@@ -10,7 +10,10 @@ import SwiftUI
 struct OnboardingView: View {
     let viewPage:Int
     var body: some View {
-        if viewPage == 1{
+        if viewPage == 0{
+            OnboardingZero()
+        }
+        else if viewPage == 1{
             OnboardingThree()
         } else if viewPage == 2{
             OnboardingFour()
