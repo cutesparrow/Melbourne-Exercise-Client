@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+//translate string into SCroll image object
 func getScrollImageList(images:[String]) -> [ScrollImage] {
     let length = images.count
     var result:[ScrollImage] = []

@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 import MapKit
-
+// used to get loaction address on latitude and longitude
 func getMK(lat:Double, long: Double)->MKCoordinateRegion{
     return MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: lat, longitude: long),
@@ -16,7 +16,7 @@ func getMK(lat:Double, long: Double)->MKCoordinateRegion{
     )
 }
 
-
+// struct that store a location and use location COordinate get current location
 struct Coordinate: Codable {
     let latitude: Double
     let longitude: Double

@@ -12,6 +12,7 @@ struct OnboardingThree: View {
         VStack{
             Text("1. Read safety policy easily!")
                 .font(.title)
+                .foregroundColor(.black)
                 .padding()
                 .padding(.bottom,50)
             Image("safety_policy")

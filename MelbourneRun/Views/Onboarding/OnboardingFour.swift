@@ -13,6 +13,7 @@ struct OnboardingFour: View {
             Text("2. Your gym membership!")
                 .lineLimit(1)
                 .font(.title)
+                .foregroundColor(.black)
                 .padding()
                 .padding(.bottom,20)
             Image("membership")

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D65200F325F757B800BA04E9"
-               BuildableName = "MelbourneRun.app"
-               BlueprintName = "MelbourneRun"
-               ReferencedContainer = "container:MelbourneRun.xcodeproj">
+               BuildableName = "MelbExercise.app"
+               BlueprintName = "MelbExercise"
+               ReferencedContainer = "container:MelbExercise.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D65200F325F757B800BA04E9"
-            BuildableName = "MelbourneRun.app"
-            BlueprintName = "MelbourneRun"
-            ReferencedContainer = "container:MelbourneRun.xcodeproj">
+            BuildableName = "MelbExercise.app"
+            BlueprintName = "MelbExercise"
+            ReferencedContainer = "container:MelbExercise.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <LocationScenarioReference
@@ -66,9 +66,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D65200F325F757B800BA04E9"
-            BuildableName = "MelbourneRun.app"
-            BlueprintName = "MelbourneRun"
-            ReferencedContainer = "container:MelbourneRun.xcodeproj">
+            BuildableName = "MelbExercise.app"
+            BlueprintName = "MelbExercise"
+            ReferencedContainer = "container:MelbExercise.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -150,7 +150,7 @@
 		D63D18CD25FE09460049C1AC /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 		D63D18D125FE09C50049C1AC /* ActivityListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListView.swift; sourceTree = "<group>"; };
 		D63D18D825FF787E0049C1AC /* CircleImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
-		D65200F425F757B800BA04E9 /* MelbourneRun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MelbourneRun.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D65200F425F757B800BA04E9 /* MelbExercise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MelbExercise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D65200F725F757B800BA04E9 /* MelbourneRunApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MelbourneRunApp.swift; sourceTree = "<group>"; };
 		D65200FB25F757B900BA04E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D65200FE25F757B900BA04E9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -322,7 +322,7 @@
 		D65200F525F757B800BA04E9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D65200F425F757B800BA04E9 /* MelbourneRun.app */,
+				D65200F425F757B800BA04E9 /* MelbExercise.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -502,9 +502,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D65200F325F757B800BA04E9 /* MelbourneRun */ = {
+		D65200F325F757B800BA04E9 /* MelbExercise */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D652010325F757B900BA04E9 /* Build configuration list for PBXNativeTarget "MelbourneRun" */;
+			buildConfigurationList = D652010325F757B900BA04E9 /* Build configuration list for PBXNativeTarget "MelbExercise" */;
 			buildPhases = (
 				D65200F025F757B800BA04E9 /* Sources */,
 				D65200F125F757B800BA04E9 /* Frameworks */,
@@ -514,7 +514,7 @@
 			);
 			dependencies = (
 			);
-			name = MelbourneRun;
+			name = MelbExercise;
 			packageProductDependencies = (
 				D652010F25F7604900BA04E9 /* LocationProvider */,
 				D60FC27726037CF00038E9E5 /* Alamofire */,
@@ -533,7 +533,7 @@
 				D6708FCE261408C1008FDD79 /* ActionOver */,
 			);
 			productName = MelbourneRun;
-			productReference = D65200F425F757B800BA04E9 /* MelbourneRun.app */;
+			productReference = D65200F425F757B800BA04E9 /* MelbExercise.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -550,7 +550,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D65200EF25F757B800BA04E9 /* Build configuration list for PBXProject "MelbourneRun" */;
+			buildConfigurationList = D65200EF25F757B800BA04E9 /* Build configuration list for PBXProject "MelbExercise" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -580,7 +580,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D65200F325F757B800BA04E9 /* MelbourneRun */,
+				D65200F325F757B800BA04E9 /* MelbExercise */,
 			);
 		};
 /* End PBXProject section */
@@ -855,7 +855,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D65200EF25F757B800BA04E9 /* Build configuration list for PBXProject "MelbourneRun" */ = {
+		D65200EF25F757B800BA04E9 /* Build configuration list for PBXProject "MelbExercise" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D652010125F757B900BA04E9 /* Debug */,
@@ -864,7 +864,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D652010325F757B900BA04E9 /* Build configuration list for PBXNativeTarget "MelbourneRun" */ = {
+		D652010325F757B900BA04E9 /* Build configuration list for PBXNativeTarget "MelbExercise" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D652010425F757B900BA04E9 /* Debug */,
