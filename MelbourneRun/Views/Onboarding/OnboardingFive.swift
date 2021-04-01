@@ -12,6 +12,7 @@ struct OnboardingFive: View {
         VStack{
             Text("3. Choose a gym!")
                 .font(.title)
+                .foregroundColor(.black)
                 .padding()
                 .padding(.bottom,30)
             Image("gymList")

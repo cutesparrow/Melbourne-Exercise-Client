@@ -8,13 +8,13 @@
 import Foundation
 import SwiftUI
 
-struct NoButtonStyle: ButtonStyle {
+struct NoButtonStyle: ButtonStyle { //no divider list
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
     }
 }
 
-struct ListWithoutSepatorsAndMargins<Content: View>: View {
+struct ListWithoutSepatorsAndMargins<Content: View>: View { //no divider list struct
         let content: () -> Content
     
         var body: some View {
