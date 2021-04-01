@@ -50,6 +50,7 @@
 		D630CA91260991DF008B9FA9 /* WalkDogHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D630CA90260991DF008B9FA9 /* WalkDogHomeView.swift */; };
 		D630CA94260991F2008B9FA9 /* GymHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D630CA93260991F2008B9FA9 /* GymHomeView.swift */; };
 		D630CA9726099591008B9FA9 /* LocationFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D630CA9626099591008B9FA9 /* LocationFetcher.swift */; };
+		D6313C6C2615A8900079D5F6 /* OnboardingZero.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6313C6B2615A8900079D5F6 /* OnboardingZero.swift */; };
 		D63D18CB25FDFF6C0049C1AC /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63D18CA25FDFF6C0049C1AC /* ActivityView.swift */; };
 		D63D18CE25FE09460049C1AC /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63D18CD25FE09460049C1AC /* ActivityModel.swift */; };
 		D63D18D225FE09C50049C1AC /* ActivityListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63D18D125FE09C50049C1AC /* ActivityListView.swift */; };
@@ -146,6 +147,7 @@
 		D630CA90260991DF008B9FA9 /* WalkDogHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkDogHomeView.swift; sourceTree = "<group>"; };
 		D630CA93260991F2008B9FA9 /* GymHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymHomeView.swift; sourceTree = "<group>"; };
 		D630CA9626099591008B9FA9 /* LocationFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFetcher.swift; sourceTree = "<group>"; };
+		D6313C6B2615A8900079D5F6 /* OnboardingZero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingZero.swift; sourceTree = "<group>"; };
 		D63D18CA25FDFF6C0049C1AC /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		D63D18CD25FE09460049C1AC /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 		D63D18D125FE09C50049C1AC /* ActivityListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListView.swift; sourceTree = "<group>"; };
@@ -418,6 +420,7 @@
 				D6708FFB2614A73F008FDD79 /* OnboardingFour.swift */,
 				D6708FFE2614A86B008FDD79 /* OnboardingFive.swift */,
 				D67090012614A929008FDD79 /* OnboardingSix.swift */,
+				D6313C6B2615A8900079D5F6 /* OnboardingZero.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -657,6 +660,7 @@
 				D6708FC7261403F2008FDD79 /* BottomBarItemView.swift in Sources */,
 				D630CA94260991F2008B9FA9 /* GymHomeView.swift in Sources */,
 				D630CA6326088662008B9FA9 /* RoadSituationContentView.swift in Sources */,
+				D6313C6C2615A8900079D5F6 /* OnboardingZero.swift in Sources */,
 				D60FC262260313540038E9E5 /* ScrollBoxView.swift in Sources */,
 				D69B1213261073CC00C086FA /* BuluttanBackgroundView.swift in Sources */,
 				D63D18D225FE09C50049C1AC /* ActivityListView.swift in Sources */,

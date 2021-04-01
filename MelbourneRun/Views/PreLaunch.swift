@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import BottomBar_SwiftUI
 import PermissionsSwiftUI
 
 
