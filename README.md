@@ -13,7 +13,11 @@ client-side ios appication
 8. UBottomSheet
 
 
-### used swift package is stored in views/resource folder
-AlertX and bottomView
+### used swift package list can be access in xcode and there are two modified package are stored in views/resources folder
+1. AlertX
+2. BottomBar-swiftUI
 
-by Gaoyu Shi
+
+
+
+coded by Gaoyu Shi
