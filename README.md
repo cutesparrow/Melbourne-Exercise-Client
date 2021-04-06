@@ -12,4 +12,8 @@ client-side ios appication
 7. SwiftUIRefresh
 8. UBottomSheet
 
+
+### used swift package is stored in views/resource folder
+AlertX and bottomView
+
 by Gaoyu Shi
