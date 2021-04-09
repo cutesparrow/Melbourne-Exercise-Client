@@ -47,6 +47,33 @@
         }
       },
       {
+        "package": "FloatingButton",
+        "repositoryURL": "https://github.com/exyte/FloatingButton.git",
+        "state": {
+          "branch": null,
+          "revision": "c7b4e753286f0462a0adcb23a6fac7d94917b605",
+          "version": "0.0.3"
+        }
+      },
+      {
+        "package": "LNPopupController",
+        "repositoryURL": "https://github.com/LeoNatan/LNPopupController.git",
+        "state": {
+          "branch": null,
+          "revision": "b39574a29d61e5f02cf9cc66edf2ce00fd531f34",
+          "version": "2.10.33"
+        }
+      },
+      {
+        "package": "LNPopupUI",
+        "repositoryURL": "https://github.com/LeoNatan/LNPopupUI",
+        "state": {
+          "branch": null,
+          "revision": "dc60544a7b27e627de548823a8e46d7ca014a4fb",
+          "version": "1.2.9"
+        }
+      },
+      {
         "package": "LocationProvider",
         "repositoryURL": "https://github.com/himbeles/LocationProvider.git",
         "state": {

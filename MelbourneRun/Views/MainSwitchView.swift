@@ -16,12 +16,12 @@ struct MainSwitchView: View {
             .environmentObject(userData)
             .navigationTitle("Home")
             .navigationBarTitleDisplayMode(.inline)
-            
         case 1:GymHomeView()
             .environmentObject(userData)
-        case 2:OutDoorHomeView()
+        case 2:JoggingHomeView()
             .environmentObject(userData)
-        case 3:JoggingHomeView()
+            .navigationBarHidden(true)
+        case 3:OutDoorHomeView()
             .environmentObject(userData)
         default: Text("error")
         }

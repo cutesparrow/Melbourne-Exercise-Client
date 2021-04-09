@@ -19,11 +19,11 @@ public struct BottomBarItemView: View {
                 item.icon
                 .imageScale(.large)
                 .foregroundColor(isSelected ? item.color : .primary)
-                if !isSelected{
-                    Text(item.title)
-                        .font(.caption2)
-                        .foregroundColor(.primary)
-                }
+//                if !isSelected{
+//                    Text(item.title)
+//                        .font(.caption2)
+//                        .foregroundColor(.primary)
+//                }
                 
             }
             if isSelected {

@@ -112,7 +112,17 @@ class NetworkAPI{
             }
         }
     }
-    
+    static public func loadSensorSituation(completion: @escaping (Result<[MarkerLocation],Error>) -> Void)->DataRequest{
+        NetworkManager.shared.requestGet(path: "jog/sensorLocation/",parameters: nil) { result in
+            switch result{
+            case let .success(data):
+                let parseResult: Result<[MarkerLocation],Error> = NetworkManager.parseData(data)
+                completion(parseResult)
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
     
     
     static public func getSafeTips(completion: @escaping (Result<String,Error>) -> Void) -> DataRequest{
@@ -128,6 +138,19 @@ class NetworkAPI{
     }
 }
 
+
+extension UserData{
+    func getSensorSituation(){
+        let completion: (Result<[MarkerLocation],Error>) -> Void = { result in
+            switch result {
+            case let .success(marks): self.marks = marks
+            case let .failure(error): print(error)
+            }
+        }
+        _ = NetworkAPI.loadSensorSituation(completion: completion)
+        
+    }
+}
 
 extension UserData{
     func getShowInformation(){
