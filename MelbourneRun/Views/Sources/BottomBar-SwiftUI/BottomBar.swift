@@ -47,17 +47,23 @@ public struct BottomBar : View {
     }
     
     public var body: some View {
-        HStack(alignment: .bottom) {
+        ZStack{
+            RoundedRectangle(cornerRadius: 25.0)
+                .fill(Color(.secondarySystemBackground).opacity(0.85))
+                .shadow(radius:10)
+                .frame(height:80)
+                .padding(.horizontal,10)
+            
+            HStack(alignment: .bottom) {
             ForEach(0..<items.count) { index in
                 self.itemView(at: index)
-                
                 if index != self.items.count-1 {
                     Spacer()
                 }
             }
         }
         .padding()
-        .animation(.default)
+        .animation(.default)}
     }
 }
 

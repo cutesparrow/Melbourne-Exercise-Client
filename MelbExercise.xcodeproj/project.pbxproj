@@ -36,6 +36,19 @@
 		D61A148226045A830049B377 /* PullUpController in Frameworks */ = {isa = PBXBuildFile; productRef = D61A148126045A830049B377 /* PullUpController */; };
 		D61A1485260464030049B377 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61A1484260464030049B377 /* BottomView.swift */; };
 		D61A1488260467130049B377 /* BottomContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61A1487260467130049B377 /* BottomContentView.swift */; };
+		D6226EBF261ED65E003F4D9F /* JoggingPathCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6226EBE261ED65E003F4D9F /* JoggingPathCardModel.swift */; };
+		D6226EC2261ED8A9003F4D9F /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6226EC1261ED8A9003F4D9F /* CardView.swift */; };
+		D6226EC9261EED2A003F4D9F /* FloatingButton in Frameworks */ = {isa = PBXBuildFile; productRef = D6226EC8261EED2A003F4D9F /* FloatingButton */; };
+		D6226ECC261EEDC3003F4D9F /* MainButtonJoggingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6226ECB261EEDC3003F4D9F /* MainButtonJoggingView.swift */; };
+		D6226ECF261EF070003F4D9F /* JoggingMainListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6226ECE261EF070003F4D9F /* JoggingMainListButton.swift */; };
+		D6226ED2261EF940003F4D9F /* ScreenIconsAndText.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6226ED1261EF940003F4D9F /* ScreenIconsAndText.swift */; };
+		D6226EDE261F0AF6003F4D9F /* LNPopupUI in Frameworks */ = {isa = PBXBuildFile; productRef = D6226EDD261F0AF6003F4D9F /* LNPopupUI */; };
+		D6226EDF261F0AF6003F4D9F /* LNPopupUI in Embed Frameworks */ = {isa = PBXBuildFile; productRef = D6226EDD261F0AF6003F4D9F /* LNPopupUI */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		D6226EE126200CE8003F4D9F /* CustomizePathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6226EE026200CE8003F4D9F /* CustomizePathView.swift */; };
+		D6226EE3262016AC003F4D9F /* PathInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6226EE2262016AC003F4D9F /* PathInformationView.swift */; };
+		D6226EE526201BBA003F4D9F /* PathShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6226EE426201BBA003F4D9F /* PathShowView.swift */; };
+		D6226EE726202397003F4D9F /* PopularPathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6226EE626202397003F4D9F /* PopularPathView.swift */; };
+		D6226EE9262034EA003F4D9F /* SensorMapAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6226EE8262034EA003F4D9F /* SensorMapAnnotationView.swift */; };
 		D630CA5B2607404E008B9FA9 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D630CA5A2607404E008B9FA9 /* SDWebImageSwiftUI */; };
 		D630CA6326088662008B9FA9 /* RoadSituationContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D630CA6226088662008B9FA9 /* RoadSituationContentView.swift */; };
 		D630CA68260888CA008B9FA9 /* RoadSituationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D630CA67260888CA008B9FA9 /* RoadSituationModel.swift */; };
@@ -111,6 +124,20 @@
 		D6CD21F725F8642500861495 /* ImageScrollModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD21F625F8642500861495 /* ImageScrollModel.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		D6226EDB261F0A08003F4D9F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D6226EDF261F0AF6003F4D9F /* LNPopupUI in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		D60FC23C2602EC0D0038E9E5 /* GymRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymRecordView.swift; sourceTree = "<group>"; };
 		D60FC2422602EC360038E9E5 /* GymListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymListView.swift; sourceTree = "<group>"; };
@@ -136,6 +163,16 @@
 		D610939826134BBB00C0C6BC /* ConcentricOnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcentricOnboardingView.swift; sourceTree = "<group>"; };
 		D61A1484260464030049B377 /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
 		D61A1487260467130049B377 /* BottomContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomContentView.swift; sourceTree = "<group>"; };
+		D6226EBE261ED65E003F4D9F /* JoggingPathCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoggingPathCardModel.swift; sourceTree = "<group>"; };
+		D6226EC1261ED8A9003F4D9F /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		D6226ECB261EEDC3003F4D9F /* MainButtonJoggingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButtonJoggingView.swift; sourceTree = "<group>"; };
+		D6226ECE261EF070003F4D9F /* JoggingMainListButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoggingMainListButton.swift; sourceTree = "<group>"; };
+		D6226ED1261EF940003F4D9F /* ScreenIconsAndText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenIconsAndText.swift; sourceTree = "<group>"; };
+		D6226EE026200CE8003F4D9F /* CustomizePathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizePathView.swift; sourceTree = "<group>"; };
+		D6226EE2262016AC003F4D9F /* PathInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathInformationView.swift; sourceTree = "<group>"; };
+		D6226EE426201BBA003F4D9F /* PathShowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathShowView.swift; sourceTree = "<group>"; };
+		D6226EE626202397003F4D9F /* PopularPathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPathView.swift; sourceTree = "<group>"; };
+		D6226EE8262034EA003F4D9F /* SensorMapAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorMapAnnotationView.swift; sourceTree = "<group>"; };
 		D630CA6226088662008B9FA9 /* RoadSituationContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadSituationContentView.swift; sourceTree = "<group>"; };
 		D630CA67260888CA008B9FA9 /* RoadSituationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadSituationModel.swift; sourceTree = "<group>"; };
 		D630CA6A26088FA2008B9FA9 /* GraphCapsule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphCapsule.swift; sourceTree = "<group>"; };
@@ -216,6 +253,7 @@
 				D6BC5628261042B70033341E /* AlertToast in Frameworks */,
 				D6977B49260AE845001F4B48 /* PermissionsSwiftUI in Frameworks */,
 				D630CA852608BF0F008B9FA9 /* BottomSheet in Frameworks */,
+				D6226EDE261F0AF6003F4D9F /* LNPopupUI in Frameworks */,
 				D61A148226045A830049B377 /* PullUpController in Frameworks */,
 				D630CA7526089F54008B9FA9 /* Sliders in Frameworks */,
 				D652011025F7604900BA04E9 /* LocationProvider in Frameworks */,
@@ -223,6 +261,7 @@
 				D60FC288260443570038E9E5 /* Polyline in Frameworks */,
 				D6BC562C261048E20033341E /* PositionScrollView in Frameworks */,
 				D61A147E260459660049B377 /* UBottomSheet in Frameworks */,
+				D6226EC9261EED2A003F4D9F /* FloatingButton in Frameworks */,
 				D6109393261347EE00C0C6BC /* ConcentricOnboarding in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,6 +295,11 @@
 				D6CD21DC25F7A3B700861495 /* MapView.swift */,
 				D60FC28E26044B7F0038E9E5 /* JoggingGoalInputView.swift */,
 				D6977BBA260C85BF001F4B48 /* JoggingHomeView.swift */,
+				D6226ED1261EF940003F4D9F /* ScreenIconsAndText.swift */,
+				D6226EE026200CE8003F4D9F /* CustomizePathView.swift */,
+				D6226EE2262016AC003F4D9F /* PathInformationView.swift */,
+				D6226EE426201BBA003F4D9F /* PathShowView.swift */,
+				D6226EE626202397003F4D9F /* PopularPathView.swift */,
 			);
 			path = Jogging;
 			sourceTree = "<group>";
@@ -308,6 +352,8 @@
 				D630CA8A2608C542008B9FA9 /* PlanView.swift */,
 				D69B12252611D9AF00C086FA /* PolicyView.swift */,
 				D69B12282611EE9700C086FA /* LegendView.swift */,
+				D6226EC1261ED8A9003F4D9F /* CardView.swift */,
+				D6226EE8262034EA003F4D9F /* SensorMapAnnotationView.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -478,6 +524,8 @@
 				D60FC270260342D90038E9E5 /* StarButtonView.swift */,
 				D630CA872608C20A008B9FA9 /* PlanButtonView.swift */,
 				D6977BB2260C6A97001F4B48 /* MainStyleButton.swift */,
+				D6226ECB261EEDC3003F4D9F /* MainButtonJoggingView.swift */,
+				D6226ECE261EF070003F4D9F /* JoggingMainListButton.swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -498,6 +546,7 @@
 				D69B121F261092B000C086FA /* WeatherModel.swift */,
 				D69B12222611CC9C00C086FA /* SafetyPolicyModel.swift */,
 				D6708FED26147598008FDD79 /* ShowInformationModel.swift */,
+				D6226EBE261ED65E003F4D9F /* JoggingPathCardModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -512,6 +561,7 @@
 				D65200F025F757B800BA04E9 /* Sources */,
 				D65200F125F757B800BA04E9 /* Frameworks */,
 				D65200F225F757B800BA04E9 /* Resources */,
+				D6226EDB261F0A08003F4D9F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -534,6 +584,8 @@
 				D69B121C26108CA900C086FA /* SwiftyJSON */,
 				D6109392261347EE00C0C6BC /* ConcentricOnboarding */,
 				D6708FCE261408C1008FDD79 /* ActionOver */,
+				D6226EC8261EED2A003F4D9F /* FloatingButton */,
+				D6226EDD261F0AF6003F4D9F /* LNPopupUI */,
 			);
 			productName = MelbourneRun;
 			productReference = D65200F425F757B800BA04E9 /* MelbExercise.app */;
@@ -578,6 +630,8 @@
 				D69B121B26108CA900C086FA /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				D6109391261347EE00C0C6BC /* XCRemoteSwiftPackageReference "ConcentricOnboarding" */,
 				D6708FCD261408C1008FDD79 /* XCRemoteSwiftPackageReference "ActionOver" */,
+				D6226EC7261EED2A003F4D9F /* XCRemoteSwiftPackageReference "FloatingButton" */,
+				D6226EDC261F0AF6003F4D9F /* XCRemoteSwiftPackageReference "LNPopupUI" */,
 			);
 			productRefGroup = D65200F525F757B800BA04E9 /* Products */;
 			projectDirPath = "";
@@ -608,6 +662,7 @@
 				D6708FE42614736A008FDD79 /* Animations.swift in Sources */,
 				D60FC27B26037D1F0038E9E5 /* NetworkManager.swift in Sources */,
 				D60FC26926032ECA0038E9E5 /* NavigationBarColorModifier.swift in Sources */,
+				D6226ECF261EF070003F4D9F /* JoggingMainListButton.swift in Sources */,
 				D6977BB3260C6A97001F4B48 /* MainStyleButton.swift in Sources */,
 				D60FC282260381610038E9E5 /* UserData.swift in Sources */,
 				D61A1488260467130049B377 /* BottomContentView.swift in Sources */,
@@ -617,6 +672,7 @@
 				D6708FEA2614736A008FDD79 /* AlertX_View.swift in Sources */,
 				D630CA7C2608B47B008B9FA9 /* DigitalClockView.swift in Sources */,
 				D6708FFF2614A86B008FDD79 /* OnboardingFive.swift in Sources */,
+				D6226EBF261ED65E003F4D9F /* JoggingPathCardModel.swift in Sources */,
 				D60FC27F26037E9A0038E9E5 /* NetworkAPI.swift in Sources */,
 				D60FC26D2603387E0038E9E5 /* DirectButtonView.swift in Sources */,
 				D60FC28F26044B7F0038E9E5 /* JoggingGoalInputView.swift in Sources */,
@@ -627,6 +683,8 @@
 				D61A1485260464030049B377 /* BottomView.swift in Sources */,
 				D60FC24A2602ECA90038E9E5 /* GymModel.swift in Sources */,
 				D6708FFC2614A73F008FDD79 /* OnboardingFour.swift in Sources */,
+				D6226EE126200CE8003F4D9F /* CustomizePathView.swift in Sources */,
+				D6226EE726202397003F4D9F /* PopularPathView.swift in Sources */,
 				D630CA91260991DF008B9FA9 /* WalkDogHomeView.swift in Sources */,
 				D69B12292611EE9700C086FA /* LegendView.swift in Sources */,
 				D69B1216261073CC00C086FA /* TopNavigationBarView.swift in Sources */,
@@ -653,6 +711,7 @@
 				D630CA8B2608C542008B9FA9 /* PlanView.swift in Sources */,
 				D6708FC8261403F2008FDD79 /* BottomBar.swift in Sources */,
 				D6708FC9261403F2008FDD79 /* BottomBarItem.swift in Sources */,
+				D6226ED2261EF940003F4D9F /* ScreenIconsAndText.swift in Sources */,
 				D6708FE72614736A008FDD79 /* Button.swift in Sources */,
 				D69B12262611D9AF00C086FA /* PolicyView.swift in Sources */,
 				D6708FEE26147598008FDD79 /* ShowInformationModel.swift in Sources */,
@@ -674,7 +733,9 @@
 				D630CA68260888CA008B9FA9 /* RoadSituationModel.swift in Sources */,
 				D63D18CE25FE09460049C1AC /* ActivityModel.swift in Sources */,
 				D69B1219261073EF00C086FA /* PreviewFactory.swift in Sources */,
+				D6226EE526201BBA003F4D9F /* PathShowView.swift in Sources */,
 				D6CD21F725F8642500861495 /* ImageScrollModel.swift in Sources */,
+				D6226ECC261EEDC3003F4D9F /* MainButtonJoggingView.swift in Sources */,
 				D630CA9726099591008B9FA9 /* LocationFetcher.swift in Sources */,
 				D630CA6E260891C1008B9FA9 /* TrendGraphView.swift in Sources */,
 				D6977BB7260C855C001F4B48 /* OutDoorHomeView.swift in Sources */,
@@ -682,13 +743,16 @@
 				D6977B9F260B4BAF001F4B48 /* PreLaunch.swift in Sources */,
 				D69B1214261073CC00C086FA /* CurrentObservationView.swift in Sources */,
 				D6708FE32614736A008FDD79 /* Themes.swift in Sources */,
+				D6226EE3262016AC003F4D9F /* PathInformationView.swift in Sources */,
 				D6708FE92614736A008FDD79 /* AlertXViewController.swift in Sources */,
 				D610939926134BBB00C0C6BC /* ConcentricOnboardingView.swift in Sources */,
 				D65200F825F757B800BA04E9 /* MelbourneRunApp.swift in Sources */,
 				D6708FE62614736A008FDD79 /* Window.swift in Sources */,
+				D6226EE9262034EA003F4D9F /* SensorMapAnnotationView.swift in Sources */,
 				D60FC25B260309050038E9E5 /* MapHelper.swift in Sources */,
 				D6977BB0260C5A56001F4B48 /* NoDivider.swift in Sources */,
 				D69B1215261073CC00C086FA /* MainWeatherView.swift in Sources */,
+				D6226EC2261ED8A9003F4D9F /* CardView.swift in Sources */,
 				D6977B50260AFB82001F4B48 /* LocationStatusModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -920,6 +984,22 @@
 				minimumVersion = 0.8.0;
 			};
 		};
+		D6226EC7261EED2A003F4D9F /* XCRemoteSwiftPackageReference "FloatingButton" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/FloatingButton.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.3;
+			};
+		};
+		D6226EDC261F0AF6003F4D9F /* XCRemoteSwiftPackageReference "LNPopupUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LeoNatan/LNPopupUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.9;
+			};
+		};
 		D630CA592607404E008B9FA9 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
@@ -1027,6 +1107,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D61A148026045A830049B377 /* XCRemoteSwiftPackageReference "PullUpController" */;
 			productName = PullUpController;
+		};
+		D6226EC8261EED2A003F4D9F /* FloatingButton */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D6226EC7261EED2A003F4D9F /* XCRemoteSwiftPackageReference "FloatingButton" */;
+			productName = FloatingButton;
+		};
+		D6226EDD261F0AF6003F4D9F /* LNPopupUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D6226EDC261F0AF6003F4D9F /* XCRemoteSwiftPackageReference "LNPopupUI" */;
+			productName = LNPopupUI;
 		};
 		D630CA5A2607404E008B9FA9 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;

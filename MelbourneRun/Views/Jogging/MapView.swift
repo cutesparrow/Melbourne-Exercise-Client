@@ -12,7 +12,6 @@ struct MapView: UIViewRepresentable {
     var coordinates:[Coordinate]
     private let locationViewModel = LocationViewModel()
     private let mapZoomEdgeInsets = UIEdgeInsets(top: 30.0, left: 30.0, bottom: 30.0, right: 30.0)
-    
     init(coordinates:[Coordinate]) {
         self.coordinates = coordinates
         locationViewModel.load(coordinates: coordinates)
@@ -24,7 +23,10 @@ struct MapView: UIViewRepresentable {
     
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
-        mapView.showsUserLocation = true
+        mapView.isZoomEnabled = false
+        mapView.isScrollEnabled = false
+        mapView.isUserInteractionEnabled = false
+        mapView.showsUserLocation = false
         mapView.delegate = context.coordinator
         return mapView
     }
