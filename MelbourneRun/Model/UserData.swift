@@ -54,8 +54,8 @@ class UserData: ObservableObject {
     @Published var hasMemberShip:String
     @Published var showMemberShipSelection:Bool
     @Published var marks:[MarkerLocation] = [
-        MarkerLocation( id: 1,lat: -37.81009922787134, long: 144.95898699639088, risk: "high"),
-        MarkerLocation( id: 2,lat: -37.812811589000205, long: 144.97426485764535, risk: "low")
+//        MarkerLocation( id: 1,lat: -37.81009922787134, long: 144.95898699639088, risk: "high"),
+//        MarkerLocation( id: 2,lat: -37.812811589000205, long: 144.97426485764535, risk: "low")
     ]
     @Published var showInformation:ShowInformation = ShowInformation(imageName: "", safetyTips: "", exerciseTips: "", exerciseBenefits: "")
     @Published var cards:Cards = Cards(customizedCards: [CustomizedCard(id: 0, path: [Coordinate(latitude: -37.81228028830977, longitude: 144.96229225616813),
