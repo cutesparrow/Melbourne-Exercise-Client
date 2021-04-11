@@ -53,6 +53,30 @@ class NetworkAPI{
     }
     
     
+    static public func loadPopularCards(location:CLLocationCoordinate2D,completion: @escaping (Result<[PopularCard], Error>) -> Void)->DataRequest{
+        NetworkManager.shared.requestGet(path: "jog/path/popular", parameters: ["lat":location.latitude,"long":location.longitude]) { result in
+            switch result {
+                        case let .success(data):
+                            let popularList: Result<[PopularCard], Error> = NetworkManager.parseData(data)
+                            completion(popularList)
+                        case let .failure(error):
+                            completion(.failure(error))
+                        }
+        }
+    }
+    
+    static public func loadCustomizedCards(location:CLLocationCoordinate2D,completion: @escaping (Result<[CustomizedCard], Error>) -> Void)->DataRequest{
+        NetworkManager.shared.requestGet(path: "jog/path/customize", parameters: ["lat":location.latitude,"long":location.longitude]) { result in
+            switch result {
+                        case let .success(data):
+                            let customizeList: Result<[CustomizedCard], Error> = NetworkManager.parseData(data)
+                            completion(customizeList)
+                        case let .failure(error):
+                            completion(.failure(error))
+                        }
+        }
+    }
+    
     static public func loadJoggingPath(location:CLLocationCoordinate2D,ifreturn:String,completion: @escaping (Result<[Coordinate],Error>) -> Void)->DataRequest{
         NetworkManager.shared.requestGet(path: "jog/path", parameters: ["lat":location.latitude,"long":location.longitude,"ifreturn":ifreturn]) { result in
             switch result{
@@ -282,24 +306,73 @@ extension UserData{
 }
 
 extension UserData{
-    func getJoggingPath(location:CLLocationCoordinate2D,ifreturn:String){
-        if self.joggingPath.count != 1{
-            return
-        } else{
-            loadJoggingPath(location: location, ifreturn: ifreturn)
-        }
-    }
-    func loadJoggingPath(location:CLLocationCoordinate2D,ifreturn:String){
-        let completion: (Result<[Coordinate],Error>) -> Void = { result in
+//    func getGymList(location:CLLocationCoordinate2D){
+//        if !self.gymList.list.isEmpty{
+//            return
+//        } else{
+//            loadGymListData(location:location)
+//        }
+//
+//    }
+//    func reloadGymList(location:CLLocationCoordinate2D){
+//            loadGymListData(location:location)
+//
+//    }
+    func loadPopularCardsData(location:CLLocationCoordinate2D){
+        let completion: (Result<[PopularCard], Error>) -> Void = { result in
             switch result {
-            case let .success(list): self.joggingPath = list
+            case let .success(list): self.popularCards = list
             case let .failure(error): print(error)
             }
+            
         }
-        _ = NetworkAPI.loadJoggingPath(location: location, ifreturn: ifreturn, completion: completion)
-        
+        _ = NetworkAPI.loadPopularCards(location: location, completion: completion)
     }
 }
+
+extension UserData{
+//    func getGymList(location:CLLocationCoordinate2D){
+//        if !self.gymList.list.isEmpty{
+//            return
+//        } else{
+//            loadGymListData(location:location)
+//        }
+//
+//    }
+//    func reloadGymList(location:CLLocationCoordinate2D){
+//            loadGymListData(location:location)
+//
+//    }
+    func loadCustomizedCardsData(location:CLLocationCoordinate2D){
+        let completion: (Result<[CustomizedCard], Error>) -> Void = { result in
+            switch result {
+            case let .success(list): self.customizedCards = list
+            case let .failure(error): print(error)
+            }
+            
+        }
+        _ = NetworkAPI.loadCustomizedCards(location: location, completion: completion)
+    }
+}
+
+//extension UserData{
+//    func getJoggingPath(location:CLLocationCoordinate2D,ifreturn:String){
+//        if self.joggingPath.count != 1{
+//            return
+//        } else{
+//            loadJoggingPath(location: location, ifreturn: ifreturn)
+//        }
+//    }
+//    func loadJoggingPath(location:CLLocationCoordinate2D,ifreturn:String){
+//        let completion: (Result<[Coordinate],Error>) -> Void = { result in
+//            switch result {
+//            case let .success(list): self.joggingPath = list
+//            case let .failure(error): print(error)
+//            }
+//        }
+//        _ = NetworkAPI.loadJoggingPath(location: location, ifreturn: ifreturn, completion: completion)
+//    }
+//}
 
 extension UserData{
     func getSafePolicy(){

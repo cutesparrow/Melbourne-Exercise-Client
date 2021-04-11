@@ -23,7 +23,7 @@ struct GymListView: View {
                     GymCellView(gym: gym)
                         .padding(.top,10)
                         .padding(.bottom,10)
-                        .shadow(radius: 10 )
+                        .shadow(radius: 0 )
                 }}
             }}
             

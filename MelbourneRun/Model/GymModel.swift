@@ -11,9 +11,7 @@ import MapKit
 
 
 struct GymList:Codable{
-    var list:[Gym]
-
-        
+    var list:[Gym]        
 }
 
 struct Gym:Hashable, Codable,Identifiable {
