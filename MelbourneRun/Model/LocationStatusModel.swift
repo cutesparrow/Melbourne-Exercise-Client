@@ -73,16 +73,16 @@ extension LocationManager: CLLocationManagerDelegate {
             self.permissionIsNotOk = false
         default:
             if !hasChecked {
-                print(1)
+                
                 hasChecked = true
                 self.permissionIsNotOk = true
             } else {
-                print(2)
+                
                 hasChecked = true
                 
             }
         }
-        print(#function, statusString,self.permissionIsNotOk,hasChecked)
+        print(#function, statusString)
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

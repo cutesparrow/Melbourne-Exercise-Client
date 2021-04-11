@@ -64,9 +64,7 @@
 		D630CA94260991F2008B9FA9 /* GymHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D630CA93260991F2008B9FA9 /* GymHomeView.swift */; };
 		D630CA9726099591008B9FA9 /* LocationFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D630CA9626099591008B9FA9 /* LocationFetcher.swift */; };
 		D6313C6C2615A8900079D5F6 /* OnboardingZero.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6313C6B2615A8900079D5F6 /* OnboardingZero.swift */; };
-		D63D18CB25FDFF6C0049C1AC /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63D18CA25FDFF6C0049C1AC /* ActivityView.swift */; };
 		D63D18CE25FE09460049C1AC /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63D18CD25FE09460049C1AC /* ActivityModel.swift */; };
-		D63D18D225FE09C50049C1AC /* ActivityListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63D18D125FE09C50049C1AC /* ActivityListView.swift */; };
 		D63D18D925FF787F0049C1AC /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63D18D825FF787E0049C1AC /* CircleImageView.swift */; };
 		D65200F825F757B800BA04E9 /* MelbourneRunApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65200F725F757B800BA04E9 /* MelbourneRunApp.swift */; };
 		D65200FC25F757B900BA04E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D65200FB25F757B900BA04E9 /* Assets.xcassets */; };
@@ -94,6 +92,8 @@
 		D6708FFC2614A73F008FDD79 /* OnboardingFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6708FFB2614A73F008FDD79 /* OnboardingFour.swift */; };
 		D6708FFF2614A86B008FDD79 /* OnboardingFive.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6708FFE2614A86B008FDD79 /* OnboardingFive.swift */; };
 		D67090022614A929008FDD79 /* OnboardingSix.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67090012614A929008FDD79 /* OnboardingSix.swift */; };
+		D67A3C1F2622B49700C47CA1 /* RiskLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67A3C1E2622B49700C47CA1 /* RiskLabelView.swift */; };
+		D67A3C222622C08C00C47CA1 /* SSToastMessage in Frameworks */ = {isa = PBXBuildFile; productRef = D67A3C212622C08C00C47CA1 /* SSToastMessage */; };
 		D6977B49260AE845001F4B48 /* PermissionsSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D6977B48260AE845001F4B48 /* PermissionsSwiftUI */; };
 		D6977B50260AFB82001F4B48 /* LocationStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6977B4F260AFB82001F4B48 /* LocationStatusModel.swift */; };
 		D6977B8E260B3A73001F4B48 /* SwiftUIRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = D6977B8D260B3A73001F4B48 /* SwiftUIRefresh */; };
@@ -118,7 +118,6 @@
 		D69B12292611EE9700C086FA /* LegendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B12282611EE9700C086FA /* LegendView.swift */; };
 		D6BC5628261042B70033341E /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = D6BC5627261042B70033341E /* AlertToast */; };
 		D6BC562C261048E20033341E /* PositionScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = D6BC562B261048E20033341E /* PositionScrollView */; };
-		D6CD21D825F79E4A00861495 /* MapMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD21D725F79E4A00861495 /* MapMainView.swift */; };
 		D6CD21DD25F7A3B700861495 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD21DC25F7A3B700861495 /* MapView.swift */; };
 		D6CD21EA25F8587900861495 /* CommonVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD21E925F8587900861495 /* CommonVariable.swift */; };
 		D6CD21F725F8642500861495 /* ImageScrollModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD21F625F8642500861495 /* ImageScrollModel.swift */; };
@@ -185,9 +184,7 @@
 		D630CA93260991F2008B9FA9 /* GymHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymHomeView.swift; sourceTree = "<group>"; };
 		D630CA9626099591008B9FA9 /* LocationFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFetcher.swift; sourceTree = "<group>"; };
 		D6313C6B2615A8900079D5F6 /* OnboardingZero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingZero.swift; sourceTree = "<group>"; };
-		D63D18CA25FDFF6C0049C1AC /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		D63D18CD25FE09460049C1AC /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
-		D63D18D125FE09C50049C1AC /* ActivityListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListView.swift; sourceTree = "<group>"; };
 		D63D18D825FF787E0049C1AC /* CircleImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
 		D65200F425F757B800BA04E9 /* MelbExercise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MelbExercise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D65200F725F757B800BA04E9 /* MelbourneRunApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MelbourneRunApp.swift; sourceTree = "<group>"; };
@@ -215,6 +212,7 @@
 		D6708FFB2614A73F008FDD79 /* OnboardingFour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFour.swift; sourceTree = "<group>"; };
 		D6708FFE2614A86B008FDD79 /* OnboardingFive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFive.swift; sourceTree = "<group>"; };
 		D67090012614A929008FDD79 /* OnboardingSix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSix.swift; sourceTree = "<group>"; };
+		D67A3C1E2622B49700C47CA1 /* RiskLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskLabelView.swift; sourceTree = "<group>"; };
 		D6977B4F260AFB82001F4B48 /* LocationStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationStatusModel.swift; sourceTree = "<group>"; };
 		D6977B9E260B4BAF001F4B48 /* PreLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreLaunch.swift; sourceTree = "<group>"; };
 		D6977BA5260C35A9001F4B48 /* BottomBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarView.swift; sourceTree = "<group>"; };
@@ -234,7 +232,6 @@
 		D69B12222611CC9C00C086FA /* SafetyPolicyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafetyPolicyModel.swift; sourceTree = "<group>"; };
 		D69B12252611D9AF00C086FA /* PolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyView.swift; sourceTree = "<group>"; };
 		D69B12282611EE9700C086FA /* LegendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegendView.swift; sourceTree = "<group>"; };
-		D6CD21D725F79E4A00861495 /* MapMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMainView.swift; sourceTree = "<group>"; };
 		D6CD21DC25F7A3B700861495 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		D6CD21E125F7B14100861495 /* home.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = home.gpx; path = ../../../Downloads/home.gpx; sourceTree = "<group>"; };
 		D6CD21E925F8587900861495 /* CommonVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonVariable.swift; sourceTree = "<group>"; };
@@ -254,6 +251,7 @@
 				D6977B49260AE845001F4B48 /* PermissionsSwiftUI in Frameworks */,
 				D630CA852608BF0F008B9FA9 /* BottomSheet in Frameworks */,
 				D6226EDE261F0AF6003F4D9F /* LNPopupUI in Frameworks */,
+				D67A3C222622C08C00C47CA1 /* SSToastMessage in Frameworks */,
 				D61A148226045A830049B377 /* PullUpController in Frameworks */,
 				D630CA7526089F54008B9FA9 /* Sliders in Frameworks */,
 				D652011025F7604900BA04E9 /* LocationProvider in Frameworks */,
@@ -291,7 +289,6 @@
 		D60FC23A2602EB9F0038E9E5 /* Jogging */ = {
 			isa = PBXGroup;
 			children = (
-				D6CD21D725F79E4A00861495 /* MapMainView.swift */,
 				D6CD21DC25F7A3B700861495 /* MapView.swift */,
 				D60FC28E26044B7F0038E9E5 /* JoggingGoalInputView.swift */,
 				D6977BBA260C85BF001F4B48 /* JoggingHomeView.swift */,
@@ -300,6 +297,7 @@
 				D6226EE2262016AC003F4D9F /* PathInformationView.swift */,
 				D6226EE426201BBA003F4D9F /* PathShowView.swift */,
 				D6226EE626202397003F4D9F /* PopularPathView.swift */,
+				D67A3C1E2622B49700C47CA1 /* RiskLabelView.swift */,
 			);
 			path = Jogging;
 			sourceTree = "<group>";
@@ -505,8 +503,6 @@
 				D60FC2392602EB910038E9E5 /* WalkDog */,
 				D60FC2382602EB870038E9E5 /* Gym */,
 				D6CD21EF25F85FDA00861495 /* Button */,
-				D63D18CA25FDFF6C0049C1AC /* ActivityView.swift */,
-				D63D18D125FE09C50049C1AC /* ActivityListView.swift */,
 				D6977B9E260B4BAF001F4B48 /* PreLaunch.swift */,
 				D6977BA5260C35A9001F4B48 /* BottomBarView.swift */,
 				D6977BA8260C3A74001F4B48 /* MainSwitchView.swift */,
@@ -586,6 +582,7 @@
 				D6708FCE261408C1008FDD79 /* ActionOver */,
 				D6226EC8261EED2A003F4D9F /* FloatingButton */,
 				D6226EDD261F0AF6003F4D9F /* LNPopupUI */,
+				D67A3C212622C08C00C47CA1 /* SSToastMessage */,
 			);
 			productName = MelbourneRun;
 			productReference = D65200F425F757B800BA04E9 /* MelbExercise.app */;
@@ -632,6 +629,7 @@
 				D6708FCD261408C1008FDD79 /* XCRemoteSwiftPackageReference "ActionOver" */,
 				D6226EC7261EED2A003F4D9F /* XCRemoteSwiftPackageReference "FloatingButton" */,
 				D6226EDC261F0AF6003F4D9F /* XCRemoteSwiftPackageReference "LNPopupUI" */,
+				D67A3C202622C08C00C47CA1 /* XCRemoteSwiftPackageReference "SSToastMessage" */,
 			);
 			productRefGroup = D65200F525F757B800BA04E9 /* Products */;
 			projectDirPath = "";
@@ -692,9 +690,8 @@
 				D60FC265260316CC0038E9E5 /* ScrollImageHelper.swift in Sources */,
 				D6977BA9260C3A74001F4B48 /* MainSwitchView.swift in Sources */,
 				D6708FD526141472008FDD79 /* NavigationbarItemExtension.swift in Sources */,
-				D63D18CB25FDFF6C0049C1AC /* ActivityView.swift in Sources */,
+				D67A3C1F2622B49700C47CA1 /* RiskLabelView.swift in Sources */,
 				D60FC25F2603128F0038E9E5 /* ImageScrollView.swift in Sources */,
-				D6CD21D825F79E4A00861495 /* MapMainView.swift in Sources */,
 				D6977BA6260C35A9001F4B48 /* BottomBarView.swift in Sources */,
 				D60FC24D2602EF630038E9E5 /* HikingParkModel.swift in Sources */,
 				D6708FCA261403F2008FDD79 /* BarBuilder.swift in Sources */,
@@ -722,7 +719,6 @@
 				D6313C6C2615A8900079D5F6 /* OnboardingZero.swift in Sources */,
 				D60FC262260313540038E9E5 /* ScrollBoxView.swift in Sources */,
 				D69B1213261073CC00C086FA /* BuluttanBackgroundView.swift in Sources */,
-				D63D18D225FE09C50049C1AC /* ActivityListView.swift in Sources */,
 				D6708FF92614A57C008FDD79 /* OnboardingThree.swift in Sources */,
 				D63D18D925FF787F0049C1AC /* CircleImageView.swift in Sources */,
 				D6CD21EA25F8587900861495 /* CommonVariable.swift in Sources */,
@@ -1040,6 +1036,14 @@
 				minimumVersion = 1.0.3;
 			};
 		};
+		D67A3C202622C08C00C47CA1 /* XCRemoteSwiftPackageReference "SSToastMessage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimformSolutionsPvtLtd/SSToastMessage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		D6977B47260AE845001F4B48 /* XCRemoteSwiftPackageReference "PermissionsSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/jevonmao/PermissionsSwiftUI.git";
@@ -1142,6 +1146,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D6708FCD261408C1008FDD79 /* XCRemoteSwiftPackageReference "ActionOver" */;
 			productName = ActionOver;
+		};
+		D67A3C212622C08C00C47CA1 /* SSToastMessage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D67A3C202622C08C00C47CA1 /* XCRemoteSwiftPackageReference "SSToastMessage" */;
+			productName = SSToastMessage;
 		};
 		D6977B48260AE845001F4B48 /* PermissionsSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;

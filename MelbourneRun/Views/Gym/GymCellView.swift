@@ -6,18 +6,29 @@
 //
 import Foundation
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct GymCellView: View {
     var gym:Gym
     var body: some View {
         HStack(alignment:.center){
             ZStack{
+                WebImage(url: URL(string: NetworkManager.shared.urlBasePath + gym.Images[0] + ".jpg"))
+                    .resizable()
+                    .clipShape(RoundedRectangle(cornerRadius: 25.0))
+                    .frame(width: UIScreen.main.bounds.width/1.3+19,height: 99, alignment: .center)
+                    
+                VisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
+                    .clipShape(RoundedRectangle(cornerRadius: 25))
+                    .frame(width: UIScreen.main.bounds.width/1.3+20,height: 100, alignment: .center)
+                    .padding(0)
+                    
                 HStack{
                     VStack(alignment:.leading){
                         Text(gym.name)
                             .foregroundColor(Color(.label))
                             .font(.body)
-                            .italic()
+                            
                             .bold()
                             .lineLimit(1)
                         Text("\(gym.distance.description)KM")
@@ -35,16 +46,13 @@ struct GymCellView: View {
                         .font(.system(size: UIScreen.main.bounds.width/9, weight: .regular))
                 }
                 .frame(width: UIScreen.main.bounds.width/1.3,height: 80, alignment: .center)
-                .padding(10)
-                .background(Color(.label).opacity(0.13))
-                .cornerRadius(25)
-                .foregroundColor(.white)
-                .padding(3)
-               
-                
                 
             }
             
+//            .padding(10)
+//            .cornerRadius(25)
+//            .foregroundColor(.white)
+//            .padding(3)
         }
     }
 }

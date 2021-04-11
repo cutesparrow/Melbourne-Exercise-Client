@@ -33,6 +33,14 @@ class UserData: ObservableObject {
         } else {
             new = false
         }
+        
+//        if !UserDefaults.standard.bool(forKey: "joggingGuide") {
+//            UserDefaults.standard.set(true, forKey: "didLaunchBefore")
+//            showJoggingGuide = true
+//        } else {
+//            showJoggingGuide = true // set to false after debugging
+//        }
+        
         if !UserDefaults.standard.bool(forKey: "showMemberShipSelection"){
             UserDefaults.standard.set(true,forKey: "showMemberShipSelection")
             showMemberShipSelection = true
@@ -48,6 +56,7 @@ class UserData: ObservableObject {
             showeLocationWarning = true
         }
     }
+    @Published var showJoggingGuide:Bool = true
     @Published var showBottomBar:Bool = true
     @Published var showeLocationWarning:Bool
     @Published var new:Bool
@@ -58,8 +67,11 @@ class UserData: ObservableObject {
 //        MarkerLocation( id: 2,lat: -37.812811589000205, long: 144.97426485764535, risk: "low")
     ]
     @Published var showInformation:ShowInformation = ShowInformation(imageName: "", safetyTips: "", exerciseTips: "", exerciseBenefits: "")
-    @Published var cards:Cards = Cards(customizedCards: [CustomizedCard(id: 0, path: [Coordinate(latitude: -37.81228028830977, longitude: 144.96229225616813),
-                                                                                      Coordinate(latitude: -37.816196112093316, longitude: 144.96404105636753),Coordinate(latitude: -37.81470439418989, longitude: 144.96899777840505)], distance: 10.2, risk: "Low", time: "35 Mins"),CustomizedCard(id: 1, path: [Coordinate(latitude: -37.81228028830977, longitude: 144.96229225616813),Coordinate(latitude: -37.816196112093316, longitude: 144.96404105636753),Coordinate(latitude: -37.81470439418989, longitude: 144.96899777840505)], distance: 8.2, risk: "High", time: "25 Mins")], popularCards: [PopularCard(id: 0, path: [Coordinate(latitude: -37.81228028830977, longitude: 144.96229225616813),Coordinate(latitude: -37.816196112093316, longitude: 144.96404105636753),Coordinate(latitude: -37.81470439418989, longitude: 144.96899777840505)], distance: 10.2, risk: "Medium", time: "20 Mins", popularStar: 4, distanceToUser: 3.1),PopularCard(id: 1, path: [Coordinate(latitude: -37.81228028830977, longitude: 144.96229225616813),Coordinate(latitude: -37.816196112093316, longitude: 144.96404105636753),Coordinate(latitude: -37.81470439418989, longitude: 144.96899777840505)], distance: 10.2, risk: "High", time: "30 Mins", popularStar: 5, distanceToUser: 1.1)])}
+    //@Published var cards:Cards = Cards(customizedCards: [CustomizedCard(id: 0, path: [Coordinate(latitude: -37.81228028830977, longitude: 144.96229225616813),Coordinate(latitude: -37.816196112093316, longitude: 144.96404105636753),Coordinate(latitude: -37.81470439418989, longitude: 144.96899777840505)], distance: 10.2, risk: "Low", time: "35 Mins"),CustomizedCard(id: 1, path: [Coordinate(latitude: -37.81228028830977, longitude: 144.96229225616813),Coordinate(latitude: -37.816196112093316, longitude: 144.96404105636753),Coordinate(latitude: -37.81470439418989, longitude: 144.96899777840505)], distance: 8.2, risk: "High", time: "25 Mins")], popularCards: [PopularCard(id: 0, path: [Coordinate(latitude: -37.81228028830977, longitude: 144.96229225616813),Coordinate(latitude: -37.816196112093316, longitude: 144.96404105636753),Coordinate(latitude: -37.81470439418989, longitude: 144.96899777840505)], distance: 10.2, risk: "Medium", time: "20 Mins", popularStar: 4, distanceToUser: 3.1),PopularCard(id: 1, path: [Coordinate(latitude: -37.81228028830977, longitude: 144.96229225616813),Coordinate(latitude: -37.816196112093316, longitude: 144.96404105636753),Coordinate(latitude: -37.81470439418989, longitude: 144.96899777840505)], distance: 10.2, risk: "High", time: "30 Mins", popularStar: 5, distanceToUser: 1.1)])
+    @Published var popularCards:[PopularCard] = [PopularCard(id: 0, path: [Coordinate(latitude: -37.81228028830977, longitude: 144.96229225616813),Coordinate(latitude: -37.816196112093316, longitude: 144.96404105636753),Coordinate(latitude: -37.81470439418989, longitude: 144.96899777840505)], distance: 10.2, risk: "Medium", time: "20 Mins", popularStar: 4, distanceToUser: 3.1),PopularCard(id: 1, path: [Coordinate(latitude: -37.81228028830977, longitude: 144.96229225616813),Coordinate(latitude: -37.816196112093316, longitude: 144.96404105636753),Coordinate(latitude: -37.81470439418989, longitude: 144.96899777840505)], distance: 10.2, risk: "High", time: "30 Mins", popularStar: 5, distanceToUser: 1.1)]
+    @Published var customizedCards:[CustomizedCard] = [CustomizedCard(id: 0, path: [Coordinate(latitude: -37.81228028830977, longitude: 144.96229225616813),Coordinate(latitude: -37.816196112093316, longitude: 144.96404105636753),Coordinate(latitude: -37.81470439418989, longitude: 144.96899777840505)], distance: 10.2, risk: "Low", time: "35 Mins"),CustomizedCard(id: 1, path: [Coordinate(latitude: -37.81228028830977, longitude: 144.96229225616813),Coordinate(latitude: -37.816196112093316, longitude: 144.96404105636753),Coordinate(latitude: -37.81470439418989, longitude: 144.96899777840505)], distance: 8.2, risk: "High", time: "25 Mins")]
+}
+
 struct weather:Codable {
     var currentTemperature: Float
     var dailyMaxTemperature: Float

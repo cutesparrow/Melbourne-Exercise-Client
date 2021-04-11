@@ -9,15 +9,41 @@ import SwiftUI
 import MapKit
 import FloatingButton
 import BottomSheet
+import SSToastMessage
 
 
 struct JoggingHomeView: View {
     @EnvironmentObject var userData:UserData
+    
     @State var showSheet:Bool = false
     @State var isopenManue:Bool = false
     @State var sheetKind:Int = 0
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: -37.81145542089078, longitude: 144.96473765203163), span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03))
     @State private var trackingMode = MapUserTrackingMode.follow
+    func createBottomFloaterView() -> some View {
+          ZStack{
+            VisualEffectView(effect: UIBlurEffect(style: .light))
+                .frame(width: 350, height: 160)
+                .cornerRadius(20.0)
+            HStack(spacing: 15) {
+            Image("logo")
+                  .resizable()
+                  .aspectRatio(contentMode: ContentMode.fill)
+                  .frame(width: 60, height: 60)
+            VStack(alignment: .leading, spacing: 2) {
+                  Text("User Guide")
+                    .foregroundColor(Color(.label))
+                      .fontWeight(.bold)
+                      .lineLimit(3)
+
+                  Text("All pedestrian sensors' data are shown on the map. You can  plan your own jogging path or choose a popular path by clicking the plus symbol. We will recommend the lowest risk jogging path for you!")
+                      .font(.system(size: 14))
+                      .foregroundColor(Color(.label))
+              }
+          }
+          .padding(15)
+          }
+      }
     var body: some View {
         
         
@@ -43,14 +69,21 @@ struct JoggingHomeView: View {
                 }})
                            
                 .ignoresSafeArea()
-            HStack() {
+            HStack {
+                RiskLabelView()
+                    .padding()
                 Spacer().layoutPriority(10)
                         menu1.padding(20)
+                            .offset(y:UIScreen.main.bounds.height/3.2)
                     }
-                .offset(y:UIScreen.main.bounds.height/3.2)
+                
 //            FloatingButton(mainButtonView: AnyView(MainButtonJoggingView(imageName: "plus", colorHex: 0xeb3b5a)), buttons: buttons)
 //                .offset(x: UIScreen.main.bounds.width/2.5, y: UIScreen.main.bounds.width/1.5)
         }
+        .present(isPresented: $userData.showJoggingGuide, type: .floater(), position: .top, animation:  Animation.spring(), autohideDuration: nil, closeOnTap: true, onTap: {
+        }, closeOnTapOutside: true, view: {
+            createBottomFloaterView()
+        })
         .sheet(isPresented: $showSheet, content: {
             if sheetKind == 1{
                 PopularPathView().environmentObject(userData)

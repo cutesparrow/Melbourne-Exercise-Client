@@ -137,6 +137,15 @@
         }
       },
       {
+        "package": "SSToastMessage",
+        "repositoryURL": "https://github.com/SimformSolutionsPvtLtd/SSToastMessage.git",
+        "state": {
+          "branch": null,
+          "revision": "6f8c15ae5347655a22651c94ed29a651c172e6ce",
+          "version": "1.0.0"
+        }
+      },
+      {
         "package": "Introspect",
         "repositoryURL": "https://github.com/siteline/SwiftUI-Introspect.git",
         "state": {
