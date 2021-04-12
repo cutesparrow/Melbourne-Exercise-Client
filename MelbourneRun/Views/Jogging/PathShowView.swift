@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PathShowView: View {
     var path:[Coordinate]
-    var height:Int
+    var height:Double
     var body: some View {
         MapView(coordinates: path)
             .frame(width: UIScreen.main.bounds.width/1.3, height: UIScreen.main.bounds.height/CGFloat(height), alignment: .center)
