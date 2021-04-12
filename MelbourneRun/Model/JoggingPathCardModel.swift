@@ -13,6 +13,7 @@ struct CustomizedCard:Codable,Identifiable{
     var distance:Double
     var risk:String
     var time:String
+    var directions:[String]
 }
 
 struct PopularCard:Codable,Identifiable{

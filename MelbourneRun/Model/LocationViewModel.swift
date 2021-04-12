@@ -54,7 +54,7 @@ final class MapViewCoordinator: NSObject, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay)
         renderer.strokeColor = UIColor(Color.blue.opacity(0.7))
-        renderer.lineWidth = 10.0
+        renderer.lineWidth = 6.0
         renderer.fillColor = UIColor.black
         return renderer
     }

@@ -11,6 +11,8 @@ import MapKit
 struct CustomizePathView: View {
     @EnvironmentObject var userData:UserData
     @State var selectedTab:Int = 0
+    @State var directionsList:[String] = [""]
+    @State var showDirectionsList:Bool = false
     var body: some View {
         VStack{
             Spacer()
@@ -19,7 +21,8 @@ struct CustomizePathView: View {
                 .offset(y:UIScreen.main.bounds.height/30)
             TabView(selection: $selectedTab) {
                 ForEach(userData.customizedCards) { card in
-                    PathShowView(path: card.path, height: 2)
+//                    DirectionMapView(directions: $directionsList, coordinatesList: card.path)
+                    PathShowView(path: card.path, height: 2.5)
                         .onTapGesture(perform: {
                             print(card.distance)
                         })
@@ -34,8 +37,43 @@ struct CustomizePathView: View {
                 .padding(.vertical,-15)
             PathInformationView(imageName: "pills", text: "Risk", data: userData.customizedCards[selectedTab].risk)
                 .padding(.vertical,-15)
-        }.onAppear(perform: {
-            self.userData.loadCustomizedCardsData(location: checkUserLocation(lat: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, long: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503))
+            HStack{
+                ZStack{
+                    RoundedRectangle(cornerRadius: 15.0)
+                        .fill(AppColor.shared.joggingColor)
+                        .frame(width: 130, height: 50, alignment: .center)
+                        .padding()
+                    Button(action: {self.showDirectionsList.toggle()}, label: {
+                        
+                       HStack{
+                        Image(systemName: "location.north")
+                            .foregroundColor(.white)
+                            .font(.system(size: 24))
+                        Text("Directions")
+                            .foregroundColor(Color(.white))}
+                        
+                    })
+                    
+                }
+                
+            }
+            .padding(.vertical,-15)
+           
+        }
+        .sheet(isPresented: $showDirectionsList, content: {
+            VStack{
+                Text("Directions")
+                          .font(.largeTitle)
+                          .bold()
+                          .padding()
+                Divider().background(Color.blue)
+                List(userData.customizedCards[selectedTab].directions, id:\.self){i in
+                HTMLStringView(html: i)
+                    
+            }}
+        })
+        .onAppear(perform: {
+       
         })
     }
 }
