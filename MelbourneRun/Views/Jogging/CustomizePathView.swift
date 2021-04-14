@@ -13,6 +13,7 @@ struct CustomizePathView: View {
     @State var selectedTab:Int = 0
     @State var directionsList:[String] = [""]
     @State var showDirectionsList:Bool = false
+    var customizedCards:[CustomizedCard]
     var body: some View {
         VStack{
             Spacer()
@@ -20,7 +21,7 @@ struct CustomizePathView: View {
                 .bold()
                 .offset(y:UIScreen.main.bounds.height/30)
             TabView(selection: $selectedTab) {
-                ForEach(userData.customizedCards) { card in
+                ForEach(self.customizedCards) { card in
 //                    DirectionMapView(directions: $directionsList, coordinatesList: card.path)
                     PathShowView(path: card.path, height: 2.5)
                         .onTapGesture(perform: {
@@ -31,11 +32,11 @@ struct CustomizePathView: View {
             .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
             .padding(.vertical,-15)
             
-            PathInformationView(imageName: "timer", text: "Time", data: userData.customizedCards[selectedTab].time)
+            PathInformationView(imageName: "timer", text: "Time", data: self.customizedCards[selectedTab].time)
                 .padding(.vertical,-15)
-            PathInformationView(imageName: "playpause", text: "Length", data: String(userData.customizedCards[selectedTab].distance)+" KM")
+            PathInformationView(imageName: "playpause", text: "Length", data: String(self.customizedCards[selectedTab].distance)+" KM")
                 .padding(.vertical,-15)
-            PathInformationView(imageName: "pills", text: "Risk", data: userData.customizedCards[selectedTab].risk)
+            PathInformationView(imageName: "pills", text: "Risk", data: self.customizedCards[selectedTab].risk)
                 .padding(.vertical,-15)
             HStack{
                 ZStack{
@@ -67,7 +68,7 @@ struct CustomizePathView: View {
                           .bold()
                           .padding()
                 Divider().background(Color.blue)
-                List(userData.customizedCards[selectedTab].directions, id:\.self){i in
+                List(self.customizedCards[selectedTab].directions, id:\.self){i in
                 HTMLStringView(html: i)
                     
             }}
@@ -78,9 +79,3 @@ struct CustomizePathView: View {
     }
 }
 
-struct CustomizePathView_Previews: PreviewProvider {
-    static var previews: some View {
-        CustomizePathView()
-            .environmentObject(UserData())
-    }
-}

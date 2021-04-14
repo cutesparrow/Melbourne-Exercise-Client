@@ -8,17 +8,18 @@
 import SwiftUI
 
 struct OnboardingView: View {
+    @Binding var show:Bool
     let viewPage:Int
     var body: some View {
         if viewPage == 0{
-            OnboardingZero()
+            OnboardingZero(show:$show)
         }
         else if viewPage == 1{
-            OnboardingThree()
+            OnboardingThree(show:$show)
         } else if viewPage == 2{
-            OnboardingFour()
+            OnboardingFour(show:$show)
         } else if viewPage == 3{
-            OnboardingFive()
+            OnboardingFive(show:$show)
         } else if viewPage == 4{
             OnboardingSix()
         }
@@ -27,6 +28,6 @@ struct OnboardingView: View {
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView(viewPage: 1)
+        OnboardingView(show: .constant(true), viewPage: 1)
     }
 }

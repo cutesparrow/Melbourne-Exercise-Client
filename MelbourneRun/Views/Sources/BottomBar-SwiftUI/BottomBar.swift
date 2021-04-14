@@ -48,12 +48,14 @@ public struct BottomBar : View {
     
     public var body: some View {
         ZStack{
-            RoundedRectangle(cornerRadius: 25.0)
-                .fill(Color(.secondarySystemBackground).opacity(0.85))
-                .shadow(radius:10)
-                .frame(height:80)
-                .padding(.horizontal,10)
-            
+//            RoundedRectangle(cornerRadius: 25.0)
+//                .fill(Color(.secondarySystemBackground).opacity(0.85))
+//                .shadow(radius:10)
+//                .frame(height:80)
+//                .padding(.horizontal,10)
+            VisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
+                .clipShape(RoundedRectangle(cornerRadius: 25))
+                .frame(height: 80, alignment: .center)
             HStack(alignment: .bottom) {
             ForEach(0..<items.count) { index in
                 self.itemView(at: index)
@@ -63,7 +65,7 @@ public struct BottomBar : View {
             }
         }
         .padding()
-        .animation(.default)}
+            .animation(.default)}.frame(width: UIScreen.main.bounds.width/1.2, height: .infinity, alignment: .center)
     }
 }
 

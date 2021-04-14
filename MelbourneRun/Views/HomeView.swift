@@ -7,6 +7,9 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import ActivityIndicatorView
+import AlertToast
+
 let screen = UIScreen.main.bounds
 
 
@@ -40,10 +43,12 @@ class TicketCardView_Control: ObservableObject {
 }
 
 struct ExpandableCardView: View {
-    
+    @Binding var showInformation:ShowInformation
     @State var viewState = CGSize.zero
     @State var isDetectingLongPress = false
     @State var isSelected = false
+    @Binding var networkError:Bool
+    @Binding var loading:Bool
     
     @EnvironmentObject var userData:UserData
     
@@ -79,7 +84,6 @@ struct ExpandableCardView: View {
                 }
             }
     }
-    
     var dragSelectedCard: some Gesture {
         DragGesture()
             .onChanged { value in
@@ -90,6 +94,20 @@ struct ExpandableCardView: View {
             }
     }
     
+    func getShowInformation(){
+        let completion: (Result<ShowInformation,Error>) -> Void = { result in
+            switch result {
+            case let .success(information): self.showInformation = information
+                self.loading = false
+            case let .failure(error): print(error)
+                self.loading = false
+                self.networkError = true
+            }
+        }
+        self.loading = true
+        _ = NetworkAPI.loadShowInformation(completion: completion)
+        
+    }
     
     //MARK: View Body
     var body: some View {
@@ -98,12 +116,12 @@ struct ExpandableCardView: View {
             GeometryReader { geometry in
                 ZStack {
                     VStack {
-                        TopView(isSelected: self.$isSelected)
+                        TopView(isSelected: self.$isSelected, showInformation: $showInformation)
                             .environmentObject(userData)
                             .frame(height: self.normalCardHeight)
                         
                         if self.isSelected {
-                            ExpandableView(isSelected: self.$isSelected)
+                            ExpandableView(isSelected: self.$isSelected, showInformation: $showInformation)
                                 .environmentObject(userData)
                             
                             Spacer()
@@ -147,7 +165,7 @@ struct ExpandableCardView: View {
                         .lineLimit(1)
                     Spacer()
                     Button(action: {self.userData.getPosterName()
-                            self.userData.getShowInformation()}, label: {
+                            self.getShowInformation()}, label: {
                                 MainStyleButton(icon: "arrow.triangle.2.circlepath", color: Color(.label), text: "")
                             })
                 }
@@ -160,6 +178,12 @@ struct ExpandableCardView: View {
                 
             }
         }
+        .onAppear(perform: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4){if true{
+                self.getShowInformation()
+                userData.homepageFistAppear = false
+            }}
+        })
     }
     
 }
@@ -169,7 +193,7 @@ struct ExpandableCardView: View {
 struct TopView: View {
     @EnvironmentObject var userData: UserData
     @Binding var isSelected: Bool
-    
+    @Binding var showInformation:ShowInformation
     
     func getNumberOfLines(tips:String) -> Int{
         if tips.count <= 55{
@@ -189,7 +213,7 @@ struct TopView: View {
         GeometryReader { geometry in
             ZStack {
                 ZStack {
-                    WebImage(url: URL(string: NetworkManager.shared.urlBasePath + userData.showInformation.imageName))
+                    WebImage(url: URL(string: NetworkManager.shared.urlBasePath + self.showInformation.imageName))
                         .resizable()
                         .placeholder{
                             Color.gray
@@ -200,7 +224,7 @@ struct TopView: View {
                     VStack {
                         Spacer()
                         SystemMaterialView(style: .regular)
-                            .frame(height: CGFloat(getNumberOfLines(tips: self.isSelected ? userData.showInformation.safetyTips : userData.showInformation.exerciseBenefits) * 55) / 3 + 10)
+                            .frame(height: CGFloat(getNumberOfLines(tips: self.isSelected ? self.showInformation.safetyTips : self.showInformation.exerciseBenefits) * 55) / 3 + 10)
                     }
                 }
                 VStack(alignment: .center, spacing: 0) {
@@ -238,10 +262,10 @@ struct TopView: View {
                     
                     //MARK: Bottom part
                     HStack(alignment: .center) {
-                        Text(self.isSelected ? userData.showInformation.safetyTips : userData.showInformation.exerciseBenefits)
+                        Text(self.isSelected ? self.showInformation.safetyTips : self.showInformation.exerciseBenefits)
                             .foregroundColor(Color(.label))
                             .font(.caption)
-                            .lineLimit(getNumberOfLines(tips: self.isSelected ? userData.showInformation.safetyTips : userData.showInformation.exerciseBenefits))
+                            .lineLimit(getNumberOfLines(tips: self.isSelected ? self.showInformation.safetyTips : self.showInformation.exerciseBenefits))
                         
                         Spacer()
                     }
@@ -258,7 +282,7 @@ struct TopView: View {
 
 struct ExpandableView: View {
     @Binding var isSelected: Bool
-    
+    @Binding var showInformation:ShowInformation
     @EnvironmentObject var userData:UserData
     
     
@@ -271,7 +295,6 @@ struct ExpandableView: View {
                     Spacer()
                 }}
                 .frame(height:UIScreen.main.bounds.height/2.5)
-                
             }
         }.indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
         .tabViewStyle(PageTabViewStyle(indexDisplayMode:.automatic))
@@ -289,24 +312,36 @@ struct ExpandableView: View {
 
 struct HomeView: View {
     @EnvironmentObject var userData:UserData
-   
+    @State var showLoadingIndicator:Bool = false
+    @State var networkError:Bool = false
+    @State var showInformation:ShowInformation = ShowInformation(imageName: "", safetyTips: "", exerciseTips: "", exerciseBenefits: "")
     var body: some View {
-            ExpandableCardView()
+            ZStack{
+                ExpandableCardView(showInformation:$showInformation,networkError: $networkError, loading: $showLoadingIndicator)
             .environmentObject(userData)
             .offset(y:-UIScreen.main.bounds.height/15)
                 
             .onAppear(perform: {
-                self.userData.getShowInformation()
                 self.userData.getWeatherDataNow()
                 self.userData.getSafePolicy()
+            })
+                
+            ZStack{
+                if showLoadingIndicator{
+                    VisualEffectView(effect: UIBlurEffect(style: .light))
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
+                    .frame(width: 60, height: 60, alignment: .center)}
+                ActivityIndicatorView(isVisible: $showLoadingIndicator, type: .default)
+                .frame(width: 40.0, height: 40.0)
+                    .foregroundColor(AppColor.shared.homeColor)
+                
+            }
+        }
+            .toast(isPresenting: $networkError, duration: 1.2, tapToDismiss: true, alert: { AlertToast(type: .error(.red), title: "Network Error", subTitle: "")
+            }, completion: {_ in
+                self.networkError = false
             })
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
-            .environmentObject(UserData())
-        
-    }
-}
+

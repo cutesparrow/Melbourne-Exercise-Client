@@ -29,6 +29,7 @@ class NetworkManager {
     
     @discardableResult
     func requestGet(path: String, parameters: Parameters?, completion: @escaping NetworkRequestCompletion) -> DataRequest { //get json request
+        
         AF.request(NetworkAPIBaseURL + path,
                    parameters: parameters,
                    headers: commonHeaders,

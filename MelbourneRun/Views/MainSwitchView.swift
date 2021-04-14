@@ -10,6 +10,8 @@ import SwiftUI
 struct MainSwitchView: View {
     @EnvironmentObject var userData:UserData
     @Binding var selectView:Int
+//    @State var showInformation:ShowInformation = ShowInformation(imageName: "", safetyTips: "", exerciseTips: "", exerciseBenefits: "")
+//    @State var gymList:GymList = GymList(list: [])
     var body: some View {
         switch selectView {
         case 0:HomeView()
