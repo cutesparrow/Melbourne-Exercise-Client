@@ -163,31 +163,34 @@ class NetworkAPI{
 }
 
 
-extension UserData{
-    func getSensorSituation(){
-        let completion: (Result<[MarkerLocation],Error>) -> Void = { result in
-            switch result {
-            case let .success(marks): self.marks = marks
-            case let .failure(error): print(error)
-            }
-        }
-        _ = NetworkAPI.loadSensorSituation(completion: completion)
-        
-    }
+class NetworkRequest{
+    // send network request
 }
 
-extension UserData{
-    func getShowInformation(){
-        let completion: (Result<ShowInformation,Error>) -> Void = { result in
-            switch result {
-            case let .success(information): self.showInformation = information
-            case let .failure(error): print(error)
-            }
-        }
-        _ = NetworkAPI.loadShowInformation(completion: completion)
-        
-    }
-}
+//extension UserData{
+//    func getSensorSituation(){
+//        let completion: (Result<[MarkerLocation],Error>) -> Void = { result in
+//            switch result {
+//            case let .success(marks): self.marks = marks
+//            case let .failure(error): print(error)
+//            }
+//        }
+//        _ = NetworkAPI.loadSensorSituation(completion: completion)
+//    }
+//}
+
+//extension UserData{
+//    func getShowInformation(){
+//        let completion: (Result<ShowInformation,Error>) -> Void = { result in
+//            switch result {
+//            case let .success(information): self.showInformation = information
+//            case let .failure(error): print(error)
+//            }
+//        }
+//        _ = NetworkAPI.loadShowInformation(completion: completion)
+//        
+//    }
+//}
 
 extension UserData{
     func getWeatherDataNow(){
@@ -202,23 +205,22 @@ extension UserData{
     }
 }
 
-extension UserData{
-    
-    func getRoadSituation(location:CLLocationCoordinate2D,gymId:Int){
-            loadRoadSituation(location: location,gymId:gymId)
-    }
-    
-    func loadRoadSituation(location:CLLocationCoordinate2D,gymId:Int){
-        let completion: (Result<RecentlyRoadSituation,Error>) -> Void = { result in
-            switch result {
-            case let .success(list): self.roadSituation = list
-            case let .failure(error): print(error)
-            }
-        }
-        _ = NetworkAPI.loadRoadSituation(location: location,gymId: gymId, completion: completion)
-        
-    }
-}
+//extension UserData{
+//    
+//    func getRoadSituation(location:CLLocationCoordinate2D,gymId:Int){
+//            loadRoadSituation(location: location,gymId:gymId)
+//    }
+//    
+//    func loadRoadSituation(location:CLLocationCoordinate2D,gymId:Int){
+//        let completion: (Result<RecentlyRoadSituation,Error>) -> Void = { result in
+//            switch result {
+//            case let .success(list): self.roadSituation = list
+//            case let .failure(error): print(error)
+//            }
+//        }
+//        _ = NetworkAPI.loadRoadSituation(location: location,gymId: gymId, completion: completion)
+//    }
+//}
 
 extension UserData{
     func loadJoggingPath(){
@@ -280,29 +282,54 @@ extension UserData{
     }
 }
 
+//extension UserData{
+//    func getGymList(location:CLLocationCoordinate2D){
+//        if !self.gymList.list.isEmpty{
+//            return
+//        } else{
+//            loadGymListData(location:location)
+//        }
+//        
+//    }
+//    func reloadGymList(location:CLLocationCoordinate2D){
+//            loadGymListData(location:location)
+//        
+//    }
+//    func loadGymListData(location:CLLocationCoordinate2D){
+//        let completion: (Result<GymList, Error>) -> Void = { result in
+//            switch result {
+//            case let .success(list): self.gymList = list
+//            case let .failure(error): print(error)
+//            }
+//            
+//        }
+//        _ = NetworkAPI.loadGymList(location: location, completion: completion)
+//    }
+//}
+
 extension UserData{
-    func getGymList(location:CLLocationCoordinate2D){
-        if !self.gymList.list.isEmpty{
-            return
-        } else{
-            loadGymListData(location:location)
-        }
-        
-    }
-    func reloadGymList(location:CLLocationCoordinate2D){
-            loadGymListData(location:location)
-        
-    }
-    func loadGymListData(location:CLLocationCoordinate2D){
-        let completion: (Result<GymList, Error>) -> Void = { result in
-            switch result {
-            case let .success(list): self.gymList = list
-            case let .failure(error): print(error)
-            }
-            
-        }
-        _ = NetworkAPI.loadGymList(location: location, completion: completion)
-    }
+//    func getGymList(location:CLLocationCoordinate2D){
+//        if !self.gymList.list.isEmpty{
+//            return
+//        } else{
+//            loadGymListData(location:location)
+//        }
+//
+//    }
+//    func reloadGymList(location:CLLocationCoordinate2D){
+//            loadGymListData(location:location)
+//
+//    }
+//    func loadPopularCardsData(location:CLLocationCoordinate2D){
+//        let completion: (Result<[PopularCard], Error>) -> Void = { result in
+//            switch result {
+//            case let .success(list): self.popularCards = list
+//            case let .failure(error): print(error)
+//            }
+//            
+//        }
+//        _ = NetworkAPI.loadPopularCards(location: location, completion: completion)
+//    }
 }
 
 extension UserData{
@@ -318,41 +345,16 @@ extension UserData{
 //            loadGymListData(location:location)
 //
 //    }
-    func loadPopularCardsData(location:CLLocationCoordinate2D){
-        let completion: (Result<[PopularCard], Error>) -> Void = { result in
-            switch result {
-            case let .success(list): self.popularCards = list
-            case let .failure(error): print(error)
-            }
-            
-        }
-        _ = NetworkAPI.loadPopularCards(location: location, completion: completion)
-    }
-}
-
-extension UserData{
-//    func getGymList(location:CLLocationCoordinate2D){
-//        if !self.gymList.list.isEmpty{
-//            return
-//        } else{
-//            loadGymListData(location:location)
+//    func loadCustomizedCardsData(location:CLLocationCoordinate2D){
+//        let completion: (Result<[CustomizedCard], Error>) -> Void = { result in
+//            switch result {
+//            case let .success(list): self.customizedCards = list
+//            case let .failure(error): print(error)
+//            }
+//
 //        }
-//
+//        _ = NetworkAPI.loadCustomizedCards(location: location, completion: completion)
 //    }
-//    func reloadGymList(location:CLLocationCoordinate2D){
-//            loadGymListData(location:location)
-//
-//    }
-    func loadCustomizedCardsData(location:CLLocationCoordinate2D){
-        let completion: (Result<[CustomizedCard], Error>) -> Void = { result in
-            switch result {
-            case let .success(list): self.customizedCards = list
-            case let .failure(error): print(error)
-            }
-            
-        }
-        _ = NetworkAPI.loadCustomizedCards(location: location, completion: completion)
-    }
 }
 
 //extension UserData{

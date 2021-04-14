@@ -7,7 +7,7 @@
 
 import SwiftUI
 import FloatingButton
-
+import MapKit
 
 
 
@@ -31,23 +31,68 @@ struct MainButton: View {
 }
 
 
-
 struct IconAndTextButton: View {
+    @Binding var loading:Bool
+    @Binding var networkError:Bool
     @State var selectedSheet:String
     @EnvironmentObject var userData:UserData
     @Binding var mainswitch:Bool
     @Binding var isshow:Bool
     @Binding var sheetKind:Int
+    @Binding var customizedCards:[CustomizedCard]
+    @Binding var popularCards:[PopularCard]
+    @Binding var loaded:Bool
     var imageName: String
     var buttonText: String
     let imageWidth: CGFloat = 22
+    func loadCustomizedCardsData(location:CLLocationCoordinate2D){
+        let completion: (Result<[CustomizedCard], Error>) -> Void = { result in
+            switch result {
+            case let .success(list): self.customizedCards = list
+                self.loading = false
+                self.loaded = true
+                self.isshow.toggle()
+                self.mainswitch.toggle()
+            case let .failure(error): print(error)
+                self.loading = false
+                self.loaded = false
+                self.networkError = true
+            }
+            
+        }
+        self.loading = true
+        _ = NetworkAPI.loadCustomizedCards(location: location, completion: completion)
+    }
+    func loadPopularCardsData(location:CLLocationCoordinate2D){
+        let completion: (Result<[PopularCard], Error>) -> Void = { result in
+            switch result {
+            case let .success(list): self.popularCards = list
+                self.loading = false
+                self.loaded = true
+                self.isshow.toggle()
+                self.mainswitch.toggle()
+            case let .failure(error): print(error)
+                self.loading = false
+                self.loaded = false
+                self.networkError = true
+            }
+            
+        }
+        self.loading = true
+        _ = NetworkAPI.loadPopularCards(location: location, completion: completion)
+    }
     var body: some View {
-        Button(action: {self.isshow.toggle()
-            self.mainswitch.toggle()
+        Button(action: {
             if selectedSheet == "popular"{
                 sheetKind = 1
             } else{
                 sheetKind = 2
+            }
+            if selectedSheet == "popular"{
+                self.loadPopularCardsData(location: checkUserLocation(lat: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, long: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503))
+            }
+            else{
+                self.loadCustomizedCardsData(location: checkUserLocation(lat: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, long: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503))
             }
         }, label: {
             ZStack {

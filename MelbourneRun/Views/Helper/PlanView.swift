@@ -17,6 +17,7 @@ import PositionScrollView
 
 struct PlanView: View,PositionScrollViewDelegate {
     @EnvironmentObject var userData:UserData
+    @Binding var roadSituation:RecentlyRoadSituation
     var pageSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/3)
     @ObservedObject var psViewModel = PositionScrollViewModel(
         pageSize: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/3),
@@ -49,7 +50,7 @@ struct PlanView: View,PositionScrollViewDelegate {
         print("onScrollEnd")
     }
     var body: some View {
-        let high = findLargest(trendList: userData.roadSituation.list[day].situation)
+        let high = findLargest(trendList: self.roadSituation.list[day].situation)
         VStack{
             VStack{
                 PositionScrollView(
@@ -59,7 +60,7 @@ struct PlanView: View,PositionScrollViewDelegate {
                     LazyHStack{
                         
                         ForEach(0..<2){i in
-                            TrendGraphView(fullTrendList: userData.roadSituation.list[i].situation, idtoday: i, point: $positionOfSelector)
+                            TrendGraphView(fullTrendList: self.roadSituation.list[i].situation, idtoday: i, point: $positionOfSelector)
                                 .frame(width:UIScreen.main.bounds.width-8 ,height: UIScreen.main.bounds.height/CGFloat(4*high)*CGFloat(high), alignment: .center)
                         }
                         
@@ -68,7 +69,7 @@ struct PlanView: View,PositionScrollViewDelegate {
                 .padding(.top,-40)
                 .frame(height:UIScreen.main.bounds.height/CGFloat(3*Double(high))*CGFloat(high))
                 LegendView()
-                DigitalClockView(rate: $positionOfSelector, start: userData.roadSituation.list[day].situation[8].hour, end: userData.roadSituation.list[day].situation[userData.roadSituation.list[day].situation.count-1].hour, color: .blue)
+                DigitalClockView(rate: $positionOfSelector, start: self.roadSituation.list[day].situation[8].hour, end: self.roadSituation.list[day].situation[self.roadSituation.list[day].situation.count-1].hour, color: .blue)
                     .environmentObject(userData)
                 ValueSlider(value: $positionOfSelector)
                     .frame(height:UIScreen.main.bounds.height/20)
@@ -102,12 +103,12 @@ struct PlanView: View,PositionScrollViewDelegate {
         .alertX(isPresented: $showAlertX) {
             AlertX(title: Text("Confirm Plan"), message: Text("""
 Gym: \(userData.selectedGym.name)
-Time: \(getTimeString(date: getTime(start: userData.roadSituation.list[day].situation[8].hour, end: userData.roadSituation.list[day].situation[userData.roadSituation.list[day].situation.count-1].hour, rate: positionOfSelector)))
+Time: \(getTimeString(date: getTime(start: self.roadSituation.list[day].situation[8].hour, end: self.roadSituation.list[day].situation[self.roadSituation.list[day].situation.count-1].hour, rate: positionOfSelector)))
 Note: \(userData.selectedGym.address)
 
 
 """), primaryButton: .cancel(), secondaryButton: .default(Text("Save"), action: {
-    saveIntoEvent(title: "Go to \(userData.selectedGym.name)", date: getTime(start: userData.roadSituation.list[day].situation[8].hour, end: userData.roadSituation.list[day].situation[userData.roadSituation.list[day].situation.count-1].hour, rate: positionOfSelector), notes: userData.selectedGym.address)
+    saveIntoEvent(title: "Go to \(userData.selectedGym.name)", date: getTime(start: self.roadSituation.list[day].situation[8].hour, end: self.roadSituation.list[day].situation[self.roadSituation.list[day].situation.count-1].hour, rate: positionOfSelector), notes: userData.selectedGym.address)
 }), theme: .graphite(withTransparency: true, roundedCorners: true), animation: .classicEffect())
         }
     }
@@ -178,7 +179,7 @@ Note: \(userData.selectedGym.address)
 
 struct PlanView_Previews: PreviewProvider {
     static var previews: some View {
-        PlanView(isShown: .constant(false))
+        PlanView(roadSituation: .constant(RecentlyRoadSituation(list: [])), isShown: .constant(false))
             .environmentObject(UserData())
     }
 }

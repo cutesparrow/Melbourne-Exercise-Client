@@ -15,18 +15,17 @@ import ActionOver
 struct GymHomeView: View {
     @EnvironmentObject var userData:UserData
     
-    
+    @State var gymList:GymList = GymList(list: [])
     
     var body: some View {
         let membershipChooseButtons:[ActionOverButton] = getGymClass()
             return Group{
-        GymListView()
-            .padding(.bottom,90)
+            GymListView(gymList:$gymList)
+            .padding(.bottom,0)
             .environmentObject(userData)
-            .onAppear(perform: {
-                
-                self.userData.getGymList(location: checkUserLocation(lat: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, long: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503))
-            })
+//            .onAppear(perform: {
+//                self.userData.getGymList(location: checkUserLocation(lat: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, long: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503))
+//            })
             .listStyle(PlainListStyle())
             .ignoresSafeArea(.all, edges: .all)
             .frame(width: UIScreen.main.bounds.width)
@@ -67,7 +66,7 @@ struct GymHomeView: View {
     }
     func getGymClass() -> [ActionOverButton]{
         var classList:[String] = []
-        for i in userData.gymList.list{
+        for i in self.gymList.list{
             if !classList.contains(i.classType){
                 classList.append(i.classType)
             }
@@ -93,8 +92,3 @@ struct GymHomeView: View {
     }
 }
 
-struct GymHomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        GymHomeView().environmentObject(UserData())
-    }
-}

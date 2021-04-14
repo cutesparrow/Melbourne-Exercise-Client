@@ -27,6 +27,7 @@ struct MapView: UIViewRepresentable {
         mapView.isScrollEnabled = false
         mapView.isUserInteractionEnabled = false
         mapView.showsUserLocation = false
+//        mapView.centerCoordinate = CLLocationCoordinate2D(latitude: -37.81048913607042, longitude: 144.962441682062)
         mapView.delegate = context.coordinator
         return mapView
     }

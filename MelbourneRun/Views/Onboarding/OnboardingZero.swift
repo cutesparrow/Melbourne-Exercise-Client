@@ -9,10 +9,13 @@ import SwiftUI
 
 struct OnboardingZero: View {
     @State private var animationAmount:CGFloat = 1
-   
+    @Binding var show:Bool
     var body: some View {
-        VStack{
-            HStack{
+        ZStack{
+            skipButton(show: $show)
+                .position(x: UIScreen.main.bounds.width - 60, y: 110)
+            VStack{
+                HStack{
                 Text("Welcome to")
                     .font(.title)
                     .foregroundColor(.black)
@@ -35,17 +38,18 @@ struct OnboardingZero: View {
             .padding(.bottom,30)
             Text("")
                 .padding()
+            VStack{Text("Click to start the tutorial")
             Image(systemName: "arrowtriangle.down.fill")
                     .resizable()
                     .frame(width: 20, height: 20, alignment: .center)
-                    .foregroundColor(Color(.black))
+                    .foregroundColor(Color(.black))}
                     .scaleEffect(animationAmount)
                     
                 .padding(.top,130)
                 .animation(Animation.easeOut(duration: 1).repeatForever(autoreverses: true),value: animationAmount)
                 .onAppear{
                     self.animationAmount = 1.5
-                }
+                }}
                 
                 
                 
@@ -57,6 +61,6 @@ struct OnboardingZero: View {
 
 struct OnboardingZero_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingZero()
+        OnboardingZero(show: .constant(true))
     }
 }

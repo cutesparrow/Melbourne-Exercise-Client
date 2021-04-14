@@ -9,13 +9,19 @@ import SwiftUI
 import MapKit
 import CoreLocation
 import BottomSheet
+import ActivityIndicatorView
+import AlertToast
 
 struct GymRecordView: View {
     @EnvironmentObject var userData:UserData
     @State var bottomSheetIsShow:Bool = false
+    @Binding var gymList:GymList
+    @State var networkError:Bool = false
+    @State private var showLoadingIndicator = false
+    @State var roadSituation:RecentlyRoadSituation = RecentlyRoadSituation(list: [])
     var gym:Gym
     var gymIndex: Int {
-        userData.gymList.list.firstIndex(where: { $0.id == gym.id })!
+        gymList.list.firstIndex(where: { $0.id == gym.id })!
     }
     var locationManager = CLLocationManager()
     
@@ -42,9 +48,23 @@ struct GymRecordView: View {
             launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
         )
     }
-    
+    func loadRoadSituation(location:CLLocationCoordinate2D,gymId:Int){
+        let completion: (Result<RecentlyRoadSituation,Error>) -> Void = { result in
+            switch result {
+            case let .success(list): self.roadSituation = list
+                self.showLoadingIndicator = false
+            case let .failure(error): print(error)
+                self.showLoadingIndicator = false
+                self.networkError = true
+
+            }
+        }
+        self.showLoadingIndicator = true
+        _ = NetworkAPI.loadRoadSituation(location: location,gymId: gymId, completion: completion)
+    }
     var body: some View {
-        ScrollView(content: {
+        ZStack{
+            ScrollView(content: {
             VStack{
                 LocationMapView(lat: gym.lat, long: gym.long)
                     .ignoresSafeArea(edges: .top)
@@ -101,20 +121,36 @@ struct GymRecordView: View {
                     .offset(y: -UIScreen.main.bounds.width/6)
             }.background(Color.clear)
         })
-        .bottomSheet(isPresented: $bottomSheetIsShow, height: 600, content: {PlanView(isShown: $bottomSheetIsShow).environmentObject(userData)
+            ZStack{
+                if showLoadingIndicator{
+                    VisualEffectView(effect: UIBlurEffect(style: .light))
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
+                    .frame(width: 60, height: 60, alignment: .center)}
+                ActivityIndicatorView(isVisible: $showLoadingIndicator, type: .default)
+                .frame(width: 40.0, height: 40.0)
+                    .foregroundColor(AppColor.shared.gymColor)}
+        }
+        .toast(isPresenting: $networkError, duration: 1.2, tapToDismiss: true, alert: { AlertToast(type: .error(.red), title: "Network Error", subTitle: "")
+        }, completion: {_ in
+            self.networkError = false
         })
+        .sheet(isPresented: $bottomSheetIsShow, content: {
+            PlanView(roadSituation: $roadSituation, isShown: $bottomSheetIsShow).environmentObject(userData)
+        })
+//        .bottomSheet(isPresented: $bottomSheetIsShow, height: 600, content: {PlanView(roadSituation: $roadSituation, isShown: $bottomSheetIsShow).environmentObject(userData)
+//        })
         .ignoresSafeArea()
         .onAppear(perform: {
-            userData.getRoadSituation(location: checkUserLocation(lat: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, long: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503), gymId: gym.id)
+            loadRoadSituation(location: checkUserLocation(lat: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, long: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503), gymId: gym.id)
             userData.selectedGym = gym
         })
     }
 }
 
-struct GymRecordView_Previews: PreviewProvider {
-    static var data:UserData = UserData()
-    static var previews: some View {
-        GymRecordView(gym: data.gymList.list[0])
-            .environmentObject(data)
-    }
-}
+//struct GymRecordView_Previews: PreviewProvider {
+//    static var data:UserData = UserData()
+//    static var previews: some View {
+//        GymRecordView(gymList: .constant(GymList(list: [])), gym: data.gymList.list[0])
+//            .environmentObject(data)
+//    }
+//}

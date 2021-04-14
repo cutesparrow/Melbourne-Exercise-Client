@@ -71,6 +71,8 @@
 		D65200FF25F757B900BA04E9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D65200FE25F757B900BA04E9 /* Preview Assets.xcassets */; };
 		D652011025F7604900BA04E9 /* LocationProvider in Frameworks */ = {isa = PBXBuildFile; productRef = D652010F25F7604900BA04E9 /* LocationProvider */; };
 		D6618466262429CF00DA63AE /* HTMLStringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6618465262429CF00DA63AE /* HTMLStringView.swift */; };
+		D661846926256B0200DA63AE /* skipButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D661846826256B0200DA63AE /* skipButton.swift */; };
+		D661846C2627002900DA63AE /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = D661846B2627002900DA63AE /* ActivityIndicatorView */; };
 		D6708FC7261403F2008FDD79 /* BottomBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6708FC3261403F2008FDD79 /* BottomBarItemView.swift */; };
 		D6708FC8261403F2008FDD79 /* BottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6708FC4261403F2008FDD79 /* BottomBar.swift */; };
 		D6708FC9261403F2008FDD79 /* BottomBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6708FC5261403F2008FDD79 /* BottomBarItem.swift */; };
@@ -192,6 +194,7 @@
 		D65200FE25F757B900BA04E9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D652010025F757B900BA04E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D6618465262429CF00DA63AE /* HTMLStringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLStringView.swift; sourceTree = "<group>"; };
+		D661846826256B0200DA63AE /* skipButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skipButton.swift; sourceTree = "<group>"; };
 		D6708FC3261403F2008FDD79 /* BottomBarItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarItemView.swift; sourceTree = "<group>"; };
 		D6708FC4261403F2008FDD79 /* BottomBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBar.swift; sourceTree = "<group>"; };
 		D6708FC5261403F2008FDD79 /* BottomBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarItem.swift; sourceTree = "<group>"; };
@@ -257,6 +260,7 @@
 				D652011025F7604900BA04E9 /* LocationProvider in Frameworks */,
 				D60FC27826037CF00038E9E5 /* Alamofire in Frameworks */,
 				D60FC288260443570038E9E5 /* Polyline in Frameworks */,
+				D661846C2627002900DA63AE /* ActivityIndicatorView in Frameworks */,
 				D6BC562C261048E20033341E /* PositionScrollView in Frameworks */,
 				D61A147E260459660049B377 /* UBottomSheet in Frameworks */,
 				D6226EC9261EED2A003F4D9F /* FloatingButton in Frameworks */,
@@ -522,6 +526,7 @@
 				D6977BB2260C6A97001F4B48 /* MainStyleButton.swift */,
 				D6226ECB261EEDC3003F4D9F /* MainButtonJoggingView.swift */,
 				D6226ECE261EF070003F4D9F /* JoggingMainListButton.swift */,
+				D661846826256B0200DA63AE /* skipButton.swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -583,6 +588,7 @@
 				D6226EC8261EED2A003F4D9F /* FloatingButton */,
 				D6226EDD261F0AF6003F4D9F /* LNPopupUI */,
 				D67A3C212622C08C00C47CA1 /* SSToastMessage */,
+				D661846B2627002900DA63AE /* ActivityIndicatorView */,
 			);
 			productName = MelbourneRun;
 			productReference = D65200F425F757B800BA04E9 /* MelbExercise.app */;
@@ -630,6 +636,7 @@
 				D6226EC7261EED2A003F4D9F /* XCRemoteSwiftPackageReference "FloatingButton" */,
 				D6226EDC261F0AF6003F4D9F /* XCRemoteSwiftPackageReference "LNPopupUI" */,
 				D67A3C202622C08C00C47CA1 /* XCRemoteSwiftPackageReference "SSToastMessage" */,
+				D661846A2627002900DA63AE /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
 			);
 			productRefGroup = D65200F525F757B800BA04E9 /* Products */;
 			projectDirPath = "";
@@ -731,6 +738,7 @@
 				D69B1219261073EF00C086FA /* PreviewFactory.swift in Sources */,
 				D6226EE526201BBA003F4D9F /* PathShowView.swift in Sources */,
 				D6CD21F725F8642500861495 /* ImageScrollModel.swift in Sources */,
+				D661846926256B0200DA63AE /* skipButton.swift in Sources */,
 				D6226ECC261EEDC3003F4D9F /* MainButtonJoggingView.swift in Sources */,
 				D630CA9726099591008B9FA9 /* LocationFetcher.swift in Sources */,
 				D630CA6E260891C1008B9FA9 /* TrendGraphView.swift in Sources */,
@@ -1028,6 +1036,14 @@
 				minimumVersion = 1.5.0;
 			};
 		};
+		D661846A2627002900DA63AE /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/ActivityIndicatorView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.6;
+			};
+		};
 		D6708FCD261408C1008FDD79 /* XCRemoteSwiftPackageReference "ActionOver" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AndreaMiotto/ActionOver.git";
@@ -1141,6 +1157,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D652010E25F7604900BA04E9 /* XCRemoteSwiftPackageReference "LocationProvider" */;
 			productName = LocationProvider;
+		};
+		D661846B2627002900DA63AE /* ActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D661846A2627002900DA63AE /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
+			productName = ActivityIndicatorView;
 		};
 		D6708FCE261408C1008FDD79 /* ActionOver */ = {
 			isa = XCSwiftPackageProductDependency;
