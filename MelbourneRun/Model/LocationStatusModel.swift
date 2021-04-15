@@ -12,18 +12,17 @@ import Combine
 var hasChecked:Bool = false
 
 class LocationManager: NSObject, ObservableObject {
+    
+    static var shared:LocationManager = LocationManager()
 
     override init() {
         self.permissionIsNotOk = false
-    
         super.init()
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
     }
-    
-
 
     @Published var locationStatus: CLAuthorizationStatus? {
         willSet {
@@ -47,7 +46,6 @@ class LocationManager: NSObject, ObservableObject {
         guard let status = locationStatus else {
             return "unknown"
         }
-
         switch status {
         case .notDetermined: return "notDetermined"
         case .authorizedWhenInUse: return "authorizedWhenInUse"
@@ -73,13 +71,11 @@ extension LocationManager: CLLocationManagerDelegate {
             self.permissionIsNotOk = false
         default:
             if !hasChecked {
-                
                 hasChecked = true
                 self.permissionIsNotOk = true
             } else {
-                
                 hasChecked = true
-                
+                self.permissionIsNotOk = true
             }
         }
         print(#function, statusString)
