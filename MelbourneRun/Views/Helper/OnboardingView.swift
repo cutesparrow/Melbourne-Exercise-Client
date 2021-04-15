@@ -18,11 +18,12 @@ struct OnboardingView: View {
             OnboardingThree(show:$show)
         } else if viewPage == 2{
             OnboardingFour(show:$show)
-        } else if viewPage == 3{
-            OnboardingFive(show:$show)
-        } else if viewPage == 4{
-            OnboardingSix()
         }
+//        } else if viewPage == 3{
+//            OnboardingFive(show:$show)
+//        } else if viewPage == 4{
+//            OnboardingSix()
+//        }
     }
 }
 

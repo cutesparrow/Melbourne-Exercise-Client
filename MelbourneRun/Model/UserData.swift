@@ -14,6 +14,7 @@ import MapKit
 class UserData: ObservableObject {
     @Published var locationFetcher = LocationFetcher()
     @Published var showedPermissionAlert:Bool = false
+    @Published var showGymUserGuide:Bool = true
     //    @Published var gymList: GymList = GymList(list: [ ])
 //    @Published var parkList: ParkList = ParkList(list: [])
 //    @Published var playgroundList: PlaygroundList = PlaygroundList(list: [])
@@ -22,7 +23,7 @@ class UserData: ObservableObject {
 //    @Published var image:String = "gym12.jpg"
 //    @Published var exerciseTips:String = ""
 //    @Published var safeTips:String = ""
-    @Published var selectedGym:Gym = Gym(id: 0, lat: 0, long: 0, name: "", Images: [""], limitation: 0, distance: 0, star: true, address: "",classType: "")
+   // @Published var selectedGym:Gym = Gym(id: 0, lat: 0, long: 0, name: "", Images: [""], limitation: 0, distance: 0, star: true, address: "",classType: "")
 //    @Published var selectedTime:Date = Date()
     @Published var weather:WeatherNow = WeatherNow(location: Position(name: "Melbourne", region: "Victoria", country: "", lat: 1, lon: 1, tz_id: "", localtime_epoch: 1, localtime: ""), current: Weather(temp_c: 12.4, condition: Condition(text: "Clear", icon: "//cdn.weatherapi.com/weather/128x128/day/116.png"),feelslike_c: 12.1))
     @Published var safetyPolicy:[SafetyPolicy] = [SafetyPolicy(id:1,date: "", title: "", content: "")]

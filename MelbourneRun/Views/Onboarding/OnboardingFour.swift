@@ -14,17 +14,14 @@ struct OnboardingFour: View {
             skipButton(show: $show)
                 
                 .position(x: UIScreen.main.bounds.width - 60, y: 110)
-            VStack{Text("2. Your gym membership!")
-                .lineLimit(1)
-                .font(.title)
-                .foregroundColor(.black)
-                .padding()
-                .padding(.bottom,20)
-            Image("membership")
-                .resizable()
-                .scaledToFit()
-                .frame(width: UIScreen.main.bounds.width - 50, height: .infinity, alignment: .center)
-                .clipShape(RoundedRectangle(cornerRadius: 25.0))}
+            VStack{
+                Image("3")
+                    .resizable()
+                    .frame(width: 200, height: 200, alignment: .center)
+                    .padding(.bottom,40)
+                Text("Press the button to go if you want to exercise safely in Melbourne City. ")
+                    .padding(.horizontal,40)
+            }
              
         }
     }

@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct DigitalClockView: View {
-
     @Binding var rate: Float
+    
     let start:Int
     let end:Int
-    let color:Color
+    
     var body: some View {
         let totalMinutes:Int = (end - start + 1) * 60
         let gapMinutes:Int = Int(Float(totalMinutes) * rate * 60)
@@ -23,14 +23,9 @@ struct DigitalClockView: View {
         //userData.selectedTime = nowTime
         return Text(nowTime,style: .time)
             .font(.system(.largeTitle, design: .rounded))
-            .foregroundColor(color)
+            .foregroundColor(Color.blue)
             .shadow(radius: 5 )
     }
 }
 
-struct DigitalClockView_Previews: PreviewProvider {
-    static var previews: some View {
-        DigitalClockView(rate: .constant(0.8), start: 6, end: 17,color: Color.blue)
-           
-    }
-}
+

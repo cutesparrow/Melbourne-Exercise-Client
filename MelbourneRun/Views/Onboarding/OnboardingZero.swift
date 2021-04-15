@@ -15,50 +15,22 @@ struct OnboardingZero: View {
             skipButton(show: $show)
                 .position(x: UIScreen.main.bounds.width - 60, y: 110)
             VStack{
-                HStack{
-                Text("Welcome to")
-                    .font(.title)
-                    .foregroundColor(.black)
-                    Text("user guide")
-                        .foregroundColor(.black)
-                    .font(.title)
-                    .bold()
-            }.padding()
-            .padding(.bottom,50)
-            HStack{Text("Master this app in")
-                .foregroundColor(.black)
-                Text("4")
-                    .foregroundColor(Color(hex: 0xde2a18))
-                    .bold()
-                    .font(.title)
-                Text("steps!")
-                    .foregroundColor(.black)
-            }
-            .padding()
-            .padding(.bottom,30)
-            Text("")
-                .padding()
-            VStack{Text("Click to start the tutorial")
-            Image(systemName: "arrowtriangle.down.fill")
+                Image("1")
                     .resizable()
-                    .frame(width: 20, height: 20, alignment: .center)
-                    .foregroundColor(Color(.black))}
-                    .scaleEffect(animationAmount)
-                    
-                .padding(.top,130)
-                .animation(Animation.easeOut(duration: 1).repeatForever(autoreverses: true),value: animationAmount)
-                .onAppear{
-                    self.animationAmount = 1.5
-                }}
-                
-                
-                
+                    .frame(width: 200, height: 200, alignment: .center)
+                Text("Welcome to Melbourne Safe Exercise! ")
+                    .font(.title3)
+                    .padding()
+                Text("We offer you a platform to help you exercise safely during Covid and support you to manage your physical health. ")
+                    .font(.caption).padding().foregroundColor(.gray)
+                Text("Browse through a quick tutorial and be ready to go! ")
+                    .font(.caption)
            
                 
         }
     }
 }
-
+}
 struct OnboardingZero_Previews: PreviewProvider {
     static var previews: some View {
         OnboardingZero(show: .constant(true))
