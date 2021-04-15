@@ -7,12 +7,13 @@
 
 import SwiftUI
 import PermissionsSwiftUI
-
+import AlertToast
+import CoreLocation
 
 struct PreLaunch: View {
     @EnvironmentObject var userData:UserData
     @State var showMainView:Bool = false
-   
+    @ObservedObject var locationManger:LocationManager = LocationManager.shared
     
     var body: some View {
         Group{
@@ -31,14 +32,21 @@ struct PreLaunch: View {
         }
             
         }
-        .JMAlert(showModal: $userData.locationManager.permissionIsNotOk, for: [.location], autoCheckAuthorization: false)
-        .changeBottomDescriptionTo("Enable permissions in settings, or default location will be set at Melbourne Central. If your current location exceeds CBD, please turn off the location permission and use the default location.")
-        .onAppear{
+        
+        .onAppear(perform: {
             withAnimation(.timingCurve(1, 0.01, 0.71, 0.11, duration: 2.4)){
                 showMainView = true
             }
-        }
+            
+            
+        })
+       
+        
+//        .JMAlert(showModal: $locationManger.permissionIsNotOk, for: [.location], autoCheckAuthorization: true)
+//        .changeBottomDescriptionTo("Enable permissions in settings, or default location will be set at Melbourne Central. If your current location exceeds CBD, please turn off the location permission and use the default location.")
+        
     }
+    //$userData.locationManager.permissionIsNotOk
 }
 
 struct PreLaunch_Previews: PreviewProvider {

@@ -33,7 +33,7 @@ class NetworkManager {
         AF.request(NetworkAPIBaseURL + path,
                    parameters: parameters,
                    headers: commonHeaders,
-                   requestModifier: { $0.timeoutInterval = 15 })
+                   requestModifier: { $0.timeoutInterval = 5 })
             .responseData { response in
                 switch response.result {
                 case let .success(data): completion(.success(data))
@@ -46,7 +46,7 @@ class NetworkManager {
     func requestWeather(completion: @escaping NetworkRequestCompletion) -> DataRequest { //get weather
         AF.request(weatherWebsite,
                    parameters: parameter,
-                   requestModifier: { $0.timeoutInterval = 15 })
+                   requestModifier: { $0.timeoutInterval = 5 })
             .responseData { response in
                 switch response.result {
                 case let .success(data): completion(.success(data))
@@ -62,7 +62,7 @@ class NetworkManager {
         AF.request(NetworkAPIBaseURL + path,
                    parameters: parameters,
                    headers: commonHeaders,
-                   requestModifier: { $0.timeoutInterval = 15 })
+                   requestModifier: { $0.timeoutInterval = 5 })
             .responseString { response in
                 switch response.result {
                 case let .success(data): completion(.success(data))
@@ -78,7 +78,7 @@ class NetworkManager {
                    parameters: parameters,
                    encoding: JSONEncoding.prettyPrinted,
                    headers: commonHeaders,
-                   requestModifier: { $0.timeoutInterval = 15 })
+                   requestModifier: { $0.timeoutInterval = 5 })
             .responseData { response in
                 switch response.result {
                 case let .success(data): completion(.success(data))

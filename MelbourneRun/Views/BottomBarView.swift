@@ -38,7 +38,7 @@ struct BottomBarView: View {
                      .environmentObject(userData)
                  VStack{
                      Spacer()
-                    if userData.showBottomBar {
+                    if true {
                         BottomBar(selectedIndex: $selectedIndex, items: items)
                             
                     }

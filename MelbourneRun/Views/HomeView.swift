@@ -9,6 +9,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 import ActivityIndicatorView
 import AlertToast
+import CoreLocation
 
 let screen = UIScreen.main.bounds
 
@@ -164,7 +165,7 @@ struct ExpandableCardView: View {
                         .foregroundColor(Color(.label))
                         .lineLimit(1)
                     Spacer()
-                    Button(action: {self.userData.getPosterName()
+                    Button(action: {
                             self.getShowInformation()}, label: {
                                 MainStyleButton(icon: "arrow.triangle.2.circlepath", color: Color(.label), text: "")
                             })
@@ -315,6 +316,7 @@ struct HomeView: View {
     @State var showLoadingIndicator:Bool = false
     @State var networkError:Bool = false
     @State var showInformation:ShowInformation = ShowInformation(imageName: "", safetyTips: "", exerciseTips: "", exerciseBenefits: "")
+    @State var showLocationPermissionAlert:Bool = false
     var body: some View {
             ZStack{
                 ExpandableCardView(showInformation:$showInformation,networkError: $networkError, loading: $showLoadingIndicator)
@@ -336,8 +338,26 @@ struct HomeView: View {
                     .foregroundColor(AppColor.shared.homeColor)
                 
             }
-        }
-            .toast(isPresenting: $networkError, duration: 1.2, tapToDismiss: true, alert: { AlertToast(type: .error(.red), title: "Network Error", subTitle: "")
+            }.onAppear(perform: {
+                if !userData.showedPermissionAlert{
+                let manager = CLLocationManager()
+                switch manager.authorizationStatus {
+                case .restricted, .denied:
+                    showLocationPermissionAlert = true
+                    userData.showedPermissionAlert = true
+                case .authorizedAlways,.authorizedWhenInUse:
+                    showLocationPermissionAlert = false
+                    userData.showedPermissionAlert = true
+                default:
+                    showLocationPermissionAlert = false
+                }
+                }
+            })
+            .toast(isPresenting: $showLocationPermissionAlert, tapToDismiss: true, alert: { AlertToast(type: .error(.red), title: "Permission", subTitle: "Location Needed")
+        }, completion: {_ in
+            self.showLocationPermissionAlert = false
+        })
+            .toast(isPresenting: $networkError, duration: 2.2, tapToDismiss: true, alert: { AlertToast(type: .error(.red), title: "Network Error", subTitle: "")
             }, completion: {_ in
                 self.networkError = false
             })
