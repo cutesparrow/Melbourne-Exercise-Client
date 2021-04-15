@@ -11,11 +11,12 @@ import EventKit
 import Sliders
 import AlertToast
 import PositionScrollView
-
+import SSToastMessage
 
 
 
 struct PlanView: View,PositionScrollViewDelegate {
+    var selectedGym:Gym
     @EnvironmentObject var userData:UserData
     @Binding var roadSituation:RecentlyRoadSituation
     var pageSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/3)
@@ -26,14 +27,40 @@ struct PlanView: View,PositionScrollViewDelegate {
             pageLength: UIScreen.main.bounds.width
         )
     )
+    @State var currentColor:Color = Color(.blue)
     @State var pageNow = 0
     @Binding var isShown:Bool
     @State var showAlertX:Bool = false
     @State var saveSuccess:Bool = false
     @State var saveFailure:Bool = false
+    
     var day = 0
     @State var positionOfSelector:Float = 0
-    
+    func createBottomFloaterView() -> some View {
+          ZStack{
+            VisualEffectView(effect: UIBlurEffect(style: .light))
+                .frame(width: 350, height: 160)
+                .cornerRadius(20.0)
+                .padding(.bottom,10)
+            HStack(spacing: 15) {
+            Image("logo")
+                  .resizable()
+                  .aspectRatio(contentMode: ContentMode.fill)
+                  .frame(width: 60, height: 60)
+                .padding(.trailing,-10)
+            VStack(alignment: .leading, spacing: 2) {
+                  Text("User Guide")
+                    .foregroundColor(Color(.label))
+                      .fontWeight(.bold)
+                      .lineLimit(3)
+                  Text("We predict risk level on road based on pedestrian sensor data in CBD. One capsule represents one hour, the top side is the upper limit of the number of people on street, and the bottom side is the lower limit of the prediction. Use the slider and choose a safe time goto gym! ")
+                      .font(.system(size: 14))
+                      .foregroundColor(Color(.label))
+              }
+          }
+          .padding(15)
+          }
+      }
     public func onScrollStart() {
         print("onScrollStart")
     }
@@ -51,31 +78,40 @@ struct PlanView: View,PositionScrollViewDelegate {
     }
     var body: some View {
         let high = findLargest(trendList: self.roadSituation.list[day].situation)
-        VStack{
+        let totalMinutes:Int = (self.roadSituation.list[day].situation[self.roadSituation.list[day].situation.count-1].hour - self.roadSituation.list[day].situation[8].hour + 1) * 60
+        let gapMinutes:Int = Int(Float(totalMinutes) * positionOfSelector * 60)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        let startTime = formatter.date(from: String(self.roadSituation.list[day].situation[8].hour) + ":00")!
+        let nowTime = Date(timeInterval: Double(gapMinutes), since: startTime)
+        
+        return VStack{
+            createBottomFloaterView()
             VStack{
                 PositionScrollView(
                     viewModel: self.psViewModel,
                     delegate: self
                 ){
                     LazyHStack{
-                        
                         ForEach(0..<2){i in
                             TrendGraphView(fullTrendList: self.roadSituation.list[i].situation, idtoday: i, point: $positionOfSelector)
                                 .frame(width:UIScreen.main.bounds.width-8 ,height: UIScreen.main.bounds.height/CGFloat(4*high)*CGFloat(high), alignment: .center)
                         }
-                        
                     }
                 }
                 .padding(.top,-40)
                 .frame(height:UIScreen.main.bounds.height/CGFloat(3*Double(high))*CGFloat(high))
                 LegendView()
-                DigitalClockView(rate: $positionOfSelector, start: self.roadSituation.list[day].situation[8].hour, end: self.roadSituation.list[day].situation[self.roadSituation.list[day].situation.count-1].hour, color: .blue)
-                    .environmentObject(userData)
+//                DigitalClockView(rate: $positionOfSelector,  start: self.roadSituation.list[day].situation[8].hour, end: self.roadSituation.list[day].situation[self.roadSituation.list[day].situation.count-1].hour)
+                Text(nowTime,style: .time)
+                    .font(.system(.largeTitle, design: .rounded))
+                    .foregroundColor(.blue)
+                    .shadow(radius: 5 )
+                    
                 ValueSlider(value: $positionOfSelector)
                     .frame(height:UIScreen.main.bounds.height/20)
                     .padding(.horizontal)
             }
-            .environmentObject(userData)
             .padding()
             HStack{
                 Spacer()
@@ -91,6 +127,10 @@ struct PlanView: View,PositionScrollViewDelegate {
                 Spacer()
             }
         }
+//        .present(isPresented: $userData.showGymUserGuide, type: .floater(), position: .top, animation:  Animation.spring(), autohideDuration: nil, closeOnTap: true, onTap: {
+//        }, closeOnTapOutside: true, view: {
+//            createBottomFloaterView()
+//        })
         .toast(isPresenting: $saveSuccess, duration: 1.2, tapToDismiss: true, alert: { AlertToast(type: .complete(Color.green), title: "Saved", subTitle: "")
         }, completion: {_ in
             self.saveSuccess = false
@@ -100,17 +140,28 @@ struct PlanView: View,PositionScrollViewDelegate {
             self.saveFailure = false
         })
         .frame(width:UIScreen.main.bounds.width)
-        .alertX(isPresented: $showAlertX) {
-            AlertX(title: Text("Confirm Plan"), message: Text("""
-Gym: \(userData.selectedGym.name)
+        .alert(isPresented: $showAlertX) {
+            Alert(title: Text("Confirm Plan"), message: Text("""
+Gym: \(selectedGym.name)
+
 Time: \(getTimeString(date: getTime(start: self.roadSituation.list[day].situation[8].hour, end: self.roadSituation.list[day].situation[self.roadSituation.list[day].situation.count-1].hour, rate: positionOfSelector)))
-Note: \(userData.selectedGym.address)
+
+Note: \(selectedGym.address)
 
 
-"""), primaryButton: .cancel(), secondaryButton: .default(Text("Save"), action: {
-    saveIntoEvent(title: "Go to \(userData.selectedGym.name)", date: getTime(start: self.roadSituation.list[day].situation[8].hour, end: self.roadSituation.list[day].situation[self.roadSituation.list[day].situation.count-1].hour, rate: positionOfSelector), notes: userData.selectedGym.address)
-}), theme: .graphite(withTransparency: true, roundedCorners: true), animation: .classicEffect())
+"""), primaryButton: .cancel(), secondaryButton: .default(Text("Save"), action:
+                                                            {saveIntoEvent(title: "Go to \(selectedGym.name)", date: getTime(start: self.roadSituation.list[day].situation[8].hour, end: self.roadSituation.list[day].situation[self.roadSituation.list[day].situation.count-1].hour, rate: positionOfSelector), notes: selectedGym.address)}))
         }
+//        .alertX(isPresented: $showAlertX) {
+//            AlertX(title: Text("Confirm Plan"), message: Text("""
+//Gym: \(selectedGym.name)
+//Time: \(getTimeString(date: getTime(start: self.roadSituation.list[day].situation[8].hour, end: self.roadSituation.list[day].situation[self.roadSituation.list[day].situation.count-1].hour, rate: positionOfSelector)))
+//Note: \(selectedGym.address)
+//
+//"""), primaryButton: .cancel(), secondaryButton: .default(Text("Save"), action: {
+//    saveIntoEvent(title: "Go to \(selectedGym.name)", date: getTime(start: self.roadSituation.list[day].situation[8].hour, end: self.roadSituation.list[day].situation[self.roadSituation.list[day].situation.count-1].hour, rate: positionOfSelector), notes: selectedGym.address)
+//}), theme: .graphite(withTransparency: true, roundedCorners: true), animation: .classicEffect())
+//        }
     }
     func findLargest(trendList:[OneHourRoadSituation]) -> Int{
         var largest:Int = 0
@@ -177,9 +228,4 @@ Note: \(userData.selectedGym.address)
     }
 }
 
-struct PlanView_Previews: PreviewProvider {
-    static var previews: some View {
-        PlanView(roadSituation: .constant(RecentlyRoadSituation(list: [])), isShown: .constant(false))
-            .environmentObject(UserData())
-    }
-}
+

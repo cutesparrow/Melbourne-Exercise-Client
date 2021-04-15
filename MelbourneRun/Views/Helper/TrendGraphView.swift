@@ -87,8 +87,3 @@ struct TrendGraphView: View {
 //    }
 //}
 
-struct TrendGraphView_Previews: PreviewProvider {
-    static var previews: some View {
-        TrendGraphView(fullTrendList: [OneHourRoadSituation(hour: 8,high: 17, low: 1, average: 16),OneHourRoadSituation(hour: 9,high: 23, low: 21, average: 22),OneHourRoadSituation(hour: 10,high: 33, low: 26, average: 22),OneHourRoadSituation(hour: 11,high: 47, low: 46, average: 52),OneHourRoadSituation(hour: 12,high: 67, low: 44, average: 52),OneHourRoadSituation(hour: 13,high: 87, low: 76, average: 82),OneHourRoadSituation(hour: 14,high: 67, low: 46, average: 52),OneHourRoadSituation(hour: 15,high: 55, low: 46, average: 52)], idtoday: 0, point: .constant(0.99))
-    }
-}

@@ -135,14 +135,15 @@ struct GymRecordView: View {
             self.networkError = false
         })
         .sheet(isPresented: $bottomSheetIsShow, content: {
-            PlanView(roadSituation: $roadSituation, isShown: $bottomSheetIsShow).environmentObject(userData)
+            PlanView(selectedGym:gym,roadSituation: $roadSituation, isShown: $bottomSheetIsShow).environmentObject(userData)
         })
+        
 //        .bottomSheet(isPresented: $bottomSheetIsShow, height: 600, content: {PlanView(roadSituation: $roadSituation, isShown: $bottomSheetIsShow).environmentObject(userData)
 //        })
         .ignoresSafeArea()
         .onAppear(perform: {
             loadRoadSituation(location: checkUserLocation(lat: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, long: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503), gymId: gym.id)
-            userData.selectedGym = gym
+           
         })
     }
 }
