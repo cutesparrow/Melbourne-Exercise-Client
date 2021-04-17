@@ -33,7 +33,7 @@ class NetworkManager {
         AF.request(NetworkAPIBaseURL + path,
                    parameters: parameters,
                    headers: commonHeaders,
-                   requestModifier: { $0.timeoutInterval = 5 })
+                   requestModifier: { $0.timeoutInterval = 15 })
             .responseData { response in
                 switch response.result {
                 case let .success(data): completion(.success(data))
@@ -46,7 +46,7 @@ class NetworkManager {
     func requestWeather(completion: @escaping NetworkRequestCompletion) -> DataRequest { //get weather
         AF.request(weatherWebsite,
                    parameters: parameter,
-                   requestModifier: { $0.timeoutInterval = 5 })
+                   requestModifier: { $0.timeoutInterval = 15 })
             .responseData { response in
                 switch response.result {
                 case let .success(data): completion(.success(data))
@@ -62,7 +62,7 @@ class NetworkManager {
         AF.request(NetworkAPIBaseURL + path,
                    parameters: parameters,
                    headers: commonHeaders,
-                   requestModifier: { $0.timeoutInterval = 5 })
+                   requestModifier: { $0.timeoutInterval = 15 })
             .responseString { response in
                 switch response.result {
                 case let .success(data): completion(.success(data))
@@ -78,7 +78,7 @@ class NetworkManager {
                    parameters: parameters,
                    encoding: JSONEncoding.prettyPrinted,
                    headers: commonHeaders,
-                   requestModifier: { $0.timeoutInterval = 5 })
+                   requestModifier: { $0.timeoutInterval = 15 })
             .responseData { response in
                 switch response.result {
                 case let .success(data): completion(.success(data))
@@ -108,7 +108,7 @@ class NetworkManager {
     }
     
     static func parseData<T: Decodable>(_ data: Data) -> Result<T, Error> { //translate json to object 
-        print(data.base64EncodedData())
+        print(debugPrint(data))
             guard let decodedData = try? JSONDecoder().decode(T.self, from: data) else {
                 let error = NSError(domain: "NetworkAPIError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Can not parse data"])
                 return .failure(error)

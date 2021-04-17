@@ -7,13 +7,14 @@
 
 import SwiftUI
 import MapKit
+import SDWebImageSwiftUI
+import URLImage
 
 struct CustomizePathView: View {
     @EnvironmentObject var userData:UserData
     @State var selectedTab:Int = 0
-    @State var directionsList:[String] = [""]
     @State var showDirectionsList:Bool = false
-    var customizedCards:[CustomizedCard]
+    @State var customizedCards:[CustomizedCard]
     var body: some View {
         VStack{
             Spacer()
@@ -21,12 +22,17 @@ struct CustomizePathView: View {
                 .bold()
                 .offset(y:UIScreen.main.bounds.height/30)
             TabView(selection: $selectedTab) {
-                ForEach(self.customizedCards) { card in
+                ForEach(self.customizedCards,id:\.id) { card in
 //                    DirectionMapView(directions: $directionsList, coordinatesList: card.path)
-                    PathShowView(path: card.path, height: 2.5)
-                        .onTapGesture(perform: {
-                            print(card.distance)
-                        })
+                    WebImage(url: URL(string: NetworkManager.shared.urlBasePath + card.image))
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: UIScreen.main.bounds.width/1.2,height:UIScreen.main.bounds.width/1.8)
+                        .clipped()
+                        .cornerRadius(14)
+                        .shadow(radius: 4)
+                        .tag(card.id)
+                        
                 }
             }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
             .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
@@ -68,7 +74,7 @@ struct CustomizePathView: View {
                           .bold()
                           .padding()
                 Divider().background(Color.blue)
-                List(self.customizedCards[selectedTab].directions, id:\.self){i in
+                List(self.customizedCards[selectedTab].instructions, id:\.self){i in
                 HTMLStringView(html: i)
                     
             }}

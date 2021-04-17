@@ -74,7 +74,7 @@ public struct ConcentricOnboardingView : View {
     @State var shape = AnyView(Circle())
     let nextIcon: String // the default icon is "chevron.forward", use constructor argument to change
 
-    public init(pages: [AnyView], bgColors: [Color], duration: Double = 1.0, nextIcon: String = "chevron.forward") {
+    public init(pages: [AnyView], bgColors: [Color], duration: Double = 1.0, nextIcon: String = "chevron.forward.2") {
         self.pages = pages
         self.bgColors = bgColors
         self.duration = duration
@@ -135,8 +135,8 @@ public struct ConcentricOnboardingView : View {
                     Image(systemName: nextIcon)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 10, height: 20)
-                        .foregroundColor(bgColor)
+                        .frame(width: 30, height: 30)
+                        .foregroundColor(.red)
                 }
             }
             .offset(y: 300)
@@ -253,7 +253,7 @@ public struct ConcentricOnboardingView : View {
 
     func updateColors() {
         let width = CGFloat(radius * 2)
-        shape = AnyView(Circle().foregroundColor(circleColor).frame(width: width, height: width, alignment: .center))
+        shape = AnyView(Circle().foregroundColor(.white).frame(width: width, height: width, alignment: .center))
 
         bgColor = bgColors[currentIndex.value]
         circleColor = bgColors[nextIndex.value]

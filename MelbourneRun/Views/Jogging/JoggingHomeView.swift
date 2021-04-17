@@ -26,8 +26,10 @@ struct JoggingHomeView: View {
     @State var loadedCustomizedCards:Bool = false
     @State var popularCards:[PopularCard] = []
     @State var customizedCards:[CustomizedCard] = []
+    @State var showDistanceInput:Bool = false
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: -37.81145542089078, longitude: 144.96473765203163), span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03))
     @State private var trackingMode = MapUserTrackingMode.follow
+    @State private var choosedRouteLength:Double = 1
     func createBottomFloaterView() -> some View {
           ZStack{
             VisualEffectView(effect: UIBlurEffect(style: .light))
@@ -66,10 +68,37 @@ struct JoggingHomeView: View {
         _ = NetworkAPI.loadSensorSituation(completion: completion)
     }
     
+    func loadCustomizedCardsData(location:CLLocationCoordinate2D,length:Double){
+        let completion: (Result<[CustomizedCard], Error>) -> Void = { result in
+            switch result {
+            case let .success(list):
+                if list.count != 0{
+            
+                self.customizedCards = list
+                self.showLoadingIndicator = false
+                self.loadedPopularCards = true
+                self.showSheet.toggle()
+                self.isopenManue.toggle()
+            }
+                else{
+                    self.showLoadingIndicator = false
+                    self.loadedPopularCards = false
+                    self.networkError = true
+                }
+            case let .failure(error): print(error)
+                self.showLoadingIndicator = false
+                self.loadedPopularCards = false
+                self.networkError = true
+            }
+        }
+        self.showLoadingIndicator = true
+        _ = NetworkAPI.loadCustomizedCards(location: location, length: length, completion: completion)
+    }
   
     var body: some View {
-        let textButtons = [AnyView(IconAndTextButton(loading:$showLoadingIndicator,networkError:$networkError,selectedSheet: "popular", mainswitch: $isopenManue, isshow: $showSheet, sheetKind: $sheetKind, customizedCards: $customizedCards, popularCards: $popularCards, loaded: $loadedPopularCards, imageName: MockData.iconAndTextImageNames[0], buttonText: MockData.iconAndTextTitles[0]).environmentObject(userData)
-        ),AnyView(IconAndTextButton(loading:$showLoadingIndicator,networkError:$networkError,selectedSheet: "customize", mainswitch: $isopenManue, isshow: $showSheet, sheetKind: $sheetKind, customizedCards: $customizedCards, popularCards: $popularCards, loaded: $loadedPopularCards, imageName: MockData.iconAndTextImageNames[1], buttonText: MockData.iconAndTextTitles[1]).environmentObject(userData))]
+        
+        let textButtons = [AnyView(IconAndTextButton(loading:$showLoadingIndicator,networkError:$networkError,selectedSheet: "popular", mainswitch: $isopenManue, isshow: $showSheet, sheetKind: $sheetKind, customizedCards: $customizedCards, popularCards: $popularCards, loaded: $loadedPopularCards, showDistanceInput: $showDistanceInput, imageName: MockData.iconAndTextImageNames[0], buttonText: MockData.iconAndTextTitles[0]).environmentObject(userData)
+        ),AnyView(IconAndTextButton(loading:$showLoadingIndicator,networkError:$networkError,selectedSheet: "customize", mainswitch: $isopenManue, isshow: $showSheet, sheetKind: $sheetKind, customizedCards: $customizedCards, popularCards: $popularCards, loaded: $loadedPopularCards, showDistanceInput: $showDistanceInput, imageName: MockData.iconAndTextImageNames[1], buttonText: MockData.iconAndTextTitles[1]).environmentObject(userData))]
 
         let mainButton1 = AnyView(MainButton(imageName: "plus", color:AppColor.shared.joggingColor, width: 60))
         
@@ -80,7 +109,8 @@ struct JoggingHomeView: View {
                        .alignment(.right)
                        .spacing(10)
                        .initialOpacity(0)
-        return ZStack{
+        return
+            ZStack{
 //            Map(coordinateRegion: $region, interactionModes: .all, showsUserLocation: true, userTrackingMode: $trackingMode, annotationItems: userData.marks, annotationContent: { (mark) -> MapMarker in
 //                MapMarker(coordinate: CLLocationCoordinate2D(latitude: mark.coordinate.latitude, longitude: mark.coordinate.longitude), tint: mark.risk == "high" ? .red : mark.risk == "medium" ? .orange : mark.risk == "low" ? .yellow : .green)
 //            })
@@ -124,6 +154,39 @@ struct JoggingHomeView: View {
                     .foregroundColor(AppColor.shared.joggingColor)
                 
             }
+                if showDistanceInput{
+                    ZStack{
+                        Color(.systemBackground)
+                            .opacity(0.9)
+                            .clipShape(RoundedRectangle(cornerRadius: 25))
+                        VStack{
+                        Text("Choose wanted route length")
+                            .foregroundColor(Color(.label))
+                        Picker(selection: $choosedRouteLength, label: Text("length picker")) {
+                            ForEach([1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0], id: \.self) { i in
+                                Text("\(String(i)) km")
+                                    .tag(i)
+                                    .foregroundColor(Color(.label))
+                            }
+                        }
+                            HStack(spacing: UIScreen.main.bounds.width/7) {
+                                Button {
+                                    self.showDistanceInput.toggle()
+                                } label: {
+                                    Text("Cancel")
+                                }
+                                Button {
+                                    self.showDistanceInput.toggle()
+                                    self.loadCustomizedCardsData(location: checkUserLocation(lat: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, long: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503), length: choosedRouteLength)
+                                } label: {
+                                    Text("OK")
+                                }
+
+                            }
+                    }
+                        
+                    }.frame(width: UIScreen.main.bounds.width/1.5, height: UIScreen.main.bounds.height/2.5, alignment: .center)
+                }
         }
         .toast(isPresenting: $networkError, duration: 1.2, tapToDismiss: true, alert: { AlertToast(type: .error(.red), title: "Network Error", subTitle: "")
         }, completion: {_ in
