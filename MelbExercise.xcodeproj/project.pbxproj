@@ -73,6 +73,8 @@
 		D6618466262429CF00DA63AE /* HTMLStringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6618465262429CF00DA63AE /* HTMLStringView.swift */; };
 		D661846926256B0200DA63AE /* skipButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D661846826256B0200DA63AE /* skipButton.swift */; };
 		D661846C2627002900DA63AE /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = D661846B2627002900DA63AE /* ActivityIndicatorView */; };
+		D661846F2629CAF700DA63AE /* testView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D661846E2629CAF500DA63AE /* testView.swift */; };
+		D6618472262AF93500DA63AE /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = D6618471262AF93500DA63AE /* URLImage */; };
 		D6708FC7261403F2008FDD79 /* BottomBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6708FC3261403F2008FDD79 /* BottomBarItemView.swift */; };
 		D6708FC8261403F2008FDD79 /* BottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6708FC4261403F2008FDD79 /* BottomBar.swift */; };
 		D6708FC9261403F2008FDD79 /* BottomBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6708FC5261403F2008FDD79 /* BottomBarItem.swift */; };
@@ -195,6 +197,7 @@
 		D652010025F757B900BA04E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D6618465262429CF00DA63AE /* HTMLStringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLStringView.swift; sourceTree = "<group>"; };
 		D661846826256B0200DA63AE /* skipButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skipButton.swift; sourceTree = "<group>"; };
+		D661846E2629CAF500DA63AE /* testView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testView.swift; sourceTree = "<group>"; };
 		D6708FC3261403F2008FDD79 /* BottomBarItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarItemView.swift; sourceTree = "<group>"; };
 		D6708FC4261403F2008FDD79 /* BottomBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBar.swift; sourceTree = "<group>"; };
 		D6708FC5261403F2008FDD79 /* BottomBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarItem.swift; sourceTree = "<group>"; };
@@ -264,6 +267,7 @@
 				D6BC562C261048E20033341E /* PositionScrollView in Frameworks */,
 				D61A147E260459660049B377 /* UBottomSheet in Frameworks */,
 				D6226EC9261EED2A003F4D9F /* FloatingButton in Frameworks */,
+				D6618472262AF93500DA63AE /* URLImage in Frameworks */,
 				D6109393261347EE00C0C6BC /* ConcentricOnboarding in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -513,6 +517,7 @@
 				D6977BA8260C3A74001F4B48 /* MainSwitchView.swift */,
 				D6977BAB260C3C15001F4B48 /* HomeView.swift */,
 				D6977BBD260F5F63001F4B48 /* OnboardingShowView.swift */,
+				D661846E2629CAF500DA63AE /* testView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -589,6 +594,7 @@
 				D6226EDD261F0AF6003F4D9F /* LNPopupUI */,
 				D67A3C212622C08C00C47CA1 /* SSToastMessage */,
 				D661846B2627002900DA63AE /* ActivityIndicatorView */,
+				D6618471262AF93500DA63AE /* URLImage */,
 			);
 			productName = MelbourneRun;
 			productReference = D65200F425F757B800BA04E9 /* MelbExercise.app */;
@@ -637,6 +643,7 @@
 				D6226EDC261F0AF6003F4D9F /* XCRemoteSwiftPackageReference "LNPopupUI" */,
 				D67A3C202622C08C00C47CA1 /* XCRemoteSwiftPackageReference "SSToastMessage" */,
 				D661846A2627002900DA63AE /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
+				D6618470262AF93500DA63AE /* XCRemoteSwiftPackageReference "url-image" */,
 			);
 			productRefGroup = D65200F525F757B800BA04E9 /* Products */;
 			projectDirPath = "";
@@ -735,6 +742,7 @@
 				D60FC271260342D90038E9E5 /* StarButtonView.swift in Sources */,
 				D630CA68260888CA008B9FA9 /* RoadSituationModel.swift in Sources */,
 				D63D18CE25FE09460049C1AC /* ActivityModel.swift in Sources */,
+				D661846F2629CAF700DA63AE /* testView.swift in Sources */,
 				D69B1219261073EF00C086FA /* PreviewFactory.swift in Sources */,
 				D6226EE526201BBA003F4D9F /* PathShowView.swift in Sources */,
 				D6CD21F725F8642500861495 /* ImageScrollModel.swift in Sources */,
@@ -1044,6 +1052,14 @@
 				minimumVersion = 0.0.6;
 			};
 		};
+		D6618470262AF93500DA63AE /* XCRemoteSwiftPackageReference "url-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dmytro-anokhin/url-image";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.3;
+			};
+		};
 		D6708FCD261408C1008FDD79 /* XCRemoteSwiftPackageReference "ActionOver" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AndreaMiotto/ActionOver.git";
@@ -1162,6 +1178,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D661846A2627002900DA63AE /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
 			productName = ActivityIndicatorView;
+		};
+		D6618471262AF93500DA63AE /* URLImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D6618470262AF93500DA63AE /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImage;
 		};
 		D6708FCE261408C1008FDD79 /* ActionOver */ = {
 			isa = XCSwiftPackageProductDependency;

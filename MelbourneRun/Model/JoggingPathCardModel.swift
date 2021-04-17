@@ -9,11 +9,11 @@ import Foundation
 
 struct CustomizedCard:Codable,Identifiable{
     var id:Int
-    var path:[Coordinate]
+    var image:String
     var distance:Double
     var risk:String
     var time:String
-    var directions:[String]
+    var instructions:[String]
 }
 
 struct PopularCard:Codable,Identifiable{

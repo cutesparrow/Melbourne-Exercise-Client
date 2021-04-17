@@ -65,8 +65,8 @@ class NetworkAPI{
         }
     }
     
-    static public func loadCustomizedCards(location:CLLocationCoordinate2D,completion: @escaping (Result<[CustomizedCard], Error>) -> Void)->DataRequest{
-        NetworkManager.shared.requestGet(path: "jog/path/customize", parameters: ["lat":location.latitude,"long":location.longitude]) { result in
+    static public func loadCustomizedCards(location:CLLocationCoordinate2D,length:Double,completion: @escaping (Result<[CustomizedCard], Error>) -> Void)->DataRequest{
+        NetworkManager.shared.requestGet(path: "jog/path/customize", parameters: ["lat":location.latitude,"long":location.longitude,"length":length]) { result in
             switch result {
                         case let .success(data):
                             let customizeList: Result<[CustomizedCard], Error> = NetworkManager.parseData(data)
