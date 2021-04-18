@@ -12,7 +12,7 @@ let items: [BottomBarItem] = [
     BottomBarItem(icon: "house.fill", title: "Home", color: AppColor.shared.homeColor),
     BottomBarItem(icon: "suit.heart", title: "Gyms", color: AppColor.shared.gymColor),
     //BottomBarItem(icon: "sun.min", title: "Outdoor", color: AppColor.shared.outDoorColor),
-    BottomBarItem(icon: "figure.walk", title: "Jogging", color: AppColor.shared.joggingColor)
+    BottomBarItem(icon: "location.north", title: "Route", color: AppColor.shared.joggingColor)
 ]
 struct BottomBarView: View {
     @EnvironmentObject var userData:UserData

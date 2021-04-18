@@ -73,9 +73,9 @@ struct CustomizePathView: View {
                           .font(.largeTitle)
                           .bold()
                           .padding()
-                Divider().background(Color.blue)
+                
                 List(self.customizedCards[selectedTab].instructions, id:\.self){i in
-                HTMLStringView(html: i)
+                    Text(i)
                     
             }}
         })

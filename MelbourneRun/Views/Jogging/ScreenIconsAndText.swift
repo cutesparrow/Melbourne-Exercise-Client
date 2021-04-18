@@ -126,13 +126,15 @@ struct IconAndTextButton: View {
 struct MockData {
 
     static let iconAndTextImageNames = [
-        "star.circle",
-        "pencil.circle"
+        
+        "bicycle.circle",
+        "figure.walk.circle",
     ]
 
     static let iconAndTextTitles = [
-        "Popular",
-        "Customize"
+        
+        "Cycling",
+        "Walk & Dog",
     ]
 }
 
