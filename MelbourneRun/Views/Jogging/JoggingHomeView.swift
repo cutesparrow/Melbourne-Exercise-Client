@@ -46,7 +46,7 @@ struct JoggingHomeView: View {
                     .foregroundColor(Color(.label))
                       .fontWeight(.bold)
                       .lineLimit(3)
-                  Text("All pedestrian sensors' data are shown on the map. You can  plan your own jogging path or choose a popular path by clicking the plus symbol. We will recommend the lowest risk jogging path for you!")
+                  Text("All pedestrian sensors' data are shown on the map. You can  plan your own route and go for walking, walking dog or cycling by click plus button. Please have a look at the risk level before starting!")
                       .font(.system(size: 14))
                       .foregroundColor(Color(.label))
               }
@@ -98,7 +98,7 @@ struct JoggingHomeView: View {
     var body: some View {
         
         let textButtons = [AnyView(IconAndTextButton(loading:$showLoadingIndicator,networkError:$networkError,selectedSheet: "popular", mainswitch: $isopenManue, isshow: $showSheet, sheetKind: $sheetKind, customizedCards: $customizedCards, popularCards: $popularCards, loaded: $loadedPopularCards, showDistanceInput: $showDistanceInput, imageName: MockData.iconAndTextImageNames[0], buttonText: MockData.iconAndTextTitles[0]).environmentObject(userData)
-        ),AnyView(IconAndTextButton(loading:$showLoadingIndicator,networkError:$networkError,selectedSheet: "customize", mainswitch: $isopenManue, isshow: $showSheet, sheetKind: $sheetKind, customizedCards: $customizedCards, popularCards: $popularCards, loaded: $loadedPopularCards, showDistanceInput: $showDistanceInput, imageName: MockData.iconAndTextImageNames[1], buttonText: MockData.iconAndTextTitles[1]).environmentObject(userData))]
+        ),AnyView(IconAndTextButton(loading:$showLoadingIndicator,networkError:$networkError,selectedSheet: "customize", mainswitch: $isopenManue, isshow: $showSheet, sheetKind: $sheetKind, customizedCards: $customizedCards, popularCards: $popularCards, loaded: $loadedCustomizedCards, showDistanceInput: $showDistanceInput, imageName: MockData.iconAndTextImageNames[1], buttonText: MockData.iconAndTextTitles[1]).environmentObject(userData))]
 
         let mainButton1 = AnyView(MainButton(imageName: "plus", color:AppColor.shared.joggingColor, width: 60))
         
