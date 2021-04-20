@@ -47,7 +47,6 @@
 		D6226EE126200CE8003F4D9F /* CustomizePathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6226EE026200CE8003F4D9F /* CustomizePathView.swift */; };
 		D6226EE3262016AC003F4D9F /* PathInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6226EE2262016AC003F4D9F /* PathInformationView.swift */; };
 		D6226EE526201BBA003F4D9F /* PathShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6226EE426201BBA003F4D9F /* PathShowView.swift */; };
-		D6226EE726202397003F4D9F /* PopularPathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6226EE626202397003F4D9F /* PopularPathView.swift */; };
 		D6226EE9262034EA003F4D9F /* SensorMapAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6226EE8262034EA003F4D9F /* SensorMapAnnotationView.swift */; };
 		D630CA5B2607404E008B9FA9 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D630CA5A2607404E008B9FA9 /* SDWebImageSwiftUI */; };
 		D630CA6326088662008B9FA9 /* RoadSituationContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D630CA6226088662008B9FA9 /* RoadSituationContentView.swift */; };
@@ -75,6 +74,13 @@
 		D661846C2627002900DA63AE /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = D661846B2627002900DA63AE /* ActivityIndicatorView */; };
 		D661846F2629CAF700DA63AE /* testView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D661846E2629CAF500DA63AE /* testView.swift */; };
 		D6618472262AF93500DA63AE /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = D6618471262AF93500DA63AE /* URLImage */; };
+		D6618474262D2AEE00DA63AE /* CyclePathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6618473262D2AEE00DA63AE /* CyclePathView.swift */; };
+		D6618479262D2CCE00DA63AE /* PupolarJoggingPathHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6618478262D2CCE00DA63AE /* PupolarJoggingPathHomeView.swift */; };
+		D661847B262D2CE200DA63AE /* RecommendedJoggingPathDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D661847A262D2CE200DA63AE /* RecommendedJoggingPathDetailView.swift */; };
+		D661847D262D2F9800DA63AE /* PopularJoggingRouteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D661847C262D2F9800DA63AE /* PopularJoggingRouteModel.swift */; };
+		D661847F262D694400DA63AE /* ScrollViewPaged.swift in Sources */ = {isa = PBXBuildFile; fileRef = D661847E262D694400DA63AE /* ScrollViewPaged.swift */; };
+		D6618481262D930800DA63AE /* scrollViewEdited.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6618480262D930800DA63AE /* scrollViewEdited.swift */; };
+		D6618485262D992C00DA63AE /* PagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6618484262D992C00DA63AE /* PagerView.swift */; };
 		D6708FC7261403F2008FDD79 /* BottomBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6708FC3261403F2008FDD79 /* BottomBarItemView.swift */; };
 		D6708FC8261403F2008FDD79 /* BottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6708FC4261403F2008FDD79 /* BottomBar.swift */; };
 		D6708FC9261403F2008FDD79 /* BottomBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6708FC5261403F2008FDD79 /* BottomBarItem.swift */; };
@@ -174,7 +180,6 @@
 		D6226EE026200CE8003F4D9F /* CustomizePathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizePathView.swift; sourceTree = "<group>"; };
 		D6226EE2262016AC003F4D9F /* PathInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathInformationView.swift; sourceTree = "<group>"; };
 		D6226EE426201BBA003F4D9F /* PathShowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathShowView.swift; sourceTree = "<group>"; };
-		D6226EE626202397003F4D9F /* PopularPathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPathView.swift; sourceTree = "<group>"; };
 		D6226EE8262034EA003F4D9F /* SensorMapAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorMapAnnotationView.swift; sourceTree = "<group>"; };
 		D630CA6226088662008B9FA9 /* RoadSituationContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadSituationContentView.swift; sourceTree = "<group>"; };
 		D630CA67260888CA008B9FA9 /* RoadSituationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadSituationModel.swift; sourceTree = "<group>"; };
@@ -198,6 +203,13 @@
 		D6618465262429CF00DA63AE /* HTMLStringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLStringView.swift; sourceTree = "<group>"; };
 		D661846826256B0200DA63AE /* skipButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skipButton.swift; sourceTree = "<group>"; };
 		D661846E2629CAF500DA63AE /* testView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testView.swift; sourceTree = "<group>"; };
+		D6618473262D2AEE00DA63AE /* CyclePathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyclePathView.swift; sourceTree = "<group>"; };
+		D6618478262D2CCE00DA63AE /* PupolarJoggingPathHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PupolarJoggingPathHomeView.swift; sourceTree = "<group>"; };
+		D661847A262D2CE200DA63AE /* RecommendedJoggingPathDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedJoggingPathDetailView.swift; sourceTree = "<group>"; };
+		D661847C262D2F9800DA63AE /* PopularJoggingRouteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularJoggingRouteModel.swift; sourceTree = "<group>"; };
+		D661847E262D694400DA63AE /* ScrollViewPaged.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewPaged.swift; sourceTree = "<group>"; };
+		D6618480262D930800DA63AE /* scrollViewEdited.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scrollViewEdited.swift; sourceTree = "<group>"; };
+		D6618484262D992C00DA63AE /* PagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerView.swift; sourceTree = "<group>"; };
 		D6708FC3261403F2008FDD79 /* BottomBarItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarItemView.swift; sourceTree = "<group>"; };
 		D6708FC4261403F2008FDD79 /* BottomBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBar.swift; sourceTree = "<group>"; };
 		D6708FC5261403F2008FDD79 /* BottomBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarItem.swift; sourceTree = "<group>"; };
@@ -294,7 +306,7 @@
 			path = WalkDog;
 			sourceTree = "<group>";
 		};
-		D60FC23A2602EB9F0038E9E5 /* Jogging */ = {
+		D60FC23A2602EB9F0038E9E5 /* Route */ = {
 			isa = PBXGroup;
 			children = (
 				D6CD21DC25F7A3B700861495 /* MapView.swift */,
@@ -304,10 +316,10 @@
 				D6226EE026200CE8003F4D9F /* CustomizePathView.swift */,
 				D6226EE2262016AC003F4D9F /* PathInformationView.swift */,
 				D6226EE426201BBA003F4D9F /* PathShowView.swift */,
-				D6226EE626202397003F4D9F /* PopularPathView.swift */,
 				D67A3C1E2622B49700C47CA1 /* RiskLabelView.swift */,
+				D6618473262D2AEE00DA63AE /* CyclePathView.swift */,
 			);
-			path = Jogging;
+			path = Route;
 			sourceTree = "<group>";
 		};
 		D60FC23B2602EBA80038E9E5 /* Hiking */ = {
@@ -361,6 +373,9 @@
 				D6226EC1261ED8A9003F4D9F /* CardView.swift */,
 				D6226EE8262034EA003F4D9F /* SensorMapAnnotationView.swift */,
 				D6618465262429CF00DA63AE /* HTMLStringView.swift */,
+				D661847E262D694400DA63AE /* ScrollViewPaged.swift */,
+				D6618480262D930800DA63AE /* scrollViewEdited.swift */,
+				D6618484262D992C00DA63AE /* PagerView.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -403,6 +418,15 @@
 				D65200FE25F757B900BA04E9 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D6618475262D2C8E00DA63AE /* PopularJoggingPath */ = {
+			isa = PBXGroup;
+			children = (
+				D6618478262D2CCE00DA63AE /* PupolarJoggingPathHomeView.swift */,
+				D661847A262D2CE200DA63AE /* RecommendedJoggingPathDetailView.swift */,
+			);
+			path = PopularJoggingPath;
 			sourceTree = "<group>";
 		};
 		D6708FC1261403F2008FDD79 /* Sources */ = {
@@ -501,6 +525,7 @@
 		D6CD21E325F7B17E00861495 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D6618475262D2C8E00DA63AE /* PopularJoggingPath */,
 				D6708FF026149CBD008FDD79 /* Onboarding */,
 				D6708FC1261403F2008FDD79 /* Sources */,
 				D69B120E261073A000C086FA /* Weather */,
@@ -508,7 +533,7 @@
 				D630CA61260885FB008B9FA9 /* Helper */,
 				D60FC26726032E760038E9E5 /* Modifier */,
 				D60FC23B2602EBA80038E9E5 /* Hiking */,
-				D60FC23A2602EB9F0038E9E5 /* Jogging */,
+				D60FC23A2602EB9F0038E9E5 /* Route */,
 				D60FC2392602EB910038E9E5 /* WalkDog */,
 				D60FC2382602EB870038E9E5 /* Gym */,
 				D6CD21EF25F85FDA00861495 /* Button */,
@@ -553,6 +578,7 @@
 				D69B12222611CC9C00C086FA /* SafetyPolicyModel.swift */,
 				D6708FED26147598008FDD79 /* ShowInformationModel.swift */,
 				D6226EBE261ED65E003F4D9F /* JoggingPathCardModel.swift */,
+				D661847C262D2F9800DA63AE /* PopularJoggingRouteModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -685,6 +711,7 @@
 				D630CA7C2608B47B008B9FA9 /* DigitalClockView.swift in Sources */,
 				D6708FFF2614A86B008FDD79 /* OnboardingFive.swift in Sources */,
 				D6226EBF261ED65E003F4D9F /* JoggingPathCardModel.swift in Sources */,
+				D661847B262D2CE200DA63AE /* RecommendedJoggingPathDetailView.swift in Sources */,
 				D60FC27F26037E9A0038E9E5 /* NetworkAPI.swift in Sources */,
 				D60FC26D2603387E0038E9E5 /* DirectButtonView.swift in Sources */,
 				D60FC28F26044B7F0038E9E5 /* JoggingGoalInputView.swift in Sources */,
@@ -696,7 +723,6 @@
 				D60FC24A2602ECA90038E9E5 /* GymModel.swift in Sources */,
 				D6708FFC2614A73F008FDD79 /* OnboardingFour.swift in Sources */,
 				D6226EE126200CE8003F4D9F /* CustomizePathView.swift in Sources */,
-				D6226EE726202397003F4D9F /* PopularPathView.swift in Sources */,
 				D630CA91260991DF008B9FA9 /* WalkDogHomeView.swift in Sources */,
 				D69B12292611EE9700C086FA /* LegendView.swift in Sources */,
 				D69B1216261073CC00C086FA /* TopNavigationBarView.swift in Sources */,
@@ -708,10 +734,12 @@
 				D60FC25F2603128F0038E9E5 /* ImageScrollView.swift in Sources */,
 				D6977BA6260C35A9001F4B48 /* BottomBarView.swift in Sources */,
 				D60FC24D2602EF630038E9E5 /* HikingParkModel.swift in Sources */,
+				D6618481262D930800DA63AE /* scrollViewEdited.swift in Sources */,
 				D6708FCA261403F2008FDD79 /* BarBuilder.swift in Sources */,
 				D6708FF226149CCC008FDD79 /* OnboardingOneView.swift in Sources */,
 				D60FC28B260443C80038E9E5 /* LocationViewModel.swift in Sources */,
 				D60FC2472602EC510038E9E5 /* GymCellView.swift in Sources */,
+				D6618485262D992C00DA63AE /* PagerView.swift in Sources */,
 				D630CA882608C20A008B9FA9 /* PlanButtonView.swift in Sources */,
 				D6CD21DD25F7A3B700861495 /* MapView.swift in Sources */,
 				D630CA6B26088FA2008B9FA9 /* GraphCapsule.swift in Sources */,
@@ -725,6 +753,8 @@
 				D6708FE72614736A008FDD79 /* Button.swift in Sources */,
 				D69B12262611D9AF00C086FA /* PolicyView.swift in Sources */,
 				D6708FEE26147598008FDD79 /* ShowInformationModel.swift in Sources */,
+				D6618474262D2AEE00DA63AE /* CyclePathView.swift in Sources */,
+				D661847F262D694400DA63AE /* ScrollViewPaged.swift in Sources */,
 				D60FC23D2602EC0D0038E9E5 /* GymRecordView.swift in Sources */,
 				D6708FC7261403F2008FDD79 /* BottomBarItemView.swift in Sources */,
 				D630CA94260991F2008B9FA9 /* GymHomeView.swift in Sources */,
@@ -746,6 +776,7 @@
 				D69B1219261073EF00C086FA /* PreviewFactory.swift in Sources */,
 				D6226EE526201BBA003F4D9F /* PathShowView.swift in Sources */,
 				D6CD21F725F8642500861495 /* ImageScrollModel.swift in Sources */,
+				D661847D262D2F9800DA63AE /* PopularJoggingRouteModel.swift in Sources */,
 				D661846926256B0200DA63AE /* skipButton.swift in Sources */,
 				D6226ECC261EEDC3003F4D9F /* MainButtonJoggingView.swift in Sources */,
 				D630CA9726099591008B9FA9 /* LocationFetcher.swift in Sources */,
@@ -754,6 +785,7 @@
 				D6977BBB260C85BF001F4B48 /* JoggingHomeView.swift in Sources */,
 				D6977B9F260B4BAF001F4B48 /* PreLaunch.swift in Sources */,
 				D69B1214261073CC00C086FA /* CurrentObservationView.swift in Sources */,
+				D6618479262D2CCE00DA63AE /* PupolarJoggingPathHomeView.swift in Sources */,
 				D6708FE32614736A008FDD79 /* Themes.swift in Sources */,
 				D6226EE3262016AC003F4D9F /* PathInformationView.swift in Sources */,
 				D6708FE92614736A008FDD79 /* AlertXViewController.swift in Sources */,

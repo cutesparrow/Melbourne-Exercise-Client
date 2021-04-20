@@ -180,7 +180,8 @@ struct ExpandableCardView: View {
             }
         }
         .onAppear(perform: {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4){if true{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4){
+                if true{
                 self.getShowInformation()
                 userData.homepageFistAppear = false
             }}

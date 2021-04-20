@@ -12,7 +12,8 @@ let items: [BottomBarItem] = [
     BottomBarItem(icon: "house.fill", title: "Home", color: AppColor.shared.homeColor),
     BottomBarItem(icon: "suit.heart", title: "Gyms", color: AppColor.shared.gymColor),
     //BottomBarItem(icon: "sun.min", title: "Outdoor", color: AppColor.shared.outDoorColor),
-    BottomBarItem(icon: "location.north", title: "Route", color: AppColor.shared.joggingColor)
+    BottomBarItem(icon: "location.north", title: "Route", color: AppColor.shared.joggingColor),
+    BottomBarItem(icon:"figure.walk",title: "Jog",color:AppColor.shared.popularRouteColor),
 ]
 struct BottomBarView: View {
     @EnvironmentObject var userData:UserData
@@ -20,12 +21,11 @@ struct BottomBarView: View {
     @State private var selectedIndex:Int = 0
     @State var tutorial:Bool = false
     @State var showLocationAlert:Bool = false
-    
+    @State var showBottomBar:Bool = true
     init() {
         UITableView.appearance().backgroundColor = .clear// Uses UIColor
     }
     var body: some View {
-        
         if (showGuideView && userData.new) || tutorial {
             if tutorial{
                 OnboardingShowView(showGuideView: $tutorial)
@@ -34,13 +34,12 @@ struct BottomBarView: View {
         } else {
            NavigationView{
              ZStack{
-                 MainSwitchView(selectView: $selectedIndex)
+                MainSwitchView(selectView: $selectedIndex, showBottomBar:$showBottomBar)
                      .environmentObject(userData)
                  VStack{
                      Spacer()
-                    if true {
+                    if showBottomBar {
                         BottomBar(selectedIndex: $selectedIndex, items: items)
-                            
                     }
                  }.padding(.bottom,15)
                  .ignoresSafeArea(.all, edges: .all)

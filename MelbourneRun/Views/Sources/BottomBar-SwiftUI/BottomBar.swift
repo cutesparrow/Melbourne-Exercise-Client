@@ -65,7 +65,7 @@ public struct BottomBar : View {
             }
         }
         .padding()
-            .animation(.default)}.frame(width: UIScreen.main.bounds.width/1.2, height: .infinity, alignment: .center)
+            .animation(.default)}.frame(width: UIScreen.main.bounds.width/1.1, height: .infinity, alignment: .center)
     }
 }
 

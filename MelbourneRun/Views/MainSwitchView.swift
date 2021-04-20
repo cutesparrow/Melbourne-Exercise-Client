@@ -10,6 +10,7 @@ import SwiftUI
 struct MainSwitchView: View {
     @EnvironmentObject var userData:UserData
     @Binding var selectView:Int
+    @Binding var showBottomBar:Bool
 //    @State var showInformation:ShowInformation = ShowInformation(imageName: "", safetyTips: "", exerciseTips: "", exerciseBenefits: "")
 //    @State var gymList:GymList = GymList(list: [])
     var body: some View {
@@ -23,16 +24,16 @@ struct MainSwitchView: View {
         case 2:JoggingHomeView()
             .environmentObject(userData)
             .navigationBarHidden(true)
-        case 3:OutDoorHomeView()
-            .environmentObject(userData)
+        case 3:
+            PupolarJoggingPathHomeView(showBottomBar:$showBottomBar)
+                .environmentObject(userData)
+                .navigationBarHidden(true)
+           
+          
+                
         default: Text("error")
         }
     }
 }
 
-struct MainSwitchView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainSwitchView(selectView: .constant(0))
-            .environmentObject(UserData())
-    }
-}
+

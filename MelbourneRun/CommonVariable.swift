@@ -24,6 +24,7 @@ struct AppColor {
     let lowRiskColor:Color = Color.yellow
     let noRiskColor:Color = Color.green
     let homeColor:Color = .purple
+    let popularRouteColor:Color = .yellow
 
 }
 
