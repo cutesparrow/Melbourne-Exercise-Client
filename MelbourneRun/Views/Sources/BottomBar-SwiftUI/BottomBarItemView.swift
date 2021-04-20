@@ -14,7 +14,7 @@ public struct BottomBarItemView: View {
     public let item: BottomBarItem
     
     public var body: some View {
-        HStack {
+        VStack {
             VStack{
                 item.icon
                 .imageScale(.large)
@@ -26,18 +26,19 @@ public struct BottomBarItemView: View {
 //                }
                 
             }
-            if isSelected {
+            
                 Text(item.title)
-                    .foregroundColor(item.color)
+                    .foregroundColor(isSelected ? item.color : .primary)
                     .font(.caption)
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-            }
+            
         }
+
         .padding()
-        .background(
-            Capsule()
-                .fill(isSelected ? item.color.opacity(0.2) : Color.clear)
-        )
+//        .background(
+//            Capsule()
+//                .fill(isSelected ? item.color.opacity(0.2) : Color.clear)
+//        )
     }
     
     var isSelected : Bool{

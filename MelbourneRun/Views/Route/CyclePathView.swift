@@ -1,4 +1,13 @@
 //
+//  CyclePathView.swift
+//  MelbExercise
+//
+//  Created by gaoyu shi on 19/4/21.
+//
+
+import SwiftUI
+
+//
 //  CustomizePathView.swift
 //  MelbExercise
 //
@@ -10,7 +19,7 @@ import MapKit
 import SDWebImageSwiftUI
 import URLImage
 
-struct CustomizePathView: View {
+struct CyclePathView: View {
     @EnvironmentObject var userData:UserData
     @State var selectedTab:Int = 0
     @State var showDirectionsList:Bool = false
@@ -18,15 +27,27 @@ struct CustomizePathView: View {
     var body: some View {
         VStack{
             Spacer()
-            Text("Recommanded Path")
-                .bold()
-                .offset(y:UIScreen.main.bounds.height/30)
+            HStack{
+                VStack(alignment: .leading){
+                    Text("Discover Your Cycling")
+                        .font(.system(size: 18, weight: .bold, design: .default))
+                        .foregroundColor(.gray)
+                    Text("Routes").font(.system(size: 40, weight: .bold, design: .default)).foregroundColor(.black)
+                }
+                Spacer()
+                
+            }.padding(.leading).padding(.top).padding(.trailing)
+            
+            
             TabView(selection: $selectedTab) {
                 ForEach(self.customizedCards,id:\.id) { card in
 //                    DirectionMapView(directions: $directionsList, coordinatesList: card.path)
                     WebImage(url: URL(string: NetworkManager.shared.urlBasePath + card.image))
+                        .placeholder{
+                            Color.gray
+                        }
                         .resizable()
-                        .scaledToFit()
+                        .scaledToFill()
                         .frame(width: UIScreen.main.bounds.width/1.2,height:UIScreen.main.bounds.width/1.8)
                         .clipped()
                         .cornerRadius(14)
@@ -41,8 +62,6 @@ struct CustomizePathView: View {
             PathInformationView(imageName: "timer", text: "Time", data: self.customizedCards[selectedTab].time)
                 .padding(.vertical,-15)
             PathInformationView(imageName: "playpause", text: "Length", data: String(self.customizedCards[selectedTab].distance)+" KM")
-                .padding(.vertical,-15)
-            PathInformationView(imageName: "pills", text: "Risk", data: self.customizedCards[selectedTab].risk)
                 .padding(.vertical,-15)
             HStack{
                 ZStack{
@@ -84,4 +103,5 @@ struct CustomizePathView: View {
         })
     }
 }
+
 

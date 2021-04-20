@@ -43,6 +43,7 @@ struct IconAndTextButton: View {
     @Binding var popularCards:[PopularCard]
     @Binding var loaded:Bool
     @Binding var showDistanceInput:Bool
+    @Binding var type:String
     var imageName: String
     var buttonText: String
     let imageWidth: CGFloat = 22
@@ -63,32 +64,22 @@ struct IconAndTextButton: View {
 //        self.loading = true
 //        _ = NetworkAPI.loadCustomizedCards(location: location, completion: completion)
 //    }
-    func loadPopularCardsData(location:CLLocationCoordinate2D){
-        let completion: (Result<[PopularCard], Error>) -> Void = { result in
-            switch result {
-            case let .success(list): self.popularCards = list
-                self.loading = false
-                self.loaded = true
-                self.isshow.toggle()
-                self.mainswitch.toggle()
-            case let .failure(error): print(error)
-                self.loading = false
-                self.loaded = false
-                self.networkError = true
-            }
-            
-        }
-        self.loading = true
-        _ = NetworkAPI.loadPopularCards(location: location, completion: completion)
-    }
+    
     var body: some View {
         Button(action: {
-            if selectedSheet == "popular"{
+            if selectedSheet == "cycle"{
+                showDistanceInput.toggle()
                 sheetKind = 1
-                self.loadPopularCardsData(location: checkUserLocation(lat: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, long: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503))
-            } else{
+                type = "bike"
+//                self.loadPopularCardsData(location: checkUserLocation(lat: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, long: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503))
+            } else if selectedSheet == "walk"{
                 showDistanceInput.toggle()
                 sheetKind = 2
+                type = "foot"
+            } else {
+                showDistanceInput.toggle()
+                sheetKind = 3
+                type = "dog"
             }
             
            
@@ -126,13 +117,12 @@ struct IconAndTextButton: View {
 struct MockData {
 
     static let iconAndTextImageNames = [
-        
         "bicycle.circle",
         "figure.walk.circle",
+        
     ]
 
     static let iconAndTextTitles = [
-        
         "Cycling",
         "Walk & Dog",
     ]

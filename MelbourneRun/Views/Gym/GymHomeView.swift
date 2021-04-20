@@ -44,7 +44,9 @@ struct GymHomeView: View {
                                             }
                     })
                 }
+                
             }
+            
 //            .navigationBarLargeTitleItems(trailing:
 //                    Button(action: {userData.showMemberShipSelection = true}, label: {
 //                        if userData.currentPage == 1{
