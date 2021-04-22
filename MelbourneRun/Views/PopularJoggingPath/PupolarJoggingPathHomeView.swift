@@ -297,8 +297,7 @@ struct PupolarJoggingPathHomeView: View {
                                                 }
                                                     .padding(.horizontal)
                                                 Text(joggingRoutes[thisItem].detail_text)
-                                                .padding(.horizontal)
-                                                    .padding(.bottom)
+                                                .padding()
                                                 .frame(maxHeight: self.expandedScreen_shown ? .infinity : 0)}
                                                 
                                             } else{
@@ -365,6 +364,7 @@ struct PupolarJoggingPathHomeView: View {
                         
                         Button(action: {
                             self.expandedScreen_willHide = true
+                            self.leftPercent = 0
                             self.expandedScreen_startPoint = self.expandedScreen_returnPoint
                             showBottomBar.toggle()
                             self.expandedScreen_shown = false
