@@ -175,7 +175,8 @@ struct PupolarJoggingPathHomeView: View {
                         .padding(.trailing, 20)
                         .padding(.bottom, 20)
                 }.coordinateSpace(name: "forEach")
-                
+                Spacer()
+                    .frame(height:60)
                 //ForEach_End
             }
             
@@ -297,14 +298,25 @@ struct PupolarJoggingPathHomeView: View {
                                                     Text(String(joggingRoutes[thisItem].distance) + " km")
                                                 }
                                                     .padding(.horizontal)
-                                                    Text("Safety tips:")
+                                                    HStack{
+                                                        Text("Safety tips:")
                                                         .bold()
                                                         .padding(.horizontal)
                                                         .padding(.top)
+                                                        Spacer()
+                                                    }
                                                     Text(joggingRoutes[thisItem].safety_tips)
-                                                        .padding()
+                                                        .padding(.horizontal)
+                                                    HStack{
+                                                        Text("Route detail:")
+                                                        .bold()
+                                                        .padding(.horizontal)
+                                                        .padding(.top)
+                                                        Spacer()
+                                                    }
                                                 Text(joggingRoutes[thisItem].detail_text)
-                                                .padding()
+                                                    .padding(.horizontal)
+                                                    .padding(.bottom)
                                                 .frame(maxHeight: self.expandedScreen_shown ? .infinity : 0)}
                                                 
                                             } else{
