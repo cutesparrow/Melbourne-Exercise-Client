@@ -43,6 +43,8 @@ struct GymListView: View {
                         .shadow(radius: 0 )
                 }}
             }
+                    Spacer()
+                        .frame(height:50)
             }
                 ZStack{
                     if showLoadingIndicator{

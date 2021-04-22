@@ -55,7 +55,7 @@ public struct BottomBar : View {
 //                .padding(.horizontal,10)
             VisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
                 .clipShape(RoundedRectangle(cornerRadius: 25))
-                .frame(height: 80, alignment: .center)
+                .frame(height: 70, alignment: .center)
             HStack(alignment: .bottom) {
             ForEach(0..<items.count) { index in
                 self.itemView(at: index)
@@ -65,7 +65,10 @@ public struct BottomBar : View {
             }
         }
         .padding()
-            .animation(.default)}.frame(width: UIScreen.main.bounds.width/1.1, height: .infinity, alignment: .center)
+        .animation(.default)
+            
+        }
+            .frame(width: UIScreen.main.bounds.width/1.1, height: 70, alignment: .center)
     }
 }
 
