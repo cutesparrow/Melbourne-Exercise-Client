@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct SensorMapAnnotationView: View {
-    @State private var wave = false
+
     @State private var wave1 = false
+    @Binding var animation:Bool
     var id:Int
     var color:Color
     var speed:Double
@@ -25,16 +26,17 @@ struct SensorMapAnnotationView: View {
 //                .onAppear(){
 //                    self.wave.toggle()
 //                }
-            Circle()
+            if !animation{
+                Circle()
                 .stroke(lineWidth: 4)
                 .frame(width: 2, height: 2)
                 .foregroundColor(color.opacity(0.7))
                 .scaleEffect(wave1 ? 5 : 1)
                 .opacity(wave1 ? 0 : 1)
-                .animation(Animation.easeInOut(duration: 1).repeatForever(autoreverses: false).speed(self.speed))
+                .animation(Animation.easeOut(duration: 1).repeatForever(autoreverses: true).speed(self.speed))
                 .onAppear(){
                     self.wave1.toggle()
-                }
+                }}
             Circle()
                 .frame(width: 10, height: 10)
                 .foregroundColor(color.opacity(0.7))
@@ -47,6 +49,6 @@ struct SensorMapAnnotationView: View {
 
 struct SensorMapAnnotationView_Previews: PreviewProvider {
     static var previews: some View {
-        SensorMapAnnotationView(id: 1, color: Color.blue,speed: 1)
+        SensorMapAnnotationView(animation: .constant(true), id: 1, color: Color.blue,speed: 1)
     }
 }

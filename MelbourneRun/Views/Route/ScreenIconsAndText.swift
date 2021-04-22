@@ -38,6 +38,7 @@ struct IconAndTextButton: View {
     @EnvironmentObject var userData:UserData
     @Binding var mainswitch:Bool
     @Binding var isshow:Bool
+    
     @Binding var sheetKind:Int
     @Binding var customizedCards:[CustomizedCard]
     @Binding var popularCards:[PopularCard]

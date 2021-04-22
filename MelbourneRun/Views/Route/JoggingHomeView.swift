@@ -78,6 +78,7 @@ struct JoggingHomeView: View {
                 self.showLoadingIndicator = false
                 self.loadedPopularCards = true
                 self.showSheet.toggle()
+                    
                 self.isopenManue.toggle()
             }
                 else{
@@ -116,7 +117,7 @@ struct JoggingHomeView: View {
 //            })
             Map(coordinateRegion: $region, interactionModes: .all, showsUserLocation: true, userTrackingMode: $trackingMode, annotationItems: marks, annotationContent: { mark in
                 MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: mark.lat, longitude: mark.long)) {
-                    SensorMapAnnotationView(id: mark.id, color: mark.risk == "high" ? .red : mark.risk == "medium" ? .orange : mark.risk == "low" ? .yellow : .green, speed:mark.risk == "high" ? 1 : mark.risk == "medium" ? 0.7 : mark.risk == "low" ? 0.5 : 0.3)
+                    SensorMapAnnotationView(animation: $showSheet, id: mark.id, color: mark.risk == "high" ? .red : mark.risk == "medium" ? .orange : mark.risk == "low" ? .yellow : .green, speed:mark.risk == "high" ? 1 : mark.risk == "medium" ? 0.7 : mark.risk == "low" ? 0.5 : 0.3)
                 }})
                 .ignoresSafeArea()
             ZStack {
