@@ -12,7 +12,7 @@ import SSToastMessage
 import AlertToast
 import ActivityIndicatorView
 struct PupolarJoggingPathHomeView: View {
-    @State var joggingRoutes:[PopularJoggingRoute] = [PopularJoggingRoute(id: 0, name: "", map: "", distance: 0, longth: 0, background: "", intruduction: "", suburb: "", postcode: "", latitude: 0, longitude: 0, detail_text: "")]
+    @State var joggingRoutes:[PopularJoggingRoute] = [PopularJoggingRoute(id: 0, name: "", map: "", distance: 0, longth: 0, background: "", intruduction: "", suburb: "", postcode: "", latitude: 0, longitude: 0, detail_text: "", safety_tips: "")]
     @State var selectedTab:Int = 0
     @EnvironmentObject var userData:UserData
     @State var loading:Bool = false
@@ -286,7 +286,8 @@ struct PupolarJoggingPathHomeView: View {
                                             }
                                             .frame(height: 6,alignment: .center)
                                             if leftPercent == 0 {
-                                                VStack{HStack{
+                                                VStack{
+                                                    HStack{
                                                     Text("Length")
                                                         .bold()
                                                     Text(String(round((joggingRoutes[thisItem].longth)/1000)) + " km")
@@ -296,6 +297,12 @@ struct PupolarJoggingPathHomeView: View {
                                                     Text(String(joggingRoutes[thisItem].distance) + " km")
                                                 }
                                                     .padding(.horizontal)
+                                                    Text("Safety tips:")
+                                                        .bold()
+                                                        .padding(.horizontal)
+                                                        .padding(.top)
+                                                    Text(joggingRoutes[thisItem].safety_tips)
+                                                        .padding()
                                                 Text(joggingRoutes[thisItem].detail_text)
                                                 .padding()
                                                 .frame(maxHeight: self.expandedScreen_shown ? .infinity : 0)}
@@ -469,13 +476,13 @@ The “Tan” is a hugely popular gravel running route looping around Melbourne�
 Running the ‘Tan’ in Melbourne is a thing: the website Run The Tran is a central source for ALL official recorded run times around the 3.827 km (2.378 miles) Tan Track, plus other information and resources.
 Add-Ons: The gardens and the ornamental lake they circle are alluring, but it’s also worth checking out the World War I Shrine of Remembrance, monument to lost Oarsmen, and the Government House (where the Governor of Victoria Resides). If you’re lucky, you can catch a Quidditch match in action at the Harry Potter inspired Quidditch Park. Overall, it’s a flat, easy to navigate run that will breeze by with all the greenery and scenery.
 You can also enjoy the trails along the Yarra River.
-"""),PopularJoggingRoute(id: 1, name: "sdfasf", map: "fsdf", distance: 3.2, longth: 43.3, background: "yarra-trail.png", intruduction: """
+""", safety_tips: ""),PopularJoggingRoute(id: 1, name: "sdfasf", map: "fsdf", distance: 3.2, longth: 43.3, background: "yarra-trail.png", intruduction: """
 “The Tan” is one of the most popular running and walking trails in Melbourne, which is named for the gardens. Join the local racers on this loop around the Royal Botanical Garden of Melbourne. There are lots of shade, greenery, views of the Yarra River, and a challenging slope.
 """, suburb: "melbourne", postcode: "VIC3000", latitude: 43.3, longitude: 133.2, detail_text: """
 The “Tan” is a hugely popular gravel running route looping around Melbourne’s Royal Botanic Gardens and Kings Domain. The Domain Parklands include Kings Domain, Government House Reserve, Shrine of Remembrance Reserve and the Royal Botanic Gardens, extending to the river.
 Running the ‘Tan’ in Melbourne is a thing: the website Run The Tran is a central source for ALL official recorded run times around the 3.827 km (2.378 miles) Tan Track, plus other information and resources.
 Add-Ons: The gardens and the ornamental lake they circle are alluring, but it’s also worth checking out the World War I Shrine of Remembrance, monument to lost Oarsmen, and the Government House (where the Governor of Victoria Resides). If you’re lucky, you can catch a Quidditch match in action at the Harry Potter inspired Quidditch Park. Overall, it’s a flat, easy to navigate run that will breeze by with all the greenery and scenery.
 You can also enjoy the trails along the Yarra River.
-""")], showBottomBar: .constant(true)).environmentObject(UserData())
+""", safety_tips: "")], showBottomBar: .constant(true)).environmentObject(UserData())
     }
 }
