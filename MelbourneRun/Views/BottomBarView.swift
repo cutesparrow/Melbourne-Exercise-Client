@@ -22,6 +22,7 @@ struct BottomBarView: View {
     @State var tutorial:Bool = false
     @State var showLocationAlert:Bool = false
     @State var showBottomBar:Bool = true
+    @State var showRangeAlert:Bool = false
     init() {
         UITableView.appearance().backgroundColor = .clear// Uses UIColor
     }
@@ -44,7 +45,12 @@ struct BottomBarView: View {
                  }.padding(.bottom,15)
                  .ignoresSafeArea(.all, edges: .all)
              }
-             .alert(isPresented: $userData.showeLocationWarning, content: {
+             .onAppear(perform: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1){
+                    self.showRangeAlert = !checkUserLocation(lat: userData.locationFetcher.lastKnownLocation?.latitude ?? -37, long: userData.locationFetcher.lastKnownLocation?.longitude ?? 144)
+                }
+             })
+             .alert(isPresented: $showRangeAlert, content: {
                 Alert(title: Text("Out of Range"), message: Text("We only serve users in melbourne CBD, you are out of this range now. Your location will be set at melbourne central which is the default location, you can try all features"))
              })
              .toolbar {

@@ -62,9 +62,6 @@ struct GymHomeView: View {
 //                        }
 //
 //                    }))
-
-       
-        
     }
     func getGymClass() -> [ActionOverButton]{
         var classList:[String] = []
