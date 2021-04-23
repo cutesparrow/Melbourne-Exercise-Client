@@ -52,15 +52,11 @@ class UserData: ObservableObject {
             showMemberShipSelection = false
             hasMemberShip = UserDefaults.standard.string(forKey: "membership") ?? "No membership"
         }
-        if checkUserLocation(lat: LocationFetcher().lastKnownLocation?.latitude ?? -37.810489070978186, long: LocationFetcher().lastKnownLocation?.longitude ?? 144.96290632581503){
-            showeLocationWarning = false
-        } else{
-            showeLocationWarning = true
-        }
+        
     }
 //    @Published var showJoggingGuide:Bool = true
 //    @Published var showBottomBar:Bool = true
-    @Published var showeLocationWarning:Bool
+   
     @Published var new:Bool
     @Published var hasMemberShip:String
     @Published var showMemberShipSelection:Bool
@@ -92,7 +88,6 @@ func checkUserLocation(lat:Double,long:Double) -> Bool{
         return true
     }
     else{
-        
         return false
     }
 }
