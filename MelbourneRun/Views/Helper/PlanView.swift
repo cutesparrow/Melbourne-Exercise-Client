@@ -16,7 +16,8 @@ import SSToastMessage
 
 
 struct PlanView: View,PositionScrollViewDelegate {
-    var selectedGym:Gym
+    var name:String
+    var address:String
     @EnvironmentObject var userData:UserData
     @Binding var roadSituation:RecentlyRoadSituation
     var pageSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/3)
@@ -142,15 +143,15 @@ struct PlanView: View,PositionScrollViewDelegate {
         .frame(width:UIScreen.main.bounds.width)
         .alert(isPresented: $showAlertX) {
             Alert(title: Text("Confirm Plan"), message: Text("""
-Gym: \(selectedGym.name)
+Gym: \(self.name)
 
 Time: \(getTimeString(date: getTime(start: self.roadSituation.list[day].situation[8].hour, end: self.roadSituation.list[day].situation[self.roadSituation.list[day].situation.count-1].hour, rate: positionOfSelector)))
 
-Note: \(selectedGym.address)
+Note: \(self.address)
 
 
 """), primaryButton: .cancel(), secondaryButton: .default(Text("Save"), action:
-                                                            {saveIntoEvent(title: "Go to \(selectedGym.name)", date: getTime(start: self.roadSituation.list[day].situation[8].hour, end: self.roadSituation.list[day].situation[self.roadSituation.list[day].situation.count-1].hour, rate: positionOfSelector), notes: selectedGym.address)}))
+                                                            {saveIntoEvent(title: "Go to \(self.name)", date: getTime(start: self.roadSituation.list[day].situation[8].hour, end: self.roadSituation.list[day].situation[self.roadSituation.list[day].situation.count-1].hour, rate: positionOfSelector), notes: self.address)}))
         }
 //        .alertX(isPresented: $showAlertX) {
 //            AlertX(title: Text("Confirm Plan"), message: Text("""

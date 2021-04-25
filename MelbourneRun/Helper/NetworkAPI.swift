@@ -51,7 +51,7 @@ class NetworkAPI{
                         }
         }
     }
-    
+   
     
     static public func loadPopularCards(location:CLLocationCoordinate2D,completion: @escaping (Result<[PopularJoggingRoute], Error>) -> Void)->DataRequest{
         NetworkManager.shared.requestGet(path: "jog/path/popular", parameters: ["lat":location.latitude,"long":location.longitude]) { result in

@@ -9,64 +9,105 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct GymCellView: View {
-    var gym:Gym
+    @ObservedObject var gym:GymCore
+    @Environment(\.managedObjectContext) var context
     var body: some View {
-        HStack(alignment:.center){
-            ZStack{
-                WebImage(url: URL(string: NetworkManager.shared.urlBasePath + gym.Images[0] + ".jpg"))
+        
+        HStack{
+            
+            NavigationLink(destination: GymRecordView(fetchedGym:gym)) {
+                WebImage(url: URL(string: NetworkManager.shared.urlBasePath + (gym.images?.allObjects as! [ImageCore])[0].name + ".jpg"))
                     .resizable()
-                    .clipShape(RoundedRectangle(cornerRadius: 25.0))
-                    .frame(width: UIScreen.main.bounds.width/1.3+19,height: 99, alignment: .center)
-                    
-                VisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
-                    .clipShape(RoundedRectangle(cornerRadius: 25))
-                    .frame(width: UIScreen.main.bounds.width/1.3+20,height: 100, alignment: .center)
-                    .padding(0)
-                    
-                HStack{
-                    VStack(alignment:.leading){
-                        Text(gym.name)
-                            .foregroundColor(Color(.label))
-                            .font(.body)
-                            
-                            .bold()
-                            .lineLimit(1)
-                        Text("\(gym.distance.description)KM")
-                            .foregroundColor(Color(.label))
-                            .font(.caption)
-                            .lineLimit(1)
-                            
-                        Text(gym.address)
-                            .foregroundColor(Color(.label))
-                            .font(.caption)
-                            .lineLimit(1)
-                    }
-                    Spacer()
-                    CircleImageView(imageName: gym.Images[0],size: 80)
-                        .font(.system(size: UIScreen.main.bounds.width/9, weight: .regular))
-                }
-                .frame(width: UIScreen.main.bounds.width/1.3,height: 80, alignment: .center)
+                    .scaledToFill()
+                    .frame(width: 100, height: 100)
+                    .cornerRadius(15)
                 
+                VStack(alignment: .leading, spacing: 12) {
+                    
+                    Text(gym.name)
+                        .foregroundColor(Color(.label))
+                        .fontWeight(.bold)
+                    
+                    Text("\(gym.distance.description)KM")
+                        .foregroundColor(Color(.label))
+                }
+                .padding(.leading,10)
             }
             
-//            .padding(10)
-//            .cornerRadius(25)
-//            .foregroundColor(.white)
-//            .padding(3)
+            Spacer(minLength: 0)
+            Button(action: {
+                context.performAndWait {
+                    gym.star.toggle()
+                    try? context.save()
+                }
+                if gym.star{
+                    print("liked")
+                } else{
+                    print("disliked")
+                }
+                
+            }) {
+                Image(systemName: gym.star ? "star.fill" : "star")
+                    .foregroundColor(.yellow)
+                    .font(.title)
+            }
         }
+        .background(Color(.systemBackground).shadow(color: Color.black.opacity(0.12), radius: 5, x: 0, y: 4))
+        .cornerRadius(15)
+//            HStack(alignment:.center){
+//            ZStack{
+//                WebImage(url: URL(string: NetworkManager.shared.urlBasePath + (gym.images?.allObjects as! [ImageCore])[0].name + ".jpg"))
+//                    .resizable()
+//                    .clipShape(RoundedRectangle(cornerRadius: 25.0))
+//                    .frame(width: UIScreen.main.bounds.width/1.2+19,height: 99, alignment: .center)
+//
+//                VisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
+//                    .clipShape(RoundedRectangle(cornerRadius: 25))
+//                    .frame(width: UIScreen.main.bounds.width/1.2+20,height: 100, alignment: .center)
+//                    .padding(0)
+//
+//                HStack{
+//
+//                    CircleImageView(imageName: (gym.images?.allObjects as! [ImageCore])[0].name,size: 80)
+//                        .font(.system(size: UIScreen.main.bounds.width/9, weight: .regular))
+//
+//                    VStack(alignment:.leading){
+//                        Text(gym.name)
+//                            .foregroundColor(Color(.label))
+//                            .font(.body)
+//                            .bold()
+//                            .lineLimit(1)
+//                        Text("\(gym.distance.description)KM")
+//                            .foregroundColor(Color(.label))
+//                            .font(.caption)
+//                            .lineLimit(1)
+//
+////                        Text(gym.address)
+////                            .foregroundColor(Color(.label))
+////                            .font(.caption)
+////                            .lineLimit(1)
+//                    }
+//                    Spacer()
+//                    Button(action: {gym.star.toggle()}) {
+//                        Image(systemName: gym.star ? "star.fill" : "star")
+//                            .foregroundColor(.yellow)
+//                            .font(.title)
+//                    }
+//
+//                }
+//                .frame(width: UIScreen.main.bounds.width/1.2,height: 80, alignment: .center)
+//
+//            }
+//
+//
+////            .padding(10)
+////            .cornerRadius(25)
+////            .foregroundColor(.white)
+////            .padding(3)
+//        }
+            
+        
     }
 }
 
-struct GymCellView_Previews: PreviewProvider {
-    static var gym:Gym = Gym(id: 1,
-                             lat: -37.81182294764945,
-                             long: 144.96396366254962,
-                             name: "Fitness First Bourke St",
-                             Images: ["gym1","gym2","gym3"],
-                             limitation: 21, distance: 3.23,
-                             star: false,
-                             address: "Level 2/341-345 Bourke St, Melbourne VIC 3000",classType: "")
-    static var previews: some View {
-        GymCellView(gym: gym)
-    }
-}
+

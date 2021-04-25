@@ -8,21 +8,22 @@
 import SwiftUI
 import MapKit
 import ActionOver
-
+import CoreData
 
 
 
 struct GymHomeView: View {
     @EnvironmentObject var userData:UserData
+    @FetchRequest(entity: GymCore.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \GymCore.distance, ascending: true)]) var result: FetchedResults<GymCore>
     
-    @State var gymList:GymList = GymList(list: [])
     
     var body: some View {
         let membershipChooseButtons:[ActionOverButton] = getGymClass()
             return Group{
-            GymListView(gymList:$gymList)
+            GymListView()
             .padding(.bottom,0)
             .environmentObject(userData)
+                
 //            .onAppear(perform: {
 //                self.userData.getGymList(location: checkUserLocation(lat: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, long: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503))
 //            })
@@ -65,7 +66,7 @@ struct GymHomeView: View {
     }
     func getGymClass() -> [ActionOverButton]{
         var classList:[String] = []
-        for i in self.gymList.list{
+        for i in self.result{
             if !classList.contains(i.classType){
                 classList.append(i.classType)
             }

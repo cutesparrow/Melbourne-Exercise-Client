@@ -15,14 +15,13 @@ import AlertToast
 struct GymRecordView: View {
     @EnvironmentObject var userData:UserData
     @State var bottomSheetIsShow:Bool = false
-    @Binding var gymList:GymList
+    
     @State var networkError:Bool = false
     @State private var showLoadingIndicator = false
     @State var roadSituation:RecentlyRoadSituation = RecentlyRoadSituation(list: [])
-    var gym:Gym
-    var gymIndex: Int {
-        gymList.list.firstIndex(where: { $0.id == gym.id })!
-    }
+    
+    var fetchedGym:GymCore?
+    
     var locationManager = CLLocationManager()
     
     func setupManager() {
@@ -40,7 +39,7 @@ struct GymRecordView: View {
         let source = MKMapItem(placemark: MKPlacemark(coordinate: checkUserLocation(lat: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, long: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503)))
         source.name = "Source"
         
-        let destination = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: gym.lat, longitude: gym.long)))
+        let destination = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: fetchedGym!.lat, longitude:fetchedGym!.long)))
         destination.name = "Destination"
         
         MKMapItem.openMaps(
@@ -56,7 +55,6 @@ struct GymRecordView: View {
             case let .failure(error): print(error)
                 self.showLoadingIndicator = false
                 self.networkError = true
-
             }
         }
         self.showLoadingIndicator = true
@@ -66,13 +64,13 @@ struct GymRecordView: View {
         ZStack{
             ScrollView(content: {
             VStack{
-                LocationMapView(lat: gym.lat, long: gym.long)
+                LocationMapView(lat: fetchedGym!.lat, long: fetchedGym!.long)
                     .ignoresSafeArea(edges: .top)
                     .frame(height: UIScreen.main.bounds.width/1.2)
                 HStack{
                     VStack(alignment:.leading){
                         Spacer()
-                    Text(gym.name)
+                    Text(fetchedGym!.name)
                         .lineLimit(1)
                         .font(.title3)
                     
@@ -80,12 +78,12 @@ struct GymRecordView: View {
                                 .font(.title3)
                                 .bold()
                                 
-                            Image(systemName: "\(gym.limitation).circle")
+                            Image(systemName: "\(fetchedGym!.limitation).circle")
                                 .font(.system(size: 22, weight: .regular))
                     }.foregroundColor(Color(.label).opacity(0.65))
                     }
                     Spacer()
-                    CircleImagePlusView(name: gym.Images[0])
+                    CircleImagePlusView(name:(fetchedGym!.images!.allObjects as! [ImageCore])[0].name)
                 }
                 .padding(.leading)
                 .padding(.trailing)
@@ -93,10 +91,10 @@ struct GymRecordView: View {
                 
                 VStack(alignment:.leading) {
                     HStack(alignment: .top){
-                        Text(gym.address)
+                        Text(fetchedGym!.address)
                             .font(.subheadline)
                         Spacer()
-                        Text("\(gym.distance.description)KM")
+                        Text("\(fetchedGym!.distance.description)KM")
                             .font(.subheadline)
                     }
                     .padding(.leading)
@@ -117,7 +115,7 @@ struct GymRecordView: View {
                     .padding(.bottom,-5)
                 }
                 .offset(y: -UIScreen.main.bounds.width/6.5)
-                ImageScrollView(Images: getScrollImageList(images: gym.Images))
+                ImageScrollView(Images: getScrollImageList(images: fetchedGym!.images?.allObjects as! [ImageCore]))
                     .offset(y: -UIScreen.main.bounds.width/6)
             }.background(Color.clear)
         })
@@ -135,14 +133,14 @@ struct GymRecordView: View {
             self.networkError = false
         })
         .sheet(isPresented: $bottomSheetIsShow, content: {
-            PlanView(selectedGym:gym,roadSituation: $roadSituation, isShown: $bottomSheetIsShow).environmentObject(userData)
+            PlanView(name: fetchedGym!.name,address:fetchedGym!.address,roadSituation: $roadSituation, isShown: $bottomSheetIsShow).environmentObject(userData)
         })
         
 //        .bottomSheet(isPresented: $bottomSheetIsShow, height: 600, content: {PlanView(roadSituation: $roadSituation, isShown: $bottomSheetIsShow).environmentObject(userData)
 //        })
         .ignoresSafeArea()
         .onAppear(perform: {
-            loadRoadSituation(location: checkUserLocation(lat: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, long: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503), gymId: gym.id)
+            loadRoadSituation(location: checkUserLocation(lat: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, long: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503), gymId: Int(fetchedGym!.uid))
            
         })
     }

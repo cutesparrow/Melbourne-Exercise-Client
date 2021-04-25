@@ -7,16 +7,19 @@
 import MapKit
 import CoreLocation
 import SwiftUI
+import CoreData
 
 @main
 struct MelbourneRunApp: App {
     @StateObject private var userData = UserData()
-    
+    let persistenceController = PersistenceController.shared
     var body: some Scene {
         
         WindowGroup {
             PreLaunch()
                 .environmentObject(userData)
+//            ContentView()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
  
         
         

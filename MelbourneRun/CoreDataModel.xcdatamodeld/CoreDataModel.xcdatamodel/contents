@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="GymCore" representedClassName="GymCore" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="classType" optional="YES" attributeType="String"/>
+        <attribute name="distance" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="limitation" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="long" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="star" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ImageCore" inverseName="gym" inverseEntity="ImageCore"/>
+    </entity>
+    <entity name="ImageCore" representedClassName="ImageCore" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="gym" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GymCore" inverseName="images" inverseEntity="GymCore"/>
+    </entity>
+    <elements>
+        <element name="GymCore" positionX="-54" positionY="-9" width="128" height="179"/>
+        <element name="ImageCore" positionX="-36" positionY="9" width="128" height="74"/>
+    </elements>
+</model>

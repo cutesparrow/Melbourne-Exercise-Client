@@ -8,11 +8,11 @@
 import Foundation
 
 //translate string into SCroll image object
-func getScrollImageList(images:[String]) -> [ScrollImage] {
+func getScrollImageList(images:[ImageCore]) -> [ScrollImage] {
     let length = images.count
     var result:[ScrollImage] = []
     for id in 0..<length{
-        result.append(ScrollImage(id: id, image: images[id]))
+        result.append(ScrollImage(id: id, image: images[id].name))
     }
     return result
 }
