@@ -11,10 +11,15 @@ import MapKit
 import SSToastMessage
 import AlertToast
 import ActivityIndicatorView
+import SwiftUIRefresh
+
+
 struct PupolarJoggingPathHomeView: View {
-    @State var joggingRoutes:[PopularJoggingRoute] = [PopularJoggingRoute(id: 0, name: "", map: "", distance: 0, longth: 0, background: "", intruduction: "", suburb: "", postcode: "", latitude: 0, longitude: 0, detail_text: "", safety_tips: "")]
+    @StateObject var popularRoutesModel:PopularRouteViewModel = PopularRouteViewModel()
     @State var selectedTab:Int = 0
     @EnvironmentObject var userData:UserData
+    @Environment(\.managedObjectContext) var context
+    @FetchRequest(entity: PopularRouteCore.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \PopularRouteCore.uid, ascending: true)]) var result: FetchedResults<PopularRouteCore>
     @State var loading:Bool = false
     @Binding var showBottomBar:Bool
     @State var viewState = CGSize.zero
@@ -29,7 +34,7 @@ struct PupolarJoggingPathHomeView: View {
     let imageHeight:CGFloat = 400
     let SVWidth = UIScreen.main.bounds.width - 40
     @State var navigationBar:Bool = true
-    @State var expandedItem:Int = 0
+    @State var expandedItem:PopularRouteCore? = nil
     @State var expandedScreen_startPoint = CGRect(x: 0, y: 0, width: 100, height: 100)
     @State var expandedScreen_returnPoint = CGRect(x: 0, y: 0, width: 100, height: 100)
     @State var expandedScreen_shown = false
@@ -57,22 +62,22 @@ struct PupolarJoggingPathHomeView: View {
             launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
         )
     }
-    func loadPopularCardsData(location:CLLocationCoordinate2D){
-        let completion: (Result<[PopularJoggingRoute], Error>) -> Void = { result in
-            switch result {
-            case let .success(list): self.joggingRoutes = list
-                self.loading = false
-                self.loaded = true
-            case let .failure(error): print(error)
-                self.loading = false
-                self.loaded = false
-                self.networkError = true
-            }
-            
-        }
-        self.loading = true
-        _ = NetworkAPI.loadPopularCards(location: location, completion: completion)
-    }
+//    func loadPopularCardsData(location:CLLocationCoordinate2D){
+//        let completion: (Result<[PopularJoggingRoute], Error>) -> Void = { result in
+//            switch result {
+//            case let .success(list): self.joggingRoutes = list
+//                self.loading = false
+//                self.loaded = true
+//            case let .failure(error): print(error)
+//                self.loading = false
+//                self.loaded = false
+//                self.networkError = true
+//            }
+//
+//        }
+//        self.loading = true
+//        _ = NetworkAPI.loadPopularCards(location: location, completion: completion)
+//    }
     var body: some View {
         
             ZStack{
@@ -80,7 +85,13 @@ struct PupolarJoggingPathHomeView: View {
         ZStack{
             Color.white.edgesIgnoringSafeArea(.all)
             
+            if !result.isEmpty{
             ScrollView{
+                RefreshControl(coordinateSpace: .named("RefreshControl"), onRefresh: {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                        self.popularRoutesModel.reloadPopularCardsData(location: checkUserLocation(lat: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, long: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503), context: context)
+                    }
+                })
                 HStack{
                     VStack(alignment: .leading){
                         Text("Discover Your Jogging")
@@ -95,7 +106,7 @@ struct PupolarJoggingPathHomeView: View {
                 
                 //ForEach_start
                 
-                ForEach(joggingRoutes, id: \.id){ thisItem in
+                ForEach(self.result){ thisItem in
                     
                     GeometryReader{geo -> AnyView in
                         return AnyView(
@@ -115,7 +126,7 @@ struct PupolarJoggingPathHomeView: View {
                                     
                                 Button(action: {
                                    
-                                    self.expandedItem = thisItem.id
+                                    self.expandedItem = thisItem
                                     showBottomBar.toggle()
                                     let x = geo.frame(in: .global).minX
                                     let y = geo.frame(in: .global).minY
@@ -146,6 +157,25 @@ struct PupolarJoggingPathHomeView: View {
                                                     .font(.system(size: 36, weight: .bold, design: .default))
                                             }.padding()
                                             Spacer()
+                                            Button(action: {
+                                                context.performAndWait {
+                                                    withAnimation {
+                                                        thisItem.star.toggle()
+                                                        try? context.save()
+                                                    }
+                                                }
+                                                if thisItem.star{
+                                                    print("liked")
+                                                } else{
+                                                    print("disliked")
+                                                }
+                                                
+                                            }) {
+                                                Image(systemName: thisItem.star ? "heart.fill" : "heart")
+                                                    .foregroundColor(AppColor.shared.gymColor)
+                                                    .font(.title)
+                                                    .padding(.trailing)
+                                            }
                                         }
                                         Spacer()
                                         HStack{
@@ -179,9 +209,29 @@ struct PupolarJoggingPathHomeView: View {
                     .frame(height:60)
                 //ForEach_End
             }
-            
-            GeometryReader{geo -> AnyView in
-                let thisItem = self.expandedItem
+            .coordinateSpace(name: "RefreshControl")
+            }
+            else{
+                VisualEffectView(effect: UIBlurEffect(style: .light))
+                .clipShape(RoundedRectangle(cornerRadius: 15))
+                .frame(width: 60, height: 60, alignment: .center)
+        ActivityIndicatorView(isVisible: .constant(true), type: .default)
+            .frame(width: 40.0, height: 40.0)
+                .foregroundColor(AppColor.shared.popularRouteColor)
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4){
+                    self.popularRoutesModel.loadPopularCardsData(location: checkUserLocation(lat: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, long: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503), context: context)
+    //                if true{
+    //                self.loadPopularCardsData(location: checkUserLocation(lat: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, long: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503))
+    //
+    //            }
+                    
+                }
+            }
+            }
+            if !result.isEmpty && self.expandedItem != nil{
+                GeometryReader{geo -> AnyView in
+                
                 
                 return AnyView(
                     
@@ -189,7 +239,7 @@ struct PupolarJoggingPathHomeView: View {
                         ScrollView{
                             VStack(spacing:0){
                                 ZStack{
-                                    WebImage(url: URL(string: NetworkManager.shared.urlBasePath + joggingRoutes[thisItem].background))
+                                    WebImage(url: URL(string: NetworkManager.shared.urlBasePath +  expandedItem!.background))
                                         .placeholder{
                                             Color.gray
                                         }
@@ -212,10 +262,10 @@ struct PupolarJoggingPathHomeView: View {
                                     HStack{
                                         
                                         VStack(alignment: .leading){
-                                            Text("\(joggingRoutes[thisItem].suburb)" + ", " + "\(joggingRoutes[thisItem].postcode)")
+                                            Text("\(expandedItem!.suburb)" + ", " + "\(expandedItem!.postcode)")
                                                 .font(.system(size: 18, weight: .bold, design: .default))
                                                 .foregroundColor(.init(red: 0.8 , green: 0.8, blue: 0.8  )).opacity(1.0)
-                                            Text("\(joggingRoutes[thisItem].name)")
+                                            Text("\(expandedItem!.name)")
                                                 .font(.system(size: 36, weight: .bold, design: .default))
                                                 .foregroundColor(.white)
                                         }.padding()
@@ -225,7 +275,7 @@ struct PupolarJoggingPathHomeView: View {
                                     Spacer()
                                     HStack{
                                         VStack(alignment: .leading){
-                                            Text("\(joggingRoutes[thisItem].intruduction)")
+                                            Text("\(expandedItem!.intruduction)")
                                                 
                                                 .font(.system(size: 18, weight: .bold, design: .default))
                                                 .foregroundColor(.white)
@@ -241,16 +291,39 @@ struct PupolarJoggingPathHomeView: View {
                                     ZStack{
                                         VStack{
                                             ZStack{
-                                                Text(joggingRoutes[thisItem].name)
+                                                Text(expandedItem!.name)
                                                     .font(.title)
                                                     .bold()
+                                                HStack{
+                                                    Spacer()
+                                                    Button(action: {
+                                                    context.performAndWait {
+                                                        withAnimation {
+                                                            expandedItem!.star.toggle()
+                                                            try? context.save()
+                                                        }
+                                                    }
+                                                    if expandedItem!.star{
+                                                        print("liked")
+                                                    } else{
+                                                        print("disliked")
+                                                    }
+                                                    
+                                                }) {
+                                                    Image(systemName: expandedItem!.star ? "heart.fill" : "heart")
+                                                        .foregroundColor(AppColor.shared.gymColor)
+                                                        .font(.title)
+                                                        .padding(.trailing)
+                                                    }.padding()
+                                                    .offset(y:35)
+                                                    
+                                                }
                                             }
                                             .padding(.top,15)
                                             .padding(.bottom,20)
                                             HStack{
                                                 Button(action: {
                                                     withAnimation(self.openCardAnimation) {
-
                                                         self.detailPage = 1
                                                         self.leftPercent = 0
                                                     }
@@ -291,11 +364,11 @@ struct PupolarJoggingPathHomeView: View {
                                                     HStack{
                                                     Text("Length")
                                                         .bold()
-                                                    Text(String(round((joggingRoutes[thisItem].longth)/1000)) + " km")
+                                                    Text(String(round((expandedItem!.length)/1000)) + " km")
                                                     Spacer()
                                                     Text("Distance")
                                                         .bold()
-                                                    Text(String(joggingRoutes[thisItem].distance) + " km")
+                                                    Text(String(expandedItem!.distance) + " km")
                                                 }
                                                     .padding(.horizontal)
                                                     HStack{
@@ -305,7 +378,7 @@ struct PupolarJoggingPathHomeView: View {
                                                         .padding(.top)
                                                         Spacer()
                                                     }
-                                                    Text(joggingRoutes[thisItem].safety_tips)
+                                                    Text(expandedItem!.safety_tips)
                                                         .padding(.horizontal)
                                                     HStack{
                                                         Text("Route detail:")
@@ -314,13 +387,13 @@ struct PupolarJoggingPathHomeView: View {
                                                         .padding(.top)
                                                         Spacer()
                                                     }
-                                                Text(joggingRoutes[thisItem].detail_text)
+                                                Text(expandedItem!.detail_text)
                                                     .padding(.horizontal)
                                                     .padding(.bottom)
                                                 .frame(maxHeight: self.expandedScreen_shown ? .infinity : 0)}
                                                 
                                             } else{
-                                                    VStack{WebImage(url: URL(string: NetworkManager.shared.urlBasePath + joggingRoutes[thisItem].map))
+                                                    VStack{WebImage(url: URL(string: NetworkManager.shared.urlBasePath + expandedItem!.map))
                                                         .placeholder{
                                                             Color.gray
                                                         }
@@ -328,7 +401,7 @@ struct PupolarJoggingPathHomeView: View {
                                                         .scaledToFill()
                                                         .clipShape(RoundedRectangle(cornerRadius: 25.0))
                                                         .padding(.horizontal)
-                                                        Button(action: {openMapApp(lat:joggingRoutes[thisItem].latitude,long:joggingRoutes[thisItem].longitude)}, label: {
+                                                        Button(action: {openMapApp(lat:expandedItem!.latitude,long:expandedItem!.longitude)}, label: {
                                                             DirectButtonView(color:.blue,text:"Let's go").padding()
                                                     })
                                                     }
@@ -407,17 +480,17 @@ struct PupolarJoggingPathHomeView: View {
                 .animation(
                     Animation.easeInOut(duration: 0.05)
                         .delay(self.expandedScreen_willHide ? 0.5 : 0)
-            )
+            )}
             
         }
                 ZStack{
-                if loading{
+                    if popularRoutesModel.loading{
                     VisualEffectView(effect: UIBlurEffect(style: .light))
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                         .frame(width: 60, height: 60, alignment: .center)}
-                ActivityIndicatorView(isVisible: $loading, type: .default)
+                    ActivityIndicatorView(isVisible: $popularRoutesModel.loading, type: .default)
                     .frame(width: 40.0, height: 40.0)
-                    .foregroundColor(AppColor.shared.joggingColor)
+                    .foregroundColor(AppColor.shared.popularRouteColor)
             }
             }
             .navigationTitle("")
@@ -464,37 +537,40 @@ struct PupolarJoggingPathHomeView: View {
 //        .navigationBarHidden(true)
         
         
-        .onAppear(perform: {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4){
-                if true{
-                self.loadPopularCardsData(location: checkUserLocation(lat: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, long: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503))
-
-            }}
-
-        })
-        .toast(isPresenting: $networkError, duration: 1.2, tapToDismiss: true, alert: { AlertToast(type: .error(.red), title: "Network Error", subTitle: "")
+//        .onAppear(perform: {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4){
+//                self.popularRoutesModel.loadPopularCardsData(location: checkUserLocation(lat: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, long: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503), context: context)
+////                if true{
+////                self.loadPopularCardsData(location: checkUserLocation(lat: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, long: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503))
+////
+////            }
+//
+//            }
+//
+//        })
+            .toast(isPresenting: $popularRoutesModel.error, duration: 1.2, tapToDismiss: true, alert: { AlertToast(type: .error(.red), title: "Network Error", subTitle: "")
         }, completion: {_ in
-            self.networkError = false
+            self.popularRoutesModel.error = false
         })
     }
 }
-
-struct PupolarJoggingPathHomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        PupolarJoggingPathHomeView(joggingRoutes: [PopularJoggingRoute(id: 0, name: "sdfasf", map: "fsdf", distance: 3.2, longth: 43.3, background: "yarra-trail.png", intruduction: """
-“The Tan” is one of the most popular running and walking trails in Melbourne, which is named for the gardens. Join the local racers on this loop around the Royal Botanical Garden of Melbourne. There are lots of shade, greenery, views of the Yarra River, and a challenging slope.
-""", suburb: "melbourne", postcode: "VIC3000", latitude: 43.3, longitude: 133.2, detail_text: """
-The “Tan” is a hugely popular gravel running route looping around Melbourne’s Royal Botanic Gardens and Kings Domain. The Domain Parklands include Kings Domain, Government House Reserve, Shrine of Remembrance Reserve and the Royal Botanic Gardens, extending to the river.
-Running the ‘Tan’ in Melbourne is a thing: the website Run The Tran is a central source for ALL official recorded run times around the 3.827 km (2.378 miles) Tan Track, plus other information and resources.
-Add-Ons: The gardens and the ornamental lake they circle are alluring, but it’s also worth checking out the World War I Shrine of Remembrance, monument to lost Oarsmen, and the Government House (where the Governor of Victoria Resides). If you’re lucky, you can catch a Quidditch match in action at the Harry Potter inspired Quidditch Park. Overall, it’s a flat, easy to navigate run that will breeze by with all the greenery and scenery.
-You can also enjoy the trails along the Yarra River.
-""", safety_tips: ""),PopularJoggingRoute(id: 1, name: "sdfasf", map: "fsdf", distance: 3.2, longth: 43.3, background: "yarra-trail.png", intruduction: """
-“The Tan” is one of the most popular running and walking trails in Melbourne, which is named for the gardens. Join the local racers on this loop around the Royal Botanical Garden of Melbourne. There are lots of shade, greenery, views of the Yarra River, and a challenging slope.
-""", suburb: "melbourne", postcode: "VIC3000", latitude: 43.3, longitude: 133.2, detail_text: """
-The “Tan” is a hugely popular gravel running route looping around Melbourne’s Royal Botanic Gardens and Kings Domain. The Domain Parklands include Kings Domain, Government House Reserve, Shrine of Remembrance Reserve and the Royal Botanic Gardens, extending to the river.
-Running the ‘Tan’ in Melbourne is a thing: the website Run The Tran is a central source for ALL official recorded run times around the 3.827 km (2.378 miles) Tan Track, plus other information and resources.
-Add-Ons: The gardens and the ornamental lake they circle are alluring, but it’s also worth checking out the World War I Shrine of Remembrance, monument to lost Oarsmen, and the Government House (where the Governor of Victoria Resides). If you’re lucky, you can catch a Quidditch match in action at the Harry Potter inspired Quidditch Park. Overall, it’s a flat, easy to navigate run that will breeze by with all the greenery and scenery.
-You can also enjoy the trails along the Yarra River.
-""", safety_tips: "")], showBottomBar: .constant(true)).environmentObject(UserData())
-    }
-}
+//
+//struct PupolarJoggingPathHomeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PupolarJoggingPathHomeView(joggingRoutes: [PopularJoggingRoute(id: 0, name: "sdfasf", map: "fsdf", distance: 3.2, longth: 43.3, background: "yarra-trail.png", intruduction: """
+//“The Tan” is one of the most popular running and walking trails in Melbourne, which is named for the gardens. Join the local racers on this loop around the Royal Botanical Garden of Melbourne. There are lots of shade, greenery, views of the Yarra River, and a challenging slope.
+//""", suburb: "melbourne", postcode: "VIC3000", latitude: 43.3, longitude: 133.2, detail_text: """
+//The “Tan” is a hugely popular gravel running route looping around Melbourne’s Royal Botanic Gardens and Kings Domain. The Domain Parklands include Kings Domain, Government House Reserve, Shrine of Remembrance Reserve and the Royal Botanic Gardens, extending to the river.
+//Running the ‘Tan’ in Melbourne is a thing: the website Run The Tran is a central source for ALL official recorded run times around the 3.827 km (2.378 miles) Tan Track, plus other information and resources.
+//Add-Ons: The gardens and the ornamental lake they circle are alluring, but it’s also worth checking out the World War I Shrine of Remembrance, monument to lost Oarsmen, and the Government House (where the Governor of Victoria Resides). If you’re lucky, you can catch a Quidditch match in action at the Harry Potter inspired Quidditch Park. Overall, it’s a flat, easy to navigate run that will breeze by with all the greenery and scenery.
+//You can also enjoy the trails along the Yarra River.
+//""", safety_tips: ""),PopularJoggingRoute(id: 1, name: "sdfasf", map: "fsdf", distance: 3.2, longth: 43.3, background: "yarra-trail.png", intruduction: """
+//“The Tan” is one of the most popular running and walking trails in Melbourne, which is named for the gardens. Join the local racers on this loop around the Royal Botanical Garden of Melbourne. There are lots of shade, greenery, views of the Yarra River, and a challenging slope.
+//""", suburb: "melbourne", postcode: "VIC3000", latitude: 43.3, longitude: 133.2, detail_text: """
+//The “Tan” is a hugely popular gravel running route looping around Melbourne’s Royal Botanic Gardens and Kings Domain. The Domain Parklands include Kings Domain, Government House Reserve, Shrine of Remembrance Reserve and the Royal Botanic Gardens, extending to the river.
+//Running the ‘Tan’ in Melbourne is a thing: the website Run The Tran is a central source for ALL official recorded run times around the 3.827 km (2.378 miles) Tan Track, plus other information and resources.
+//Add-Ons: The gardens and the ornamental lake they circle are alluring, but it’s also worth checking out the World War I Shrine of Remembrance, monument to lost Oarsmen, and the Government House (where the Governor of Victoria Resides). If you’re lucky, you can catch a Quidditch match in action at the Harry Potter inspired Quidditch Park. Overall, it’s a flat, easy to navigate run that will breeze by with all the greenery and scenery.
+//You can also enjoy the trails along the Yarra River.
+//""", safety_tips: "")], showBottomBar: .constant(true)).environmentObject(UserData())
+//    }
+//}

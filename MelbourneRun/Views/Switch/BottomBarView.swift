@@ -35,12 +35,13 @@ struct BottomBarView: View {
         } else {
            NavigationView{
              ZStack{
-                MainSwitchView(selectView: $selectedIndex, showBottomBar:$showBottomBar)
+                MainSwitchView(selectView: $selectedIndex, showBottomBar:$showBottomBar, tutorial:$tutorial)
                      .environmentObject(userData)
                  VStack{
                      Spacer()
                     if showBottomBar {
                         BottomBar(selectedIndex: $selectedIndex, items: items)
+                            
                     }
                  }.padding(.bottom,15)
                  .ignoresSafeArea(.all, edges: .all)

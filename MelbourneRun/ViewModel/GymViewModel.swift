@@ -7,9 +7,13 @@
 
 import Foundation
 import CoreData
+import SwiftUI
 
 class GymViewModel:ObservableObject{
     @Published var gyms:GymList = GymList(list: [])
+    @Published var error:Bool = false
+    @Published var success:Bool = false
+    @Published var loading:Bool = false
     
     func loadGymListData(location:CLLocationCoordinate2D,context:NSManagedObjectContext){
         let completion: (Result<GymList, Error>) -> Void = { result in
@@ -17,10 +21,15 @@ class GymViewModel:ObservableObject{
             case let .success(list):
                 self.gyms = list
                 self.saveData(context: context)
+                self.success = true
+                self.loading = false
             case let .failure(error):
                 print(error)
+                self.error = true
+                self.loading = false
             }
         }
+        self.loading = true
         _ = NetworkAPI.loadGymList(location: location, completion: completion)
     }
     
@@ -44,9 +53,11 @@ class GymViewModel:ObservableObject{
         }
         do {
             try context.save()
+            self.success = true
             print("success")
         } catch  {
             print(error.localizedDescription)
+            self.error = true
         }
         
     }
@@ -56,11 +67,19 @@ class GymViewModel:ObservableObject{
             switch result {
             case let .success(list):
                 self.gyms = list
-                self.refreshData(context: context)
+                withAnimation {
+                    self.refreshData(context: context)
+                    self.success = true
+                    self.loading = false
+                }
+                
             case let .failure(error):
                 print(error)
+                self.error = true
+                self.loading = false
             }
         }
+        self.loading = true
         _ = NetworkAPI.loadGymList(location: location, completion: completion)
     }
     
@@ -91,6 +110,7 @@ class GymViewModel:ObservableObject{
                                 imageCore.uid = Int16(data.Images.firstIndex(where: { $0 == image })!)
                                 gymCore.addToImages(imageCore)
                             }
+                            
                             try? context.save()
                         }
                         print("update one + \(gymCore.uid)")
@@ -112,10 +132,13 @@ class GymViewModel:ObservableObject{
                         imageCore.uid = Int16(data.Images.firstIndex(where: { $0 == image })!)
                         entity.addToImages(imageCore)
                     }
+                    try? context.save()
                 }
             }
+            self.success = true
         } catch  {
             print("error")
+            self.error = true
             return
         }
         

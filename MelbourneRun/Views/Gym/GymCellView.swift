@@ -37,8 +37,10 @@ struct GymCellView: View {
             Spacer(minLength: 0)
             Button(action: {
                 context.performAndWait {
-                    gym.star.toggle()
-                    try? context.save()
+                    withAnimation {
+                        gym.star.toggle()
+                        try? context.save()
+                    }
                 }
                 if gym.star{
                     print("liked")
@@ -47,9 +49,10 @@ struct GymCellView: View {
                 }
                 
             }) {
-                Image(systemName: gym.star ? "star.fill" : "star")
-                    .foregroundColor(.yellow)
+                Image(systemName: gym.star ? "heart.fill" : "heart")
+                    .foregroundColor(AppColor.shared.gymColor)
                     .font(.title)
+                    .padding(.trailing)
             }
         }
         .background(Color(.systemBackground).shadow(color: Color.black.opacity(0.12), radius: 5, x: 0, y: 4))

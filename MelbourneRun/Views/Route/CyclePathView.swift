@@ -18,12 +18,38 @@ import SwiftUI
 import MapKit
 import SDWebImageSwiftUI
 import URLImage
+import CoreData
+import AlertToast
 
 struct CyclePathView: View {
     @EnvironmentObject var userData:UserData
     @State var selectedTab:Int = 0
     @State var showDirectionsList:Bool = false
     @State var customizedCards:[CustomizedCard]
+    @Environment(\.managedObjectContext) var context
+    @State var success:Bool = false
+    @State var error:Bool = false
+    private func saveThisRoute(){
+        let entity = RouteCore(context:context)
+        entity.length = self.customizedCards[selectedTab].distance
+        entity.time = self.customizedCards[selectedTab].time
+        entity.risk = self.customizedCards[selectedTab].risk
+        entity.mapImage = self.customizedCards[selectedTab].image
+        entity.type = "Cycling"
+        self.customizedCards[selectedTab].instructions.forEach { direction in
+            let directionData = Direction(context:context)
+            directionData.directionSentence = direction
+            entity.addToDirections(directionData)
+        }
+        do {
+            try context.save()
+            self.success = true
+            print("success")
+        } catch {
+            print(error.localizedDescription)
+            self.error = true
+        }
+    }
     var body: some View {
         VStack{
             Spacer()
@@ -81,11 +107,36 @@ struct CyclePathView: View {
                     })
                     
                 }
+                ZStack{
+                    RoundedRectangle(cornerRadius: 15.0)
+                        .fill(Color(.systemGray4))
+                        .frame(width: 130, height: 50, alignment: .center)
+                        .padding()
+                    Button(action: saveThisRoute, label: {
+                        
+                       HStack{
+                        Image(systemName: "heart.fill")
+                            .foregroundColor(AppColor.shared.gymColor)
+                            .font(.system(size: 24))
+                        Text("Favorites")
+                            .foregroundColor(Color(.white))}
+                        
+                    })
+                    
+                }
                 
             }
             .padding(.vertical,-15)
            
         }
+        .toast(isPresenting: $error, duration: 1.2, tapToDismiss: true, alert: { AlertToast(type: .error(.red), title: "Failure", subTitle: "")
+        }, completion: {_ in
+            self.error = false
+        })
+        .toast(isPresenting: $success, duration: 1.2, tapToDismiss: true, alert: { AlertToast(type: .complete(Color.green), title: "Saved", subTitle: "")
+        }, completion: {_ in
+            self.success = false
+        })
         .sheet(isPresented: $showDirectionsList, content: {
             VStack{
                 Text("Directions")

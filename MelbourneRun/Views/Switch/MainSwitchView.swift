@@ -11,11 +11,12 @@ struct MainSwitchView: View {
     @EnvironmentObject var userData:UserData
     @Binding var selectView:Int
     @Binding var showBottomBar:Bool
+    @Binding var tutorial:Bool 
 //    @State var showInformation:ShowInformation = ShowInformation(imageName: "", safetyTips: "", exerciseTips: "", exerciseBenefits: "")
 //    @State var gymList:GymList = GymList(list: [])
     var body: some View {
         switch selectView {
-        case 0:HomeView()
+        case 0:HomeView(tutorial:$tutorial,bottomBarSelected:$selectView)
             .environmentObject(userData)
             .navigationTitle("Home")
             .navigationBarTitleDisplayMode(.inline)
@@ -29,7 +30,6 @@ struct MainSwitchView: View {
                 .environmentObject(userData)
                 .navigationBarHidden(true)
            
-          
                 
         default: Text("error")
         }

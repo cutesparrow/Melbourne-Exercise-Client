@@ -24,25 +24,18 @@ struct CurrentObservationView: View {
             WebImage(url: URL(string: "http:" + self.userData.weather.current.condition.icon.replacingOccurrences(of: "64", with: "128")))
 				.resizable()
                 .scaledToFill()
-				.frame(width: 100, height: 100)
-                .padding()
+				.frame(width: 35, height: 35)
+                
             
-			VStack {
 				HStack {
                     Text(String(format: "%.f°C", self.userData.weather.current.temp_c))
-						.font(Font.largeTitle)
+						.font(Font.body)
 						.fontWeight(.bold)
                         .foregroundColor(Color(.label))
 					//Text(String(format: "%.f° / %.f°", self.dailyMaxTemperature, self.dailyMinTemperature))
                     //.foregroundColor(Color(.label))
 				}
-                Text("Feels like \(Int(self.userData.weather.current.feelslike_c))°C")
-					.padding([.bottom], 5)
-                    .foregroundColor(Color(.label))
-                Text(self.userData.weather.current.condition.text)
-                    .foregroundColor(Color(.label))
-			}
-            .padding()
+            
 		}
     }
 }

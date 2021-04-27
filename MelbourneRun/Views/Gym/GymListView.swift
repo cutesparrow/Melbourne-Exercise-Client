@@ -20,7 +20,6 @@ struct GymListView: View {
     @State private var networkError:Bool = false
     @Environment(\.managedObjectContext) var context
     @FetchRequest(entity: GymCore.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \GymCore.distance, ascending: true)]) var result: FetchedResults<GymCore>
-    
 //    func saveData(context:NSManagedObjectContext){
 //        self.gymList.list.forEach { (data) in
 //            let entity = GymCore(context: context)
@@ -89,7 +88,8 @@ struct GymListView: View {
             
             
         if !result.isEmpty{
-            VStack(spacing: 0){
+            ZStack{
+                VStack(spacing: 0){
                 
                 HStack{
                     Text("Gyms")
@@ -98,7 +98,7 @@ struct GymListView: View {
                         .foregroundColor(Color(.label))
                     
                     Spacer(minLength: 0)
-                    Button(action: {userData.showMemberShipSelection = true}, label: {
+                    Button(action: {userData.showMemberShipSelection.toggle()}, label: {
                                                 VStack{
                                                 Image(systemName: "list.bullet")
                                                     .foregroundColor(AppColor.shared.gymColor)
@@ -118,6 +118,11 @@ struct GymListView: View {
                 GeometryReader{mainView in
                     
                     ScrollView{
+                        RefreshControl(coordinateSpace: .named("RefreshControl"), onRefresh: {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                                self.gymsModel.reloadGymListData(location: checkUserLocation(lat: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, long: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503), context: context)
+                            }
+                        })
                         
                         VStack(spacing: 15){
                             
@@ -125,7 +130,6 @@ struct GymListView: View {
                             
                             ForEach(self.result){gym in
                                 
-                             
                                 if gym.classType == userData.hasMemberShip || userData.hasMemberShip == "No membership"{
                                 GeometryReader{item in
                                     
@@ -144,6 +148,7 @@ struct GymListView: View {
                         .padding(.horizontal)
                         .padding(.top,25)
                     }
+                    .coordinateSpace(name: "RefreshControl")
                     .zIndex(1)
                 }
             }
@@ -171,10 +176,22 @@ struct GymListView: View {
 //            }
                 
             
-            .toast(isPresenting: $networkError, duration: 1.2, tapToDismiss: true, alert: { AlertToast(type: .error(.red), title: "Network Error", subTitle: "")
+            .toast(isPresenting: $gymsModel.error, duration: 1.2, tapToDismiss: true, alert: { AlertToast(type: .error(.red), title: "Network Error", subTitle: "")
             }, completion: {_ in
-                self.networkError = false
+                self.gymsModel.error = false
             })
+                ZStack{
+                    if gymsModel.loading{
+                        VisualEffectView(effect: UIBlurEffect(style: .light))
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                        .frame(width: 60, height: 60, alignment: .center)}
+                    ActivityIndicatorView(isVisible: $gymsModel.loading, type: .default)
+                    .frame(width: 40.0, height: 40.0)
+                        .foregroundColor(AppColor.shared.gymColor)
+                    
+                }
+            }
+            
             
 //            .pullToRefresh(isShowing: $isShowing) {
 //                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -217,3 +234,43 @@ struct GymListView_Previews: PreviewProvider {
     }
 }
 
+struct RefreshControl: View {
+    var coordinateSpace: CoordinateSpace
+    var onRefresh: ()->Void
+    @State var refresh: Bool = false
+    var body: some View {
+        GeometryReader { geo in
+            if (geo.frame(in: coordinateSpace).midY > 70) {
+                Spacer()
+                    .onAppear {
+                        if refresh == false {
+                            onRefresh() ///call refresh once if pulled more than 50px
+                        }
+                        refresh = true
+                    }
+            } else if (geo.frame(in: coordinateSpace).maxY < 1) {
+                Spacer()
+                    .onAppear {
+                        refresh = false
+                        ///reset  refresh if view shrink back
+                    }
+            }
+            ZStack(alignment: .center) {
+                if refresh { ///show loading if refresh called
+                    ProgressView()
+                } else { ///mimic static progress bar with filled bar to the drag percentage
+                    ForEach(0..<8) { tick in
+                          VStack {
+                              Rectangle()
+                                .fill(Color(UIColor.tertiaryLabel))
+                                .opacity((Int((geo.frame(in: coordinateSpace).midY)/7) < tick) ? 0 : 1)
+                                  .frame(width: 3, height: 7)
+                                .cornerRadius(3)
+                              Spacer()
+                      }.rotationEffect(Angle.degrees(Double(tick)/(8) * 360))
+                   }.frame(width: 20, height: 20, alignment: .center)
+                }
+            }.frame(width: geo.size.width)
+        }.padding(.top, -50)
+    }
+}

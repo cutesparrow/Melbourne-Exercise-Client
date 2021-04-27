@@ -77,11 +77,22 @@
 		D6618472262AF93500DA63AE /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = D6618471262AF93500DA63AE /* URLImage */; };
 		D6618474262D2AEE00DA63AE /* CyclePathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6618473262D2AEE00DA63AE /* CyclePathView.swift */; };
 		D6618479262D2CCE00DA63AE /* PupolarJoggingPathHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6618478262D2CCE00DA63AE /* PupolarJoggingPathHomeView.swift */; };
-		D661847B262D2CE200DA63AE /* RecommendedJoggingPathDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D661847A262D2CE200DA63AE /* RecommendedJoggingPathDetailView.swift */; };
 		D661847D262D2F9800DA63AE /* PopularJoggingRouteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D661847C262D2F9800DA63AE /* PopularJoggingRouteModel.swift */; };
 		D661847F262D694400DA63AE /* ScrollViewPaged.swift in Sources */ = {isa = PBXBuildFile; fileRef = D661847E262D694400DA63AE /* ScrollViewPaged.swift */; };
 		D6618481262D930800DA63AE /* scrollViewEdited.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6618480262D930800DA63AE /* scrollViewEdited.swift */; };
 		D6618485262D992C00DA63AE /* PagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6618484262D992C00DA63AE /* PagerView.swift */; };
+		D66A6E4E26369DF400F8AD54 /* FavoriteRouteCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A6E4D26369DF400F8AD54 /* FavoriteRouteCard.swift */; };
+		D66A6E502636C15A00F8AD54 /* TipsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A6E4F2636C15A00F8AD54 /* TipsCard.swift */; };
+		D66A6E572637AFBA00F8AD54 /* PopularRouteCore+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A6E552637AFBA00F8AD54 /* PopularRouteCore+CoreDataClass.swift */; };
+		D66A6E582637AFBA00F8AD54 /* PopularRouteCore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A6E562637AFBA00F8AD54 /* PopularRouteCore+CoreDataProperties.swift */; };
+		D66A6E5A2637AFFD00F8AD54 /* PopularRouteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A6E592637AFFD00F8AD54 /* PopularRouteViewModel.swift */; };
+		D66A6E5C2637BF9700F8AD54 /* FavoritePopularRouteSrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A6E5B2637BF9700F8AD54 /* FavoritePopularRouteSrollView.swift */; };
+		D66A6E5E2637C01D00F8AD54 /* FavoritePopularRouteCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A6E5D2637C01D00F8AD54 /* FavoritePopularRouteCard.swift */; };
+		D66A6E602637D57200F8AD54 /* HomePageRouteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A6E5F2637D57200F8AD54 /* HomePageRouteDetailView.swift */; };
+		D66A6E622637E05900F8AD54 /* HomePagePopularJoggingRouteDetailVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A6E612637E05900F8AD54 /* HomePagePopularJoggingRouteDetailVIew.swift */; };
+		D66A6E652637EEBB00F8AD54 /* SensorMarkCore+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A6E632637EEBB00F8AD54 /* SensorMarkCore+CoreDataClass.swift */; };
+		D66A6E662637EEBB00F8AD54 /* SensorMarkCore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A6E642637EEBB00F8AD54 /* SensorMarkCore+CoreDataProperties.swift */; };
+		D66A6E682637EEDC00F8AD54 /* SensorMarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A6E672637EEDC00F8AD54 /* SensorMarkViewModel.swift */; };
 		D6708FC7261403F2008FDD79 /* BottomBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6708FC3261403F2008FDD79 /* BottomBarItemView.swift */; };
 		D6708FC8261403F2008FDD79 /* BottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6708FC4261403F2008FDD79 /* BottomBar.swift */; };
 		D6708FC9261403F2008FDD79 /* BottomBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6708FC5261403F2008FDD79 /* BottomBarItem.swift */; };
@@ -105,6 +116,14 @@
 		D67090022614A929008FDD79 /* OnboardingSix.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67090012614A929008FDD79 /* OnboardingSix.swift */; };
 		D67A3C1F2622B49700C47CA1 /* RiskLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67A3C1E2622B49700C47CA1 /* RiskLabelView.swift */; };
 		D67A3C222622C08C00C47CA1 /* SSToastMessage in Frameworks */ = {isa = PBXBuildFile; productRef = D67A3C212622C08C00C47CA1 /* SSToastMessage */; };
+		D67F02C726367AA900927C34 /* FavoriteGymScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67F02C626367AA900927C34 /* FavoriteGymScrollView.swift */; };
+		D67F02C926367D7A00927C34 /* FavoriteCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67F02C826367D7A00927C34 /* FavoriteCard.swift */; };
+		D67F02CB263688B800927C34 /* AddFavoriteCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67F02CA263688B800927C34 /* AddFavoriteCard.swift */; };
+		D67F02CD263690B000927C34 /* FavoriteRouteScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67F02CC263690B000927C34 /* FavoriteRouteScrollView.swift */; };
+		D67F02D62636977300927C34 /* Direction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67F02D22636977300927C34 /* Direction+CoreDataClass.swift */; };
+		D67F02D72636977300927C34 /* Direction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67F02D32636977300927C34 /* Direction+CoreDataProperties.swift */; };
+		D67F02DC263699D000927C34 /* RouteCore+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67F02DA263699D000927C34 /* RouteCore+CoreDataClass.swift */; };
+		D67F02DD263699D000927C34 /* RouteCore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67F02DB263699D000927C34 /* RouteCore+CoreDataProperties.swift */; };
 		D68600AA2635141100259D37 /* GymViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68600A92635141100259D37 /* GymViewModel.swift */; };
 		D68600BA2635565A00259D37 /* Refresh in Frameworks */ = {isa = PBXBuildFile; productRef = D68600B92635565A00259D37 /* Refresh */; };
 		D6977B49260AE845001F4B48 /* PermissionsSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D6977B48260AE845001F4B48 /* PermissionsSwiftUI */; };
@@ -215,11 +234,22 @@
 		D661846E2629CAF500DA63AE /* testView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testView.swift; sourceTree = "<group>"; };
 		D6618473262D2AEE00DA63AE /* CyclePathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyclePathView.swift; sourceTree = "<group>"; };
 		D6618478262D2CCE00DA63AE /* PupolarJoggingPathHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PupolarJoggingPathHomeView.swift; sourceTree = "<group>"; };
-		D661847A262D2CE200DA63AE /* RecommendedJoggingPathDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedJoggingPathDetailView.swift; sourceTree = "<group>"; };
 		D661847C262D2F9800DA63AE /* PopularJoggingRouteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularJoggingRouteModel.swift; sourceTree = "<group>"; };
 		D661847E262D694400DA63AE /* ScrollViewPaged.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewPaged.swift; sourceTree = "<group>"; };
 		D6618480262D930800DA63AE /* scrollViewEdited.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scrollViewEdited.swift; sourceTree = "<group>"; };
 		D6618484262D992C00DA63AE /* PagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerView.swift; sourceTree = "<group>"; };
+		D66A6E4D26369DF400F8AD54 /* FavoriteRouteCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRouteCard.swift; sourceTree = "<group>"; };
+		D66A6E4F2636C15A00F8AD54 /* TipsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsCard.swift; sourceTree = "<group>"; };
+		D66A6E552637AFBA00F8AD54 /* PopularRouteCore+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PopularRouteCore+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		D66A6E562637AFBA00F8AD54 /* PopularRouteCore+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PopularRouteCore+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		D66A6E592637AFFD00F8AD54 /* PopularRouteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularRouteViewModel.swift; sourceTree = "<group>"; };
+		D66A6E5B2637BF9700F8AD54 /* FavoritePopularRouteSrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePopularRouteSrollView.swift; sourceTree = "<group>"; };
+		D66A6E5D2637C01D00F8AD54 /* FavoritePopularRouteCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePopularRouteCard.swift; sourceTree = "<group>"; };
+		D66A6E5F2637D57200F8AD54 /* HomePageRouteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageRouteDetailView.swift; sourceTree = "<group>"; };
+		D66A6E612637E05900F8AD54 /* HomePagePopularJoggingRouteDetailVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePagePopularJoggingRouteDetailVIew.swift; sourceTree = "<group>"; };
+		D66A6E632637EEBB00F8AD54 /* SensorMarkCore+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SensorMarkCore+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		D66A6E642637EEBB00F8AD54 /* SensorMarkCore+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SensorMarkCore+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		D66A6E672637EEDC00F8AD54 /* SensorMarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorMarkViewModel.swift; sourceTree = "<group>"; };
 		D6708FC3261403F2008FDD79 /* BottomBarItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarItemView.swift; sourceTree = "<group>"; };
 		D6708FC4261403F2008FDD79 /* BottomBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBar.swift; sourceTree = "<group>"; };
 		D6708FC5261403F2008FDD79 /* BottomBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarItem.swift; sourceTree = "<group>"; };
@@ -241,6 +271,14 @@
 		D6708FFE2614A86B008FDD79 /* OnboardingFive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFive.swift; sourceTree = "<group>"; };
 		D67090012614A929008FDD79 /* OnboardingSix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSix.swift; sourceTree = "<group>"; };
 		D67A3C1E2622B49700C47CA1 /* RiskLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskLabelView.swift; sourceTree = "<group>"; };
+		D67F02C626367AA900927C34 /* FavoriteGymScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteGymScrollView.swift; sourceTree = "<group>"; };
+		D67F02C826367D7A00927C34 /* FavoriteCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCard.swift; sourceTree = "<group>"; };
+		D67F02CA263688B800927C34 /* AddFavoriteCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFavoriteCard.swift; sourceTree = "<group>"; };
+		D67F02CC263690B000927C34 /* FavoriteRouteScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRouteScrollView.swift; sourceTree = "<group>"; };
+		D67F02D22636977300927C34 /* Direction+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Direction+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		D67F02D32636977300927C34 /* Direction+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Direction+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		D67F02DA263699D000927C34 /* RouteCore+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteCore+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		D67F02DB263699D000927C34 /* RouteCore+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteCore+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		D68600A92635141100259D37 /* GymViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymViewModel.swift; sourceTree = "<group>"; };
 		D6977B4F260AFB82001F4B48 /* LocationStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationStatusModel.swift; sourceTree = "<group>"; };
 		D6977B9E260B4BAF001F4B48 /* PreLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreLaunch.swift; sourceTree = "<group>"; };
@@ -336,6 +374,7 @@
 				D6226EE426201BBA003F4D9F /* PathShowView.swift */,
 				D67A3C1E2622B49700C47CA1 /* RiskLabelView.swift */,
 				D6618473262D2AEE00DA63AE /* CyclePathView.swift */,
+				D66A6E5F2637D57200F8AD54 /* HomePageRouteDetailView.swift */,
 			);
 			path = Route;
 			sourceTree = "<group>";
@@ -446,7 +485,7 @@
 			isa = PBXGroup;
 			children = (
 				D6618478262D2CCE00DA63AE /* PupolarJoggingPathHomeView.swift */,
-				D661847A262D2CE200DA63AE /* RecommendedJoggingPathDetailView.swift */,
+				D66A6E612637E05900F8AD54 /* HomePagePopularJoggingRouteDetailVIew.swift */,
 			);
 			path = PopularJoggingPath;
 			sourceTree = "<group>";
@@ -524,10 +563,39 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
+		D67F02C426367A3500927C34 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				D6977BAB260C3C15001F4B48 /* HomeView.swift */,
+				D67F02C626367AA900927C34 /* FavoriteGymScrollView.swift */,
+				D67F02C826367D7A00927C34 /* FavoriteCard.swift */,
+				D67F02CA263688B800927C34 /* AddFavoriteCard.swift */,
+				D67F02CC263690B000927C34 /* FavoriteRouteScrollView.swift */,
+				D66A6E4D26369DF400F8AD54 /* FavoriteRouteCard.swift */,
+				D66A6E4F2636C15A00F8AD54 /* TipsCard.swift */,
+				D66A6E5B2637BF9700F8AD54 /* FavoritePopularRouteSrollView.swift */,
+				D66A6E5D2637C01D00F8AD54 /* FavoritePopularRouteCard.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		D67F02C526367A4B00927C34 /* Switch */ = {
+			isa = PBXGroup;
+			children = (
+				D6977BA8260C3A74001F4B48 /* MainSwitchView.swift */,
+				D6977BBD260F5F63001F4B48 /* OnboardingShowView.swift */,
+				D6977BA5260C35A9001F4B48 /* BottomBarView.swift */,
+				D6977B9E260B4BAF001F4B48 /* PreLaunch.swift */,
+			);
+			path = Switch;
+			sourceTree = "<group>";
+		};
 		D68600A82635140200259D37 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				D68600A92635141100259D37 /* GymViewModel.swift */,
+				D66A6E592637AFFD00F8AD54 /* PopularRouteViewModel.swift */,
+				D66A6E672637EEDC00F8AD54 /* SensorMarkViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -555,6 +623,8 @@
 		D6CD21E325F7B17E00861495 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D67F02C526367A4B00927C34 /* Switch */,
+				D67F02C426367A3500927C34 /* Home */,
 				D6618475262D2C8E00DA63AE /* PopularJoggingPath */,
 				D6708FF026149CBD008FDD79 /* Onboarding */,
 				D6708FC1261403F2008FDD79 /* Sources */,
@@ -567,11 +637,6 @@
 				D60FC2392602EB910038E9E5 /* WalkDog */,
 				D60FC2382602EB870038E9E5 /* Gym */,
 				D6CD21EF25F85FDA00861495 /* Button */,
-				D6977B9E260B4BAF001F4B48 /* PreLaunch.swift */,
-				D6977BA5260C35A9001F4B48 /* BottomBarView.swift */,
-				D6977BA8260C3A74001F4B48 /* MainSwitchView.swift */,
-				D6977BAB260C3C15001F4B48 /* HomeView.swift */,
-				D6977BBD260F5F63001F4B48 /* OnboardingShowView.swift */,
 				D661846E2629CAF500DA63AE /* testView.swift */,
 				D6F883B72634375400673552 /* ContentView.swift */,
 			);
@@ -617,6 +682,14 @@
 		D6F883C12634382E00673552 /* CoreDataModelFolder */ = {
 			isa = PBXGroup;
 			children = (
+				D66A6E632637EEBB00F8AD54 /* SensorMarkCore+CoreDataClass.swift */,
+				D66A6E642637EEBB00F8AD54 /* SensorMarkCore+CoreDataProperties.swift */,
+				D66A6E552637AFBA00F8AD54 /* PopularRouteCore+CoreDataClass.swift */,
+				D66A6E562637AFBA00F8AD54 /* PopularRouteCore+CoreDataProperties.swift */,
+				D67F02DA263699D000927C34 /* RouteCore+CoreDataClass.swift */,
+				D67F02DB263699D000927C34 /* RouteCore+CoreDataProperties.swift */,
+				D67F02D22636977300927C34 /* Direction+CoreDataClass.swift */,
+				D67F02D32636977300927C34 /* Direction+CoreDataProperties.swift */,
 				D6F883C22634384200673552 /* ImageCore+CoreDataClass.swift */,
 				D6F883C32634384200673552 /* ImageCore+CoreDataProperties.swift */,
 				D6F883C42634384200673552 /* GymCore+CoreDataClass.swift */,
@@ -746,17 +819,19 @@
 				D60FC26926032ECA0038E9E5 /* NavigationBarColorModifier.swift in Sources */,
 				D6226ECF261EF070003F4D9F /* JoggingMainListButton.swift in Sources */,
 				D6977BB3260C6A97001F4B48 /* MainStyleButton.swift in Sources */,
+				D66A6E682637EEDC00F8AD54 /* SensorMarkViewModel.swift in Sources */,
 				D60FC282260381610038E9E5 /* UserData.swift in Sources */,
 				D61A1488260467130049B377 /* BottomContentView.swift in Sources */,
+				D66A6E652637EEBB00F8AD54 /* SensorMarkCore+CoreDataClass.swift in Sources */,
 				D69B12232611CC9C00C086FA /* SafetyPolicyModel.swift in Sources */,
 				D6708FE82614736A008FDD79 /* View+Extension.swift in Sources */,
 				D6708FE52614736A008FDD79 /* AlertX.swift in Sources */,
+				D66A6E502636C15A00F8AD54 /* TipsCard.swift in Sources */,
 				D6F883B82634375400673552 /* ContentView.swift in Sources */,
 				D6708FEA2614736A008FDD79 /* AlertX_View.swift in Sources */,
 				D630CA7C2608B47B008B9FA9 /* DigitalClockView.swift in Sources */,
 				D6708FFF2614A86B008FDD79 /* OnboardingFive.swift in Sources */,
 				D6226EBF261ED65E003F4D9F /* JoggingPathCardModel.swift in Sources */,
-				D661847B262D2CE200DA63AE /* RecommendedJoggingPathDetailView.swift in Sources */,
 				D60FC27F26037E9A0038E9E5 /* NetworkAPI.swift in Sources */,
 				D60FC26D2603387E0038E9E5 /* DirectButtonView.swift in Sources */,
 				D60FC28F26044B7F0038E9E5 /* JoggingGoalInputView.swift in Sources */,
@@ -770,6 +845,7 @@
 				D6708FFC2614A73F008FDD79 /* OnboardingFour.swift in Sources */,
 				D6226EE126200CE8003F4D9F /* CustomizePathView.swift in Sources */,
 				D630CA91260991DF008B9FA9 /* WalkDogHomeView.swift in Sources */,
+				D66A6E572637AFBA00F8AD54 /* PopularRouteCore+CoreDataClass.swift in Sources */,
 				D69B12292611EE9700C086FA /* LegendView.swift in Sources */,
 				D69B1216261073CC00C086FA /* TopNavigationBarView.swift in Sources */,
 				D610939626134A8A00C0C6BC /* OnboardingView.swift in Sources */,
@@ -781,14 +857,17 @@
 				D6977BA6260C35A9001F4B48 /* BottomBarView.swift in Sources */,
 				D60FC24D2602EF630038E9E5 /* HikingParkModel.swift in Sources */,
 				D6618481262D930800DA63AE /* scrollViewEdited.swift in Sources */,
+				D66A6E5A2637AFFD00F8AD54 /* PopularRouteViewModel.swift in Sources */,
 				D6708FCA261403F2008FDD79 /* BarBuilder.swift in Sources */,
 				D6708FF226149CCC008FDD79 /* OnboardingOneView.swift in Sources */,
 				D60FC28B260443C80038E9E5 /* LocationViewModel.swift in Sources */,
 				D60FC2472602EC510038E9E5 /* GymCellView.swift in Sources */,
 				D6618485262D992C00DA63AE /* PagerView.swift in Sources */,
 				D630CA882608C20A008B9FA9 /* PlanButtonView.swift in Sources */,
+				D67F02C926367D7A00927C34 /* FavoriteCard.swift in Sources */,
 				D6CD21DD25F7A3B700861495 /* MapView.swift in Sources */,
 				D630CA6B26088FA2008B9FA9 /* GraphCapsule.swift in Sources */,
+				D66A6E662637EEBB00F8AD54 /* SensorMarkCore+CoreDataProperties.swift in Sources */,
 				D630CA8E260991D1008B9FA9 /* HikingHomeView.swift in Sources */,
 				D69B1220261092B000C086FA /* WeatherModel.swift in Sources */,
 				D6977BAC260C3C15001F4B48 /* HomeView.swift in Sources */,
@@ -809,9 +888,11 @@
 				D630CA6326088662008B9FA9 /* RoadSituationContentView.swift in Sources */,
 				D6313C6C2615A8900079D5F6 /* OnboardingZero.swift in Sources */,
 				D60FC262260313540038E9E5 /* ScrollBoxView.swift in Sources */,
+				D67F02D62636977300927C34 /* Direction+CoreDataClass.swift in Sources */,
 				D69B1213261073CC00C086FA /* BuluttanBackgroundView.swift in Sources */,
 				D6708FF92614A57C008FDD79 /* OnboardingThree.swift in Sources */,
 				D6F883B62634353400673552 /* CoreDataModel.xcdatamodeld in Sources */,
+				D67F02C726367AA900927C34 /* FavoriteGymScrollView.swift in Sources */,
 				D6618466262429CF00DA63AE /* HTMLStringView.swift in Sources */,
 				D6F883C62634384200673552 /* ImageCore+CoreDataClass.swift in Sources */,
 				D63D18D925FF787F0049C1AC /* CircleImageView.swift in Sources */,
@@ -822,7 +903,11 @@
 				D60FC271260342D90038E9E5 /* StarButtonView.swift in Sources */,
 				D630CA68260888CA008B9FA9 /* RoadSituationModel.swift in Sources */,
 				D63D18CE25FE09460049C1AC /* ActivityModel.swift in Sources */,
+				D67F02CB263688B800927C34 /* AddFavoriteCard.swift in Sources */,
+				D66A6E5C2637BF9700F8AD54 /* FavoritePopularRouteSrollView.swift in Sources */,
+				D66A6E582637AFBA00F8AD54 /* PopularRouteCore+CoreDataProperties.swift in Sources */,
 				D661846F2629CAF700DA63AE /* testView.swift in Sources */,
+				D66A6E622637E05900F8AD54 /* HomePagePopularJoggingRouteDetailVIew.swift in Sources */,
 				D69B1219261073EF00C086FA /* PreviewFactory.swift in Sources */,
 				D6226EE526201BBA003F4D9F /* PathShowView.swift in Sources */,
 				D6CD21F725F8642500861495 /* ImageScrollModel.swift in Sources */,
@@ -831,15 +916,18 @@
 				D6226ECC261EEDC3003F4D9F /* MainButtonJoggingView.swift in Sources */,
 				D630CA9726099591008B9FA9 /* LocationFetcher.swift in Sources */,
 				D630CA6E260891C1008B9FA9 /* TrendGraphView.swift in Sources */,
+				D67F02DD263699D000927C34 /* RouteCore+CoreDataProperties.swift in Sources */,
 				D6977BB7260C855C001F4B48 /* OutDoorHomeView.swift in Sources */,
 				D6977BBB260C85BF001F4B48 /* JoggingHomeView.swift in Sources */,
 				D6977B9F260B4BAF001F4B48 /* PreLaunch.swift in Sources */,
 				D69B1214261073CC00C086FA /* CurrentObservationView.swift in Sources */,
 				D68600AA2635141100259D37 /* GymViewModel.swift in Sources */,
 				D6618479262D2CCE00DA63AE /* PupolarJoggingPathHomeView.swift in Sources */,
+				D67F02DC263699D000927C34 /* RouteCore+CoreDataClass.swift in Sources */,
 				D6708FE32614736A008FDD79 /* Themes.swift in Sources */,
 				D6226EE3262016AC003F4D9F /* PathInformationView.swift in Sources */,
 				D6708FE92614736A008FDD79 /* AlertXViewController.swift in Sources */,
+				D66A6E602637D57200F8AD54 /* HomePageRouteDetailView.swift in Sources */,
 				D610939926134BBB00C0C6BC /* ConcentricOnboardingView.swift in Sources */,
 				D65200F825F757B800BA04E9 /* MelbourneRunApp.swift in Sources */,
 				D6708FE62614736A008FDD79 /* Window.swift in Sources */,
@@ -847,8 +935,12 @@
 				D6F883C72634384200673552 /* ImageCore+CoreDataProperties.swift in Sources */,
 				D60FC25B260309050038E9E5 /* MapHelper.swift in Sources */,
 				D6977BB0260C5A56001F4B48 /* NoDivider.swift in Sources */,
+				D67F02CD263690B000927C34 /* FavoriteRouteScrollView.swift in Sources */,
+				D66A6E4E26369DF400F8AD54 /* FavoriteRouteCard.swift in Sources */,
 				D69B1215261073CC00C086FA /* MainWeatherView.swift in Sources */,
 				D6226EC2261ED8A9003F4D9F /* CardView.swift in Sources */,
+				D66A6E5E2637C01D00F8AD54 /* FavoritePopularRouteCard.swift in Sources */,
+				D67F02D72636977300927C34 /* Direction+CoreDataProperties.swift in Sources */,
 				D6977B50260AFB82001F4B48 /* LocationStatusModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

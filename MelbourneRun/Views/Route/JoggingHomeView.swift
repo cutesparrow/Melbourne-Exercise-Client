@@ -15,7 +15,7 @@ import AlertToast
 
 struct JoggingHomeView: View {
     @EnvironmentObject var userData:UserData
-    @State var marks:[MarkerLocation] = []
+    @StateObject var marks:SensorMarkViewModel = SensorMarkViewModel()
     @State var showSheet:Bool = false
     @State var isopenManue:Bool = false
     @State var showJoggingGuide:Bool = true
@@ -31,6 +31,9 @@ struct JoggingHomeView: View {
     @State private var trackingMode = MapUserTrackingMode.follow
     @State private var choosedRouteLength:Double = 1
     @State var type:String = ""
+    @Environment(\.managedObjectContext) var context
+    @FetchRequest(entity: SensorMarkCore.entity(), sortDescriptors: []) var result: FetchedResults<SensorMarkCore>
+    
     func createBottomFloaterView() -> some View {
           ZStack{
             VisualEffectView(effect: UIBlurEffect(style: .light))
@@ -55,19 +58,19 @@ struct JoggingHomeView: View {
           .padding(15)
           }
       }
-    func getSensorSituation(){
-        let completion: (Result<[MarkerLocation],Error>) -> Void = { result in
-            switch result {
-            case let .success(marks): self.marks = marks
-                self.showLoadingIndicator = false
-            case let .failure(error): print(error)
-                self.showLoadingIndicator = false
-                self.networkError = true
-            }
-        }
-        self.showLoadingIndicator = true
-        _ = NetworkAPI.loadSensorSituation(completion: completion)
-    }
+//    func getSensorSituation(){
+//        let completion: (Result<[MarkerLocation],Error>) -> Void = { result in
+//            switch result {
+//            case let .success(marks): self.marks = marks
+//                self.showLoadingIndicator = false
+//            case let .failure(error): print(error)
+//                self.showLoadingIndicator = false
+//                self.networkError = true
+//            }
+//        }
+//        self.showLoadingIndicator = true
+//        _ = NetworkAPI.loadSensorSituation(completion: completion)
+//    }
     
     func loadCustomizedCardsData(location:CLLocationCoordinate2D,length:Double,type:String){
         let completion: (Result<[CustomizedCard], Error>) -> Void = { result in
@@ -75,24 +78,24 @@ struct JoggingHomeView: View {
             case let .success(list):
                 if list.count != 0{
                 self.customizedCards = list
-                self.showLoadingIndicator = false
+                self.marks.loading = false
                 self.loadedPopularCards = true
                 self.showSheet.toggle()
                     
                 self.isopenManue.toggle()
             }
                 else{
-                    self.showLoadingIndicator = false
+                    self.marks.loading = false
                     self.loadedPopularCards = false
                     self.networkError = true
                 }
             case let .failure(error): print(error)
-                self.showLoadingIndicator = false
+                self.marks.loading = false
                 self.loadedPopularCards = false
                 self.networkError = true
             }
         }
-        self.showLoadingIndicator = true
+        self.marks.loading = true
         _ = NetworkAPI.loadCustomizedCards(location: location, length: length,type:type, completion: completion)
     }
   
@@ -115,9 +118,9 @@ struct JoggingHomeView: View {
 //            Map(coordinateRegion: $region, interactionModes: .all, showsUserLocation: true, userTrackingMode: $trackingMode, annotationItems: userData.marks, annotationContent: { (mark) -> MapMarker in
 //                MapMarker(coordinate: CLLocationCoordinate2D(latitude: mark.coordinate.latitude, longitude: mark.coordinate.longitude), tint: mark.risk == "high" ? .red : mark.risk == "medium" ? .orange : mark.risk == "low" ? .yellow : .green)
 //            })
-            Map(coordinateRegion: $region, interactionModes: .all, showsUserLocation: true, userTrackingMode: $trackingMode, annotationItems: marks, annotationContent: { mark in
+                Map(coordinateRegion: $region, interactionModes: .all, showsUserLocation: true, userTrackingMode: $trackingMode, annotationItems: result, annotationContent: { mark in
                 MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: mark.lat, longitude: mark.long)) {
-                    SensorMapAnnotationView(animation: $showSheet, id: mark.id, color: mark.risk == "high" ? .red : mark.risk == "medium" ? .orange : mark.risk == "low" ? .yellow : .green, speed:mark.risk == "high" ? 1 : mark.risk == "medium" ? 0.7 : mark.risk == "low" ? 0.5 : 0.3)
+                    SensorMapAnnotationView(animation: $showSheet, id: Int(mark.uid), color: mark.risk == "high" ? .red : mark.risk == "medium" ? .orange : mark.risk == "low" ? .yellow : .green, speed:mark.risk == "high" ? 1 : mark.risk == "medium" ? 0.7 : mark.risk == "low" ? 0.5 : 0.3)
                 }})
                 .ignoresSafeArea()
             ZStack {
@@ -126,7 +129,7 @@ struct JoggingHomeView: View {
                 Spacer()}
                         HStack{
                             Button(action: {
-                                self.getSensorSituation()
+                                self.marks.reGetSensorSituation(context: context)
                             }, label: {
                                 ZStack{
                                     VisualEffectView(effect: UIBlurEffect(style: .light))
@@ -146,11 +149,11 @@ struct JoggingHomeView: View {
 //            FloatingButton(mainButtonView: AnyView(MainButtonJoggingView(imageName: "plus", colorHex: 0xeb3b5a)), buttons: buttons)
 //                .offset(x: UIScreen.main.bounds.width/2.5, y: UIScreen.main.bounds.width/1.5)
             ZStack{
-                if showLoadingIndicator{
+                if marks.loading{
                     VisualEffectView(effect: UIBlurEffect(style: .light))
                     .clipShape(RoundedRectangle(cornerRadius: 15))
                     .frame(width: 60, height: 60, alignment: .center)}
-                ActivityIndicatorView(isVisible: $showLoadingIndicator, type: .default)
+                ActivityIndicatorView(isVisible: $marks.loading, type: .default)
                 .frame(width: 40.0, height: 40.0)
                     .foregroundColor(AppColor.shared.joggingColor)
             }
@@ -199,9 +202,9 @@ struct JoggingHomeView: View {
                 }
                 
         }
-        .toast(isPresenting: $networkError, duration: 1.2, tapToDismiss: true, alert: { AlertToast(type: .error(.red), title: "Network Error", subTitle: "")
+            .toast(isPresenting: $marks.error, duration: 1.2, tapToDismiss: true, alert: { AlertToast(type: .error(.red), title: "Network Error", subTitle: "")
         }, completion: {_ in
-            self.networkError = false
+            marks.error = false
         })
         .present(isPresented: $showJoggingGuide, type: .floater(), position: .top, animation:  Animation.spring(), autohideDuration: nil, closeOnTap: true, onTap: {
         }, closeOnTapOutside: true, view: {
@@ -217,8 +220,9 @@ struct JoggingHomeView: View {
             }
         })
         .onAppear(perform: {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4){if true{
-                self.getSensorSituation()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4){if userData.joggingpageFirstAppear{
+//                self.
+                self.marks.reGetSensorSituation(context: context)
                 userData.joggingpageFirstAppear = false
             }}
         })

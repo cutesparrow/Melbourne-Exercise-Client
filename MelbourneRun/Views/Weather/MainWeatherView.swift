@@ -11,13 +11,12 @@ import SwiftUI
 struct MainWeatherView: View {
     @EnvironmentObject var userData:UserData
     var body: some View {
-            VStack(alignment: .center, spacing: 20.0) {
-                TopNavigationBarView()
-                    .environmentObject(userData)
+            
+                
                 CurrentObservationView()
-                    .padding()
                     
-            }
+                    
+            
            
         
     }

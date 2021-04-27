@@ -8,17 +8,22 @@
 import SwiftUI
 
 struct testView: View {
-    @State var a = [1,2,3,4]
-    @State var select:Int = 0
+    @State var a:Bool = false
+
     var body: some View {
-        TabView(selection: $select) {
-            ForEach(a, id: \.self) { i in
-                Text("\(i)")
-                    .tag(i)
-            }
-        }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-        .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
-        .padding(.vertical,-15)
+        Button(action: {self.a.toggle()}) {
+            Text("a")
+        }
+//        .present(isPresented: $a,type:.floater(verticalPadding: 10), closeOnTap: false,closeOnTapOutside: false) {
+//            ZStack{
+//                RoundedRectangle(cornerRadius: 25.0)
+//                    .fill(Color(.blue))
+//                    .frame(width: 100, height: 100, alignment: .center)
+//                Button(action: {}, label: {
+//                    Text("Button")
+//                })
+//            }
+//        }
     }
 }
 
