@@ -75,7 +75,7 @@ struct HomePagePopularJoggingRouteDetailVIew: View {
                         )
                             .clipped()
                             
-                            .background(Color.white)
+                                .background(Color(.systemBackground))
                             .foregroundColor(Color.green)
                             .edgesIgnoringSafeArea(.top)
                         
@@ -268,7 +268,7 @@ struct HomePagePopularJoggingRouteDetailVIew: View {
                             }
                             
                         }
-                        .background(Color.white)
+                    .background(Color(.systemBackground))
                 }
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height-30)
                 .background(Color.clear)

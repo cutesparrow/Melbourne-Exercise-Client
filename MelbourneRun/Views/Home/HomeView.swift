@@ -372,7 +372,7 @@ struct HomeView: View {
                                 .opacity(0.8)
                                 .clipShape(RoundedRectangle(cornerRadius: 15.0))
                                 .frame(width: 110,height: 50)
-                            VisualEffectView(effect: UIBlurEffect(style: .regular))
+                            VisualEffectView(effect: UIBlurEffect(style: .light))
                                 .clipShape(RoundedRectangle(cornerRadius: 15))
                                 .frame(width: 110,height: 50)
                             HStack{
@@ -380,11 +380,11 @@ struct HomeView: View {
                                     Text("✔")
                                     .bold()
                                     .font(.body)
-                                    .foregroundColor(Color(.systemBackground))}
+                                    .foregroundColor(Color(.black))}
                                 Text("GYM")
                                 .bold()
                                 .font(.title3)
-                                .foregroundColor(Color(.systemBackground))}
+                                .foregroundColor(Color(.white))}
                         }
                     }
                     Spacer(minLength: 0)
@@ -399,18 +399,18 @@ struct HomeView: View {
                                 .opacity(0.8)
                                 .clipShape(RoundedRectangle(cornerRadius: 15.0))
                                 .frame(width: 110,height: 50)
-                            VisualEffectView(effect: UIBlurEffect(style: .regular))
+                            VisualEffectView(effect: UIBlurEffect(style: .light))
                                 .clipShape(RoundedRectangle(cornerRadius: 15))
                                 .frame(width: 110,height: 50)
                             HStack{
                                 if showFavoriteRoute{Text("✔")
                                     .bold()
                                     .font(.body)
-                                    .foregroundColor(Color(.systemBackground))}
+                                    .foregroundColor(Color(.black))}
                                 Text("ROUTE")
                                 .bold()
                                 .font(.title3)
-                                .foregroundColor(Color(.systemBackground))}
+                                .foregroundColor(Color(.white))}
                         }
                     }
                     Spacer(minLength: 0)
@@ -425,18 +425,18 @@ struct HomeView: View {
                                 .opacity(0.8)
                                 .clipShape(RoundedRectangle(cornerRadius: 15.0))
                                 .frame(width: 110,height: 50)
-                            VisualEffectView(effect: UIBlurEffect(style: .regular))
+                            VisualEffectView(effect: UIBlurEffect(style: .light))
                                 .clipShape(RoundedRectangle(cornerRadius: 15))
                                 .frame(width: 110,height: 50)
                             HStack{
                                 if showFavoritePopularJoggingRoute{Text("✔")
                                     .bold()
                                     .font(.body)
-                                    .foregroundColor(Color(.systemBackground))}
+                                    .foregroundColor(Color(.black))}
                                 Text("JOG")
                                 .bold()
                                 .font(.title3)
-                                .foregroundColor(Color(.systemBackground))
+                                .foregroundColor(Color(.white))
                             }
                         }
                     }

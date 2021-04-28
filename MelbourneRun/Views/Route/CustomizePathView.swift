@@ -50,7 +50,7 @@ struct CustomizePathView: View {
                     Text("Discover Your Walking")
                         .font(.system(size: 18, weight: .bold, design: .default))
                         .foregroundColor(.gray)
-                    Text("Routes").font(.system(size: 40, weight: .bold, design: .default)).foregroundColor(.black)
+                    Text("Routes").font(.system(size: 40, weight: .bold, design: .default)).foregroundColor(Color(.label))
                 }
                 Spacer()
                 

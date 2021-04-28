@@ -83,7 +83,7 @@ struct PupolarJoggingPathHomeView: View {
             ZStack{
              
         ZStack{
-            Color.white.edgesIgnoringSafeArea(.all)
+            Color(.systemBackground).edgesIgnoringSafeArea(.all)
             
             if !result.isEmpty{
             ScrollView{
@@ -97,7 +97,7 @@ struct PupolarJoggingPathHomeView: View {
                         Text("Discover Your Jogging")
                             .font(.system(size: 18, weight: .bold, design: .default))
                             .foregroundColor(.gray)
-                        Text("Routes").font(.system(size: 40, weight: .bold, design: .default)).foregroundColor(.black)
+                        Text("Routes").font(.system(size: 40, weight: .bold, design: .default)).foregroundColor(Color(.label))
                     }
                     Spacer()
                     
@@ -122,7 +122,7 @@ struct PupolarJoggingPathHomeView: View {
                                     .frame(width:self.SVWidth, height: self.itemHeight)
                                     .clipped()
                                     
-                                    .background(Color.white)
+                                    .background(Color(.systemBackground))
                                     
                                 Button(action: {
                                    
@@ -254,7 +254,7 @@ struct PupolarJoggingPathHomeView: View {
                                 )
                                     .clipped()
                                     
-                                    .background(Color.white)
+                                        .background(Color(.systemBackground))
                                     .foregroundColor(Color.green)
                                     .edgesIgnoringSafeArea(.top)
                                 
@@ -446,7 +446,7 @@ struct PupolarJoggingPathHomeView: View {
                                     
                                 }
                               
-                                .background(Color.white)
+                            .background(Color(.systemBackground))
                         }
                         .frame(width: self.expandedScreen_startPoint.width, height: self.expandedScreen_startPoint.height)
                         .background(Color.clear)
