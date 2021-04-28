@@ -29,6 +29,7 @@ struct CustomizePathView: View {
         entity.type = "Walking & Dog"
         self.customizedCards[selectedTab].instructions.forEach { direction in
             let directionData = Direction(context:context)
+            directionData.uid = Int16(self.customizedCards[selectedTab].instructions.firstIndex(where: { $0 == direction })!)
             directionData.directionSentence = direction
             entity.addToDirections(directionData)
         }

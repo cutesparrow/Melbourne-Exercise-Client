@@ -266,8 +266,8 @@ struct ExpandableTipsView: View {
         TabView{
             ForEach(userData.safetyPolicy){ policy in
                 ScrollView{VStack{
-                    PolicyView(policy: policy)
-                        .padding(.horizontal)
+//                    PolicyView(policy: policy)
+//                        .padding(.horizontal)
                     Spacer()
                 }}
                 .frame(height:UIScreen.main.bounds.height/2.5)

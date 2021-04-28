@@ -15,8 +15,9 @@ extension Direction {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Direction> {
         return NSFetchRequest<Direction>(entityName: "Direction")
     }
-
+    
     @NSManaged public var directionSentence: String?
+    @NSManaged public var uid: Int16
     @NSManaged public var route: RouteCore?
 
 }

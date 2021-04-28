@@ -153,6 +153,7 @@
 		D6CD21DD25F7A3B700861495 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD21DC25F7A3B700861495 /* MapView.swift */; };
 		D6CD21EA25F8587900861495 /* CommonVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD21E925F8587900861495 /* CommonVariable.swift */; };
 		D6CD21F725F8642500861495 /* ImageScrollModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD21F625F8642500861495 /* ImageScrollModel.swift */; };
+		D6F7E931263930E900CCF6C0 /* GymDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F7E930263930E900CCF6C0 /* GymDetailView.swift */; };
 		D6F883B62634353400673552 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D6F883B42634353400673552 /* CoreDataModel.xcdatamodeld */; };
 		D6F883B82634375400673552 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F883B72634375400673552 /* ContentView.swift */; };
 		D6F883C62634384200673552 /* ImageCore+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F883C22634384200673552 /* ImageCore+CoreDataClass.swift */; };
@@ -303,6 +304,7 @@
 		D6CD21E125F7B14100861495 /* home.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = home.gpx; path = ../../../Downloads/home.gpx; sourceTree = "<group>"; };
 		D6CD21E925F8587900861495 /* CommonVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonVariable.swift; sourceTree = "<group>"; };
 		D6CD21F625F8642500861495 /* ImageScrollModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScrollModel.swift; sourceTree = "<group>"; };
+		D6F7E930263930E900CCF6C0 /* GymDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymDetailView.swift; sourceTree = "<group>"; };
 		D6F883B52634353400673552 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		D6F883B72634375400673552 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D6F883C22634384200673552 /* ImageCore+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageCore+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
@@ -350,6 +352,7 @@
 				D60FC2462602EC510038E9E5 /* GymCellView.swift */,
 				D60FC2422602EC360038E9E5 /* GymListView.swift */,
 				D630CA93260991F2008B9FA9 /* GymHomeView.swift */,
+				D6F7E930263930E900CCF6C0 /* GymDetailView.swift */,
 			);
 			path = Gym;
 			sourceTree = "<group>";
@@ -833,6 +836,7 @@
 				D6708FFF2614A86B008FDD79 /* OnboardingFive.swift in Sources */,
 				D6226EBF261ED65E003F4D9F /* JoggingPathCardModel.swift in Sources */,
 				D60FC27F26037E9A0038E9E5 /* NetworkAPI.swift in Sources */,
+				D6F7E931263930E900CCF6C0 /* GymDetailView.swift in Sources */,
 				D60FC26D2603387E0038E9E5 /* DirectButtonView.swift in Sources */,
 				D60FC28F26044B7F0038E9E5 /* JoggingGoalInputView.swift in Sources */,
 				D60FC2432602EC360038E9E5 /* GymListView.swift in Sources */,

@@ -24,6 +24,7 @@ struct GymRecordView: View {
     
     var locationManager = CLLocationManager()
     
+    
     func setupManager() {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
@@ -83,7 +84,7 @@ struct GymRecordView: View {
                     }.foregroundColor(Color(.label).opacity(0.65))
                     }
                     Spacer()
-                    CircleImagePlusView(name:(fetchedGym!.images!.allObjects as! [ImageCore])[0].name)
+                    CircleImagePlusView(name:(fetchedGym!.images!.sortedArray(using: [NSSortDescriptor(keyPath: \ImageCore.uid, ascending: true)]) as! [ImageCore])[0].name)
                 }
                 .padding(.leading)
                 .padding(.trailing)
@@ -115,7 +116,7 @@ struct GymRecordView: View {
                     .padding(.bottom,-5)
                 }
                 .offset(y: -UIScreen.main.bounds.width/6.5)
-                ImageScrollView(Images: getScrollImageList(images: fetchedGym!.images?.allObjects as! [ImageCore]))
+                ImageScrollView(Images: getScrollImageList(images: (fetchedGym!.images!.sortedArray(using: [NSSortDescriptor(keyPath: \ImageCore.uid, ascending: true)]) as! [ImageCore])))
                     .offset(y: -UIScreen.main.bounds.width/6)
             }.background(Color.clear)
         })
@@ -128,6 +129,7 @@ struct GymRecordView: View {
                 .frame(width: 40.0, height: 40.0)
                     .foregroundColor(AppColor.shared.gymColor)}
         }
+//        .navigationBarColor(backgroundColor: UIColor(AppColor.shared.gymColor), tintColor: .blue)
         .toast(isPresenting: $networkError, duration: 1.2, tapToDismiss: true, alert: { AlertToast(type: .error(.red), title: "Network Error", subTitle: "")
         }, completion: {_ in
             self.networkError = false

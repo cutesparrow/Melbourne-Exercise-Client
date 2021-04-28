@@ -73,7 +73,7 @@ struct HomePageRouteDetailView: View {
                           .bold()
                           .padding()
                 
-                List(self.route.directions!.allObjects as! [Direction], id:\.self){i in
+                List(self.route.directions!.sortedArray(using: [NSSortDescriptor(keyPath: \ImageCore.uid, ascending: true)]) as! [Direction], id:\.self){i in
                     Text(i.directionSentence!)
             }}
         })

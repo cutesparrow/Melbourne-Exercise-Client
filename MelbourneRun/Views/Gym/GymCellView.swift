@@ -16,7 +16,7 @@ struct GymCellView: View {
         HStack{
             
             NavigationLink(destination: GymRecordView(fetchedGym:gym)) {
-                WebImage(url: URL(string: NetworkManager.shared.urlBasePath + (gym.images?.allObjects as! [ImageCore])[0].name + ".jpg"))
+                WebImage(url: URL(string: NetworkManager.shared.urlBasePath + (gym.images?.sortedArray(using: [NSSortDescriptor(keyPath: \ImageCore.uid, ascending: true)]) as! [ImageCore])[0].name + ".jpg"))
                     .resizable()
                     .scaledToFill()
                     .frame(width: 100, height: 100)

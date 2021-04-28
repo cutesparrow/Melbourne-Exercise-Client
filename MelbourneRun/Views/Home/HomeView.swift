@@ -468,10 +468,10 @@ struct HomeView: View {
         //            .environmentObject(userData)
         //            .offset(y:-UIScreen.main.bounds.height/15)
         //
-        //            .onAppear(perform: {
-        //                self.userData.getWeatherDataNow()
-        //                self.userData.getSafePolicy()
-        //            })
+                    .onAppear(perform: {
+                        self.userData.getWeatherDataNow()
+                        self.userData.getSafePolicy()
+                    })
         //
         //            ZStack{
         //                if showLoadingIndicator{
@@ -483,29 +483,29 @@ struct HomeView: View {
         //                    .foregroundColor(AppColor.shared.homeColor)
         //
         //            }
-        //            }.onAppear(perform: {
-        //                if !userData.showedPermissionAlert{
-        //                let manager = CLLocationManager()
-        //                switch manager.authorizationStatus {
-        //                case .restricted, .denied:
-        //                    showLocationPermissionAlert = true
-        //                    userData.showedPermissionAlert = true
-        //                case .authorizedAlways,.authorizedWhenInUse:
-        //                    showLocationPermissionAlert = false
-        //                    userData.showedPermissionAlert = true
-        //                default:
-        //                    showLocationPermissionAlert = false
-        //                }
-        //                }
-        //            })
-        //            .toast(isPresenting: $showLocationPermissionAlert, tapToDismiss: true, alert: { AlertToast(type: .error(.red), title: "Permission", subTitle: "Location Needed")
-        //        }, completion: {_ in
-        //            self.showLocationPermissionAlert = false
-        //        })
-        //            .toast(isPresenting: $networkError, duration: 2.2, tapToDismiss: true, alert: { AlertToast(type: .error(.red), title: "Network Error", subTitle: "")
-        //            }, completion: {_ in
-        //                self.networkError = false
-        //            })
+                    .onAppear(perform: {
+                        if !userData.showedPermissionAlert{
+                        let manager = CLLocationManager()
+                        switch manager.authorizationStatus {
+                        case .restricted, .denied:
+                            showLocationPermissionAlert = true
+                            userData.showedPermissionAlert = true
+                        case .authorizedAlways,.authorizedWhenInUse:
+                            showLocationPermissionAlert = false
+                            userData.showedPermissionAlert = true
+                        default:
+                            showLocationPermissionAlert = false
+                        }
+                        }
+                    })
+                    .toast(isPresenting: $showLocationPermissionAlert, tapToDismiss: true, alert: { AlertToast(type: .error(.red), title: "Permission", subTitle: "Location Needed")
+                }, completion: {_ in
+                    self.showLocationPermissionAlert = false
+                })
+                    .toast(isPresenting: $networkError, duration: 2.2, tapToDismiss: true, alert: { AlertToast(type: .error(.red), title: "Network Error", subTitle: "")
+                    }, completion: {_ in
+                        self.networkError = false
+                    })
     }
 }
 
