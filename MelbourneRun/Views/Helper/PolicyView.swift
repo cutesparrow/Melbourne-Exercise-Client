@@ -8,25 +8,16 @@
 import SwiftUI
 
 struct PolicyView: View {
-    let policy:SafetyPolicy
+    let policy:AboutCovidCore
     var body: some View {
-        VStack{
-                Text(policy.title)
+        VStack(alignment:.leading){
+            Text(policy.title!)
                 .font(.title3)
                 .bold()
-                    .lineLimit(1)
                 .foregroundColor(Color(.label))
-            Text(policy.date)
-                .font(.caption)
-                .foregroundColor(Color(.label))
-            Text(policy.content)
+            Text(policy.content!)
                 .padding(.top)
         }
     }
 }
 
-struct PolicyView_Previews: PreviewProvider {
-    static var previews: some View {
-        PolicyView(policy: SafetyPolicy(id: 1, date: "", title: "", content: ""))
-    }
-}

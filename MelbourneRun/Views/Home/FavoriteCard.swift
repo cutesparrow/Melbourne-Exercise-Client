@@ -17,7 +17,7 @@ struct FavoriteCard: View {
         ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)) {
             NavigationLink(destination: GymRecordView(fetchedGym:gym))
             {
-                ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)){WebImage(url: URL(string: NetworkManager.shared.urlBasePath + (gym.images?.allObjects as! [ImageCore])[0].name + ".jpg"))
+                ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)){WebImage(url: URL(string: NetworkManager.shared.urlBasePath + (gym.images?.sortedArray(using: [NSSortDescriptor(keyPath: \ImageCore.uid, ascending: true)]) as! [ImageCore])[0].name + ".jpg"))
                             .resizable()
                             .clipShape(RoundedRectangle(cornerRadius: 15.0))
                             .frame(width: 150,height: 100)
@@ -64,7 +64,6 @@ struct FavoriteCard: View {
                     .font(.title)
                     
             }.offset(x:100,y:55)
-            
         }.frame(width: 150,height: 100)
     }
 }

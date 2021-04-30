@@ -27,6 +27,19 @@ class NetworkAPI{
                     }
     }
 }
+    
+    static public func loadAboutCovid(completion: @escaping (Result<[AboutCovid], Error>) -> Void)->DataRequest{
+        NetworkManager.shared.requestGet(path: "aboutCovid/", parameters: nil) { result in
+        switch result {
+                    case let .success(data):
+                        let parseResult: Result<[AboutCovid], Error> = NetworkManager.parseData(data)
+                        completion(parseResult)
+                    case let .failure(error):
+                        completion(.failure(error))
+                    }
+    }
+}
+    
     static public func loadShowInformation(completion: @escaping (Result<ShowInformation, Error>) -> Void)->DataRequest{
         NetworkManager.shared.requestGet(path: "showInformation/", parameters: nil) { result in
         switch result {

@@ -16,7 +16,7 @@ struct MainSwitchView: View {
 //    @State var gymList:GymList = GymList(list: [])
     var body: some View {
         switch selectView {
-        case 0:HomeView(tutorial:$tutorial,bottomBarSelected:$selectView)
+        case 0:HomeView(tutorial:$tutorial,bottomBarSelected:$selectView,showBottomBar:$showBottomBar)
             .environmentObject(userData)
             .navigationTitle("Home")
             .navigationBarTitleDisplayMode(.inline)

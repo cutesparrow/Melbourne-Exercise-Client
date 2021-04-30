@@ -44,14 +44,16 @@ class TicketCardView_Control: ObservableObject {
 }
 
 struct ExpandableCardView: View {
-    @Binding var showInformation:ShowInformation
+    @Environment(\.managedObjectContext) var context
     @State var viewState = CGSize.zero
     @State var isDetectingLongPress = false
     @Binding var isSelected:Bool
     @Binding var networkError:Bool
     @Binding var loading:Bool
-    
+    @Binding var showBottomBar:Bool
+    @State var selectedTab:Int = 0
     @EnvironmentObject var userData:UserData
+    @FetchRequest(entity: AboutCovidCore.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \AboutCovidCore.uid, ascending: true)]) var result: FetchedResults<AboutCovidCore>
     
     //MARK: Card size
     var normalCardHeight: CGFloat
@@ -67,48 +69,49 @@ struct ExpandableCardView: View {
                     self.isDetectingLongPress = true
                     self.isSelected = true
                     self.isDetectingLongPress = false
+                    self.showBottomBar.toggle()
                 }
             }
     }
     
-    var longPressAndRelese: some Gesture {
-        DragGesture(minimumDistance: 0, coordinateSpace: .global)
-            .onChanged { _ in
-                withAnimation(.easeIn(duration: 0.15)) {
-                    self.isDetectingLongPress = true
-                }
-            }
-            .onEnded { _ in
-                withAnimation(self.openCardAnimation) {
-                    self.isSelected = true
-                    self.isDetectingLongPress = false
-                }
-            }
-    }
-    var dragSelectedCard: some Gesture {
-        DragGesture()
-            .onChanged { value in
-                self.viewState = value.translation
-            }
-            .onEnded { value in
-                self.viewState = .zero
-            }
-    }
+//    var longPressAndRelese: some Gesture {
+//        DragGesture(minimumDistance: 0, coordinateSpace: .global)
+//            .onChanged { _ in
+//                withAnimation(.easeIn(duration: 0.15)) {
+//                    self.isDetectingLongPress = true
+//                }
+//            }
+//            .onEnded { _ in
+//                withAnimation(self.openCardAnimation) {
+//                    self.isSelected = true
+//                    self.isDetectingLongPress = false
+//                }
+//            }
+//    }
+//    var dragSelectedCard: some Gesture {
+//        DragGesture()
+//            .onChanged { value in
+//                self.viewState = value.translation
+//            }
+//            .onEnded { value in
+//                self.viewState = .zero
+//            }
+//    }
     
-    func getShowInformation(){
-        let completion: (Result<ShowInformation,Error>) -> Void = { result in
-            switch result {
-            case let .success(information): self.showInformation = information
-                self.loading = false
-            case let .failure(error): print(error)
-                self.loading = false
-                self.networkError = true
-            }
-        }
-        self.loading = true
-        _ = NetworkAPI.loadShowInformation(completion: completion)
-        
-    }
+//    func getShowInformation(){
+//        let completion: (Result<ShowInformation,Error>) -> Void = { result in
+//            switch result {
+//            case let .success(information): self.showInformation = information
+//                self.loading = false
+//            case let .failure(error): print(error)
+//                self.loading = false
+//                self.networkError = true
+//            }
+//        }
+//        self.loading = true
+//        _ = NetworkAPI.loadShowInformation(completion: completion)
+//
+//    }
     
     //MARK: View Body
     var body: some View {
@@ -117,21 +120,27 @@ struct ExpandableCardView: View {
             GeometryReader { geometry in
                 ZStack {
                     VStack {
-                        TopView(isSelected: self.$isSelected, showInformation: $showInformation)
+                        TopView(isSelected: self.$isSelected, selectedTab: $selectedTab, showBottomBar: $showBottomBar)
                             .environmentObject(userData)
                             .frame(height: self.normalCardHeight)
                         
                         if self.isSelected {
-                            ExpandableView(isSelected: self.$isSelected, showInformation: $showInformation)
-                                .environmentObject(userData)
-                            
+//                            ZStack{
+//                                Color(hex: "0x00ffaa").ignoresSafeArea(.all)
+//                                    .padding(.top,-9)
+                                ExpandableView(isSelected: self.$isSelected, selectedTab: $selectedTab)
+                                
+                                
                             Spacer()
+                                
+//                            }
                         }
                     } //VStack
-                    .background(Color.white.opacity(0.01))
+//                    .background(Color.white.opacity(0.01))
+                    .background(Color(hex: "0x" + result[selectedTab].color!))
                     .offset(y: self.isSelected ? self.viewState.height/2 : 0)
                     .animation(.interpolatingSpring(mass: 1, stiffness: 90, damping: 15, initialVelocity: 1))
-                    .gesture(self.isSelected ? (self.dragSelectedCard) : (nil))
+//                    .gesture(self.isSelected ? (self.dragSelectedCard) : (nil))
                 } //ZStack
                 //.drawingGroup() //test it
                 
@@ -153,19 +162,20 @@ struct ExpandableCardView: View {
                 .frame(width: self.isSelected ? screen.width : nil)
                 
                 .gesture(self.press)
-                .gesture(self.longPressAndRelese)
+//                .gesture(self.longPressAndRelese)
             } //GeometryReader
             .frame(width: screen.width - (normalCardHorizontalPadding * 2))
             .frame(height: normalCardHeight)
             
             
         }
+      
         .onAppear(perform: {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.4){
-                if true{
-                    self.getShowInformation()
-                    userData.homepageFistAppear = false
-                }
+//                if true{
+//                    self.getShowInformation()
+//                    userData.homepageFistAppear = false
+//                }
                 
             }
         })
@@ -178,7 +188,9 @@ struct ExpandableCardView: View {
 struct TopView: View {
     @EnvironmentObject var userData: UserData
     @Binding var isSelected: Bool
-    @Binding var showInformation:ShowInformation
+    @FetchRequest(entity: AboutCovidCore.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \AboutCovidCore.uid, ascending: true)]) var result: FetchedResults<AboutCovidCore>
+    @Binding var selectedTab:Int
+    @Binding var showBottomBar:Bool
     
     func getNumberOfLines(tips:String) -> Int{
         if tips.count <= 55{
@@ -198,16 +210,26 @@ struct TopView: View {
         GeometryReader { geometry in
             ZStack {
                 ZStack {
-                    Image("covid")
+                    if !isSelected{
+                        Image("covid")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(maxWidth: geometry.size.width, maxHeight: geometry.size.height)
                         .clipped()
-                    VStack {
+                        
+                    } else{
+                        WebImage(url: URL(string: NetworkManager.shared.urlBasePath + result[selectedTab].background!))
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(maxWidth: geometry.size.width, maxHeight: geometry.size.height)
+                            .clipped()
+                    }
+                    if !isSelected{
+                        VStack {
                         Spacer()
                         SystemMaterialView(style: .regular)
                             .frame(height: 35)
-                    }
+                    }}
                 }
                 VStack(alignment: .center, spacing: 0) {
                     if self.isSelected {
@@ -225,6 +247,7 @@ struct TopView: View {
                             Button(action: {
                                     withAnimation(Animation.timingCurve(0.7, -0.35, 0.2, 0.9, duration: 0.45)) {
                                         self.isSelected = false
+                                        self.showBottomBar.toggle()
                                     }}) {
                                 Image(systemName: "xmark.circle.fill")
                                     .foregroundColor(Color(.white))
@@ -254,23 +277,22 @@ struct TopView: View {
                     .padding(.horizontal)
                     
                     
-                    Spacer()
-                    //MARK: Middle part
-                    Spacer()
+                    Spacer(minLength: 0)
                     
                     
                     //MARK: Bottom part
-                    HStack(alignment: .center) {
+                    if !isSelected{HStack(alignment: .center) {
                         Text("Most Recent Update")
                             .foregroundColor(Color(.label).opacity(0.5))
                             .font(.body)
                             .bold()
                             .lineLimit(1)
-                        
+                            .padding(.horizontal,22)
+                            .padding(.bottom, 6)
                         Spacer()
                     }
-                    .padding(.horizontal)
-                    .padding(.bottom, 6)
+                    }
+                   
                 }
             }
             
@@ -278,28 +300,34 @@ struct TopView: View {
     }
 }
 
-//MARK: BottomView
+
 
 struct ExpandableView: View {
     @Binding var isSelected: Bool
-    @Binding var showInformation:ShowInformation
-    @EnvironmentObject var userData:UserData
-    
+//    @EnvironmentObject var userData:UserData
+    @FetchRequest(entity: AboutCovidCore.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \AboutCovidCore.uid, ascending: true)]) var result: FetchedResults<AboutCovidCore>
+    @Binding var selectedTab:Int
     
     var body: some View {
-        TabView{
-            ForEach(userData.safetyPolicy){ policy in
-                ScrollView{VStack{
-                    PolicyView(policy: policy)
+            TabView(selection:$selectedTab){
+                ForEach(self.result,id:\.uid){ data in
+                ScrollView{
+                    VStack{
+                        PolicyView(policy: data)
                         .padding(.horizontal)
                     Spacer()
-                }}
-                .frame(height:UIScreen.main.bounds.height/2.5)
+                }
+                }
+                .padding(.bottom,40)
+                .tag(Int(data.uid))
             }
-        }.indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode:.automatic))
+        }
+            .tabViewStyle(PageTabViewStyle())
+            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
         
-        .frame(height:UIScreen.main.bounds.height/2)
+            .frame(height:UIScreen.main.bounds.height/1.65)
+           
+          
         //        Text(userData.safetyPolicy[1].content)
         //            .font(.body)
         //            .foregroundColor(Color(.label))
@@ -314,6 +342,7 @@ struct HomeView: View {
     @EnvironmentObject var userData:UserData
     @Binding var tutorial:Bool
     @Binding var bottomBarSelected:Int
+    @Binding var showBottomBar:Bool
     @State var isSelected:Bool = false
     @State var isSelected2:Bool = false
     @State var showLoadingIndicator:Bool = false
@@ -323,7 +352,9 @@ struct HomeView: View {
     @State var showFavoriteGym:Bool = true
     @State var showFavoriteRoute:Bool = false
     @State var showFavoritePopularJoggingRoute:Bool = false
-    
+    @StateObject var aboutCovidViewModel:AboutCovidViewModel = AboutCovidViewModel()
+    @Environment(\.managedObjectContext) var context
+    @FetchRequest(entity: AboutCovidCore.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \AboutCovidCore.uid, ascending: true)]) var result: FetchedResults<AboutCovidCore>
     
     var body: some View {
         ZStack{
@@ -353,7 +384,7 @@ struct HomeView: View {
             .padding(.horizontal)
             .zIndex(0)
             if !isSelected2{
-                ExpandableCardView(showInformation:$showInformation,isSelected:$isSelected, networkError: $networkError, loading: $showLoadingIndicator, normalCardHeight: 260)
+                ExpandableCardView(isSelected:$isSelected, networkError: $networkError, loading: $showLoadingIndicator, showBottomBar: $showBottomBar, normalCardHeight: 260)
                 .padding(.vertical)
             }
             if !isSelected{ExpandableTipsCardView(isSelected: $isSelected2, networkError: $networkError, loading: $showLoadingIndicator)
@@ -470,7 +501,11 @@ struct HomeView: View {
         //
                     .onAppear(perform: {
                         self.userData.getWeatherDataNow()
-                        self.userData.getSafePolicy()
+                        if result.isEmpty{
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4){
+                                self.aboutCovidViewModel.getAboutCovidData(context: context)
+                            }
+                        }
                     })
         //
         //            ZStack{

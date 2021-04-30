@@ -148,6 +148,7 @@
 		D69B12232611CC9C00C086FA /* SafetyPolicyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B12222611CC9C00C086FA /* SafetyPolicyModel.swift */; };
 		D69B12262611D9AF00C086FA /* PolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B12252611D9AF00C086FA /* PolicyView.swift */; };
 		D69B12292611EE9700C086FA /* LegendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B12282611EE9700C086FA /* LegendView.swift */; };
+		D6B8A229263BB72100B72BC3 /* AboutCovidViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B8A228263BB72100B72BC3 /* AboutCovidViewModel.swift */; };
 		D6BC5628261042B70033341E /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = D6BC5627261042B70033341E /* AlertToast */; };
 		D6BC562C261048E20033341E /* PositionScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = D6BC562B261048E20033341E /* PositionScrollView */; };
 		D6CD21DD25F7A3B700861495 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD21DC25F7A3B700861495 /* MapView.swift */; };
@@ -300,6 +301,7 @@
 		D69B12222611CC9C00C086FA /* SafetyPolicyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafetyPolicyModel.swift; sourceTree = "<group>"; };
 		D69B12252611D9AF00C086FA /* PolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyView.swift; sourceTree = "<group>"; };
 		D69B12282611EE9700C086FA /* LegendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegendView.swift; sourceTree = "<group>"; };
+		D6B8A228263BB72100B72BC3 /* AboutCovidViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCovidViewModel.swift; sourceTree = "<group>"; };
 		D6CD21DC25F7A3B700861495 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		D6CD21E125F7B14100861495 /* home.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = home.gpx; path = ../../../Downloads/home.gpx; sourceTree = "<group>"; };
 		D6CD21E925F8587900861495 /* CommonVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonVariable.swift; sourceTree = "<group>"; };
@@ -599,6 +601,7 @@
 				D68600A92635141100259D37 /* GymViewModel.swift */,
 				D66A6E592637AFFD00F8AD54 /* PopularRouteViewModel.swift */,
 				D66A6E672637EEDC00F8AD54 /* SensorMarkViewModel.swift */,
+				D6B8A228263BB72100B72BC3 /* AboutCovidViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -885,6 +888,7 @@
 				D6708FEE26147598008FDD79 /* ShowInformationModel.swift in Sources */,
 				D65808AF263429E4008BDD54 /* Persistence.swift in Sources */,
 				D6618474262D2AEE00DA63AE /* CyclePathView.swift in Sources */,
+				D6B8A229263BB72100B72BC3 /* AboutCovidViewModel.swift in Sources */,
 				D661847F262D694400DA63AE /* ScrollViewPaged.swift in Sources */,
 				D60FC23D2602EC0D0038E9E5 /* GymRecordView.swift in Sources */,
 				D6708FC7261403F2008FDD79 /* BottomBarItemView.swift in Sources */,

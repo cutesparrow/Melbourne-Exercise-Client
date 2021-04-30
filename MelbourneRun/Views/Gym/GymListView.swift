@@ -220,8 +220,6 @@ struct GymListView: View {
                 .navigationBarHidden(true)
         }
     }
-    
-    
 }
 
 struct GymListView_Previews: PreviewProvider {
