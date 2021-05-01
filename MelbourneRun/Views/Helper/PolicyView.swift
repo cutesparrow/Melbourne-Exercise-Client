@@ -11,7 +11,7 @@ struct PolicyView: View {
     let policy:AboutCovidCore
     var body: some View {
         VStack(alignment:.leading){
-            Text(policy.title!)
+            Text(policy.title!+"?")
                 .font(.title3)
                 .bold()
                 .foregroundColor(Color(.label))

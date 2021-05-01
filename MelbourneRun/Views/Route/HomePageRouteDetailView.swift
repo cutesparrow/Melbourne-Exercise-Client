@@ -12,10 +12,11 @@ struct HomePageRouteDetailView: View {
     @EnvironmentObject var userData:UserData
     @State var showDirectionsList:Bool = false
     @ObservedObject var route:RouteCore
+    @Binding var showDetail:Bool
     @Environment(\.managedObjectContext) var context
+    @Environment(\.presentationMode) var presentationMode
     var body: some View {
         VStack{
-            Spacer()
             HStack{
                 VStack(alignment: .leading){
                     route.type == "Walking & Dog" ? Text("Discover Your Walking").font(.system(size: 18, weight: .bold, design: .default))
@@ -25,21 +26,29 @@ struct HomePageRouteDetailView: View {
                     Text("Routes").font(.system(size: 40, weight: .bold, design: .default)).foregroundColor(Color(.label))
                 }
                 Spacer(minLength: 0)
-                ZStack{
-                    RoundedRectangle(cornerRadius: 15.0)
-                        .fill(AppColor.shared.joggingColor)
-                        .frame(width: 120, height: 50, alignment: .center)
-                        .padding(.vertical)
-                    Button(action: {self.showDirectionsList.toggle()}, label: {
-                        
-                       HStack{
-                        Image(systemName: "location.north")
-                            .foregroundColor(.white)
-                            .font(.system(size: 24))
-                        Text("Directions")
-                            .foregroundColor(Color(.white))}
-                    })
+//                ZStack{
+//                    RoundedRectangle(cornerRadius: 15.0)
+//                        .fill(AppColor.shared.joggingColor)
+//                        .frame(width: 120, height: 50, alignment: .center)
+//                        .padding(.vertical)
+//                    Button(action: {self.showDirectionsList.toggle()}, label: {
+//
+//                       HStack{
+//                        Image(systemName: "location.north")
+//                            .foregroundColor(.white)
+//                            .font(.system(size: 24))
+//                        Text("Directions")
+//                            .foregroundColor(Color(.white))}
+//                    })
+//                }
+                Button(action: {
+                        withAnimation{
+                    showDetail.toggle()
                 }
+                }, label: {
+                    Image(systemName: "x.circle.fill")
+                        .font(.system(size: 24))
+                })
             }.padding(.leading).padding(.top).padding(.trailing)
             
 //                    DirectionMapView(directions: $directionsList, coordinatesList: card.path)
@@ -62,9 +71,69 @@ struct HomePageRouteDetailView: View {
             if self.route.type == "Walking & Dog"{PathInformationView(imageName: "pills", text: "Risk", data: self.route.risk!+" risk")
                 .padding(.vertical,-15)}
             HStack{
+//                ZStack{
+//                    RoundedRectangle(cornerRadius: 15.0)
+//                        .fill(AppColor.shared.joggingColor)
+//                        .frame(width: 120, height: 50, alignment: .center)
+//                        .padding(.vertical)
+//                    Button(action: {self.showDirectionsList.toggle()}, label: {
+//
+//                       HStack{
+//                        Image(systemName: "location.north")
+//                            .foregroundColor(.white)
+//                            .font(.system(size: 24))
+//                        Text("Directions")
+//                            .foregroundColor(Color(.white))}
+//                    })
+//                }
+//                .padding()
                 
+                ZStack{
+                    RoundedRectangle(cornerRadius: 15.0)
+                        .fill(Color(.gray))
+                        .frame(width: 120, height: 50, alignment: .center)
+                        .padding(.vertical)
+                    Button(action: {
+                        withAnimation{
+                            showDetail.toggle()
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {context.performAndWait {
+                            withAnimation {
+                                context.delete(route)
+                                try? context.save()
+                            }
+                        }}
+                    }, label: {
+                        
+                       HStack{
+                        Image(systemName: "heart.fill")
+                            .foregroundColor(AppColor.shared.gymColor)
+                            .font(.system(size: 24))
+                        Text("Cancel")
+                            .foregroundColor(Color(.white))}
+                    })
+                }.padding()
+                Spacer()
+                    .frame(width: 25,alignment: .center)
+                
+                ZStack{
+                    RoundedRectangle(cornerRadius: 15.0)
+                        .fill(AppColor.shared.joggingColor)
+                        .frame(width: 120, height: 50, alignment: .center)
+                        .padding(.vertical)
+                    Button(action: {self.showDirectionsList.toggle()}, label: {
+                        
+                       HStack{
+                        Image(systemName: "location.north")
+                            .foregroundColor(.white)
+                            .font(.system(size: 24))
+                        Text("Directions")
+                            .foregroundColor(Color(.white))}
+                    })
+                }
+                .padding()
             }
-            .padding(.vertical,-15)
+            
            
         }.sheet(isPresented: $showDirectionsList, content: {
             VStack{

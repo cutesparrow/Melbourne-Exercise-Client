@@ -69,7 +69,7 @@ struct ExpandableCardView: View {
                     self.isDetectingLongPress = true
                     self.isSelected = true
                     self.isDetectingLongPress = false
-                    self.showBottomBar.toggle()
+                    self.showBottomBar = false
                 }
             }
     }
@@ -247,7 +247,7 @@ struct TopView: View {
                             Button(action: {
                                     withAnimation(Animation.timingCurve(0.7, -0.35, 0.2, 0.9, duration: 0.45)) {
                                         self.isSelected = false
-                                        self.showBottomBar.toggle()
+                                        self.showBottomBar = true
                                     }}) {
                                 Image(systemName: "xmark.circle.fill")
                                     .foregroundColor(Color(.white))

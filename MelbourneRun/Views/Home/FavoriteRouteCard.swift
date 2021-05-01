@@ -7,7 +7,7 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
-
+import BottomSheet
 
 
 
@@ -93,12 +93,43 @@ struct FavoriteRouteCard: View {
             
         }
         .sheet(isPresented: $showDetail, content: {
-            HomePageRouteDetailView(route: route)
-                
+            HomePageRouteDetailView(route: route,showDetail:$showDetail)
+                .background(Color(.systemBackground).clipShape(RoundedRectangle(cornerRadius: 25.0)))
+                .clearModalBackground()
+            
+
 //                            .clearModalBackground()
         })
+//        .bottomSheet(isPresented: $showDetail, height: 400, content: {
+//            HomePageRouteDetailView(route: route)
+//        })
         .frame(width: 150,height: 100)
     }
 }
 
 
+struct ClearBackgroundView: UIViewRepresentable {
+    func makeUIView(context: Context) -> some UIView {
+        let view = UIView()
+        DispatchQueue.main.async {
+            view.superview?.superview?.backgroundColor = .clear
+        }
+        return view
+    }
+    func updateUIView(_ uiView: UIViewType, context: Context) {
+    }
+}
+
+struct ClearBackgroundViewModifier: ViewModifier {
+    
+    func body(content: Content) -> some View {
+        content
+            .background(ClearBackgroundView())
+    }
+}
+
+extension View {
+    func clearModalBackground()->some View {
+        self.modifier(ClearBackgroundViewModifier())
+    }
+}
