@@ -173,7 +173,7 @@ struct JoggingHomeView: View {
                                     .foregroundColor(Color(.label))
                                 }
                             }
-                        } else if type == "bike"{
+                        } else if type == "bike2"{
                             Picker(selection: $choosedRouteLength, label: Text("length picker")) {
                                 ForEach(Array(stride(from: 1.0, through: 20.0, by: 1.0)), id: \.self) { i in
                                 Text("\(String(i)) km")

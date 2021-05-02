@@ -71,7 +71,7 @@ struct IconAndTextButton: View {
             if selectedSheet == "cycle"{
                 showDistanceInput.toggle()
                 sheetKind = 1
-                type = "bike"
+                type = "bike2"
 //                self.loadPopularCardsData(location: checkUserLocation(lat: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, long: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503))
             } else if selectedSheet == "walk"{
                 showDistanceInput.toggle()
