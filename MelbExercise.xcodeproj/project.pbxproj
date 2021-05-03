@@ -32,6 +32,14 @@
 		D6109393261347EE00C0C6BC /* ConcentricOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = D6109392261347EE00C0C6BC /* ConcentricOnboarding */; };
 		D610939626134A8A00C0C6BC /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D610939526134A8A00C0C6BC /* OnboardingView.swift */; };
 		D610939926134BBB00C0C6BC /* ConcentricOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D610939826134BBB00C0C6BC /* ConcentricOnboardingView.swift */; };
+		D6146C52263EC66F00693042 /* GymNewHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6146C51263EC66F00693042 /* GymNewHomeView.swift */; };
+		D6146C54263EC74700693042 /* RoundedGymIconOnMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6146C53263EC74700693042 /* RoundedGymIconOnMapView.swift */; };
+		D6146C5D263ECE3F00693042 /* LoopingWebP in Frameworks */ = {isa = PBXBuildFile; productRef = D6146C5C263ECE3F00693042 /* LoopingWebP */; };
+		D6146C5F263ECE3F00693042 /* Looping in Frameworks */ = {isa = PBXBuildFile; productRef = D6146C5E263ECE3F00693042 /* Looping */; };
+		D6146C61263EE14700693042 /* GymCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6146C60263EE14700693042 /* GymCard.swift */; };
+		D6146C63263FABDF00693042 /* LoopingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6146C62263FABDF00693042 /* LoopingImageView.swift */; };
+		D6146C8A263FE68800693042 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6146C89263FE68800693042 /* SearchBar.swift */; };
+		D6146C8C263FF45700693042 /* GymListCardTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6146C8B263FF45700693042 /* GymListCardTabView.swift */; };
 		D61A147E260459660049B377 /* UBottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = D61A147D260459660049B377 /* UBottomSheet */; };
 		D61A148226045A830049B377 /* PullUpController in Frameworks */ = {isa = PBXBuildFile; productRef = D61A148126045A830049B377 /* PullUpController */; };
 		D61A1485260464030049B377 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61A1484260464030049B377 /* BottomView.swift */; };
@@ -200,6 +208,12 @@
 		D60FC28E26044B7F0038E9E5 /* JoggingGoalInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoggingGoalInputView.swift; sourceTree = "<group>"; };
 		D610939526134A8A00C0C6BC /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		D610939826134BBB00C0C6BC /* ConcentricOnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcentricOnboardingView.swift; sourceTree = "<group>"; };
+		D6146C51263EC66F00693042 /* GymNewHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymNewHomeView.swift; sourceTree = "<group>"; };
+		D6146C53263EC74700693042 /* RoundedGymIconOnMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedGymIconOnMapView.swift; sourceTree = "<group>"; };
+		D6146C60263EE14700693042 /* GymCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymCard.swift; sourceTree = "<group>"; };
+		D6146C62263FABDF00693042 /* LoopingImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopingImageView.swift; sourceTree = "<group>"; };
+		D6146C89263FE68800693042 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		D6146C8B263FF45700693042 /* GymListCardTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymListCardTabView.swift; sourceTree = "<group>"; };
 		D61A1484260464030049B377 /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
 		D61A1487260467130049B377 /* BottomContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomContentView.swift; sourceTree = "<group>"; };
 		D6226EBE261ED65E003F4D9F /* JoggingPathCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoggingPathCardModel.swift; sourceTree = "<group>"; };
@@ -320,6 +334,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6146C5F263ECE3F00693042 /* Looping in Frameworks */,
 				D6977B8E260B3A73001F4B48 /* SwiftUIRefresh in Frameworks */,
 				D630CA5B2607404E008B9FA9 /* SDWebImageSwiftUI in Frameworks */,
 				D69B121D26108CA900C086FA /* SwiftyJSON in Frameworks */,
@@ -331,6 +346,7 @@
 				D67A3C222622C08C00C47CA1 /* SSToastMessage in Frameworks */,
 				D61A148226045A830049B377 /* PullUpController in Frameworks */,
 				D630CA7526089F54008B9FA9 /* Sliders in Frameworks */,
+				D6146C5D263ECE3F00693042 /* LoopingWebP in Frameworks */,
 				D652011025F7604900BA04E9 /* LocationProvider in Frameworks */,
 				D68600BA2635565A00259D37 /* Refresh in Frameworks */,
 				D60FC27826037CF00038E9E5 /* Alamofire in Frameworks */,
@@ -355,6 +371,11 @@
 				D60FC2422602EC360038E9E5 /* GymListView.swift */,
 				D630CA93260991F2008B9FA9 /* GymHomeView.swift */,
 				D6F7E930263930E900CCF6C0 /* GymDetailView.swift */,
+				D6146C51263EC66F00693042 /* GymNewHomeView.swift */,
+				D6146C53263EC74700693042 /* RoundedGymIconOnMapView.swift */,
+				D6146C60263EE14700693042 /* GymCard.swift */,
+				D6146C62263FABDF00693042 /* LoopingImageView.swift */,
+				D6146C8B263FF45700693042 /* GymListCardTabView.swift */,
 			);
 			path = Gym;
 			sourceTree = "<group>";
@@ -438,6 +459,7 @@
 				D661847E262D694400DA63AE /* ScrollViewPaged.swift */,
 				D6618480262D930800DA63AE /* scrollViewEdited.swift */,
 				D6618484262D992C00DA63AE /* PagerView.swift */,
+				D6146C89263FE68800693042 /* SearchBar.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -743,6 +765,8 @@
 				D661846B2627002900DA63AE /* ActivityIndicatorView */,
 				D6618471262AF93500DA63AE /* URLImage */,
 				D68600B92635565A00259D37 /* Refresh */,
+				D6146C5C263ECE3F00693042 /* LoopingWebP */,
+				D6146C5E263ECE3F00693042 /* Looping */,
 			);
 			productName = MelbourneRun;
 			productReference = D65200F425F757B800BA04E9 /* MelbExercise.app */;
@@ -793,6 +817,7 @@
 				D661846A2627002900DA63AE /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
 				D6618470262AF93500DA63AE /* XCRemoteSwiftPackageReference "url-image" */,
 				D68600B82635565A00259D37 /* XCRemoteSwiftPackageReference "Refresh" */,
+				D6146C5B263ECE3F00693042 /* XCRemoteSwiftPackageReference "Looping" */,
 			);
 			productRefGroup = D65200F525F757B800BA04E9 /* Products */;
 			projectDirPath = "";
@@ -853,6 +878,7 @@
 				D6226EE126200CE8003F4D9F /* CustomizePathView.swift in Sources */,
 				D630CA91260991DF008B9FA9 /* WalkDogHomeView.swift in Sources */,
 				D66A6E572637AFBA00F8AD54 /* PopularRouteCore+CoreDataClass.swift in Sources */,
+				D6146C54263EC74700693042 /* RoundedGymIconOnMapView.swift in Sources */,
 				D69B12292611EE9700C086FA /* LegendView.swift in Sources */,
 				D69B1216261073CC00C086FA /* TopNavigationBarView.swift in Sources */,
 				D610939626134A8A00C0C6BC /* OnboardingView.swift in Sources */,
@@ -867,9 +893,11 @@
 				D66A6E5A2637AFFD00F8AD54 /* PopularRouteViewModel.swift in Sources */,
 				D6708FCA261403F2008FDD79 /* BarBuilder.swift in Sources */,
 				D6708FF226149CCC008FDD79 /* OnboardingOneView.swift in Sources */,
+				D6146C8C263FF45700693042 /* GymListCardTabView.swift in Sources */,
 				D60FC28B260443C80038E9E5 /* LocationViewModel.swift in Sources */,
 				D60FC2472602EC510038E9E5 /* GymCellView.swift in Sources */,
 				D6618485262D992C00DA63AE /* PagerView.swift in Sources */,
+				D6146C63263FABDF00693042 /* LoopingImageView.swift in Sources */,
 				D630CA882608C20A008B9FA9 /* PlanButtonView.swift in Sources */,
 				D67F02C926367D7A00927C34 /* FavoriteCard.swift in Sources */,
 				D6CD21DD25F7A3B700861495 /* MapView.swift in Sources */,
@@ -907,6 +935,7 @@
 				D6CD21EA25F8587900861495 /* CommonVariable.swift in Sources */,
 				D67090022614A929008FDD79 /* OnboardingSix.swift in Sources */,
 				D60FC2502602EFAF0038E9E5 /* DogPlayground.swift in Sources */,
+				D6146C61263EE14700693042 /* GymCard.swift in Sources */,
 				D6708FF62614A128008FDD79 /* OnboardingTwo.swift in Sources */,
 				D60FC271260342D90038E9E5 /* StarButtonView.swift in Sources */,
 				D630CA68260888CA008B9FA9 /* RoadSituationModel.swift in Sources */,
@@ -924,6 +953,7 @@
 				D6226ECC261EEDC3003F4D9F /* MainButtonJoggingView.swift in Sources */,
 				D630CA9726099591008B9FA9 /* LocationFetcher.swift in Sources */,
 				D630CA6E260891C1008B9FA9 /* TrendGraphView.swift in Sources */,
+				D6146C52263EC66F00693042 /* GymNewHomeView.swift in Sources */,
 				D67F02DD263699D000927C34 /* RouteCore+CoreDataProperties.swift in Sources */,
 				D6977BB7260C855C001F4B48 /* OutDoorHomeView.swift in Sources */,
 				D6977BBB260C85BF001F4B48 /* JoggingHomeView.swift in Sources */,
@@ -938,6 +968,7 @@
 				D66A6E602637D57200F8AD54 /* HomePageRouteDetailView.swift in Sources */,
 				D610939926134BBB00C0C6BC /* ConcentricOnboardingView.swift in Sources */,
 				D65200F825F757B800BA04E9 /* MelbourneRunApp.swift in Sources */,
+				D6146C8A263FE68800693042 /* SearchBar.swift in Sources */,
 				D6708FE62614736A008FDD79 /* Window.swift in Sources */,
 				D6226EE9262034EA003F4D9F /* SensorMapAnnotationView.swift in Sources */,
 				D6F883C72634384200673552 /* ImageCore+CoreDataProperties.swift in Sources */,
@@ -1164,6 +1195,14 @@
 				minimumVersion = 0.0.6;
 			};
 		};
+		D6146C5B263ECE3F00693042 /* XCRemoteSwiftPackageReference "Looping" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/znly/Looping.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.1;
+			};
+		};
 		D61A147C260459660049B377 /* XCRemoteSwiftPackageReference "UBottomSheet" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/OfTheWolf/UBottomSheet.git";
@@ -1325,6 +1364,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D6109391261347EE00C0C6BC /* XCRemoteSwiftPackageReference "ConcentricOnboarding" */;
 			productName = ConcentricOnboarding;
+		};
+		D6146C5C263ECE3F00693042 /* LoopingWebP */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D6146C5B263ECE3F00693042 /* XCRemoteSwiftPackageReference "Looping" */;
+			productName = LoopingWebP;
+		};
+		D6146C5E263ECE3F00693042 /* Looping */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D6146C5B263ECE3F00693042 /* XCRemoteSwiftPackageReference "Looping" */;
+			productName = Looping;
 		};
 		D61A147D260459660049B377 /* UBottomSheet */ = {
 			isa = XCSwiftPackageProductDependency;

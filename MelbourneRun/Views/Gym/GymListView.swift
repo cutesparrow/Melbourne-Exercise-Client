@@ -126,8 +126,6 @@ struct GymListView: View {
                         
                         VStack(spacing: 15){
                             
-                            
-                            
                             ForEach(self.result){gym in
                                 
                                 if gym.classType == userData.hasMemberShip || userData.hasMemberShip == "No membership"{

@@ -92,6 +92,15 @@
         }
       },
       {
+        "package": "Looping",
+        "repositoryURL": "https://github.com/znly/Looping.git",
+        "state": {
+          "branch": null,
+          "revision": "b1b8ed6156b3ab2efaa665103e6d64c335bc299e",
+          "version": "1.1.1"
+        }
+      },
+      {
         "package": "PermissionsSwiftUI",
         "repositoryURL": "https://github.com/jevonmao/PermissionsSwiftUI.git",
         "state": {

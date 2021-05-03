@@ -17,6 +17,8 @@ struct MelbourneRunApp: App {
         
         WindowGroup {
             PreLaunch()
+//            RoundedGymIconOnMapView()
+//            GymNewHomeView()
                 .environmentObject(userData)
 //            ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)

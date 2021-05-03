@@ -20,7 +20,7 @@ struct MainSwitchView: View {
             .environmentObject(userData)
             .navigationTitle("Home")
             .navigationBarTitleDisplayMode(.inline)
-        case 1:GymHomeView()
+        case 1:GymNewHomeView()
             .environmentObject(userData)
         case 2:JoggingHomeView()
             .environmentObject(userData)
