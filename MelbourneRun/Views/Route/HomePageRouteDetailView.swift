@@ -17,15 +17,15 @@ struct HomePageRouteDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
         VStack{
-            HStack{
-                VStack(alignment: .leading){
-                    route.type == "Walking & Dog" ? Text("Discover Your Walking").font(.system(size: 18, weight: .bold, design: .default))
-                        .foregroundColor(.gray) : Text("Discover Your Cycling").font(.system(size: 18, weight: .bold, design: .default))
-                        .foregroundColor(.gray)
-                        
-                    Text("Routes").font(.system(size: 40, weight: .bold, design: .default)).foregroundColor(Color(.label))
-                }
-                Spacer(minLength: 0)
+//            HStack{
+//                VStack(alignment: .leading){
+//                    route.type == "Walking & Dog" ? Text("Discover Your Walking").font(.system(size: 18, weight: .bold, design: .default))
+//                        .foregroundColor(.gray) : Text("Discover Your Cycling").font(.system(size: 18, weight: .bold, design: .default))
+//                        .foregroundColor(.gray)
+//
+//                    Text("Routes").font(.system(size: 40, weight: .bold, design: .default)).foregroundColor(Color(.label))
+//                }
+//                Spacer(minLength: 0)
 //                ZStack{
 //                    RoundedRectangle(cornerRadius: 15.0)
 //                        .fill(AppColor.shared.joggingColor)
@@ -41,18 +41,23 @@ struct HomePageRouteDetailView: View {
 //                            .foregroundColor(Color(.white))}
 //                    })
 //                }
-                Button(action: {
-                        withAnimation{
-                    showDetail.toggle()
-                }
-                }, label: {
-                    Image(systemName: "x.circle.fill")
-                        .font(.system(size: 24))
-                })
-            }.padding(.leading).padding(.top).padding(.trailing)
-            
+//                Button(action: {
+//
+//                    showDetail.toggle()
+//
+//                }, label: {
+//
+//                            Image(systemName: "xmark.circle.fill")
+//                                .foregroundColor(Color(.label).opacity(0.8))
+//                                .font(.system(size: 32)).padding()
+//
+//
+//                })
+//            }.padding(.leading).padding(.top).padding(.trailing)
+//
 //                    DirectionMapView(directions: $directionsList, coordinatesList: card.path)
-                    WebImage(url: URL(string: NetworkManager.shared.urlBasePath + route.mapImage!))
+                    ZStack{
+                        WebImage(url: URL(string: NetworkManager.shared.urlBasePath + route.mapImage!))
                         .placeholder{
                             Color.gray
                         }
@@ -62,13 +67,22 @@ struct HomePageRouteDetailView: View {
                         .clipped()
                         .cornerRadius(14)
                         .shadow(radius: 4)
-                        .padding(.bottom)
+                        Button(action: {
+                            showDetail.toggle()
+                        }, label: {
+                                    Image(systemName: "xmark.circle.fill")
+                                        .foregroundColor(Color(.black).opacity(0.8))
+                                        .font(.system(size: 32)).padding()
+
+
+                        }).offset(x: UIScreen.main.bounds.width/2 - 60, y: -75)
+                    }
                         
-            PathInformationView(imageName: "timer", text: "Time", data: self.route.time!)
+            NarrowPathInformationView(imageName: "timer", text: "Time", data: self.route.time!)
                 .padding(.vertical,-15)
-            PathInformationView(imageName: "playpause", text: "Length", data: String(self.route.length)+" KM")
+            NarrowPathInformationView(imageName: "playpause", text: "Length", data: String(self.route.length)+" KM")
                 .padding(.vertical,-15)
-            if self.route.type == "Walking & Dog"{PathInformationView(imageName: "pills", text: "Risk", data: self.route.risk!+" risk")
+            if self.route.type == "Walking & Dog"{NarrowPathInformationView(imageName: "pills", text: "Risk", data: self.route.risk!+" risk")
                 .padding(.vertical,-15)}
             HStack{
 //                ZStack{
@@ -88,54 +102,91 @@ struct HomePageRouteDetailView: View {
 //                }
 //                .padding()
                 
-                ZStack{
-                    RoundedRectangle(cornerRadius: 15.0)
-                        .fill(Color(.gray))
-                        .frame(width: 120, height: 50, alignment: .center)
-                        .padding(.vertical)
-                    Button(action: {
-                        withAnimation{
-                            showDetail.toggle()
+//                ZStack{
+//                    RoundedRectangle(cornerRadius: 15.0)
+//                        .fill(Color(.gray))
+//                        .frame(width: 120, height: 50, alignment: .center)
+//                        .padding(.vertical)
+//                    Button(action: {
+//                        withAnimation{
+//                            showDetail.toggle()
+//                        }
+//                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {context.performAndWait {
+//                            withAnimation {
+//                                context.delete(route)
+//                                try? context.save()
+//                            }
+//                        }}
+//                    }, label: {
+//
+//                       HStack{
+//                        Image(systemName: "heart.fill")
+//                            .foregroundColor(AppColor.shared.gymColor)
+//                            .font(.system(size: 24))
+//                        Text("Cancel")
+//                            .foregroundColor(Color(.white))}
+//                    })
+//                }.padding()
+                Button(action: {
+                    withAnimation{
+                        showDetail.toggle()
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {context.performAndWait {
+                        withAnimation {
+                            context.delete(route)
+                            try? context.save()
                         }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {context.performAndWait {
-                            withAnimation {
-                                context.delete(route)
-                                try? context.save()
-                            }
-                        }}
-                    }, label: {
-                        
-                       HStack{
+                    }}
+                }, label: {
+//                        DetailPageButton(icon: "arrow.up.circle", color: .blue, text: "GO")
+                    HStack{
                         Image(systemName: "heart.fill")
-                            .foregroundColor(AppColor.shared.gymColor)
-                            .font(.system(size: 24))
+                            .font(.system(size: 16,weight: .regular))
+                            .foregroundColor(Color(.white))
                         Text("Cancel")
-                            .foregroundColor(Color(.white))}
-                    })
-                }.padding()
-                Spacer()
-                    .frame(width: 25,alignment: .center)
+                            .foregroundColor(Color(.white))
+                    }.padding(.horizontal)
+                    .padding(.vertical,5)
+                }).background(Capsule().fill(Color(.systemGray3)))
                 
-                ZStack{
-                    RoundedRectangle(cornerRadius: 15.0)
-                        .fill(AppColor.shared.joggingColor)
-                        .frame(width: 120, height: 50, alignment: .center)
-                        .padding(.vertical)
-                    Button(action: {self.showDirectionsList.toggle()}, label: {
-                        
-                       HStack{
-                        Image(systemName: "location.north")
-                            .foregroundColor(.white)
-                            .font(.system(size: 24))
+                Spacer()
+                    .frame(width: 15,alignment: .center)
+                Button(action: {
+                    self.showDirectionsList.toggle()
+                }, label: {
+//                        DetailPageButton(icon: "arrow.up.circle", color: .blue, text: "GO")
+                    HStack{
+                        Image(systemName: "arrow.triangle.turn.up.right.diamond.fill")
+                            .font(.system(size: 16,weight: .regular))
+                            .foregroundColor(Color(.white))
                         Text("Directions")
-                            .foregroundColor(Color(.white))}
-                    })
-                }
-                .padding()
+                            .foregroundColor(Color(.white))
+                    }.padding(.horizontal)
+                    .padding(.vertical,5)
+                }).background(Capsule().fill(Color.blue))
+                
+//                ZStack{
+//                    RoundedRectangle(cornerRadius: 15.0)
+//                        .fill(AppColor.shared.joggingColor)
+//                        .frame(width: 120, height: 50, alignment: .center)
+//                        .padding(.vertical)
+//                    Button(action: {self.showDirectionsList.toggle()}, label: {
+//
+//                       HStack{
+//                        Image(systemName: "location.north")
+//                            .foregroundColor(.white)
+//                            .font(.system(size: 24))
+//                        Text("Directions")
+//                            .foregroundColor(Color(.white))}
+//                    })
+//                }
+//                .padding()
             }
-            
+            .padding(.bottom)
            
-        }.sheet(isPresented: $showDirectionsList, content: {
+        }
+        .frame(width: UIScreen.main.bounds.width/1.2)
+        .sheet(isPresented: $showDirectionsList, content: {
             VStack{
                 Text("Directions")
                           .font(.largeTitle)
@@ -150,3 +201,25 @@ struct HomePageRouteDetailView: View {
 }
 
 
+struct NarrowPathInformationView: View {
+    var imageName:String
+    var text:String
+    var data:String
+    var body: some View {
+        HStack{
+            ZStack{
+                RoundedRectangle(cornerRadius: 15.0)
+                    .fill(Color(.systemGray5))
+                    .frame(width: 35, height: 35, alignment: .center)
+                    .padding()
+                Image(systemName: imageName)
+                .font(.system(size: 16, weight: .regular))}
+            Text(text)
+                .bold()
+                .padding(.horizontal)
+            Spacer()
+            Text(data)
+                .padding(.horizontal)
+        }
+    }
+}

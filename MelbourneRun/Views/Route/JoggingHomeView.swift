@@ -202,6 +202,8 @@ struct JoggingHomeView: View {
                 }
                 
         }
+            .navigationTitle("")
+            .navigationBarHidden(true)
             .toast(isPresenting: $marks.error, duration: 1.2, tapToDismiss: true, alert: { AlertToast(type: .error(.red), title: "Network Error", subTitle: "")
         }, completion: {_ in
             marks.error = false

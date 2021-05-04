@@ -11,13 +11,18 @@ import SDWebImageSwiftUI
 struct FavoriteCard: View {
     @Environment(\.managedObjectContext) var context
     @ObservedObject var gym:GymCore
-    
+    @State var showDetail:Bool = false
+//    @StateObject var customAlertManager = CustomAlertManager()
     var body: some View {
 //        WebImage(url: URL(string: NetworkManager.shared.urlBasePath + (gym.images?.allObjects as! [ImageCore])[0].name + ".jpg"))
         ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)) {
-            NavigationLink(destination: GymRecordView(fetchedGym:gym))
-            {
-                ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)){WebImage(url: URL(string: NetworkManager.shared.urlBasePath + (gym.images?.sortedArray(using: [NSSortDescriptor(keyPath: \ImageCore.uid, ascending: true)]) as! [ImageCore])[0].name + ".jpg"))
+            Button {
+                print(gym.name)
+//                customAlertManager.show()
+                showDetail.toggle()
+            } label: {
+                ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)){
+                    WebImage(url: URL(string: NetworkManager.shared.urlBasePath + (gym.images?.sortedArray(using: [NSSortDescriptor(keyPath: \ImageCore.uid, ascending: true)]) as! [ImageCore])[0].name + ".jpg"))
                             .resizable()
                             .clipShape(RoundedRectangle(cornerRadius: 15.0))
                             .frame(width: 150,height: 100)
@@ -45,6 +50,8 @@ struct FavoriteCard: View {
             .padding(.vertical,10)
                 }
             }
+
+            
             Button(action: {
                 context.performAndWait {
                     withAnimation {
@@ -64,8 +71,28 @@ struct FavoriteCard: View {
                     .font(.title)
                     
             }.offset(x:100,y:55)
-        }.frame(width: 150,height: 100)
+        }
+        .frame(width: 150,height: 100)
+        .fullScreenCover(isPresented: $showDetail) {
+            
+            GymCardOnHomePage(gym: gym, showThisCard: $showDetail)
+                .clearModalBackground()
+//                .background(BackgroundBlurView())
+        }
+        
     }
 }
 
 
+//struct BackgroundBlurView: UIViewRepresentable {
+//    func makeUIView(context: Context) -> UIView {
+//        let view = UIColor(.clear)
+////            UIVisualEffectView(effect: UIBlurEffect(style: .light))
+//        DispatchQueue.main.async {
+//            view.superview?.superview?.backgroundColor = .clear
+//        }
+//        return view
+//    }
+//
+//    func updateUIView(_ uiView: UIView, context: Context) {}
+//}

@@ -17,21 +17,18 @@ struct MainSwitchView: View {
     var body: some View {
         switch selectView {
         case 0:
-//            HomeView(tutorial:$tutorial,bottomBarSelected:$selectView,showBottomBar:$showBottomBar)
-//            .environmentObject(userData)
-//            .navigationTitle("Home")
-//            .navigationBarTitleDisplayMode(.inline)
-        EmptyView()
+            HomeView(tutorial:$tutorial,bottomBarSelected:$selectView,showBottomBar:$showBottomBar)
+            .environmentObject(userData)
         case 1:
-            GymHomeView()
+            GymNewHomeView()
+//            testView()
             .environmentObject(userData)
         case 2:JoggingHomeView()
             .environmentObject(userData)
-            .navigationBarHidden(true)
         case 3:
             PupolarJoggingPathHomeView(showBottomBar:$showBottomBar)
                 .environmentObject(userData)
-                .navigationBarHidden(true)
+                
            
                 
         default: Text("error")

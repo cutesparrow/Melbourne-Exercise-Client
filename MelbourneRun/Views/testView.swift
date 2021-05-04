@@ -6,24 +6,32 @@
 //
 
 import SwiftUI
+import MapKit
+
+extension Map {
+    func mapStyle(_ mapType: MKMapType) -> some View {
+        MKMapView.appearance().mapType = mapType
+        return self
+    }
+    
+    func mapStyle(_ mapType: MKMapType, showScale: Bool = true, showTraffic: Bool = false) -> some View {
+            let map = MKMapView.appearance()
+            map.mapType = mapType
+            map.showsScale = showScale
+            map.showsTraffic = showTraffic
+            return self
+        }
+}
+
+
 
 struct testView: View {
-    @State var a:Bool = false
-
+    @State private var coordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 40.7, longitude: -73.9), span: MKCoordinateSpan(latitudeDelta: 100.0, longitudeDelta: 100.0))
+    
+   
+    
     var body: some View {
-        Button(action: {self.a.toggle()}) {
-            Text("a")
-        }
-//        .present(isPresented: $a,type:.floater(verticalPadding: 10), closeOnTap: false,closeOnTapOutside: false) {
-//            ZStack{
-//                RoundedRectangle(cornerRadius: 25.0)
-//                    .fill(Color(.blue))
-//                    .frame(width: 100, height: 100, alignment: .center)
-//                Button(action: {}, label: {
-//                    Text("Button")
-//                })
-//            }
-//        }
+        Map(coordinateRegion: $coordinateRegion).mapStyle(.standard, showScale: false, showTraffic: false)
     }
 }
 
