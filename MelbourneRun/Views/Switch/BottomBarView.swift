@@ -18,7 +18,7 @@ let items: [BottomBarItem] = [
 struct BottomBarView: View {
     @EnvironmentObject var userData:UserData
     @State var showGuideView:Bool = true
-    @State private var selectedIndex:Int = 0
+    @State var selectedIndex:Int = 0
     @State var tutorial:Bool = false
     @State var showLocationAlert:Bool = false
     @State var showBottomBar:Bool = true

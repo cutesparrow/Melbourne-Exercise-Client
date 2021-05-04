@@ -155,6 +155,7 @@
 		D69B12262611D9AF00C086FA /* PolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B12252611D9AF00C086FA /* PolicyView.swift */; };
 		D69B12292611EE9700C086FA /* LegendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B12282611EE9700C086FA /* LegendView.swift */; };
 		D6AB6FD6264112B3003CE3BD /* GymCardOnHomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AB6FD5264112B3003CE3BD /* GymCardOnHomePage.swift */; };
+		D6AB6FD826413B65003CE3BD /* MapViewCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AB6FD726413B65003CE3BD /* MapViewCustom.swift */; };
 		D6B8A229263BB72100B72BC3 /* AboutCovidViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B8A228263BB72100B72BC3 /* AboutCovidViewModel.swift */; };
 		D6BC5628261042B70033341E /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = D6BC5627261042B70033341E /* AlertToast */; };
 		D6BC562C261048E20033341E /* PositionScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = D6BC562B261048E20033341E /* PositionScrollView */; };
@@ -314,6 +315,7 @@
 		D69B12252611D9AF00C086FA /* PolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyView.swift; sourceTree = "<group>"; };
 		D69B12282611EE9700C086FA /* LegendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegendView.swift; sourceTree = "<group>"; };
 		D6AB6FD5264112B3003CE3BD /* GymCardOnHomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymCardOnHomePage.swift; sourceTree = "<group>"; };
+		D6AB6FD726413B65003CE3BD /* MapViewCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewCustom.swift; sourceTree = "<group>"; };
 		D6B8A228263BB72100B72BC3 /* AboutCovidViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCovidViewModel.swift; sourceTree = "<group>"; };
 		D6CD21DC25F7A3B700861495 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		D6CD21E125F7B14100861495 /* home.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = home.gpx; path = ../../../Downloads/home.gpx; sourceTree = "<group>"; };
@@ -373,6 +375,7 @@
 				D6146C53263EC74700693042 /* RoundedGymIconOnMapView.swift */,
 				D6146C60263EE14700693042 /* GymCard.swift */,
 				D6146C8B263FF45700693042 /* GymListCardTabView.swift */,
+				D6AB6FD726413B65003CE3BD /* MapViewCustom.swift */,
 			);
 			path = Gym;
 			sourceTree = "<group>";
@@ -896,6 +899,7 @@
 				D6618485262D992C00DA63AE /* PagerView.swift in Sources */,
 				D630CA882608C20A008B9FA9 /* PlanButtonView.swift in Sources */,
 				D67F02C926367D7A00927C34 /* FavoriteCard.swift in Sources */,
+				D6AB6FD826413B65003CE3BD /* MapViewCustom.swift in Sources */,
 				D6CD21DD25F7A3B700861495 /* MapView.swift in Sources */,
 				D630CA6B26088FA2008B9FA9 /* GraphCapsule.swift in Sources */,
 				D66A6E662637EEBB00F8AD54 /* SensorMarkCore+CoreDataProperties.swift in Sources */,

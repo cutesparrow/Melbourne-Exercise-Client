@@ -96,8 +96,9 @@ struct GymNewHomeView: View {
                     MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: mark.lat, longitude: mark.long)) {
 //                        EmptyView()
                         RoundedGymIconOnMapView(gym: mark, region: $region, selectedGymUid: $selectedGymUid,gotTap:$gotTap)
-                            
+
                     }})
+//                MapViewCustom(region: $region)
                 .ignoresSafeArea()
                 
 //            ZStack{

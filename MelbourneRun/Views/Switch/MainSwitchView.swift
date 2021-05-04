@@ -16,7 +16,11 @@ struct MainSwitchView: View {
 //    @State var gymList:GymList = GymList(list: [])
     var body: some View {
         switch selectView {
-        case 0:HomeView(tutorial:$tutorial,bottomBarSelected:$selectView,showBottomBar:$showBottomBar)
+        case 0:
+            HomeView(tutorial:$tutorial,bottomBarSelected:$selectView,showBottomBar:$showBottomBar)
+//            HomeView(tutorial:$tutorial,showBottomBar:$showBottomBar)
+
+//            EmptyView()
             .environmentObject(userData)
         case 1:
             GymNewHomeView()

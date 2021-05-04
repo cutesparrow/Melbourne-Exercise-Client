@@ -116,7 +116,8 @@ struct ExpandableCardView: View {
     //MARK: View Body
     var body: some View {
         
-        VStack{
+        if !result.isEmpty{
+            VStack{
             GeometryReader { geometry in
                 ZStack {
                     VStack {
@@ -168,17 +169,19 @@ struct ExpandableCardView: View {
             .frame(height: normalCardHeight)
             
             
+        }}
+        else {
+            EmptyView()
         }
-      
-        .onAppear(perform: {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4){
-//                if true{
-//                    self.getShowInformation()
-//                    userData.homepageFistAppear = false
-//                }
-                
-            }
-        })
+//        .onAppear(perform: {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4){
+////                if true{
+////                    self.getShowInformation()
+////                    userData.homepageFistAppear = false
+////                }
+//
+//            }
+//        })
     }
     
 }
@@ -207,7 +210,8 @@ struct TopView: View {
     
     
     var body: some View {
-        GeometryReader { geometry in
+        if !result.isEmpty{
+            GeometryReader { geometry in
             ZStack {
                 ZStack {
                     if !isSelected{
@@ -296,6 +300,9 @@ struct TopView: View {
                 }
             }
             
+        }}
+        else{
+            EmptyView()
         }
     }
 }
@@ -309,6 +316,7 @@ struct ExpandableView: View {
     @Binding var selectedTab:Int
     
     var body: some View {
+        if !result.isEmpty{
             TabView(selection:$selectedTab){
                 ForEach(self.result,id:\.uid){ data in
                 ScrollView{
@@ -333,7 +341,9 @@ struct ExpandableView: View {
         //            .foregroundColor(Color(.label))
         //            .padding()
         //
-        
+        } else{
+            EmptyView()
+        }
     }
 }
 
