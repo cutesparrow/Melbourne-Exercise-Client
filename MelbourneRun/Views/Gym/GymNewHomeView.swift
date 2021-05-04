@@ -12,6 +12,8 @@ import ActionOver
 
 struct GymNewHomeView: View {
     @EnvironmentObject var userData:UserData
+    @StateObject var gymsModel:GymViewModel = GymViewModel()
+    @Environment(\.managedObjectContext) var context
     @FetchRequest(entity: GymCore.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \GymCore.distance, ascending: true)]) var result: FetchedResults<GymCore>
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: -37.81145542089078, longitude: 144.96473765203163), span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))
 //    @State private var trackingMode = MapUserTrackingMode.none
@@ -34,7 +36,6 @@ struct GymNewHomeView: View {
         self._selectedGymUid = State(initialValue: 0)
         self._selectedGymIndex = State(initialValue: 0)
         self._gotTap = State(initialValue: false)
-        MKMapView.appearance().mapType = .satellite
     }
     
     private func findIndexOfGym(gym:GymCore) -> Int?{
@@ -87,7 +88,7 @@ struct GymNewHomeView: View {
         return membershipChooseButtons
     }
     
-    @ViewBuilder var body: some View {
+    var body: some View {
         let membershipChooseButtons:[ActionOverButton] = getGymClass()
         
         if !result.isEmpty{
@@ -177,10 +178,17 @@ struct GymNewHomeView: View {
             })
         }
         else{
-            EmptyView()
+            Color(.clear)
                 .navigationTitle("")
                 .navigationBarHidden(true)
+                .onAppear(perform: {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4){
+                            self.gymsModel.loadGymListData(location: checkUserLocation(lat: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, long: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503), context: context)
+                    
+                }
+                })
         }
     }
+    
 }
 
