@@ -77,7 +77,7 @@ struct GymNewHomeView: View {
         
         if !result.isEmpty{
             ZStack{
-                Map(coordinateRegion: $region, interactionModes: .all, showsUserLocation: true, userTrackingMode: $trackingMode, annotationItems: result.filter({userData.hasMemberShip == "No membership" ? true : $0.classType == userData.hasMemberShip}).filter({_ in self.isEditing ? false : true}).filter({search == "" ? true : $0.name.contains(search)}), annotationContent: { mark in
+                Map(coordinateRegion: $region, interactionModes: .all, showsUserLocation: true, userTrackingMode: $trackingMode, annotationItems: result.filter({userData.hasMemberShip == "No membership" ? true : $0.classType == userData.hasMemberShip}).filter({_ in self.isEditing ? false : true}).filter({search == "" ? true : ($0.name.localizedCaseInsensitiveContains(search)) || ($0.address.localizedCaseInsensitiveContains(search)) || ($0.classType.localizedCaseInsensitiveContains(search)) || (search.caseInsensitiveCompare("star") == .orderedSame ? $0.star : false)}), annotationContent: { mark in
                     MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: mark.lat, longitude: mark.long)) {
 //                        EmptyView()
                         RoundedGymIconOnMapView(gym: mark, region: $region, selectedGymUid: $selectedGymUid,gotTap:$gotTap)
@@ -132,10 +132,11 @@ struct GymNewHomeView: View {
                     
                     Spacer()
 //                    GymListCardTabView(classType: "No membership", search: "a")
-                    GymListCardTabView(classType: userData.hasMemberShip, search: search, selectedGymUid: $selectedGymUid, gotTap: $gotTap, content: { (gym:GymCore) in
+                    GymListCardTabView(classType: userData.hasMemberShip, search: search, selectedGymUid: $selectedGymUid, gotTap: $gotTap,isSearching: $search, content: { (gym:GymCore) in
                         GymCard(gym:gym)
+                        
                     })
-                        .padding(.bottom,20)
+                        .padding(.bottom,50)
                     
                 }
         }
@@ -145,6 +146,11 @@ struct GymNewHomeView: View {
             .onAppear(perform: {
 //                region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: result.filter({$0.classType == userData.hasMemberShip})[0].lat-0.003, longitude: result.filter({$0.classType == userData.hasMemberShip})[0].long), span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))
                 DispatchQueue.main.asyncAfter(deadline:.now()+0.5){selectedGymUid = Int(result.filter({userData.hasMemberShip == "No membership" ? true : $0.classType == userData.hasMemberShip})[0].uid)}
+            })
+            .onDisappear(perform: {
+                DispatchQueue.main.async{
+                    search = ""
+                }
             })
             .onChange(of: selectedGymUid, perform: { value in
                 DispatchQueue.main.async{

@@ -494,7 +494,7 @@ struct PupolarJoggingPathHomeView: View {
             }
             }
             .navigationTitle("")
-            .navigationBarHidden(navigationBar)
+            .navigationBarHidden(true)
         
 //        NavigationView{
 //            VStack{

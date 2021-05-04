@@ -65,6 +65,7 @@ struct GymCard: View {
         ZStack{
             VisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
                 .cornerRadius(20.0)
+                .shadow(radius: 6)
             VStack(alignment:.leading,spacing:0){
                 ScrollView(.horizontal){
                     HStack(spacing:3){ForEach((gym.images!.sortedArray(using: [NSSortDescriptor(keyPath: \ImageCore.uid, ascending: true)]) as! [ImageCore])){ image in
@@ -150,8 +151,9 @@ struct GymCard: View {
                 Spacer(minLength: 0)
             }.cornerRadius(20)
         }
+       
         .frame(width:UIScreen.main.bounds.width - 35, height: UIScreen.main.bounds.height/3-10, alignment: .center)
-        .padding(.bottom)
+        
         .sheet(isPresented: $bottomSheetIsShow, content: {
             PlanView(name: gym.name,address:gym.address,roadSituation: $roadSituation, isShown: $bottomSheetIsShow).environmentObject(userData)
         })

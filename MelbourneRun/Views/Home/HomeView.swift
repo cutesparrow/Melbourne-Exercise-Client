@@ -519,6 +519,7 @@ struct HomeView: View {
         //
         //            }
                     .onAppear(perform: {
+                        
                         if !userData.showedPermissionAlert{
                         let manager = CLLocationManager()
                         switch manager.authorizationStatus {
@@ -531,6 +532,10 @@ struct HomeView: View {
                         default:
                             showLocationPermissionAlert = false
                         }
+                            print("1")
+                        }
+                        else{
+                            print("2")
                         }
                     })
                     .toast(isPresenting: $showLocationPermissionAlert, tapToDismiss: true, alert: { AlertToast(type: .error(.red), title: "Permission", subTitle: "Location Needed")

@@ -34,10 +34,7 @@
 		D610939926134BBB00C0C6BC /* ConcentricOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D610939826134BBB00C0C6BC /* ConcentricOnboardingView.swift */; };
 		D6146C52263EC66F00693042 /* GymNewHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6146C51263EC66F00693042 /* GymNewHomeView.swift */; };
 		D6146C54263EC74700693042 /* RoundedGymIconOnMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6146C53263EC74700693042 /* RoundedGymIconOnMapView.swift */; };
-		D6146C5D263ECE3F00693042 /* LoopingWebP in Frameworks */ = {isa = PBXBuildFile; productRef = D6146C5C263ECE3F00693042 /* LoopingWebP */; };
-		D6146C5F263ECE3F00693042 /* Looping in Frameworks */ = {isa = PBXBuildFile; productRef = D6146C5E263ECE3F00693042 /* Looping */; };
 		D6146C61263EE14700693042 /* GymCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6146C60263EE14700693042 /* GymCard.swift */; };
-		D6146C63263FABDF00693042 /* LoopingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6146C62263FABDF00693042 /* LoopingImageView.swift */; };
 		D6146C8A263FE68800693042 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6146C89263FE68800693042 /* SearchBar.swift */; };
 		D6146C8C263FF45700693042 /* GymListCardTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6146C8B263FF45700693042 /* GymListCardTabView.swift */; };
 		D61A147E260459660049B377 /* UBottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = D61A147D260459660049B377 /* UBottomSheet */; };
@@ -211,7 +208,6 @@
 		D6146C51263EC66F00693042 /* GymNewHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymNewHomeView.swift; sourceTree = "<group>"; };
 		D6146C53263EC74700693042 /* RoundedGymIconOnMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedGymIconOnMapView.swift; sourceTree = "<group>"; };
 		D6146C60263EE14700693042 /* GymCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymCard.swift; sourceTree = "<group>"; };
-		D6146C62263FABDF00693042 /* LoopingImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopingImageView.swift; sourceTree = "<group>"; };
 		D6146C89263FE68800693042 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		D6146C8B263FF45700693042 /* GymListCardTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymListCardTabView.swift; sourceTree = "<group>"; };
 		D61A1484260464030049B377 /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
@@ -334,7 +330,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6146C5F263ECE3F00693042 /* Looping in Frameworks */,
 				D6977B8E260B3A73001F4B48 /* SwiftUIRefresh in Frameworks */,
 				D630CA5B2607404E008B9FA9 /* SDWebImageSwiftUI in Frameworks */,
 				D69B121D26108CA900C086FA /* SwiftyJSON in Frameworks */,
@@ -346,7 +341,6 @@
 				D67A3C222622C08C00C47CA1 /* SSToastMessage in Frameworks */,
 				D61A148226045A830049B377 /* PullUpController in Frameworks */,
 				D630CA7526089F54008B9FA9 /* Sliders in Frameworks */,
-				D6146C5D263ECE3F00693042 /* LoopingWebP in Frameworks */,
 				D652011025F7604900BA04E9 /* LocationProvider in Frameworks */,
 				D68600BA2635565A00259D37 /* Refresh in Frameworks */,
 				D60FC27826037CF00038E9E5 /* Alamofire in Frameworks */,
@@ -374,7 +368,6 @@
 				D6146C51263EC66F00693042 /* GymNewHomeView.swift */,
 				D6146C53263EC74700693042 /* RoundedGymIconOnMapView.swift */,
 				D6146C60263EE14700693042 /* GymCard.swift */,
-				D6146C62263FABDF00693042 /* LoopingImageView.swift */,
 				D6146C8B263FF45700693042 /* GymListCardTabView.swift */,
 			);
 			path = Gym;
@@ -765,8 +758,6 @@
 				D661846B2627002900DA63AE /* ActivityIndicatorView */,
 				D6618471262AF93500DA63AE /* URLImage */,
 				D68600B92635565A00259D37 /* Refresh */,
-				D6146C5C263ECE3F00693042 /* LoopingWebP */,
-				D6146C5E263ECE3F00693042 /* Looping */,
 			);
 			productName = MelbourneRun;
 			productReference = D65200F425F757B800BA04E9 /* MelbExercise.app */;
@@ -817,7 +808,6 @@
 				D661846A2627002900DA63AE /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
 				D6618470262AF93500DA63AE /* XCRemoteSwiftPackageReference "url-image" */,
 				D68600B82635565A00259D37 /* XCRemoteSwiftPackageReference "Refresh" */,
-				D6146C5B263ECE3F00693042 /* XCRemoteSwiftPackageReference "Looping" */,
 			);
 			productRefGroup = D65200F525F757B800BA04E9 /* Products */;
 			projectDirPath = "";
@@ -897,7 +887,6 @@
 				D60FC28B260443C80038E9E5 /* LocationViewModel.swift in Sources */,
 				D60FC2472602EC510038E9E5 /* GymCellView.swift in Sources */,
 				D6618485262D992C00DA63AE /* PagerView.swift in Sources */,
-				D6146C63263FABDF00693042 /* LoopingImageView.swift in Sources */,
 				D630CA882608C20A008B9FA9 /* PlanButtonView.swift in Sources */,
 				D67F02C926367D7A00927C34 /* FavoriteCard.swift in Sources */,
 				D6CD21DD25F7A3B700861495 /* MapView.swift in Sources */,
@@ -1195,14 +1184,6 @@
 				minimumVersion = 0.0.6;
 			};
 		};
-		D6146C5B263ECE3F00693042 /* XCRemoteSwiftPackageReference "Looping" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/znly/Looping.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.1;
-			};
-		};
 		D61A147C260459660049B377 /* XCRemoteSwiftPackageReference "UBottomSheet" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/OfTheWolf/UBottomSheet.git";
@@ -1364,16 +1345,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D6109391261347EE00C0C6BC /* XCRemoteSwiftPackageReference "ConcentricOnboarding" */;
 			productName = ConcentricOnboarding;
-		};
-		D6146C5C263ECE3F00693042 /* LoopingWebP */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D6146C5B263ECE3F00693042 /* XCRemoteSwiftPackageReference "Looping" */;
-			productName = LoopingWebP;
-		};
-		D6146C5E263ECE3F00693042 /* Looping */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D6146C5B263ECE3F00693042 /* XCRemoteSwiftPackageReference "Looping" */;
-			productName = Looping;
 		};
 		D61A147D260459660049B377 /* UBottomSheet */ = {
 			isa = XCSwiftPackageProductDependency;

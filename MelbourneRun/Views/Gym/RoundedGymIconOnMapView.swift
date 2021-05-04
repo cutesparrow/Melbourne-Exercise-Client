@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import Looping
-import LoopingWebP
 import SDWebImageSwiftUI
 import MapKit
 import URLImage
@@ -52,6 +50,7 @@ struct RoundedGymIconOnMapView: View {
 //            .opacity(wave1 ? 0.85 : 1)
 //            .scaleEffect(isAnimated ? 0.8 : 1)
 //            .animation(animation)
+                .shadow(radius: 5)
             .onTapGesture {
                 withAnimation(animation){
 //                    print(gym.uid)
