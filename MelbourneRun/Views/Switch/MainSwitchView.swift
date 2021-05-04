@@ -16,11 +16,14 @@ struct MainSwitchView: View {
 //    @State var gymList:GymList = GymList(list: [])
     var body: some View {
         switch selectView {
-        case 0:HomeView(tutorial:$tutorial,bottomBarSelected:$selectView,showBottomBar:$showBottomBar)
-            .environmentObject(userData)
-            .navigationTitle("Home")
-            .navigationBarTitleDisplayMode(.inline)
-        case 1:GymHomeView()
+        case 0:
+//            HomeView(tutorial:$tutorial,bottomBarSelected:$selectView,showBottomBar:$showBottomBar)
+//            .environmentObject(userData)
+//            .navigationTitle("Home")
+//            .navigationBarTitleDisplayMode(.inline)
+        EmptyView()
+        case 1:
+            GymHomeView()
             .environmentObject(userData)
         case 2:JoggingHomeView()
             .environmentObject(userData)
