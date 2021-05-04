@@ -6,24 +6,17 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct testView: View {
-    @State var a:Bool = false
-
-    var body: some View {
-        Button(action: {self.a.toggle()}) {
-            Text("a")
-        }
-//        .present(isPresented: $a,type:.floater(verticalPadding: 10), closeOnTap: false,closeOnTapOutside: false) {
-//            ZStack{
-//                RoundedRectangle(cornerRadius: 25.0)
-//                    .fill(Color(.blue))
-//                    .frame(width: 100, height: 100, alignment: .center)
-//                Button(action: {}, label: {
-//                    Text("Button")
-//                })
-//            }
-//        }
+    @State private var coordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 40.7, longitude: -73.9), span: MKCoordinateSpan(latitudeDelta: 100.0, longitudeDelta: 100.0))
+    
+    init() {
+        MKMapView.appearance().mapType = .satellite
+    }
+    
+    @ViewBuilder var body: some View {
+        Map(coordinateRegion: $coordinateRegion)
     }
 }
 

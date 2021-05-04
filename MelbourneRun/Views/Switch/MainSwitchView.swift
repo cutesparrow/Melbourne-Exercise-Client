@@ -18,7 +18,9 @@ struct MainSwitchView: View {
         switch selectView {
         case 0:HomeView(tutorial:$tutorial,bottomBarSelected:$selectView,showBottomBar:$showBottomBar)
             .environmentObject(userData)
-        case 1:GymNewHomeView()
+        case 1:
+            GymNewHomeView()
+//            testView()
             .environmentObject(userData)
         case 2:JoggingHomeView()
             .environmentObject(userData)

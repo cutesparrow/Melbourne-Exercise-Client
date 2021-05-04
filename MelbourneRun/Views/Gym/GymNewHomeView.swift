@@ -13,14 +13,29 @@ import ActionOver
 struct GymNewHomeView: View {
     @EnvironmentObject var userData:UserData
     @FetchRequest(entity: GymCore.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \GymCore.distance, ascending: true)]) var result: FetchedResults<GymCore>
-    @State var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: -37.81145542089078, longitude: 144.96473765203163), span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))
-    @State private var trackingMode = MapUserTrackingMode.none
-    @State private var search:String = ""
-    @State private var isEditing:Bool = false
-    @State private var selectedGymIndex:Int = 0
-    @State private var selectedGymUid:Int = 0
-    @State private var gotTap:Bool = false
+    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: -37.81145542089078, longitude: 144.96473765203163), span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))
+//    @State private var trackingMode = MapUserTrackingMode.none
+//    @State private var search:String = ""
+//    @State private var isEditing:Bool = false
+//    @State private var selectedGymIndex:Int = 0
+//    @State private var selectedGymUid:Int = 0
+//    @State private var gotTap:Bool = false
+    @State private var trackingMode:MapUserTrackingMode
+    @State private var search:String
+    @State private var isEditing:Bool
+    @State private var selectedGymIndex:Int
+    @State private var selectedGymUid:Int
+    @State private var gotTap:Bool
     
+    init() {
+        self._trackingMode = State(initialValue: MapUserTrackingMode.none)
+        self._search = State(initialValue: "")
+        self._isEditing = State(initialValue: false)
+        self._selectedGymUid = State(initialValue: 0)
+        self._selectedGymIndex = State(initialValue: 0)
+        self._gotTap = State(initialValue: false)
+        MKMapView.appearance().mapType = .satellite
+    }
     
     private func findIndexOfGym(gym:GymCore) -> Int?{
         var index:Int = 0
@@ -72,7 +87,7 @@ struct GymNewHomeView: View {
         return membershipChooseButtons
     }
     
-    var body: some View {
+    @ViewBuilder var body: some View {
         let membershipChooseButtons:[ActionOverButton] = getGymClass()
         
         if !result.isEmpty{

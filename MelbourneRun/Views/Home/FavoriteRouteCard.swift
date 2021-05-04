@@ -93,13 +93,10 @@ struct FavoriteRouteCard: View {
             
         }
         .fullScreenCover(isPresented: $showDetail, content: {
-            
             HomePageRouteDetailView(route: route,showDetail:$showDetail)
                 .background(Color(.systemBackground).clipShape(RoundedRectangle(cornerRadius: 25.0)))
                 .clearModalBackground()
                 .offset(y: 90)
-            
-
 //                            .clearModalBackground()
         })
 //        .bottomSheet(isPresented: $showDetail, height: 400, content: {
