@@ -37,6 +37,7 @@
 		D6146C61263EE14700693042 /* GymCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6146C60263EE14700693042 /* GymCard.swift */; };
 		D6146C8A263FE68800693042 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6146C89263FE68800693042 /* SearchBar.swift */; };
 		D6146C8C263FF45700693042 /* GymListCardTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6146C8B263FF45700693042 /* GymListCardTabView.swift */; };
+		D6146C8F26410DAA00693042 /* AlertKit in Frameworks */ = {isa = PBXBuildFile; productRef = D6146C8E26410DAA00693042 /* AlertKit */; };
 		D61A147E260459660049B377 /* UBottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = D61A147D260459660049B377 /* UBottomSheet */; };
 		D61A148226045A830049B377 /* PullUpController in Frameworks */ = {isa = PBXBuildFile; productRef = D61A148126045A830049B377 /* PullUpController */; };
 		D61A1485260464030049B377 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61A1484260464030049B377 /* BottomView.swift */; };
@@ -153,6 +154,7 @@
 		D69B12232611CC9C00C086FA /* SafetyPolicyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B12222611CC9C00C086FA /* SafetyPolicyModel.swift */; };
 		D69B12262611D9AF00C086FA /* PolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B12252611D9AF00C086FA /* PolicyView.swift */; };
 		D69B12292611EE9700C086FA /* LegendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B12282611EE9700C086FA /* LegendView.swift */; };
+		D6AB6FD6264112B3003CE3BD /* GymCardOnHomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AB6FD5264112B3003CE3BD /* GymCardOnHomePage.swift */; };
 		D6B8A229263BB72100B72BC3 /* AboutCovidViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B8A228263BB72100B72BC3 /* AboutCovidViewModel.swift */; };
 		D6BC5628261042B70033341E /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = D6BC5627261042B70033341E /* AlertToast */; };
 		D6BC562C261048E20033341E /* PositionScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = D6BC562B261048E20033341E /* PositionScrollView */; };
@@ -311,6 +313,7 @@
 		D69B12222611CC9C00C086FA /* SafetyPolicyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafetyPolicyModel.swift; sourceTree = "<group>"; };
 		D69B12252611D9AF00C086FA /* PolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyView.swift; sourceTree = "<group>"; };
 		D69B12282611EE9700C086FA /* LegendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegendView.swift; sourceTree = "<group>"; };
+		D6AB6FD5264112B3003CE3BD /* GymCardOnHomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymCardOnHomePage.swift; sourceTree = "<group>"; };
 		D6B8A228263BB72100B72BC3 /* AboutCovidViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCovidViewModel.swift; sourceTree = "<group>"; };
 		D6CD21DC25F7A3B700861495 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		D6CD21E125F7B14100861495 /* home.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = home.gpx; path = ../../../Downloads/home.gpx; sourceTree = "<group>"; };
@@ -340,6 +343,7 @@
 				D6226EDE261F0AF6003F4D9F /* LNPopupUI in Frameworks */,
 				D67A3C222622C08C00C47CA1 /* SSToastMessage in Frameworks */,
 				D61A148226045A830049B377 /* PullUpController in Frameworks */,
+				D6146C8F26410DAA00693042 /* AlertKit in Frameworks */,
 				D630CA7526089F54008B9FA9 /* Sliders in Frameworks */,
 				D652011025F7604900BA04E9 /* LocationProvider in Frameworks */,
 				D68600BA2635565A00259D37 /* Refresh in Frameworks */,
@@ -595,6 +599,7 @@
 				D66A6E4F2636C15A00F8AD54 /* TipsCard.swift */,
 				D66A6E5B2637BF9700F8AD54 /* FavoritePopularRouteSrollView.swift */,
 				D66A6E5D2637C01D00F8AD54 /* FavoritePopularRouteCard.swift */,
+				D6AB6FD5264112B3003CE3BD /* GymCardOnHomePage.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -758,6 +763,7 @@
 				D661846B2627002900DA63AE /* ActivityIndicatorView */,
 				D6618471262AF93500DA63AE /* URLImage */,
 				D68600B92635565A00259D37 /* Refresh */,
+				D6146C8E26410DAA00693042 /* AlertKit */,
 			);
 			productName = MelbourneRun;
 			productReference = D65200F425F757B800BA04E9 /* MelbExercise.app */;
@@ -808,6 +814,7 @@
 				D661846A2627002900DA63AE /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
 				D6618470262AF93500DA63AE /* XCRemoteSwiftPackageReference "url-image" */,
 				D68600B82635565A00259D37 /* XCRemoteSwiftPackageReference "Refresh" */,
+				D6146C8D26410DAA00693042 /* XCRemoteSwiftPackageReference "AlertKit" */,
 			);
 			productRefGroup = D65200F525F757B800BA04E9 /* Products */;
 			projectDirPath = "";
@@ -911,6 +918,7 @@
 				D6708FC7261403F2008FDD79 /* BottomBarItemView.swift in Sources */,
 				D630CA94260991F2008B9FA9 /* GymHomeView.swift in Sources */,
 				D630CA6326088662008B9FA9 /* RoadSituationContentView.swift in Sources */,
+				D6AB6FD6264112B3003CE3BD /* GymCardOnHomePage.swift in Sources */,
 				D6313C6C2615A8900079D5F6 /* OnboardingZero.swift in Sources */,
 				D60FC262260313540038E9E5 /* ScrollBoxView.swift in Sources */,
 				D67F02D62636977300927C34 /* Direction+CoreDataClass.swift in Sources */,
@@ -1184,6 +1192,14 @@
 				minimumVersion = 0.0.6;
 			};
 		};
+		D6146C8D26410DAA00693042 /* XCRemoteSwiftPackageReference "AlertKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rebeloper/AlertKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.0;
+			};
+		};
 		D61A147C260459660049B377 /* XCRemoteSwiftPackageReference "UBottomSheet" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/OfTheWolf/UBottomSheet.git";
@@ -1345,6 +1361,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D6109391261347EE00C0C6BC /* XCRemoteSwiftPackageReference "ConcentricOnboarding" */;
 			productName = ConcentricOnboarding;
+		};
+		D6146C8E26410DAA00693042 /* AlertKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D6146C8D26410DAA00693042 /* XCRemoteSwiftPackageReference "AlertKit" */;
+			productName = AlertKit;
 		};
 		D61A147D260459660049B377 /* UBottomSheet */ = {
 			isa = XCSwiftPackageProductDependency;

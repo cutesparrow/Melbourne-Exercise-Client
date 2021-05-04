@@ -92,10 +92,12 @@ struct FavoriteRouteCard: View {
             }.offset(x:100,y:55)
             
         }
-        .sheet(isPresented: $showDetail, content: {
+        .fullScreenCover(isPresented: $showDetail, content: {
+            
             HomePageRouteDetailView(route: route,showDetail:$showDetail)
                 .background(Color(.systemBackground).clipShape(RoundedRectangle(cornerRadius: 25.0)))
                 .clearModalBackground()
+                .offset(y: 90)
             
 
 //                            .clearModalBackground()
@@ -112,7 +114,7 @@ struct ClearBackgroundView: UIViewRepresentable {
     func makeUIView(context: Context) -> some UIView {
         let view = UIView()
         DispatchQueue.main.async {
-            view.superview?.superview?.backgroundColor = .clear
+            view.superview?.superview?.backgroundColor = UIColor(Color(.black).opacity(0.4))
         }
         return view
     }
