@@ -87,6 +87,8 @@
 		D661847F262D694400DA63AE /* ScrollViewPaged.swift in Sources */ = {isa = PBXBuildFile; fileRef = D661847E262D694400DA63AE /* ScrollViewPaged.swift */; };
 		D6618481262D930800DA63AE /* scrollViewEdited.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6618480262D930800DA63AE /* scrollViewEdited.swift */; };
 		D6618485262D992C00DA63AE /* PagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6618484262D992C00DA63AE /* PagerView.swift */; };
+		D66A358226427BC70042F211 /* CustomeMapViewForGymView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A358126427BC70042F211 /* CustomeMapViewForGymView.swift */; };
+		D66A35842642B7770042F211 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A35832642B7770042F211 /* LocationManager.swift */; };
 		D66A6E4E26369DF400F8AD54 /* FavoriteRouteCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A6E4D26369DF400F8AD54 /* FavoriteRouteCard.swift */; };
 		D66A6E502636C15A00F8AD54 /* TipsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A6E4F2636C15A00F8AD54 /* TipsCard.swift */; };
 		D66A6E572637AFBA00F8AD54 /* PopularRouteCore+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A6E552637AFBA00F8AD54 /* PopularRouteCore+CoreDataClass.swift */; };
@@ -253,6 +255,8 @@
 		D661847E262D694400DA63AE /* ScrollViewPaged.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewPaged.swift; sourceTree = "<group>"; };
 		D6618480262D930800DA63AE /* scrollViewEdited.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scrollViewEdited.swift; sourceTree = "<group>"; };
 		D6618484262D992C00DA63AE /* PagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerView.swift; sourceTree = "<group>"; };
+		D66A358126427BC70042F211 /* CustomeMapViewForGymView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomeMapViewForGymView.swift; sourceTree = "<group>"; };
+		D66A35832642B7770042F211 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		D66A6E4D26369DF400F8AD54 /* FavoriteRouteCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRouteCard.swift; sourceTree = "<group>"; };
 		D66A6E4F2636C15A00F8AD54 /* TipsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsCard.swift; sourceTree = "<group>"; };
 		D66A6E552637AFBA00F8AD54 /* PopularRouteCore+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PopularRouteCore+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
@@ -422,6 +426,7 @@
 				D60FC27E26037E9A0038E9E5 /* NetworkAPI.swift */,
 				D6977BAF260C5A56001F4B48 /* NoDivider.swift */,
 				D6708FD426141472008FDD79 /* NavigationbarItemExtension.swift */,
+				D66A35832642B7770042F211 /* LocationManager.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -668,6 +673,7 @@
 				D6CD21EF25F85FDA00861495 /* Button */,
 				D661846E2629CAF500DA63AE /* testView.swift */,
 				D6F883B72634375400673552 /* ContentView.swift */,
+				D66A358126427BC70042F211 /* CustomeMapViewForGymView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -848,6 +854,7 @@
 				D6708FE42614736A008FDD79 /* Animations.swift in Sources */,
 				D60FC27B26037D1F0038E9E5 /* NetworkManager.swift in Sources */,
 				D60FC26926032ECA0038E9E5 /* NavigationBarColorModifier.swift in Sources */,
+				D66A358226427BC70042F211 /* CustomeMapViewForGymView.swift in Sources */,
 				D6226ECF261EF070003F4D9F /* JoggingMainListButton.swift in Sources */,
 				D6977BB3260C6A97001F4B48 /* MainStyleButton.swift in Sources */,
 				D66A6E682637EEDC00F8AD54 /* SensorMarkViewModel.swift in Sources */,
@@ -887,6 +894,7 @@
 				D6708FD526141472008FDD79 /* NavigationbarItemExtension.swift in Sources */,
 				D67A3C1F2622B49700C47CA1 /* RiskLabelView.swift in Sources */,
 				D60FC25F2603128F0038E9E5 /* ImageScrollView.swift in Sources */,
+				D66A35842642B7770042F211 /* LocationManager.swift in Sources */,
 				D6977BA6260C35A9001F4B48 /* BottomBarView.swift in Sources */,
 				D60FC24D2602EF630038E9E5 /* HikingParkModel.swift in Sources */,
 				D6618481262D930800DA63AE /* scrollViewEdited.swift in Sources */,

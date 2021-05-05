@@ -22,31 +22,7 @@ struct GymDetailView: View {
     
     var fetchedGym:Gym?
     
-    var locationManager = CLLocationManager()
-    
-    func setupManager() {
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.requestAlwaysAuthorization()
-    }
-    
-    func LocationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])->CLLocationCoordinate2D {
-        manager.location?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
-    }
-    
-    func openMapApp()->Void{
-        setupManager()
-        let source = MKMapItem(placemark: MKPlacemark(coordinate: checkUserLocation(lat: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, long: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503)))
-        source.name = "Source"
-        
-        let destination = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: fetchedGym!.lat, longitude:fetchedGym!.long)))
-        destination.name = "Destination"
-        
-        MKMapItem.openMaps(
-            with: [source, destination],
-            launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
-        )
-    }
+   
     func loadRoadSituation(location:CLLocationCoordinate2D,gymId:Int){
         let completion: (Result<RecentlyRoadSituation,Error>) -> Void = { result in
             switch result {

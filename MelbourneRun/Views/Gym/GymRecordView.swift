@@ -22,32 +22,7 @@ struct GymRecordView: View {
     
     var fetchedGym:GymCore?
     
-    var locationManager = CLLocationManager()
-    
-    
-    func setupManager() {
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.requestAlwaysAuthorization()
-    }
-    
-    func LocationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])->CLLocationCoordinate2D {
-        manager.location?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
-    }
-    
-    func openMapApp()->Void{
-        setupManager()
-        let source = MKMapItem(placemark: MKPlacemark(coordinate: checkUserLocation(lat: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, long: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503)))
-        source.name = "Source"
-        
-        let destination = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: fetchedGym!.lat, longitude:fetchedGym!.long)))
-        destination.name = "Destination"
-        
-        MKMapItem.openMaps(
-            with: [source, destination],
-            launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
-        )
-    }
+  
     func loadRoadSituation(location:CLLocationCoordinate2D,gymId:Int){
         let completion: (Result<RecentlyRoadSituation,Error>) -> Void = { result in
             switch result {
@@ -103,7 +78,13 @@ struct GymRecordView: View {
                     Divider()
                     HStack{
                         Spacer()
-                        Button(action: openMapApp, label: {
+                        Button(action: {
+                            if let gym:GymCore = fetchedGym {
+                                UserLocationManager.share.openMapApp(destination: CLLocationCoordinate2D(latitude: gym.lat, longitude: gym.long))
+                            } else{
+                                
+                            }
+                        }, label: {
                             DetailPageButton(icon: "arrow.up.circle", color: .blue, text: "GO")
                         })
                         Spacer()
@@ -135,14 +116,14 @@ struct GymRecordView: View {
             self.networkError = false
         })
         .sheet(isPresented: $bottomSheetIsShow, content: {
-            PlanView(name: fetchedGym!.name,address:fetchedGym!.address,roadSituation: $roadSituation, isShown: $bottomSheetIsShow).environmentObject(userData)
+            PlanView(name: fetchedGym!.name,address:fetchedGym!.address,roadSituation: roadSituation, isShown: $bottomSheetIsShow).environmentObject(userData)
         })
         
 //        .bottomSheet(isPresented: $bottomSheetIsShow, height: 600, content: {PlanView(roadSituation: $roadSituation, isShown: $bottomSheetIsShow).environmentObject(userData)
 //        })
         .ignoresSafeArea()
         .onAppear(perform: {
-            loadRoadSituation(location: checkUserLocation(lat: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, long: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503), gymId: Int(fetchedGym!.uid))
+            loadRoadSituation(location: checkUserLocation(lat: LocationFetcher.share.lastKnownLocation?.latitude ?? -37.810489070978186, long: LocationFetcher.share.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: LocationFetcher.share.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: LocationFetcher.share.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503), gymId: Int(fetchedGym!.uid))
            
         })
     }

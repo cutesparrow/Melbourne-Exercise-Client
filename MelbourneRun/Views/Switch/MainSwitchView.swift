@@ -22,6 +22,7 @@ struct MainSwitchView: View {
         case 1:
             GymNewHomeView()
 //            testView()
+//            testView()
             .environmentObject(userData)
         case 2:JoggingHomeView()
             .environmentObject(userData)

@@ -12,7 +12,7 @@ import MapKit
 
 
 class UserData: ObservableObject {
-    @Published var locationFetcher = LocationFetcher()
+//    @Published var locationFetcher = LocationFetcher()
     @Published var showedPermissionAlert:Bool = false
     @Published var showGymUserGuide:Bool = true
     //    @Published var gymList: GymList = GymList(list: [ ])

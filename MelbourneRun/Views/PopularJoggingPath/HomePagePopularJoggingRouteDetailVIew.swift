@@ -28,34 +28,11 @@ struct HomePagePopularJoggingRouteDetailVIew: View {
     let itemHeight:CGFloat = 500
     let imageHeight:CGFloat = 400
     let SVWidth = UIScreen.main.bounds.width - 40
-    var locationManager = CLLocationManager()
-    func setupManager() {
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.requestAlwaysAuthorization()
-    }
-    
-    func LocationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])->CLLocationCoordinate2D {
-        manager.location?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
-    }
-    func openMapApp(lat:Double,long:Double)->Void{
-        setupManager()
-        let source = MKMapItem(placemark: MKPlacemark(coordinate: checkUserLocation(lat: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, long: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: userData.locationFetcher.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: userData.locationFetcher.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503)))
-        source.name = "Source"
-        
-        let destination = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long)))
-        destination.name = "Destination"
-        
-        MKMapItem.openMaps(
-            with: [source, destination],
-            launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
-        )
-    }
+  
     var body: some View {
         
         GeometryReader{geo -> AnyView in
         return AnyView(
-            
             ZStack{
                 ScrollView{
                     VStack(spacing:0){
@@ -224,7 +201,9 @@ struct HomePagePopularJoggingRouteDetailVIew: View {
                                                 .scaledToFill()
                                                 .clipShape(RoundedRectangle(cornerRadius: 25.0))
                                                 .padding(.horizontal)
-                                                Button(action: {openMapApp(lat:popularRoute.latitude,long:popularRoute.longitude)}, label: {
+                                                Button(action: {
+                                                    UserLocationManager.share.openMapApp(destination: CLLocationCoordinate2D(latitude: popularRoute.latitude, longitude: popularRoute.longitude))
+                                                }, label: {
                                                     DirectButtonView(color:.blue,text:"Let's go").padding()
                                             })
                                             }

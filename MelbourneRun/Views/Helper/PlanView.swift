@@ -19,7 +19,7 @@ struct PlanView: View,PositionScrollViewDelegate {
     var name:String
     var address:String
     @EnvironmentObject var userData:UserData
-    @Binding var roadSituation:RecentlyRoadSituation
+    var roadSituation:RecentlyRoadSituation
     var pageSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/3)
     @ObservedObject var psViewModel = PositionScrollViewModel(
         pageSize: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/3),

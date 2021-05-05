@@ -8,30 +8,29 @@
 import SwiftUI
 import MapKit
 
-extension Map {
-    func mapStyle(_ mapType: MKMapType) -> some View {
-        MKMapView.appearance().mapType = mapType
-        return self
-    }
-    
-    func mapStyle(_ mapType: MKMapType, showScale: Bool = true, showTraffic: Bool = false) -> some View {
-            let map = MKMapView.appearance()
-            map.mapType = mapType
-            map.showsScale = showScale
-            map.showsTraffic = showTraffic
-            return self
-        }
-}
-
-
 
 struct testView: View {
-    @State private var coordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 40.7, longitude: -73.9), span: MKCoordinateSpan(latitudeDelta: 100.0, longitudeDelta: 100.0))
+    @EnvironmentObject var userData:UserData
+    @State private var centerCoordinate = CLLocationCoordinate2D()
+    @State private var locations = [MKPointAnnotation]()
     
-   
+    @StateObject var gymsModel:GymViewModel = GymViewModel()
+    @Environment(\.managedObjectContext) var context
+    @FetchRequest(entity: GymCore.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \GymCore.distance, ascending: true)]) var result: FetchedResults<GymCore>
+    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: -37.81145542089078, longitude: 144.96473765203163), span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))
     
     var body: some View {
-        Map(coordinateRegion: $coordinateRegion).mapStyle(.standard, showScale: false, showTraffic: false)
+        ZStack{
+            CustomMapView(centerCoordinate: $centerCoordinate, annotations: locations)
+                .edgesIgnoringSafeArea(.all)
+            Button(action: {
+                let newLocation = MKPointAnnotation()
+                newLocation.coordinate = self.centerCoordinate
+                self.locations.append(newLocation)
+            }, label: {
+                Text("Button")
+            })
+        }
     }
 }
 

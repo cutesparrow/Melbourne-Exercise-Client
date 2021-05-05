@@ -9,61 +9,64 @@ import SwiftUI
 import CoreData
 import Combine
 
-struct GymListCardTabView<T: NSManagedObject,Content: View>: View {
+struct GymListCardTabView: View {
 //    @EnvironmentObject var userData:UserData
 //    @State var selectedGymIndex:Int
     @Binding var selectedGymUid:Int
     let detector: CurrentValueSubject<CGFloat, Never>
     let publisher: AnyPublisher<CGFloat, Never>
     @EnvironmentObject var userData:UserData
-    @Binding var gotTap:Bool
-    @Binding var isSearching:String
-    var fetchRequest: FetchRequest<T>
+//    @Binding var gotTap:Bool
+    @Binding var search:String
+//    @Binding var isSearching:String
+    var fetchRequest: FetchRequest<GymCore>
 //    @Binding var selectedGymClass:String
-    var gyms:FetchedResults<T> {
+    var gyms:FetchedResults<GymCore> {
         fetchRequest.wrappedValue
     }
-    let content:(T) -> Content
+//    let content:(T) -> Content
     
-    private func findIndexOfGym(gym:T) -> Int?{
-        var index:Int = 0
-        for i in gyms{
-            if (gym as! GymCore).uid == (i as! GymCore).uid{
-                return index
-            }
-            index += 1
-        }
-        return nil
-    }
-    init(classType:String,search:String,selectedGymUid:Binding<Int>, gotTap:Binding<Bool>,isSearching:Binding<String>,@ViewBuilder content:@escaping (T) -> Content) {
+//    private func findIndexOfGym(gym:T) -> Int?{
+//        var index:Int = 0
+//        for i in gyms{
+//            if (gym as! GymCore).uid == (i as! GymCore).uid{
+//                return index
+//            }
+//            index += 1
+//        }
+//        return nil
+//    }
+    
+    init(classType:String,search:Binding<String>,selectedGymUid:Binding<Int>) {
 //        selectedGymClass = classType
 //        selectedGymIndex = 0
         self._selectedGymUid = selectedGymUid
 //        self._selectedGymIndex = State(initialValue: 0)
-        self._gotTap = gotTap
-        self._isSearching = isSearching
+//        self._gotTap = gotTap
+//        self._isSearching = isSearching
+        self._search = search
         if classType == "No membership"{
-            if search == ""
-            {fetchRequest = FetchRequest<T>(entity: T.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \GymCore.distance, ascending: true)])}
-            else if search.caseInsensitiveCompare("star") == .orderedSame{
-                fetchRequest = FetchRequest<T>(entity: T.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \GymCore.distance, ascending: true)], predicate: NSPredicate(format: "star == %i", true))
+            if search.wrappedValue == ""
+            {fetchRequest = FetchRequest<GymCore>(entity: GymCore.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \GymCore.distance, ascending: true)])}
+            else if search.wrappedValue.caseInsensitiveCompare("star") == .orderedSame{
+                fetchRequest = FetchRequest<GymCore>(entity: GymCore.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \GymCore.distance, ascending: true)], predicate: NSPredicate(format: "star == %i", true))
             }
             else{
-                fetchRequest = FetchRequest<T>(entity: T.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \GymCore.distance, ascending: true)], predicate: NSPredicate(format: "name CONTAINS[c] %@ OR address CONTAINS[c] %@ OR classType CONTAINS[c] %@", search,search,search))
+                fetchRequest = FetchRequest<GymCore>(entity: GymCore.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \GymCore.distance, ascending: true)], predicate: NSPredicate(format: "name CONTAINS[c] %@ OR address CONTAINS[c] %@ OR classType CONTAINS[c] %@", search.wrappedValue,search.wrappedValue,search.wrappedValue))
             }
         }
         else {
-            if search == ""{
-                fetchRequest = FetchRequest<T>(entity: T.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \GymCore.distance, ascending: true)], predicate: NSPredicate(format: "classType == %@", classType))
+            if search.wrappedValue == ""{
+                fetchRequest = FetchRequest<GymCore>(entity: GymCore.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \GymCore.distance, ascending: true)], predicate: NSPredicate(format: "classType == %@", classType))
             }
-            else if search.caseInsensitiveCompare("star") == .orderedSame{
-                fetchRequest = FetchRequest<T>(entity: T.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \GymCore.distance, ascending: true)], predicate: NSPredicate(format: "classType == %@ AND star == %i", classType, true))
+            else if search.wrappedValue.caseInsensitiveCompare("star") == .orderedSame{
+                fetchRequest = FetchRequest<GymCore>(entity: GymCore.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \GymCore.distance, ascending: true)], predicate: NSPredicate(format: "classType == %@ AND star == %i", classType, true))
             }
-            else{fetchRequest = FetchRequest<T>(entity: T.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \GymCore.distance, ascending: true)], predicate: NSPredicate(format: "classType == %@ AND (name CONTAINS[c] %@ OR address CONTAINS[c] %@ OR classType CONTAINS[c] %@)", classType, search,search,search))}
+            else{fetchRequest = FetchRequest<GymCore>(entity: GymCore.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \GymCore.distance, ascending: true)], predicate: NSPredicate(format: "classType == %@ AND (name CONTAINS[c] %@ OR address CONTAINS[c] %@ OR classType CONTAINS[c] %@)", classType, search.wrappedValue,search.wrappedValue,search.wrappedValue))}
             
         }
         
-        self.content = content
+//        self.content = content
         let detector = CurrentValueSubject<CGFloat, Never>(0)
         self.publisher = detector
                     .debounce(for: .seconds(0.2), scheduler: DispatchQueue.main)
@@ -88,10 +91,10 @@ struct GymListCardTabView<T: NSManagedObject,Content: View>: View {
         {
             ZStack{
                 LazyHStack{
-                ForEach(self.fetchRequest.wrappedValue,id:\.self){gym in
+                ForEach(self.gyms,id:\.self){gym in
     //                        if gym.classType == userData.hasMemberShip || userData.hasMemberShip == "No membership"{
-                    self.content(gym)
-                        .id(Int((gym as! GymCore).uid))
+                    GymCard(gym:gym)
+                        .id(Int(gym.uid))
                 }
             }.padding(.horizontal,18)
                 GeometryReader { proxy in
@@ -99,13 +102,14 @@ struct GymListCardTabView<T: NSManagedObject,Content: View>: View {
                                         Color.clear.preference(key: ViewOffsetKey.self, value: offset)
                                     }
             }
-            }.onChange(of:gotTap,perform:{ num in
-//                withAnimation(.easeInOut(duration:1)){
-                DispatchQueue.main.async{
-                    withAnimation(.easeInOut(duration:1)){value.scrollTo(selectedGymUid,anchor:.center)}
-                }
+            }
+//            .onChange(of:gotTap,perform:{ num in
+////                withAnimation(.easeInOut(duration:1)){
+//                DispatchQueue.main.async{
+//                    withAnimation(.easeInOut(duration:1)){value.scrollTo(selectedGymUid,anchor:.center)}
 //                }
-            })
+////                }
+//            })
             .onChange(of:selectedGymUid,perform:{ _ in
 //                withAnimation(.easeInOut(duration:1)){
                 DispatchQueue.main.async{
@@ -122,7 +126,7 @@ struct GymListCardTabView<T: NSManagedObject,Content: View>: View {
 //            self.selectedGymIndex = Int(-(value-348.5/2)/348.5)
         }
         .onReceive(publisher) { value in
-            DispatchQueue.main.async{ self.selectedGymUid = Int((gyms[Int(-(value-348.5/2)/348.5)] as! GymCore).uid)}
+            DispatchQueue.main.async{ self.selectedGymUid = Int(gyms[Int(-(value-348.5/2)/348.5)].uid)}
         }
         
         .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/3 + 20, alignment: .center)
@@ -133,15 +137,15 @@ struct GymListCardTabView<T: NSManagedObject,Content: View>: View {
         .background(Color(.clear))
         .onChange(of: userData.hasMemberShip, perform: { value in
             print("change membership")
-            DispatchQueue.main.async{ self.selectedGymUid = Int((gyms[0] as! GymCore).uid)} //may need change
+            DispatchQueue.main.async{ self.selectedGymUid = Int(gyms[0].uid)} //may need change
 //            print(selectedGymUid.description)
         })
-        .onChange(of: isSearching, perform:{value in
-            if fetchRequest.wrappedValue.isEmpty{
+        .onChange(of: search, perform:{value in
+            if gyms.isEmpty{
             }
             else{
                 DispatchQueue.main.async{
-                    self.selectedGymUid = Int((gyms[0] as! GymCore).uid)
+                    self.selectedGymUid = Int(gyms[0].uid)
                 }
             }
         })
