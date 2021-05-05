@@ -16,6 +16,7 @@ struct GymCard: View {
     @EnvironmentObject var userData:UserData
     @State var roadSituation:RecentlyRoadSituation?
     @State var bottomSheetIsShow:Bool = false
+    var showImage:Bool = false
 //    var locationManager = CLLocationManager()
 //
 //
@@ -67,7 +68,7 @@ struct GymCard: View {
                 .cornerRadius(20.0)
                 .shadow(radius: 6)
             VStack(alignment:.leading,spacing:0){
-                ScrollView(.horizontal){
+                if showImage {ScrollView(.horizontal){
                     HStack(spacing:3){
                         ForEach(gym.images!.sortedArray(using: [NSSortDescriptor(keyPath: \ImageCore.uid, ascending: true)]) as! [ImageCore]){ image in
                     WebImage(url: URL(string: NetworkManager.shared.urlBasePath + image.name + ".jpg"))
@@ -81,7 +82,7 @@ struct GymCard: View {
                 }
 
                     }
-            }
+            }}
                 
                 VStack(alignment:.leading){
                     Text(gym.name)
@@ -155,7 +156,7 @@ struct GymCard: View {
             }.cornerRadius(20)
         }
        
-        .frame(width:UIScreen.main.bounds.width - 35, height: UIScreen.main.bounds.height/3-10, alignment: .center)
+        .frame(width:UIScreen.main.bounds.width - 35, height: showImage ? UIScreen.main.bounds.height/3-10 : UIScreen.main.bounds.height/3-120, alignment: .center)
         
         .sheet(isPresented: $bottomSheetIsShow, content: {
             PlanView(name: gym.name,address:gym.address,roadSituation: roadSituation!, isShown: $bottomSheetIsShow).environmentObject(userData)
