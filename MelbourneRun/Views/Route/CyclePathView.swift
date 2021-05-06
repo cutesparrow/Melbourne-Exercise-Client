@@ -25,20 +25,23 @@ struct CyclePathView: View {
     @EnvironmentObject var userData:UserData
     @State var selectedTab:Int = 0
     @State var showDirectionsList:Bool = false
-    @State var customizedCards:[CustomizedCard]
+    @State var cyclingRouteCards:[WalkingRouteCard]
     @Environment(\.managedObjectContext) var context
     @State var success:Bool = false
     @State var error:Bool = false
+    @State var showDetailMapView:Bool = false
+    
     private func saveThisRoute(){
         let entity = RouteCore(context:context)
-        entity.length = self.customizedCards[selectedTab].distance
-        entity.time = self.customizedCards[selectedTab].time
-        entity.risk = self.customizedCards[selectedTab].risk
-        entity.mapImage = self.customizedCards[selectedTab].image
+        entity.length = self.cyclingRouteCards[selectedTab].distance
+        entity.time = self.cyclingRouteCards[selectedTab].time
+        entity.risk = self.cyclingRouteCards[selectedTab].risk
+        entity.mapImage = self.cyclingRouteCards[selectedTab].image
         entity.type = "Cycling"
-        self.customizedCards[selectedTab].instructions.forEach { direction in
+        entity.polyline = self.cyclingRouteCards[selectedTab].polyline
+        self.cyclingRouteCards[selectedTab].instructions.forEach { direction in
             let directionData = Direction(context:context)
-            directionData.uid = Int16(self.customizedCards[selectedTab].instructions.firstIndex(where: { $0 == direction })!)
+            directionData.uid = Int16(self.cyclingRouteCards[selectedTab].instructions.firstIndex(where: { $0 == direction })!)
             directionData.directionSentence = direction
             entity.addToDirections(directionData)
         }
@@ -67,7 +70,7 @@ struct CyclePathView: View {
             
             
             TabView(selection: $selectedTab) {
-                ForEach(self.customizedCards,id:\.id) { card in
+                ForEach(self.cyclingRouteCards,id:\.id) { card in
 //                    DirectionMapView(directions: $directionsList, coordinatesList: card.path)
                     WebImage(url: URL(string: NetworkManager.shared.urlBasePath + card.image))
                         .placeholder{
@@ -78,7 +81,12 @@ struct CyclePathView: View {
                         .frame(width: UIScreen.main.bounds.width/1.2,height:UIScreen.main.bounds.width/1.8)
                         .clipped()
                         .cornerRadius(14)
+                        .onTapGesture {
+                            print("tap")
+                            self.showDetailMapView.toggle()
+                        }
                         .shadow(radius: 4)
+                        
                         .tag(card.id)
                         
                 }
@@ -86,9 +94,9 @@ struct CyclePathView: View {
             .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
             .padding(.vertical,-15)
             
-            PathInformationView(imageName: "timer", text: "Time", data: self.customizedCards[selectedTab].time)
+            PathInformationView(imageName: "timer", text: "Time", data: self.cyclingRouteCards[selectedTab].time)
                 .padding(.vertical,-15)
-            PathInformationView(imageName: "playpause", text: "Length", data: String(self.customizedCards[selectedTab].distance)+" KM")
+            PathInformationView(imageName: "playpause", text: "Length", data: String(self.cyclingRouteCards[selectedTab].distance)+" KM")
                 .padding(.vertical,-15)
             HStack{
                 ZStack{
@@ -145,14 +153,28 @@ struct CyclePathView: View {
                           .bold()
                           .padding()
                 
-                List(self.customizedCards[selectedTab].instructions, id:\.self){i in
+                List(self.cyclingRouteCards[selectedTab].instructions, id:\.self){i in
                     Text(i)
                     
             }}
         })
-        .onAppear(perform: {
-       
+        .fullScreenCover(isPresented: $showDetailMapView, content: {
+            ZStack{
+                MapView(polyline: cyclingRouteCards[selectedTab].polyline)
+                Button {
+                    self.showDetailMapView.toggle()
+                        
+                } label:{
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(Color(.label).opacity(0.85))
+                            .font(.system(size: 32)).padding()
+                }.offset(x: UIScreen.main.bounds.width/2 - 30, y: -UIScreen.main.bounds.height/2 + 60)
+
+            }.ignoresSafeArea(.all)
         })
+//        .onAppear(perform: {
+//
+//        })
     }
 }
 

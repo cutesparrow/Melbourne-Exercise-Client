@@ -50,7 +50,7 @@
 		D6226ED2261EF940003F4D9F /* ScreenIconsAndText.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6226ED1261EF940003F4D9F /* ScreenIconsAndText.swift */; };
 		D6226EDE261F0AF6003F4D9F /* LNPopupUI in Frameworks */ = {isa = PBXBuildFile; productRef = D6226EDD261F0AF6003F4D9F /* LNPopupUI */; };
 		D6226EDF261F0AF6003F4D9F /* LNPopupUI in Embed Frameworks */ = {isa = PBXBuildFile; productRef = D6226EDD261F0AF6003F4D9F /* LNPopupUI */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		D6226EE126200CE8003F4D9F /* CustomizePathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6226EE026200CE8003F4D9F /* CustomizePathView.swift */; };
+		D6226EE126200CE8003F4D9F /* WalkingRouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6226EE026200CE8003F4D9F /* WalkingRouteView.swift */; };
 		D6226EE3262016AC003F4D9F /* PathInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6226EE2262016AC003F4D9F /* PathInformationView.swift */; };
 		D6226EE526201BBA003F4D9F /* PathShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6226EE426201BBA003F4D9F /* PathShowView.swift */; };
 		D6226EE9262034EA003F4D9F /* SensorMapAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6226EE8262034EA003F4D9F /* SensorMapAnnotationView.swift */; };
@@ -72,7 +72,6 @@
 		D63D18CE25FE09460049C1AC /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63D18CD25FE09460049C1AC /* ActivityModel.swift */; };
 		D63D18D925FF787F0049C1AC /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63D18D825FF787E0049C1AC /* CircleImageView.swift */; };
 		D65200F825F757B800BA04E9 /* MelbourneRunApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65200F725F757B800BA04E9 /* MelbourneRunApp.swift */; };
-		D65200FC25F757B900BA04E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D65200FB25F757B900BA04E9 /* Assets.xcassets */; };
 		D65200FF25F757B900BA04E9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D65200FE25F757B900BA04E9 /* Preview Assets.xcassets */; };
 		D652011025F7604900BA04E9 /* LocationProvider in Frameworks */ = {isa = PBXBuildFile; productRef = D652010F25F7604900BA04E9 /* LocationProvider */; };
 		D65808AF263429E4008BDD54 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65808AE263429E4008BDD54 /* Persistence.swift */; };
@@ -89,6 +88,9 @@
 		D6618485262D992C00DA63AE /* PagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6618484262D992C00DA63AE /* PagerView.swift */; };
 		D66A358226427BC70042F211 /* CustomeMapViewForGymView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A358126427BC70042F211 /* CustomeMapViewForGymView.swift */; };
 		D66A35842642B7770042F211 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A35832642B7770042F211 /* LocationManager.swift */; };
+		D66A3587264401480042F211 /* GymTimeCore+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A3585264401480042F211 /* GymTimeCore+CoreDataClass.swift */; };
+		D66A3588264401480042F211 /* GymTimeCore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A3586264401480042F211 /* GymTimeCore+CoreDataProperties.swift */; };
+		D66A358A264405650042F211 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D66A3589264405650042F211 /* Assets.xcassets */; };
 		D66A6E4E26369DF400F8AD54 /* FavoriteRouteCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A6E4D26369DF400F8AD54 /* FavoriteRouteCard.swift */; };
 		D66A6E502636C15A00F8AD54 /* TipsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A6E4F2636C15A00F8AD54 /* TipsCard.swift */; };
 		D66A6E572637AFBA00F8AD54 /* PopularRouteCore+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A6E552637AFBA00F8AD54 /* PopularRouteCore+CoreDataClass.swift */; };
@@ -222,7 +224,7 @@
 		D6226ECB261EEDC3003F4D9F /* MainButtonJoggingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButtonJoggingView.swift; sourceTree = "<group>"; };
 		D6226ECE261EF070003F4D9F /* JoggingMainListButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoggingMainListButton.swift; sourceTree = "<group>"; };
 		D6226ED1261EF940003F4D9F /* ScreenIconsAndText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenIconsAndText.swift; sourceTree = "<group>"; };
-		D6226EE026200CE8003F4D9F /* CustomizePathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizePathView.swift; sourceTree = "<group>"; };
+		D6226EE026200CE8003F4D9F /* WalkingRouteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkingRouteView.swift; sourceTree = "<group>"; };
 		D6226EE2262016AC003F4D9F /* PathInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathInformationView.swift; sourceTree = "<group>"; };
 		D6226EE426201BBA003F4D9F /* PathShowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathShowView.swift; sourceTree = "<group>"; };
 		D6226EE8262034EA003F4D9F /* SensorMapAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorMapAnnotationView.swift; sourceTree = "<group>"; };
@@ -242,7 +244,6 @@
 		D63D18D825FF787E0049C1AC /* CircleImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
 		D65200F425F757B800BA04E9 /* MelbExercise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MelbExercise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D65200F725F757B800BA04E9 /* MelbourneRunApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MelbourneRunApp.swift; sourceTree = "<group>"; };
-		D65200FB25F757B900BA04E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D65200FE25F757B900BA04E9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D652010025F757B900BA04E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D65808AE263429E4008BDD54 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -257,6 +258,9 @@
 		D6618484262D992C00DA63AE /* PagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerView.swift; sourceTree = "<group>"; };
 		D66A358126427BC70042F211 /* CustomeMapViewForGymView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomeMapViewForGymView.swift; sourceTree = "<group>"; };
 		D66A35832642B7770042F211 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		D66A3585264401480042F211 /* GymTimeCore+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GymTimeCore+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		D66A3586264401480042F211 /* GymTimeCore+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GymTimeCore+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		D66A3589264405650042F211 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D66A6E4D26369DF400F8AD54 /* FavoriteRouteCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRouteCard.swift; sourceTree = "<group>"; };
 		D66A6E4F2636C15A00F8AD54 /* TipsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsCard.swift; sourceTree = "<group>"; };
 		D66A6E552637AFBA00F8AD54 /* PopularRouteCore+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PopularRouteCore+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
@@ -399,7 +403,7 @@
 				D60FC28E26044B7F0038E9E5 /* JoggingGoalInputView.swift */,
 				D6977BBA260C85BF001F4B48 /* JoggingHomeView.swift */,
 				D6226ED1261EF940003F4D9F /* ScreenIconsAndText.swift */,
-				D6226EE026200CE8003F4D9F /* CustomizePathView.swift */,
+				D6226EE026200CE8003F4D9F /* WalkingRouteView.swift */,
 				D6226EE2262016AC003F4D9F /* PathInformationView.swift */,
 				D6226EE426201BBA003F4D9F /* PathShowView.swift */,
 				D67A3C1E2622B49700C47CA1 /* RiskLabelView.swift */,
@@ -495,8 +499,8 @@
 				D6CD21F025F860C300861495 /* Model */,
 				D6CD21E325F7B17E00861495 /* Views */,
 				D65200F725F757B800BA04E9 /* MelbourneRunApp.swift */,
-				D65200FB25F757B900BA04E9 /* Assets.xcassets */,
 				D652010025F757B900BA04E9 /* Info.plist */,
+				D66A3589264405650042F211 /* Assets.xcassets */,
 				D65200FD25F757B900BA04E9 /* Preview Content */,
 				D6CD21E925F8587900861495 /* CommonVariable.swift */,
 				D65808AE263429E4008BDD54 /* Persistence.swift */,
@@ -717,6 +721,8 @@
 		D6F883C12634382E00673552 /* CoreDataModelFolder */ = {
 			isa = PBXGroup;
 			children = (
+				D66A3585264401480042F211 /* GymTimeCore+CoreDataClass.swift */,
+				D66A3586264401480042F211 /* GymTimeCore+CoreDataProperties.swift */,
 				D66A6E632637EEBB00F8AD54 /* SensorMarkCore+CoreDataClass.swift */,
 				D66A6E642637EEBB00F8AD54 /* SensorMarkCore+CoreDataProperties.swift */,
 				D66A6E552637AFBA00F8AD54 /* PopularRouteCore+CoreDataClass.swift */,
@@ -839,8 +845,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D66A358A264405650042F211 /* Assets.xcassets in Resources */,
 				D65200FF25F757B900BA04E9 /* Preview Assets.xcassets in Resources */,
-				D65200FC25F757B900BA04E9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -867,6 +873,7 @@
 				D66A6E502636C15A00F8AD54 /* TipsCard.swift in Sources */,
 				D6F883B82634375400673552 /* ContentView.swift in Sources */,
 				D6708FEA2614736A008FDD79 /* AlertX_View.swift in Sources */,
+				D66A3588264401480042F211 /* GymTimeCore+CoreDataProperties.swift in Sources */,
 				D630CA7C2608B47B008B9FA9 /* DigitalClockView.swift in Sources */,
 				D6708FFF2614A86B008FDD79 /* OnboardingFive.swift in Sources */,
 				D6226EBF261ED65E003F4D9F /* JoggingPathCardModel.swift in Sources */,
@@ -882,7 +889,7 @@
 				D6F883C82634384200673552 /* GymCore+CoreDataClass.swift in Sources */,
 				D60FC24A2602ECA90038E9E5 /* GymModel.swift in Sources */,
 				D6708FFC2614A73F008FDD79 /* OnboardingFour.swift in Sources */,
-				D6226EE126200CE8003F4D9F /* CustomizePathView.swift in Sources */,
+				D6226EE126200CE8003F4D9F /* WalkingRouteView.swift in Sources */,
 				D630CA91260991DF008B9FA9 /* WalkDogHomeView.swift in Sources */,
 				D66A6E572637AFBA00F8AD54 /* PopularRouteCore+CoreDataClass.swift in Sources */,
 				D6146C54263EC74700693042 /* RoundedGymIconOnMapView.swift in Sources */,
@@ -962,6 +969,7 @@
 				D6226ECC261EEDC3003F4D9F /* MainButtonJoggingView.swift in Sources */,
 				D630CA9726099591008B9FA9 /* LocationFetcher.swift in Sources */,
 				D630CA6E260891C1008B9FA9 /* TrendGraphView.swift in Sources */,
+				D66A3587264401480042F211 /* GymTimeCore+CoreDataClass.swift in Sources */,
 				D6146C52263EC66F00693042 /* GymNewHomeView.swift in Sources */,
 				D67F02DD263699D000927C34 /* RouteCore+CoreDataProperties.swift in Sources */,
 				D6977BB7260C855C001F4B48 /* OutDoorHomeView.swift in Sources */,

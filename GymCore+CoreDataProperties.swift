@@ -2,7 +2,7 @@
 //  GymCore+CoreDataProperties.swift
 //  MelbExercise
 //
-//  Created by gaoyu shi on 24/4/21.
+//  Created by gaoyu shi on 6/5/21.
 //
 //
 
@@ -16,16 +16,17 @@ extension GymCore {
         return NSFetchRequest<GymCore>(entityName: "GymCore")
     }
 
-    @NSManaged public var uid: Int16
-    @NSManaged public var lat: Double
-    @NSManaged public var long: Double
-    @NSManaged public var name: String
-    @NSManaged public var limitation: Int16
-    @NSManaged public var distance: Double
-    @NSManaged public var star: Bool
     @NSManaged public var address: String
     @NSManaged public var classType: String
+    @NSManaged public var distance: Double
+    @NSManaged public var lat: Double
+    @NSManaged public var limitation: Int16
+    @NSManaged public var long: Double
+    @NSManaged public var name: String
+    @NSManaged public var star: Bool
+    @NSManaged public var uid: Int16
     @NSManaged public var images: NSSet?
+    @NSManaged public var gymTime: GymTimeCore?
 
 }
 

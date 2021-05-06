@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AboutCovidCore" representedClassName="AboutCovidCore" syncable="YES">
         <attribute name="background" optional="YES" attributeType="String"/>
         <attribute name="color" optional="YES" attributeType="String"/>
@@ -22,7 +22,25 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="star" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="uid" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="gymTime" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GymTimeCore" inverseName="gym" inverseEntity="GymTimeCore"/>
         <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ImageCore" inverseName="gym" inverseEntity="ImageCore"/>
+    </entity>
+    <entity name="GymTimeCore" representedClassName="GymTimeCore" syncable="YES">
+        <attribute name="friday_close" optional="YES" attributeType="String"/>
+        <attribute name="friday_start" optional="YES" attributeType="String"/>
+        <attribute name="monday_close" optional="YES" attributeType="String"/>
+        <attribute name="monday_start" optional="YES" attributeType="String"/>
+        <attribute name="saturday_close" optional="YES" attributeType="String"/>
+        <attribute name="saturday_start" optional="YES" attributeType="String"/>
+        <attribute name="sunday_close" optional="YES" attributeType="String"/>
+        <attribute name="sunday_start" optional="YES" attributeType="String"/>
+        <attribute name="thursday_close" optional="YES" attributeType="String"/>
+        <attribute name="thursday_start" optional="YES" attributeType="String"/>
+        <attribute name="tuesday_close" optional="YES" attributeType="String"/>
+        <attribute name="tuesday_start" optional="YES" attributeType="String"/>
+        <attribute name="wednesday_close" optional="YES" attributeType="String"/>
+        <attribute name="wednesday_start" optional="YES" attributeType="String"/>
+        <relationship name="gym" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GymCore" inverseName="gymTime" inverseEntity="GymCore"/>
     </entity>
     <entity name="ImageCore" representedClassName="ImageCore" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String"/>
@@ -48,6 +66,7 @@
     <entity name="RouteCore" representedClassName="RouteCore" syncable="YES">
         <attribute name="length" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="mapImage" optional="YES" attributeType="String"/>
+        <attribute name="polyline" optional="YES" attributeType="String"/>
         <attribute name="risk" optional="YES" attributeType="String"/>
         <attribute name="time" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
@@ -60,12 +79,13 @@
         <attribute name="uid" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <elements>
+        <element name="AboutCovidCore" positionX="-36" positionY="144" width="128" height="104"/>
         <element name="Direction" positionX="-36" positionY="81" width="128" height="74"/>
-        <element name="GymCore" positionX="-54" positionY="-9" width="128" height="179"/>
+        <element name="GymCore" positionX="-54" positionY="-9" width="128" height="194"/>
         <element name="ImageCore" positionX="-36" positionY="9" width="128" height="74"/>
         <element name="PopularRouteCore" positionX="-36" positionY="81" width="128" height="239"/>
-        <element name="RouteCore" positionX="-45" positionY="72" width="128" height="119"/>
+        <element name="RouteCore" positionX="-45" positionY="72" width="128" height="134"/>
         <element name="SensorMarkCore" positionX="-27" positionY="153" width="128" height="89"/>
-        <element name="AboutCovidCore" positionX="-36" positionY="144" width="128" height="104"/>
+        <element name="GymTimeCore" positionX="-36" positionY="144" width="128" height="254"/>
     </elements>
 </model>

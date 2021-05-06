@@ -2,7 +2,7 @@
 //  RouteCore+CoreDataProperties.swift
 //  MelbExercise
 //
-//  Created by gaoyu shi on 26/4/21.
+//  Created by gaoyu shi on 6/5/21.
 //
 //
 
@@ -17,10 +17,11 @@ extension RouteCore {
     }
 
     @NSManaged public var length: Double
-    @NSManaged public var time: String?
     @NSManaged public var mapImage: String?
     @NSManaged public var risk: String?
+    @NSManaged public var time: String?
     @NSManaged public var type: String?
+    @NSManaged public var polyline: String?
     @NSManaged public var directions: NSSet?
 
 }

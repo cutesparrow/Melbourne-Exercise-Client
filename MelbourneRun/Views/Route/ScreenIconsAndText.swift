@@ -40,8 +40,8 @@ struct IconAndTextButton: View {
     @Binding var isshow:Bool
     
     @Binding var sheetKind:Int
-    @Binding var customizedCards:[CustomizedCard]
-    @Binding var popularCards:[PopularCard]
+    @Binding var customizedCards:[WalkingRouteCard]
+    @Binding var popularCards:[CyclingCard]
     @Binding var loaded:Bool
     @Binding var showDistanceInput:Bool
     @Binding var type:String

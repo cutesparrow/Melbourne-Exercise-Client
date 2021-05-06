@@ -16,10 +16,10 @@ struct RoundedGymIconOnMapView: View {
 
     
     var body: some View {
-            Image("yarra-trail")
+            Image(name)
             .resizable()
             .scaledToFill()
-                .frame(width: 30, height: 40, alignment: .center)
+                .frame(width: 30, height: 30, alignment: .center)
 
 //            .border(AppColor.shared.gymColor.opacity(selectedGym == gym ? 0.9 : 0.5), width: selectedGym == gym ? 5 : 3)
 //            .scaleEffect(wave1 ? 1.1 : 1)

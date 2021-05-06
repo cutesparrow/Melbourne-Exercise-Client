@@ -116,7 +116,7 @@ struct GymRecordView: View {
             self.networkError = false
         })
         .sheet(isPresented: $bottomSheetIsShow, content: {
-            PlanView(name: fetchedGym!.name,address:fetchedGym!.address,roadSituation: roadSituation, isShown: $bottomSheetIsShow).environmentObject(userData)
+            PlanView(name: fetchedGym!.name,address:fetchedGym!.address,roadSituation: $roadSituation, isShown: $bottomSheetIsShow).environmentObject(userData)
         })
         
 //        .bottomSheet(isPresented: $bottomSheetIsShow, height: 600, content: {PlanView(roadSituation: $roadSituation, isShown: $bottomSheetIsShow).environmentObject(userData)

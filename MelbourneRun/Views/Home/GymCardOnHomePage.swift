@@ -22,7 +22,7 @@ struct GymCardOnHomePage: View {
     @Binding var showThisCard:Bool
     @Environment(\.managedObjectContext) var context
     @EnvironmentObject var userData:UserData
-    @State var roadSituation:RecentlyRoadSituation?
+    @State var roadSituation:RecentlyRoadSituation = RecentlyRoadSituation(list: [])
     @State var bottomSheetIsShow:Bool = false
 
     func loadRoadSituation(location:CLLocationCoordinate2D,gymId:Int){
@@ -155,7 +155,7 @@ struct GymCardOnHomePage: View {
         }
         .frame(width:UIScreen.main.bounds.width - 30, height: UIScreen.main.bounds.height/3-10, alignment: .center)
         .sheet(isPresented: $bottomSheetIsShow, content: {
-            PlanView(name: gym.name,address:gym.address,roadSituation: roadSituation!, isShown: $bottomSheetIsShow).environmentObject(userData)
+            PlanView(name: gym.name,address:gym.address,roadSituation: $roadSituation, isShown: $bottomSheetIsShow).environmentObject(userData)
         })}
         
     }

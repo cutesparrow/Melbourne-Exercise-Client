@@ -14,9 +14,10 @@ struct GymCard: View {
     @ObservedObject var gym:GymCore
     @Environment(\.managedObjectContext) var context
     @EnvironmentObject var userData:UserData
-    @State var roadSituation:RecentlyRoadSituation?
+    @State var roadSituation:RecentlyRoadSituation = RecentlyRoadSituation(list: [])
     @State var bottomSheetIsShow:Bool = false
-    var showImage:Bool = false
+    @Binding var selectedGymUid:Int
+//    var showImage:Bool = false
 //    var locationManager = CLLocationManager()
 //
 //
@@ -50,6 +51,9 @@ struct GymCard: View {
                 DispatchQueue.main.async{
                     self.roadSituation = list
                     debugPrint(list)
+                    
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now()+0.3) {
                     self.bottomSheetIsShow.toggle()
                 }
                 
@@ -62,13 +66,60 @@ struct GymCard: View {
 //        self.showLoadingIndicator = true
         _ = NetworkAPI.loadRoadSituation(location: location,gymId: gymId, completion: completion)
     }
+    
+    
+    func calculateTime(time1:String,time2:String) -> Int {
+        let time1 = time1.split(separator: ":")
+        let time2 = time2.split(separator: ":")
+        let distance =  (Int(time2[0])! - Int(time1[0])!) * 60
+        let distance2 = Int(time2[1])! - Int(time1[1])!
+        return distance + distance2
+    }
+    
+    func getStatus(gym:GymCore) -> (String,Color){
+        let calendar = Calendar.current
+        
+        if let weekday = calendar.dateComponents([.weekday], from: Date()).weekday {
+            switch weekday {
+            case 1:
+                let start = gym.gymTime?.sunday_start
+                let close = gym.gymTime?.sunday_close
+                let timeDistance = calculateTime(time1: start!, time2: close!)
+                
+            case 2:
+                let start = gym.gymTime?.monday_start
+                let close = gym.gymTime?.monday_close
+            case 3:
+                let start = gym.gymTime?.tuesday_start
+                let close = gym.gymTime?.tuesday_close
+            case 4:
+                let start = gym.gymTime?.wednesday_start
+                let close = gym.gymTime?.wednesday_close
+            case 5:
+                let start = gym.gymTime?.thursday_start
+                let close = gym.gymTime?.thursday_close
+            case 6:
+                let start = gym.gymTime?.friday_start
+                let close = gym.gymTime?.friday_close
+            case 7:
+                let start = gym.gymTime?.saturday_start
+                let close = gym.gymTime?.saturday_close
+            
+            default:
+                return ("",Color(.blue))
+            }
+        }
+    }
+    
     var body: some View {
         ZStack{
-            VisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
+            VisualEffectView(effect: UIBlurEffect(style: .systemChromeMaterial))
                 .cornerRadius(20.0)
-                .shadow(radius: 6)
+                
             VStack(alignment:.leading,spacing:0){
-                if showImage {ScrollView(.horizontal){
+                
+                if selectedGymUid == gym.uid {
+                    ScrollView(.horizontal){
                     HStack(spacing:3){
                         ForEach(gym.images!.sortedArray(using: [NSSortDescriptor(keyPath: \ImageCore.uid, ascending: true)]) as! [ImageCore]){ image in
                     WebImage(url: URL(string: NetworkManager.shared.urlBasePath + image.name + ".jpg"))
@@ -82,7 +133,8 @@ struct GymCard: View {
                 }
 
                     }
-            }}
+            }
+                }
                 
                 VStack(alignment:.leading){
                     Text(gym.name)
@@ -153,13 +205,14 @@ struct GymCard: View {
                 }
                 .padding(.horizontal,10)
                 Spacer(minLength: 0)
-            }.cornerRadius(20)
+            }
+            .cornerRadius(20)
         }
        
-        .frame(width:UIScreen.main.bounds.width - 35, height: showImage ? UIScreen.main.bounds.height/3-10 : UIScreen.main.bounds.height/3-120, alignment: .center)
+        .frame(width:UIScreen.main.bounds.width - 35, height: selectedGymUid == gym.uid ? UIScreen.main.bounds.height/3-10 : UIScreen.main.bounds.height/3-120, alignment: .center)
         
         .sheet(isPresented: $bottomSheetIsShow, content: {
-            PlanView(name: gym.name,address:gym.address,roadSituation: roadSituation!, isShown: $bottomSheetIsShow).environmentObject(userData)
+            PlanView(name: gym.name,address:gym.address,roadSituation: $roadSituation, isShown: $bottomSheetIsShow).environmentObject(userData)
         })
         
     }

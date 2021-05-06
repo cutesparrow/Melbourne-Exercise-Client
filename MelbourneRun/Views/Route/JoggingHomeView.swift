@@ -24,8 +24,8 @@ struct JoggingHomeView: View {
     @State var showLoadingIndicator:Bool = false
     @State var loadedPopularCards:Bool = false
     @State var loadedCustomizedCards:Bool = false
-    @State var popularCards:[PopularCard] = []
-    @State var customizedCards:[CustomizedCard] = []
+    @State var popularCards:[CyclingCard] = []
+    @State var customizedCards:[WalkingRouteCard] = []
     @State var showDistanceInput:Bool = false
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: -37.81145542089078, longitude: 144.96473765203163), span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03))
     @State private var trackingMode = MapUserTrackingMode.follow
@@ -73,7 +73,7 @@ struct JoggingHomeView: View {
 //    }
     
     func loadCustomizedCardsData(location:CLLocationCoordinate2D,length:Double,type:String){
-        let completion: (Result<[CustomizedCard], Error>) -> Void = { result in
+        let completion: (Result<[WalkingRouteCard], Error>) -> Void = { result in
             switch result {
             case let .success(list):
                 if list.count != 0{
@@ -214,9 +214,9 @@ struct JoggingHomeView: View {
         })
         .sheet(isPresented: $showSheet, content: {
             if sheetKind == 1{
-                CyclePathView(customizedCards:customizedCards).environmentObject(userData)
+                CyclePathView(cyclingRouteCards:customizedCards).environmentObject(userData)
             } else if sheetKind == 2{
-                CustomizePathView(customizedCards: customizedCards).environmentObject(userData)
+                WalkingRouteView(walkingRouteCards: customizedCards).environmentObject(userData)
             } else{
                 
             }

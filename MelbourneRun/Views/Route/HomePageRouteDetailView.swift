@@ -15,6 +15,7 @@ struct HomePageRouteDetailView: View {
     @Binding var showDetail:Bool
     @Environment(\.managedObjectContext) var context
     @Environment(\.presentationMode) var presentationMode
+    @State var showDetailMapView:Bool = false
     var body: some View {
         VStack{
 //            HStack{
@@ -66,7 +67,12 @@ struct HomePageRouteDetailView: View {
                         .frame(width: UIScreen.main.bounds.width/1.2,height:UIScreen.main.bounds.width/1.8)
                         .clipped()
                         .cornerRadius(14)
+                            .onTapGesture {
+                                print("tap")
+                                self.showDetailMapView.toggle()
+                            }
                         .shadow(radius: 4)
+                        
                         Button(action: {
                             showDetail.toggle()
                         }, label: {
@@ -196,6 +202,19 @@ struct HomePageRouteDetailView: View {
                 List(self.route.directions!.sortedArray(using: [NSSortDescriptor(keyPath: \ImageCore.uid, ascending: true)]) as! [Direction], id:\.self){i in
                     Text(i.directionSentence!)
             }}
+        })
+        .fullScreenCover(isPresented: $showDetailMapView, content: {
+            ZStack{
+                MapView(polyline: route.polyline!)
+                Button {
+                    self.showDetailMapView.toggle()
+                } label:{
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(Color(.label).opacity(0.85))
+                            .font(.system(size: 32)).padding()
+                }.offset(x: UIScreen.main.bounds.width/2 - 30, y: -UIScreen.main.bounds.height/2 + 60)
+
+            }.ignoresSafeArea(.all)
         })
     }
 }

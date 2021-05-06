@@ -7,14 +7,15 @@
 
 import SwiftUI
 import MapKit
+import Polyline
 
 struct MapView: UIViewRepresentable {
-    var coordinates:[Coordinate]
-    private let locationViewModel = LocationViewModel()
+    var polyline:[CLLocationCoordinate2D]?
+   
     private let mapZoomEdgeInsets = UIEdgeInsets(top: 30.0, left: 30.0, bottom: 30.0, right: 30.0)
-    init(coordinates:[Coordinate]) {
-        self.coordinates = coordinates
-        locationViewModel.load(coordinates: coordinates)
+    
+    init(polyline:String) {
+        self.polyline = Polyline(encodedPolyline: polyline).coordinates
     }
     
     func makeCoordinator() -> MapViewCoordinator {
@@ -23,9 +24,9 @@ struct MapView: UIViewRepresentable {
     
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
-        mapView.isZoomEnabled = false
-        mapView.isScrollEnabled = false
-        mapView.isUserInteractionEnabled = false
+        mapView.isZoomEnabled = true
+        mapView.isScrollEnabled = true
+        mapView.isUserInteractionEnabled = true
         mapView.showsUserLocation = false
 //        mapView.centerCoordinate = CLLocationCoordinate2D(latitude: -37.81048913607042, longitude: 144.962441682062)
         mapView.delegate = context.coordinator
@@ -38,7 +39,7 @@ struct MapView: UIViewRepresentable {
     
     private func updateOverlays(from mapView: MKMapView) {
         mapView.removeOverlays(mapView.overlays)
-        let polyline = MKPolyline(coordinates: locationViewModel.locations, count: locationViewModel.locations.count)
+        let polyline = MKPolyline(coordinates: self.polyline!, count: self.polyline!.count)
         mapView.addOverlay(polyline)
         setMapZoomArea(map: mapView, polyline: polyline, edgeInsets: mapZoomEdgeInsets, animated: true)
     }
@@ -49,11 +50,4 @@ struct MapView: UIViewRepresentable {
 }
 
 
-struct MapView_Previews: PreviewProvider {
-    static let data = UserData()
-    static var previews: some View {
-        MapView(coordinates: [Coordinate(latitude: -37.81228028830977, longitude: 144.96229225616813),
-                              Coordinate(latitude: -37.816196112093316, longitude: 144.96404105636753),Coordinate(latitude: -37.81470439418989, longitude: 144.96899777840505)])
-            
-    }
-}
+

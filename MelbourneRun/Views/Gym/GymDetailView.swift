@@ -177,8 +177,3 @@ struct GymDetailView: View {
     }
 }
 
-struct GymDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        GymDetailView(fetchedGym:Gym(id: 1, lat: 1, long: 1, name: "sdaflkjah", Images: ["yarra-trail"], limitation: 1, distance: 1, star: false, address: "12312 fsdklj sd, dfs , sdf, sdf", classType: ""))
-    }
-}

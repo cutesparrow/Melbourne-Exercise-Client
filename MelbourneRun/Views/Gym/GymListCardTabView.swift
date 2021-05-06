@@ -90,10 +90,10 @@ struct GymListCardTabView: View {
             ScrollView(.horizontal, showsIndicators: false)
         {
             ZStack{
-                LazyHStack{
+                LazyHStack(alignment:.bottom){
                 ForEach(self.gyms,id:\.self){gym in
     //                        if gym.classType == userData.hasMemberShip || userData.hasMemberShip == "No membership"{
-                    GymCard(gym:gym)
+                    GymCard(gym:gym,selectedGymUid:$selectedGymUid)
                         .id(Int(gym.uid))
                 }
             }.padding(.horizontal,18)
@@ -129,7 +129,7 @@ struct GymListCardTabView: View {
             DispatchQueue.main.async{ self.selectedGymUid = Int(gyms[Int(-(value-348.5/2)/348.5)].uid)}
         }
         
-        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/3 + 20, alignment: .center)
+        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/3-10, alignment: .center)
 //        .onChange(of: selectedGymIndex, perform: { value in
 //            DispatchQueue.main.async{ self.selectedGymUid = Int((gyms[value] as! GymCore).uid)}
 ////            print(selectedGymUid.description)

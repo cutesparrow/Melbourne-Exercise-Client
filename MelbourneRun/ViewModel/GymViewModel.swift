@@ -50,6 +50,22 @@ class GymViewModel:ObservableObject{
                 imageCore.uid = Int16(data.Images.firstIndex(where: { $0 == image })!)
                 entity.addToImages(imageCore)
             }
+            let gymTime = GymTimeCore(context: context)
+            gymTime.monday_start = data.gymTime.monday_start
+            gymTime.monday_close = data.gymTime.monday_close
+            gymTime.tuesday_start = data.gymTime.tuesday_start
+            gymTime.tuesday_close = data.gymTime.tuesday_close
+            gymTime.wednesday_start = data.gymTime.wednesday_start
+            gymTime.wednesday_close = data.gymTime.wednesday_close
+            gymTime.thursday_start = data.gymTime.thursday_start
+            gymTime.thursday_close = data.gymTime.thursday_close
+            gymTime.friday_start = data.gymTime.friday_start
+            gymTime.friday_close = data.gymTime.friday_close
+            gymTime.saturday_start = data.gymTime.saturday_start
+            gymTime.saturday_close = data.gymTime.saturday_close
+            gymTime.sunday_start = data.gymTime.sunday_start
+            gymTime.sunday_close = data.gymTime.sunday_close
+            entity.gymTime = gymTime
         }
         do {
             try context.save()
@@ -110,6 +126,22 @@ class GymViewModel:ObservableObject{
                                 imageCore.uid = Int16(data.Images.firstIndex(where: { $0 == image })!)
                                 gymCore.addToImages(imageCore)
                             }
+                            let gymTime = GymTimeCore(context: context)
+                            gymTime.monday_start = data.gymTime.monday_start
+                            gymTime.monday_close = data.gymTime.monday_close
+                            gymTime.tuesday_start = data.gymTime.tuesday_start
+                            gymTime.tuesday_close = data.gymTime.tuesday_close
+                            gymTime.wednesday_start = data.gymTime.wednesday_start
+                            gymTime.wednesday_close = data.gymTime.wednesday_close
+                            gymTime.thursday_start = data.gymTime.thursday_start
+                            gymTime.thursday_close = data.gymTime.thursday_close
+                            gymTime.friday_start = data.gymTime.friday_start
+                            gymTime.friday_close = data.gymTime.friday_close
+                            gymTime.saturday_start = data.gymTime.saturday_start
+                            gymTime.saturday_close = data.gymTime.saturday_close
+                            gymTime.sunday_start = data.gymTime.sunday_start
+                            gymTime.sunday_close = data.gymTime.sunday_close
+                            gymCore.gymTime = gymTime
                             
                             try? context.save()
                         }
@@ -132,6 +164,22 @@ class GymViewModel:ObservableObject{
                         imageCore.uid = Int16(data.Images.firstIndex(where: { $0 == image })!)
                         entity.addToImages(imageCore)
                     }
+                    let gymTime = GymTimeCore(context: context)
+                    gymTime.monday_start = data.gymTime.monday_start
+                    gymTime.monday_close = data.gymTime.monday_close
+                    gymTime.tuesday_start = data.gymTime.tuesday_start
+                    gymTime.tuesday_close = data.gymTime.tuesday_close
+                    gymTime.wednesday_start = data.gymTime.wednesday_start
+                    gymTime.wednesday_close = data.gymTime.wednesday_close
+                    gymTime.thursday_start = data.gymTime.thursday_start
+                    gymTime.thursday_close = data.gymTime.thursday_close
+                    gymTime.friday_start = data.gymTime.friday_start
+                    gymTime.friday_close = data.gymTime.friday_close
+                    gymTime.saturday_start = data.gymTime.saturday_start
+                    gymTime.saturday_close = data.gymTime.saturday_close
+                    gymTime.sunday_start = data.gymTime.sunday_start
+                    gymTime.sunday_close = data.gymTime.sunday_close
+                    entity.gymTime = gymTime
                     try? context.save()
                 }
             }

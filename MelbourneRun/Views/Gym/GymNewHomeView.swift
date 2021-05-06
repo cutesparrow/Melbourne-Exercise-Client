@@ -16,12 +16,8 @@ struct GymNewHomeView: View {
     @Environment(\.managedObjectContext) var context
     @FetchRequest(entity: GymCore.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \GymCore.distance, ascending: true)]) var result: FetchedResults<GymCore>
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: -37.81145542089078, longitude: 144.96473765203163), span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))
-//    @State private var trackingMode = MapUserTrackingMode.none
-//    @State private var search:String = ""
-//    @State private var isEditing:Bool = false
-//    @State private var selectedGymIndex:Int = 0
-//    @State private var selectedGymUid:Int = 0
-//    @State private var gotTap:Bool = false
+
+    
     @State private var trackingMode:MapUserTrackingMode
     @State private var search:String
 //    @State private var isEditing:Bool
@@ -88,44 +84,41 @@ struct GymNewHomeView: View {
         return membershipChooseButtons
     }
     
+    func checkLocationNear(gymLocation:CLLocationCoordinate2D) -> Bool {
+        
+        let latitudeDistance = abs(gymLocation.latitude - self.region.center.latitude)
+        let longitudeDistance = abs(gymLocation.longitude - self.region.center.longitude)
+        
+        if latitudeDistance < self.region.span.latitudeDelta/3 && longitudeDistance < region.span.longitudeDelta/2 {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     var body: some View {
         let membershipChooseButtons:[ActionOverButton] = getGymClass()
         
         if !result.isEmpty{
             ZStack{
-                Map(coordinateRegion: $region, interactionModes: .all, showsUserLocation: true, userTrackingMode: $trackingMode, annotationItems: result.filter({userData.hasMemberShip == "No membership" ? true : $0.classType == userData.hasMemberShip}).filter({search == "" ? true : ($0.name.localizedCaseInsensitiveContains(search)) || ($0.address.localizedCaseInsensitiveContains(search)) || ($0.classType.localizedCaseInsensitiveContains(search)) || (search.caseInsensitiveCompare("star") == .orderedSame ? $0.star : false)}), annotationContent: { mark in
+                Map(coordinateRegion: $region, interactionModes: .all, showsUserLocation: true, userTrackingMode: $trackingMode, annotationItems: result.filter({userData.hasMemberShip == "No membership" ? true : $0.classType == userData.hasMemberShip}).filter({search == "" ? true : ($0.name.localizedCaseInsensitiveContains(search)) || ($0.address.localizedCaseInsensitiveContains(search)) || ($0.classType.localizedCaseInsensitiveContains(search)) || (search.caseInsensitiveCompare("star") == .orderedSame ? $0.star : false)})
+//                        .filter({checkLocationNear(gymLocation: CLLocationCoordinate2D(latitude: $0.lat, longitude: $0.long))})
+                    , annotationContent: { mark in
                     MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: mark.lat, longitude: mark.long)) {
-//                        EmptyView()
-//                        RoundedGymIconOnMapView(gym: mark, region: $region, selectedGymUid: $selectedGymUid,gotTap:$gotTap)
-                        Button {
-                                withAnimation{
-                //                    print(gym.uid)
+                            Button {
+                                withAnimation {
                                     self.selectedGymUid = Int(mark.uid)
-//                                    region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: mark.lat-0.003, longitude: mark.long), span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))
                                 }
-                            
                         } label: {
                             RoundedGymIconOnMapView(name:mark.name)
                                 .clipShape(Circle())
                                     .overlay(Circle().stroke(selectedGymUid == Int(mark.uid) ? Color(.green).opacity(0.5) : AppColor.shared.joggingColor.opacity(0.5),lineWidth: 1.4))
                                 .scaleEffect(selectedGymUid == Int(mark.uid) ? 2 : 1)
                                 .shadow(radius: 5)
-                                
                         }
-
-
                     }
                 })
-//                MapViewCustom(region: $region)
                 .ignoresSafeArea()
-                
-//            ZStack{
-//                RoundedRectangle(cornerRadius: 25.0)
-//                .background(Color(.clear))
-//                .foregroundColor(Color(.systemBackground))
-//                .ignoresSafeArea(.all)
-//
-              
                 VStack{
                     ZStack{
                         VisualEffectView(effect: UIBlurEffect(style: .systemChromeMaterial))
@@ -148,40 +141,17 @@ struct GymNewHomeView: View {
                         }
                     }.frame(height: 100, alignment: .center)
                     .ignoresSafeArea(.all, edges: .top)
-                        
-                        
-//                    Button(action: {userData.showMemberShipSelection.toggle()}, label: {
-//                                                VStack{
-//                                                Image(systemName: "list.bullet")
-//                                                    .foregroundColor(AppColor.shared.gymColor)
-//                                                    .font(.system(size: 28, weight: .regular))
-////                                                Text("Membership")
-////                                                    .font(.caption2)
-//                                                }
-//                                                .frame(width: 50, height: 50, alignment: .center)
-//                                                .padding(5)
-//                    }).background(VisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
-//                                    .cornerRadius(20.0))
-                    
                     Spacer()
-//                    GymListCardTabView(classType: "No membership", search: "a")
                     GymListCardTabView(classType: userData.hasMemberShip, search: $search, selectedGymUid: $selectedGymUid)
-                        .padding(.bottom,50)
-                    
+                        .padding(.bottom,60)
                 }
         }
             .actionOver(presented: $userData.showMemberShipSelection, title: "Choose your membership", message: "please select your membership of gym", buttons: membershipChooseButtons, ipadAndMacConfiguration: .init(anchor: nil, arrowEdge: nil))
             .navigationTitle("")
             .navigationBarHidden(true)
             .onAppear(perform: {
-//                region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: result.filter({$0.classType == userData.hasMemberShip})[0].lat-0.003, longitude: result.filter({$0.classType == userData.hasMemberShip})[0].long), span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))
                 DispatchQueue.main.asyncAfter(deadline:.now()+0.5){selectedGymUid = Int(result.filter({userData.hasMemberShip == "No membership" ? true : $0.classType == userData.hasMemberShip})[0].uid)}
             })
-//            .onDisappear(perform: {
-//                DispatchQueue.main.async{
-//                    search = ""
-//                }
-//            })
             .onChange(of: selectedGymUid, perform: { value in
                 DispatchQueue.main.async{
                     withAnimation{

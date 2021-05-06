@@ -12,24 +12,27 @@ import URLImage
 import CoreData
 import AlertToast
 
-struct CustomizePathView: View {
+struct WalkingRouteView: View {
     @EnvironmentObject var userData:UserData
     @State var selectedTab:Int = 0
     @State var showDirectionsList:Bool = false
-    @State var customizedCards:[CustomizedCard]
+    @State var walkingRouteCards:[WalkingRouteCard]
     @Environment(\.managedObjectContext) var context
     @State var success:Bool = false
     @State var error:Bool = false
+    @State var showDetailMapView:Bool = false
+    
     private func saveThisRoute(){
         let entity = RouteCore(context:context)
-        entity.length = self.customizedCards[selectedTab].distance
-        entity.time = self.customizedCards[selectedTab].time
-        entity.risk = self.customizedCards[selectedTab].risk
-        entity.mapImage = self.customizedCards[selectedTab].image
+        entity.length = self.walkingRouteCards[selectedTab].distance
+        entity.time = self.walkingRouteCards[selectedTab].time
+        entity.risk = self.walkingRouteCards[selectedTab].risk
+        entity.mapImage = self.walkingRouteCards[selectedTab].image
         entity.type = "Walking & Dog"
-        self.customizedCards[selectedTab].instructions.forEach { direction in
+        entity.polyline = self.walkingRouteCards[selectedTab].polyline
+        self.walkingRouteCards[selectedTab].instructions.forEach { direction in
             let directionData = Direction(context:context)
-            directionData.uid = Int16(self.customizedCards[selectedTab].instructions.firstIndex(where: { $0 == direction })!)
+            directionData.uid = Int16(self.walkingRouteCards[selectedTab].instructions.firstIndex(where: { $0 == direction })!)
             directionData.directionSentence = direction
             entity.addToDirections(directionData)
         }
@@ -58,7 +61,7 @@ struct CustomizePathView: View {
             
             
             TabView(selection: $selectedTab) {
-                ForEach(self.customizedCards,id:\.id) { card in
+                ForEach(self.walkingRouteCards,id:\.id) { card in
 //                    DirectionMapView(directions: $directionsList, coordinatesList: card.path)
                     WebImage(url: URL(string: NetworkManager.shared.urlBasePath + card.image))
                         .placeholder{
@@ -69,19 +72,24 @@ struct CustomizePathView: View {
                         .frame(width: UIScreen.main.bounds.width/1.2,height:UIScreen.main.bounds.width/1.8)
                         .clipped()
                         .cornerRadius(14)
+                        .onTapGesture {
+                            print("tap")
+                            self.showDetailMapView.toggle()
+                        }
                         .shadow(radius: 4)
                         .tag(card.id)
+                        
                         
                 }
             }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
             .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
             .padding(.vertical,-15)
             
-            PathInformationView(imageName: "timer", text: "Time", data: self.customizedCards[selectedTab].time)
+            PathInformationView(imageName: "timer", text: "Time", data: self.walkingRouteCards[selectedTab].time)
                 .padding(.vertical,-15)
-            PathInformationView(imageName: "playpause", text: "Length", data: String(self.customizedCards[selectedTab].distance)+" KM")
+            PathInformationView(imageName: "playpause", text: "Length", data: String(self.walkingRouteCards[selectedTab].distance)+" KM")
                 .padding(.vertical,-15)
-            PathInformationView(imageName: "pills", text: "Risk", data: self.customizedCards[selectedTab].risk+" risk")
+            PathInformationView(imageName: "pills", text: "Risk", data: self.walkingRouteCards[selectedTab].risk+" risk")
                 .padding(.vertical,-15)
             HStack{
                 ZStack{
@@ -123,6 +131,7 @@ struct CustomizePathView: View {
             .padding(.vertical,-15)
            
         }
+        
         .toast(isPresenting: $error, duration: 1.2, tapToDismiss: true, alert: { AlertToast(type: .error(.red), title: "Failure", subTitle: "")
         }, completion: {_ in
             self.error = false
@@ -138,14 +147,28 @@ struct CustomizePathView: View {
                           .bold()
                           .padding()
                 
-                List(self.customizedCards[selectedTab].instructions, id:\.self){i in
+                List(self.walkingRouteCards[selectedTab].instructions, id:\.self){i in
                     Text(i)
                     
             }}
         })
-        .onAppear(perform: {
-       
+        .fullScreenCover(isPresented: $showDetailMapView, content: {
+            ZStack{
+                MapView(polyline: walkingRouteCards[selectedTab].polyline)
+                Button {
+                    self.showDetailMapView.toggle()
+                        
+                } label:{
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(Color(.label).opacity(0.85))
+                            .font(.system(size: 32)).padding()
+                }.offset(x: UIScreen.main.bounds.width/2 - 30, y: -UIScreen.main.bounds.height/2 + 60)
+
+            }.ignoresSafeArea(.all)
         })
+//        .onAppear(perform: {
+//       
+//        })
     }
 }
 
