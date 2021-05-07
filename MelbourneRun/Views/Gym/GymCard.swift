@@ -9,6 +9,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 import MapKit
 import CoreLocation
+import AlertToast
 
 struct GymCard: View {
     @ObservedObject var gym:GymCore
@@ -17,6 +18,7 @@ struct GymCard: View {
     @State var roadSituation:RecentlyRoadSituation = RecentlyRoadSituation(list: [])
     @State var bottomSheetIsShow:Bool = false
     @Binding var selectedGymUid:Int
+    @State var loading:Bool = false
 //    var showImage:Bool = false
 //    var locationManager = CLLocationManager()
 //
@@ -55,15 +57,18 @@ struct GymCard: View {
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now()+0.3) {
                     self.bottomSheetIsShow.toggle()
+                    self.loading = false
                 }
                 
 //                self.showLoadingIndicator = false
             case let .failure(error): print(error)
+                self.loading = true
 //                self.showLoadingIndicator = false
 //                self.networkError = true
             }
         }
 //        self.showLoadingIndicator = true
+        self.loading = true
         _ = NetworkAPI.loadRoadSituation(location: location,gymId: gymId, completion: completion)
     }
     
@@ -357,8 +362,13 @@ struct GymCard: View {
         .frame(width:UIScreen.main.bounds.width - 35, height: selectedGymUid == gym.uid ? UIScreen.main.bounds.height/3-10 : UIScreen.main.bounds.height/3-120, alignment: .center)
         
         .sheet(isPresented: $bottomSheetIsShow, content: {
-            PlanView(name: gym.name,address:gym.address,roadSituation: $roadSituation, isShown: $bottomSheetIsShow).environmentObject(userData)
+            PlanView(name: gym.name,address:gym.address,start:gymStatus.2,close:gymStatus.3 == "0:00" ? "23:59" : gymStatus.3,roadSituation: $roadSituation, isShown: $bottomSheetIsShow).environmentObject(userData)
         })
+//        .toast(isPresenting: $loading, duration: 1.2, tapToDismiss: true, alert: {AlertToast(type: .loading)
+//        }, completion: {_ in
+//            self.loading = false
+//        })
+        .toast(isPresenting: $loading, alert: {AlertToast(type: .loading)})
         
     }
 }

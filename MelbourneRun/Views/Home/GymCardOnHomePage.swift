@@ -44,7 +44,182 @@ struct GymCardOnHomePage: View {
 //        self.showLoadingIndicator = true
         _ = NetworkAPI.loadRoadSituation(location: location,gymId: gymId, completion: completion)
     }
+    
+    func calculateTime(time1:String,time2:String) -> Int {
+        let time1 = time1.split(separator: ":")
+        let time2 = time2.split(separator: ":")
+        let distance =  (Int(time2[0])! - Int(time1[0])!) * 60
+        let distance2 = Int(time2[1])! - Int(time1[1])!
+        return distance + distance2
+    }
+    
+    func getStatus(gym:GymCore) -> (String,Color,String,String){
+        let calendar = Calendar.current
+        let current = Date()
+        let formater = DateFormatter()
+        formater.dateFormat = "HH:mm"
+        let currentTime = formater.string(from: current)
+        
+        if let weekday = calendar.dateComponents([.weekday], from: Date()).weekday {
+            switch weekday {
+            case 1:
+                let start = gym.gymTime?.sunday_start
+                let close = gym.gymTime?.sunday_close
+                let toStart = calculateTime(time1: currentTime, time2: start!)
+                let toEnd = calculateTime(time1: currentTime, time2: close! == "0:00" ? "24:00" : close!)
+                if toStart < 0 && toEnd > 0 {
+                    if toEnd < 30{
+                        return ("Closing soon",Color(.orange),start!,close!)
+                    } else {
+                        return ("Open",Color(.green),start!,close!)
+                    }
+                } else if toStart > 0 {
+                    if toStart < 30{
+                        return ("Opening soon",Color(.orange),start!,close!)
+                    } else {
+                        return ("Closed",Color(.red),start!,close!)
+                    }
+                    
+                } else if toEnd < 0 {
+                    return ("Closed",Color(.red),start!,close!)
+                }
+                
+                
+            case 2:
+                let start = gym.gymTime?.monday_start
+                let close = gym.gymTime?.monday_close
+                let toStart = calculateTime(time1: currentTime, time2: start!)
+                let toEnd = calculateTime(time1: currentTime, time2: close! == "0:00" ? "24:00" : close!)
+                if toStart < 0 && toEnd > 0 {
+                    if toEnd < 30{
+                        return ("Closing soon",Color(.orange),start!,close!)
+                    } else {
+                        return ("Open",Color(.green),start!,close!)
+                    }
+                } else if toStart > 0 {
+                    if toStart < 30{
+                        return ("Opening soon",Color(.orange),start!,close!)
+                    } else {
+                        return ("Closed",Color(.red),start!,close!)
+                    }
+                    
+                } else if toEnd < 0 {
+                    return ("Closed",Color(.red),start!,close!)
+                }
+            case 3:
+                let start = gym.gymTime?.tuesday_start
+                let close = gym.gymTime?.tuesday_close
+                let toStart = calculateTime(time1: currentTime, time2: start!)
+                let toEnd = calculateTime(time1: currentTime, time2: close! == "0:00" ? "24:00" : close!)
+                if toStart < 0 && toEnd > 0 {
+                    if toEnd < 30{
+                        return ("Closing soon",Color(.orange),start!,close!)
+                    } else {
+                        return ("Open",Color(.green),start!,close!)
+                    }
+                } else if toStart > 0 {
+                    if toStart < 30{
+                        return ("Opening soon",Color(.orange),start!,close!)
+                    } else {
+                        return ("Closed",Color(.red),start!,close!)
+                    }
+                    
+                } else if toEnd < 0 {
+                    return ("Closed",Color(.red),start!,close!)
+                }
+            case 4:
+                let start = gym.gymTime?.wednesday_start
+                let close = gym.gymTime?.wednesday_close
+                let toStart = calculateTime(time1: currentTime, time2: start!)
+                let toEnd = calculateTime(time1: currentTime, time2: close! == "0:00" ? "24:00" : close!)
+                if toStart < 0 && toEnd > 0 {
+                    if toEnd < 30{
+                        return ("Closing soon",Color(.orange),start!,close!)
+                    } else {
+                        return ("Open",Color(.green),start!,close!)
+                    }
+                } else if toStart > 0 {
+                    if toStart < 30{
+                        return ("Opening soon",Color(.orange),start!,close!)
+                    } else {
+                        return ("Closed",Color(.red),start!,close!)
+                    }
+                    
+                } else if toEnd < 0 {
+                    return ("Closed",Color(.red),start!,close!)
+                }
+            case 5:
+                let start = gym.gymTime?.thursday_start
+                let close = gym.gymTime?.thursday_close
+                let toStart = calculateTime(time1: currentTime, time2: start!)
+                let toEnd = calculateTime(time1: currentTime, time2: close! == "0:00" ? "24:00" : close!)
+                if toStart < 0 && toEnd > 0 {
+                    if toEnd < 30{
+                        return ("Closing soon",Color(.orange),start!,close!)
+                    } else {
+                        return ("Open",Color(.green),start!,close!)
+                    }
+                } else if toStart > 0 {
+                    if toStart < 30{
+                        return ("Opening soon",Color(.orange),start!,close!)
+                    } else {
+                        return ("Closed",Color(.red),start!,close!)
+                    }
+                    
+                } else if toEnd < 0 {
+                    return ("Closed",Color(.red),start!,close!)
+                }
+            case 6:
+                let start = gym.gymTime?.friday_start
+                let close = gym.gymTime?.friday_close
+                let toStart = calculateTime(time1: currentTime, time2: start!)
+                let toEnd = calculateTime(time1: currentTime, time2: close! == "0:00" ? "24:00" : close!)
+                if toStart < 0 && toEnd > 0 {
+                    if toEnd < 30{
+                        return ("Closing soon",Color(.orange),start!,close!)
+                    } else {
+                        return ("Open",Color(.green),start!,close!)
+                    }
+                } else if toStart > 0 {
+                    if toStart < 30{
+                        return ("Opening soon",Color(.orange),start!,close!)
+                    } else {
+                        return ("Closed",Color(.red),start!,close!)
+                    }
+                    
+                } else if toEnd < 0 {
+                    return ("Closed",Color(.red),start!,close!)
+                }
+            case 7:
+                let start = gym.gymTime?.saturday_start
+                let close = gym.gymTime?.saturday_close
+                let toStart = calculateTime(time1: currentTime, time2: start!)
+                let toEnd = calculateTime(time1: currentTime, time2: close! == "0:00" ? "24:00" : close!)
+                if toStart < 0 && toEnd > 0 {
+                    if toEnd < 30{
+                        return ("Closing soon",Color(.orange),start!,close!)
+                    } else {
+                        return ("Open",Color(.green),start!,close!)
+                    }
+                } else if toStart > 0 {
+                    if toStart < 30{
+                        return ("Opening soon",Color(.orange),start!,close!)
+                    } else {
+                        return ("Closed",Color(.red),start!,close!)
+                    }
+                    
+                } else if toEnd < 0 {
+                    return ("Closed",Color(.red),start!,close!)
+                }
+            default:
+                return ("",Color(.blue),"","")
+            }
+        }
+        return ("",Color.blue,"","")
+    }
+    
     var body: some View {
+        let gymStatus = getStatus(gym:gym)
         VStack{
             Spacer()
                 .frame(height:UIScreen.main.bounds.height/2 - 70)
@@ -98,10 +273,20 @@ struct GymCardOnHomePage: View {
                         .font(.system(size: 14))
                         .foregroundColor(Color(.label))
                         .lineLimit(1)
-                    Text("Closing soon" + " ・ " + "15:00")
-                        .font(.system(size: 14))
-                        .foregroundColor(Color(.label))
-                        .lineLimit(1)
+                    HStack{
+                        Text(gymStatus.0)
+                            .font(.system(size: 14))
+                            .foregroundColor(gymStatus.1)
+                            .lineLimit(1)
+                        Text(" ・ ")
+                            .font(.system(size: 14))
+                            .foregroundColor(Color(.label))
+                            .lineLimit(1)
+                        Text(gymStatus.2 == "0:00" && gymStatus.3 == "0:00" ? "24 hours" : "\(gymStatus.2) - \(gymStatus.3)")
+                            .font(.system(size: 14))
+                            .foregroundColor(Color(.label))
+                            .lineLimit(1)
+                    }
                 }.padding(.leading,10)
                 .padding(.vertical,10)
                 HStack{
@@ -154,9 +339,9 @@ struct GymCardOnHomePage: View {
             }.cornerRadius(20)
         }
         .frame(width:UIScreen.main.bounds.width - 30, height: UIScreen.main.bounds.height/3-10, alignment: .center)
-        .sheet(isPresented: $bottomSheetIsShow, content: {
-            PlanView(name: gym.name,address:gym.address,roadSituation: $roadSituation, isShown: $bottomSheetIsShow).environmentObject(userData)
-        })}
+            .sheet(isPresented: $bottomSheetIsShow, content: {
+                PlanView(name: gym.name,address:gym.address,start:gymStatus.2,close:gymStatus.3 == "0:00" ? "23:59" : gymStatus.3,roadSituation: $roadSituation, isShown: $bottomSheetIsShow).environmentObject(userData)
+            })}
         
     }
 }

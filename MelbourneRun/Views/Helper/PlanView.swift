@@ -18,6 +18,8 @@ import SSToastMessage
 struct PlanView: View,PositionScrollViewDelegate {
     var name:String
     var address:String
+    var start:String
+    var close:String
     @EnvironmentObject var userData:UserData
     @Binding var roadSituation:RecentlyRoadSituation
     var pageSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/3)
@@ -77,13 +79,22 @@ struct PlanView: View,PositionScrollViewDelegate {
     public func onScrollEnd() {
         print("onScrollEnd")
     }
+    
+    func getMinutes(start:String, close:String) -> Int{
+        let time1 = start.split(separator: ":")
+        let time2 = close.split(separator: ":")
+        let distance =  (Int(time2[0])! - Int(time1[0])!) * 60
+        let distance2 = Int(time2[1])! - Int(time1[1])!
+        return distance + distance2
+    }
+    
     var body: some View {
         let high = findLargest(trendList: self.roadSituation.list[day].situation)
-        let totalMinutes:Int = (self.roadSituation.list[day].situation[self.roadSituation.list[day].situation.count-1].hour - self.roadSituation.list[day].situation[8].hour + 1) * 60
+        let totalMinutes:Int = getMinutes(start: start, close: close)
         let gapMinutes:Int = Int(Float(totalMinutes) * positionOfSelector * 60)
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
-        let startTime = formatter.date(from: String(self.roadSituation.list[day].situation[8].hour) + ":00")!
+        let startTime = formatter.date(from: start)!
         let nowTime = Date(timeInterval: Double(gapMinutes), since: startTime)
         
         return VStack{
@@ -95,7 +106,7 @@ struct PlanView: View,PositionScrollViewDelegate {
                 ){
                     LazyHStack{
                         ForEach(0..<2){i in
-                            TrendGraphView(fullTrendList: self.roadSituation.list[i].situation, idtoday: i, point: $positionOfSelector)
+                            TrendGraphView(fullTrendList: self.roadSituation.list[i].situation, idtoday: i, point: $positionOfSelector,start:start,close:close)
                                 .frame(width:UIScreen.main.bounds.width-8 ,height: UIScreen.main.bounds.height/CGFloat(4*high)*CGFloat(high), alignment: .center)
                         }
                     }
@@ -145,13 +156,13 @@ struct PlanView: View,PositionScrollViewDelegate {
             Alert(title: Text("Confirm Plan"), message: Text("""
 Gym: \(self.name)
 
-Time: \(getTimeString(date: getTime(start: self.roadSituation.list[day].situation[8].hour, end: self.roadSituation.list[day].situation[self.roadSituation.list[day].situation.count-1].hour, rate: positionOfSelector)))
+Time: \(getTimeString(date: getTime(start: start, end: close, rate: positionOfSelector)))
 
 Note: \(self.address)
 
 
 """), primaryButton: .cancel(), secondaryButton: .default(Text("Save"), action:
-                                                            {saveIntoEvent(title: "Go to \(self.name)", date: getTime(start: self.roadSituation.list[day].situation[8].hour, end: self.roadSituation.list[day].situation[self.roadSituation.list[day].situation.count-1].hour, rate: positionOfSelector), notes: self.address)}))
+                                                            {saveIntoEvent(title: "Go to \(self.name)", date: getTime(start: start, end: close, rate: positionOfSelector), notes: self.address)}))
         }
 //        .alertX(isPresented: $showAlertX) {
 //            AlertX(title: Text("Confirm Plan"), message: Text("""
@@ -181,14 +192,17 @@ Note: \(self.address)
         return formatter1.string(from: date)
     }
     
-    func getTime(start:Int,end:Int,rate:Float) -> Date{
+    func getTime(start:String,end:String,rate:Float) -> Date{
+        let totalMinutes:Int = getMinutes(start: start, close: end)
+        let start = start.split(separator: ":")
+//        let end = end.split(separator: ":")
         let date = Date()
         let calendar = Calendar.current
         let year = calendar.component(.year, from: date)
         let month = calendar.component(.month, from: date)
         let day = calendar.component(.day, from: date)
-        let dateComponents = DateComponents(calendar: Calendar.current, timeZone: TimeZone(abbreviation: "AEST"),year: year, month: month, day: day, hour: start, minute: 0, second: 0)
-        let totalMinutes:Int = (end - start + 1) * 60
+        let dateComponents = DateComponents(calendar: Calendar.current, timeZone: TimeZone(abbreviation: "AEST"),year: year, month: month, day: day, hour: Int(start[0]), minute: Int(start[1]), second: 0)
+//        let totalMinutes:Int = (end - start + 1) * 60
         var gapMinutes:Int = Int(Float(totalMinutes) * rate * 60)
         if self.pageNow == 1{
             gapMinutes = gapMinutes + 24*60*60

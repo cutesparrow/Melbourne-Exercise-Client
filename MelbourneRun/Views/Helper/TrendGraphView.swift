@@ -13,8 +13,12 @@ struct TrendGraphView: View {
     var fullTrendList:[OneHourRoadSituation]
     var idtoday:Int
     @Binding var point:Float
+    var start:String
+    var close:String
     var body: some View {
-        let trendList = Array(fullTrendList[8...])
+        let start = start.split(separator: ":")
+        let close = close.split(separator: ":")
+        let trendList = Array(fullTrendList[Int(start[0])!...Int(close[0])!])
         let high:Int = findLargest(trendList: trendList)
         let low:Int = findLowest(trendList: trendList)
         let rate:CGFloat = UIScreen.main.bounds.height/CGFloat(5*high)
