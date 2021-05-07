@@ -82,10 +82,10 @@
         <element name="AboutCovidCore" positionX="-36" positionY="144" width="128" height="104"/>
         <element name="Direction" positionX="-36" positionY="81" width="128" height="74"/>
         <element name="GymCore" positionX="-54" positionY="-9" width="128" height="194"/>
+        <element name="GymTimeCore" positionX="-36" positionY="144" width="128" height="254"/>
         <element name="ImageCore" positionX="-36" positionY="9" width="128" height="74"/>
         <element name="PopularRouteCore" positionX="-36" positionY="81" width="128" height="239"/>
         <element name="RouteCore" positionX="-45" positionY="72" width="128" height="134"/>
         <element name="SensorMarkCore" positionX="-27" positionY="153" width="128" height="89"/>
-        <element name="GymTimeCore" positionX="-36" positionY="144" width="128" height="254"/>
     </elements>
 </model>

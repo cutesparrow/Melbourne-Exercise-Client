@@ -100,7 +100,7 @@ struct GymListCardTabView: View {
                 GeometryReader { proxy in
                                         let offset = proxy.frame(in: .named("scroll")).minX//may need change
                                         Color.clear.preference(key: ViewOffsetKey.self, value: offset)
-                                    }
+                }
             }
             }
 //            .onChange(of:gotTap,perform:{ num in
