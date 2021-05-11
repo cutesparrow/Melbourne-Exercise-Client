@@ -14,30 +14,34 @@ struct LegendView: View {
                 .font(.caption)
                 .foregroundColor(Color(.label))
             HStack{
+                Circle()
+                    .fill(AppColor.shared.highRiskColor)
+                    .frame(width: 10, height: 10)
                 Text("high")
                     .foregroundColor(Color(.label))
                     .font(.caption2)
+                
                 Circle()
-                    .fill(AppColor.shared.highRiskColor)
+                    .fill(AppColor.shared.midRiskColor)
                     .frame(width: 10, height: 10)
                 Text("medium")
                     .foregroundColor(Color(.label))
                     .font(.caption2)
+                
                 Circle()
-                    .fill(AppColor.shared.midRiskColor)
+                    .fill(AppColor.shared.lowRiskColor)
                     .frame(width: 10, height: 10)
                 Text("low")
                     .foregroundColor(Color(.label))
                     .font(.caption2)
+                
                 Circle()
-                    .fill(AppColor.shared.lowRiskColor)
+                    .fill(AppColor.shared.noRiskColor)
                     .frame(width: 10, height: 10)
                 Text("no")
                     .foregroundColor(Color(.label))
                     .font(.caption2)
-                Circle()
-                    .fill(AppColor.shared.noRiskColor)
-                    .frame(width: 10, height: 10)
+                
             }
         }
     }

@@ -10,15 +10,52 @@ import SDWebImageSwiftUI
 import MapKit
 import CoreLocation
 import AlertToast
+import Mapbox
+import MapboxCoreNavigation
+import MapboxNavigation
+import MapboxDirections
+import Polyline
 
 struct GymCard: View {
     @ObservedObject var gym:GymCore
     @Environment(\.managedObjectContext) var context
     @EnvironmentObject var userData:UserData
     @State var roadSituation:RecentlyRoadSituation = RecentlyRoadSituation(list: [])
-    @State var bottomSheetIsShow:Bool = false
+    @State var showPlan:Bool = false
     @Binding var selectedGymUid:Int
     @State var loading:Bool = false
+    @State var directionsRoute:Route?
+    @State var routeOptions: RouteOptions?
+    @State var showDirection:Bool = false
+    @State var showSheet:Bool = false
+    
+    func fetchDirection() -> Void{
+        self.loading = true
+        let waypoints = [
+            Waypoint(coordinate: checkUserLocation(lat: LocationFetcher.share.lastKnownLocation?.latitude ?? -37.810489070978186, long: LocationFetcher.share.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: LocationFetcher.share.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: LocationFetcher.share.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503), name: "source"),
+            Waypoint(coordinate: CLLocationCoordinate2D(latitude: gym.lat, longitude: gym.long), name: gym.name),
+        ]
+        let options = RouteOptions(waypoints: waypoints)
+        options.includesSteps = true
+        options.includesVisualInstructions = true
+        self.routeOptions = options
+        let _ = Directions.shared.calculate(options) { (session, result) in
+            switch result {
+            case .failure(let error):
+                print("Error calculating directions: \(error)")
+                self.loading = false
+            case .success(let response):
+                guard let route = response.routes?.first else {
+                    return
+                }
+                self.directionsRoute = route
+                self.loading = false
+                DispatchQueue.main.async{self.showDirection = true}
+                self.showSheet = true
+//                print(route.description)
+            }
+        }
+    }
 //    var showImage:Bool = false
 //    var locationManager = CLLocationManager()
 //
@@ -56,8 +93,9 @@ struct GymCard: View {
                     
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now()+0.3) {
-                    self.bottomSheetIsShow.toggle()
+                    DispatchQueue.main.async{self.showPlan = true}
                     self.loading = false
+                    self.showSheet = true
                 }
                 
 //                self.showLoadingIndicator = false
@@ -97,19 +135,19 @@ struct GymCard: View {
                 let toEnd = calculateTime(time1: currentTime, time2: close! == "0:00" ? "24:00" : close!)
                 if toStart < 0 && toEnd > 0 {
                     if toEnd < 30{
-                        return ("Closing soon",Color(.orange),start!,close!)
+                        return ("Closing soon",Color(hex:0xe15d03),start!,close!)
                     } else {
-                        return ("Open",Color(.green),start!,close!)
+                        return ("Open",Color(hex:0x339933),start!,close!)
                     }
                 } else if toStart > 0 {
                     if toStart < 30{
-                        return ("Opening soon",Color(.orange),start!,close!)
+                        return ("Opening soon",Color(hex:0xe15d03),start!,close!)
                     } else {
-                        return ("Closed",Color(.red),start!,close!)
+                        return ("Closed",Color(hex:0xcf0000),start!,close!)
                     }
                     
                 } else if toEnd < 0 {
-                    return ("Closed",Color(.red),start!,close!)
+                    return ("Closed",Color(hex:0xcf0000),start!,close!)
                 }
                 
                 
@@ -120,19 +158,19 @@ struct GymCard: View {
                 let toEnd = calculateTime(time1: currentTime, time2: close! == "0:00" ? "24:00" : close!)
                 if toStart < 0 && toEnd > 0 {
                     if toEnd < 30{
-                        return ("Closing soon",Color(.orange),start!,close!)
+                        return ("Closing soon",Color(hex:0xe15d03),start!,close!)
                     } else {
-                        return ("Open",Color(.green),start!,close!)
+                        return ("Open",Color(hex:0x339933),start!,close!)
                     }
                 } else if toStart > 0 {
                     if toStart < 30{
-                        return ("Opening soon",Color(.orange),start!,close!)
+                        return ("Opening soon",Color(hex:0xe15d03),start!,close!)
                     } else {
-                        return ("Closed",Color(.red),start!,close!)
+                        return ("Closed",Color(hex:0xcf0000),start!,close!)
                     }
                     
                 } else if toEnd < 0 {
-                    return ("Closed",Color(.red),start!,close!)
+                    return ("Closed",Color(hex:0xcf0000),start!,close!)
                 }
             case 3:
                 let start = gym.gymTime?.tuesday_start
@@ -141,19 +179,19 @@ struct GymCard: View {
                 let toEnd = calculateTime(time1: currentTime, time2: close! == "0:00" ? "24:00" : close!)
                 if toStart < 0 && toEnd > 0 {
                     if toEnd < 30{
-                        return ("Closing soon",Color(.orange),start!,close!)
+                        return ("Closing soon",Color(hex:0xe15d03),start!,close!)
                     } else {
-                        return ("Open",Color(.green),start!,close!)
+                        return ("Open",Color(hex:0x339933),start!,close!)
                     }
                 } else if toStart > 0 {
                     if toStart < 30{
-                        return ("Opening soon",Color(.orange),start!,close!)
+                        return ("Opening soon",Color(hex:0xe15d03),start!,close!)
                     } else {
-                        return ("Closed",Color(.red),start!,close!)
+                        return ("Closed",Color(hex:0xcf0000),start!,close!)
                     }
                     
                 } else if toEnd < 0 {
-                    return ("Closed",Color(.red),start!,close!)
+                    return ("Closed",Color(hex:0xcf0000),start!,close!)
                 }
             case 4:
                 let start = gym.gymTime?.wednesday_start
@@ -162,19 +200,19 @@ struct GymCard: View {
                 let toEnd = calculateTime(time1: currentTime, time2: close! == "0:00" ? "24:00" : close!)
                 if toStart < 0 && toEnd > 0 {
                     if toEnd < 30{
-                        return ("Closing soon",Color(.orange),start!,close!)
+                        return ("Closing soon",Color(hex:0xe15d03),start!,close!)
                     } else {
-                        return ("Open",Color(.green),start!,close!)
+                        return ("Open",Color(hex:0x339933),start!,close!)
                     }
                 } else if toStart > 0 {
                     if toStart < 30{
-                        return ("Opening soon",Color(.orange),start!,close!)
+                        return ("Opening soon",Color(hex:0xe15d03),start!,close!)
                     } else {
-                        return ("Closed",Color(.red),start!,close!)
+                        return ("Closed",Color(hex:0xcf0000),start!,close!)
                     }
                     
                 } else if toEnd < 0 {
-                    return ("Closed",Color(.red),start!,close!)
+                    return ("Closed",Color(hex:0xcf0000),start!,close!)
                 }
             case 5:
                 let start = gym.gymTime?.thursday_start
@@ -183,19 +221,19 @@ struct GymCard: View {
                 let toEnd = calculateTime(time1: currentTime, time2: close! == "0:00" ? "24:00" : close!)
                 if toStart < 0 && toEnd > 0 {
                     if toEnd < 30{
-                        return ("Closing soon",Color(.orange),start!,close!)
+                        return ("Closing soon",Color(hex:0xe15d03),start!,close!)
                     } else {
-                        return ("Open",Color(.green),start!,close!)
+                        return ("Open",Color(hex:0x339933),start!,close!)
                     }
                 } else if toStart > 0 {
                     if toStart < 30{
-                        return ("Opening soon",Color(.orange),start!,close!)
+                        return ("Opening soon",Color(hex:0xe15d03),start!,close!)
                     } else {
-                        return ("Closed",Color(.red),start!,close!)
+                        return ("Closed",Color(hex:0xcf0000),start!,close!)
                     }
                     
                 } else if toEnd < 0 {
-                    return ("Closed",Color(.red),start!,close!)
+                    return ("Closed",Color(hex:0xcf0000),start!,close!)
                 }
             case 6:
                 let start = gym.gymTime?.friday_start
@@ -204,19 +242,19 @@ struct GymCard: View {
                 let toEnd = calculateTime(time1: currentTime, time2: close! == "0:00" ? "24:00" : close!)
                 if toStart < 0 && toEnd > 0 {
                     if toEnd < 30{
-                        return ("Closing soon",Color(.orange),start!,close!)
+                        return ("Closing soon",Color(hex:0xe15d03),start!,close!)
                     } else {
-                        return ("Open",Color(.green),start!,close!)
+                        return ("Open",Color(hex:0x339933),start!,close!)
                     }
                 } else if toStart > 0 {
                     if toStart < 30{
-                        return ("Opening soon",Color(.orange),start!,close!)
+                        return ("Opening soon",Color(hex:0xe15d03),start!,close!)
                     } else {
-                        return ("Closed",Color(.red),start!,close!)
+                        return ("Closed",Color(hex:0xcf0000),start!,close!)
                     }
                     
                 } else if toEnd < 0 {
-                    return ("Closed",Color(.red),start!,close!)
+                    return ("Closed",Color(hex:0xcf0000),start!,close!)
                 }
             case 7:
                 let start = gym.gymTime?.saturday_start
@@ -225,19 +263,19 @@ struct GymCard: View {
                 let toEnd = calculateTime(time1: currentTime, time2: close! == "0:00" ? "24:00" : close!)
                 if toStart < 0 && toEnd > 0 {
                     if toEnd < 30{
-                        return ("Closing soon",Color(.orange),start!,close!)
+                        return ("Closing soon",Color(hex:0xe15d03),start!,close!)
                     } else {
-                        return ("Open",Color(.green),start!,close!)
+                        return ("Open",Color(hex:0x339933),start!,close!)
                     }
                 } else if toStart > 0 {
                     if toStart < 30{
-                        return ("Opening soon",Color(.orange),start!,close!)
+                        return ("Opening soon",Color(hex:0xe15d03),start!,close!)
                     } else {
-                        return ("Closed",Color(.red),start!,close!)
+                        return ("Closed",Color(hex:0xcf0000),start!,close!)
                     }
                     
                 } else if toEnd < 0 {
-                    return ("Closed",Color(.red),start!,close!)
+                    return ("Closed",Color(hex:0xcf0000),start!,close!)
                 }
             default:
                 return ("",Color(.blue),"","")
@@ -313,7 +351,10 @@ struct GymCard: View {
                 }.padding(.leading,10)
                 .padding(.vertical,10)
                 HStack{
-                    Button(action: {UserLocationManager.share.openMapApp(destination: CLLocationCoordinate2D(latitude: gym.lat, longitude: gym.long))}, label: {
+                    Button(action: {
+//                            UserLocationManager.share.openMapApp(destination: CLLocationCoordinate2D(latitude: gym.lat, longitude: gym.long))
+                        fetchDirection()
+                    }, label: {
 //                        DetailPageButton(icon: "arrow.up.circle", color: .blue, text: "GO")
                         HStack{
                             Image(systemName: "arrow.triangle.turn.up.right.diamond.fill")
@@ -342,7 +383,7 @@ struct GymCard: View {
                     Spacer(minLength: 0)
                     Button(action: {
                         context.performAndWait{
-                            
+                            gym.addedTime = Date()
                                 gym.star.toggle()
                                 try? context.save()
                             
@@ -361,8 +402,9 @@ struct GymCard: View {
        
         .frame(width:UIScreen.main.bounds.width - 35, height: selectedGymUid == gym.uid ? UIScreen.main.bounds.height/3-10 : UIScreen.main.bounds.height/3-120, alignment: .center)
         
-        .sheet(isPresented: $bottomSheetIsShow, content: {
-            PlanView(name: gym.name,address:gym.address,start:gymStatus.2,close:gymStatus.3 == "0:00" ? "23:59" : gymStatus.3,roadSituation: $roadSituation, isShown: $bottomSheetIsShow).environmentObject(userData)
+        .fullScreenCover(isPresented: $showSheet, content: {
+            GymPlanOrNavigationSwitchView(showSheet: $showSheet, showDirection: $showDirection, directionsRoute: $directionsRoute, routeOptions: $routeOptions, gym: gym, showPlan: $showPlan, roadSituation: $roadSituation, start: gymStatus.2, close: gymStatus.3 == "0:00" ? "23:59" : gymStatus.3)
+                .environmentObject(userData)
         })
 //        .toast(isPresenting: $loading, duration: 1.2, tapToDismiss: true, alert: {AlertToast(type: .loading)
 //        }, completion: {_ in

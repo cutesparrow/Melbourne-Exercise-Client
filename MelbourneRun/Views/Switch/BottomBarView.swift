@@ -47,9 +47,10 @@ struct BottomBarView: View {
                  .ignoresSafeArea(.all, edges: .all)
              }
              .onAppear(perform: {
+                let location = LocationFetcher.share
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1){
                     if !userData.showedRangeAlert
-                    {self.showRangeAlert = !checkUserLocation(lat: LocationFetcher.share.lastKnownLocation?.latitude ?? -37, long: LocationFetcher.share.lastKnownLocation?.longitude ?? 144)
+                    {self.showRangeAlert = !checkUserLocation(lat: location.lastKnownLocation?.latitude ?? -37, long: location.lastKnownLocation?.longitude ?? 144)
                         self.userData.showedRangeAlert = true
                     }
                 }

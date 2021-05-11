@@ -12,6 +12,12 @@ import SSToastMessage
 import AlertToast
 import ActivityIndicatorView
 import SwiftUIRefresh
+//import AlertToast
+import Mapbox
+import MapboxCoreNavigation
+import MapboxNavigation
+import MapboxDirections
+import Polyline
 
 
 struct PupolarJoggingPathHomeView: View {
@@ -39,6 +45,38 @@ struct PupolarJoggingPathHomeView: View {
     @State var expandedScreen_returnPoint = CGRect(x: 0, y: 0, width: 100, height: 100)
     @State var expandedScreen_shown = false
     @State var expandedScreen_willHide = false
+//    @State var loading:Bool = false
+    @State var directionsRoute:Route?
+    @State var routeOptions: RouteOptions?
+    @State var showDirection:Bool = false
+    func fetchDirection(lat:Double,long:Double) -> Void{
+        self.loading = true
+        let waypoints = [
+            Waypoint(coordinate: checkUserLocation(lat: LocationFetcher.share.lastKnownLocation?.latitude ?? -37.810489070978186, long: LocationFetcher.share.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: LocationFetcher.share.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: LocationFetcher.share.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503), name: "source"),
+            Waypoint(coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long), name: gym.name),
+        ]
+        let options = RouteOptions(waypoints: waypoints)
+        options.includesSteps = true
+        options.includesVisualInstructions = true
+        self.routeOptions = options
+        let _ = Directions.shared.calculate(options) { (session, result) in
+            switch result {
+            case .failure(let error):
+                print("Error calculating directions: \(error)")
+                self.loading = false
+            case .success(let response):
+                guard let route = response.routes?.first else {
+                    return
+                }
+                self.directionsRoute = route
+                self.loading = false
+                self.showDirection.toggle()
+//                DispatchQueue.main.async{self.showDirection = true}
+//                self.showSheet = true
+//                print(route.description)
+            }
+        }
+    }
 //    var locationManager = CLLocationManager()
 //    func setupManager() {
 //        locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -127,7 +165,7 @@ struct PupolarJoggingPathHomeView: View {
                                 Button(action: {
                                    
                                     self.expandedItem = thisItem
-                                    showBottomBar.toggle()
+                                    showBottomBar = false
                                     let x = geo.frame(in: .global).minX
                                     let y = geo.frame(in: .global).minY
                                     let thisRect = CGRect(x: x,
@@ -161,6 +199,7 @@ struct PupolarJoggingPathHomeView: View {
                                                 context.performAndWait {
                                                     withAnimation {
                                                         thisItem.star.toggle()
+                                                        thisItem.addedTime = Date()
                                                         try? context.save()
                                                     }
                                                 }
@@ -273,17 +312,44 @@ struct PupolarJoggingPathHomeView: View {
                                     }.offset(y:
                                         self.expandedScreen_shown ? 44 : 0)
                                     Spacer()
-                                    HStack{
+                                    
                                         VStack(alignment: .leading){
-                                            Text("\(expandedItem!.intruduction)")
-                                                
-                                                .font(.system(size: 18, weight: .bold, design: .default))
-                                                .foregroundColor(.white)
-                                            
-                                        }.padding()
-                                        Spacer()
-                                    }
-                                }.frame(width: self.expandedScreen_startPoint.width)
+                                            ZStack{
+                                                VisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
+                                                ScrollView(.horizontal,showsIndicators: false){
+                                                    
+                                                    HStack(spacing:10){
+                                                        Spacer(minLength: 0)
+                                                            .frame(width:0)
+                                                        ForEach((expandedItem!.images!.sortedArray(using: [NSSortDescriptor(keyPath: \ImageCore.uid, ascending: true)]) as! [ImageCore])){ image in
+                                                            WebImage(url: URL(string: NetworkManager.shared.urlBasePath + image.name))
+                                                                .placeholder(content: {
+                                                                    Color.gray
+                                                                })
+                                                                .resizable()
+                                                                .scaledToFill()
+                                                                .frame(width: 300, height: 180, alignment: .center)
+                                                                .clipShape(RoundedRectangle(cornerRadius: 15))
+                                                        }
+                                //                        ForEach(self.result){ route in
+                                //                            FavoriteRouteCard(route:route)
+                                //                                .padding(.leading)
+                                //                        }
+                                //                        AddFavoriteCard(color: Color(.systemBackground))
+                                //                            .padding(.horizontal)
+                                //                            .onTapGesture {
+                                //                                withAnimation{bottomBarSelected = 2}
+                                //                            }
+                                                        Spacer(minLength: 0)
+                                                            .frame(width:0)
+                                                    }
+                                                    
+                                                }
+                                       }
+                                        }.frame(height: 200)
+                                    
+                                }
+                                .frame(width: self.expandedScreen_startPoint.width)
                             }.frame(height:
                                 self.itemHeight
                             ).zIndex(1)
@@ -361,14 +427,17 @@ struct PupolarJoggingPathHomeView: View {
                                             .frame(height: 6,alignment: .center)
                                             if leftPercent == 0 {
                                                 VStack{
-                                                    HStack{
-                                                    Text("Length")
+                                                    VStack{
+                                                    HStack{Text("Route distance:")
                                                         .bold()
                                                     Text(String(round((expandedItem!.length)/1000)) + " km")
-                                                    Spacer()
-                                                    Text("Distance")
+                                                        Spacer(minLength: 0)
+                                                    }
+                                                    HStack{Text("Distance from your location:")
                                                         .bold()
                                                     Text(String(expandedItem!.distance) + " km")
+                                                        Spacer(minLength: 0)
+                                                    }
                                                 }
                                                     .padding(.horizontal)
                                                     HStack{
@@ -403,12 +472,19 @@ struct PupolarJoggingPathHomeView: View {
                                                         .padding(.horizontal)
                                                         Button(action: {
                                                             if let expandedItem = expandedItem {
-                                                                UserLocationManager.share.openMapApp(destination: CLLocationCoordinate2D(latitude: expandedItem.latitude, longitude: expandedItem.longitude))
+                                                                fetchDirection(lat: expandedItem.latitude, long: expandedItem.longitude)
                                                             }
                                                         }, label: {
-                                                            DirectButtonView(color:.blue,text:"Let's go").padding()
-                                                    })
-                                                    }
+                                                            HStack{
+                                                            Image(systemName: "arrow.triangle.turn.up.right.diamond.fill")
+                                                                .font(.system(size: 16,weight: .regular))
+                                                                .foregroundColor(Color(.white))
+                                                            Text("Directions")
+                                                                .foregroundColor(Color(.white))
+                                                        }.padding(.horizontal)
+                                                        .padding(.vertical,5)
+                                                    }).background(Capsule().fill(Color.blue))
+                                                    }.padding(.bottom,30)
                                                 }
 //                                            HScrollViewController(pageWidth: UIScreen.main.bounds.width,
 //                                                                        contentSize: CGSize(width: UIScreen.main.bounds.width * 2, height: UIScreen.main.bounds.width),
@@ -462,7 +538,7 @@ struct PupolarJoggingPathHomeView: View {
                             self.expandedScreen_willHide = true
                             self.leftPercent = 0
                             self.expandedScreen_startPoint = self.expandedScreen_returnPoint
-                            showBottomBar.toggle()
+                            showBottomBar = true
                             self.expandedScreen_shown = false
                             Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { (timer) in
                                 self.expandedScreen_willHide = false
@@ -556,6 +632,11 @@ struct PupolarJoggingPathHomeView: View {
         }, completion: {_ in
             self.popularRoutesModel.error = false
         })
+            .fullScreenCover(isPresented: $showDirection, content: {
+                DirectionView(directionsRoute: $directionsRoute, routeOptions: $routeOptions, showNavigation: $showDirection, showSheet: .constant(false))
+                    .environmentObject(userData)
+                    .ignoresSafeArea(.all)
+            })
     }
 }
 //

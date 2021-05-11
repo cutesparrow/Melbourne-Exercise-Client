@@ -14,9 +14,10 @@ struct PolicyView: View {
             Text(policy.title!+"?")
                 .font(.title3)
                 .bold()
-                .foregroundColor(Color(.label))
+                .foregroundColor(Color(.black))
             Text(policy.content!)
                 .padding(.top)
+                .foregroundColor(Color(.black))
         }
     }
 }

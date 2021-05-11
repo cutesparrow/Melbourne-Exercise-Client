@@ -48,7 +48,7 @@ struct GymListCardTabView: View {
         if classType == "No membership"{
             if search.wrappedValue == ""
             {fetchRequest = FetchRequest<GymCore>(entity: GymCore.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \GymCore.distance, ascending: true)])}
-            else if search.wrappedValue.caseInsensitiveCompare("star") == .orderedSame{
+            else if search.wrappedValue.caseInsensitiveCompare("favorite") == .orderedSame || search.wrappedValue.caseInsensitiveCompare("favourite") == .orderedSame{
                 fetchRequest = FetchRequest<GymCore>(entity: GymCore.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \GymCore.distance, ascending: true)], predicate: NSPredicate(format: "star == %i", true))
             }
             else{
@@ -59,7 +59,7 @@ struct GymListCardTabView: View {
             if search.wrappedValue == ""{
                 fetchRequest = FetchRequest<GymCore>(entity: GymCore.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \GymCore.distance, ascending: true)], predicate: NSPredicate(format: "classType == %@", classType))
             }
-            else if search.wrappedValue.caseInsensitiveCompare("star") == .orderedSame{
+            else if search.wrappedValue.caseInsensitiveCompare("favorite") == .orderedSame || search.wrappedValue.caseInsensitiveCompare("favourite") == .orderedSame{
                 fetchRequest = FetchRequest<GymCore>(entity: GymCore.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \GymCore.distance, ascending: true)], predicate: NSPredicate(format: "classType == %@ AND star == %i", classType, true))
             }
             else{fetchRequest = FetchRequest<GymCore>(entity: GymCore.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \GymCore.distance, ascending: true)], predicate: NSPredicate(format: "classType == %@ AND (name CONTAINS[c] %@ OR address CONTAINS[c] %@ OR classType CONTAINS[c] %@)", classType, search.wrappedValue,search.wrappedValue,search.wrappedValue))}

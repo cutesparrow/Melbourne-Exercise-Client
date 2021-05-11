@@ -2,7 +2,7 @@
 //  GymCore+CoreDataProperties.swift
 //  MelbExercise
 //
-//  Created by gaoyu shi on 7/5/21.
+//  Created by gaoyu shi on 9/5/21.
 //
 //
 
@@ -25,6 +25,8 @@ extension GymCore {
     @NSManaged public var name: String
     @NSManaged public var star: Bool
     @NSManaged public var uid: Int16
+    @NSManaged public var showName: String
+    @NSManaged public var addedTime: Date?
     @NSManaged public var gymTime: GymTimeCore?
     @NSManaged public var images: NSSet?
 
@@ -47,6 +49,6 @@ extension GymCore {
 
 }
 
-extension GymCore: Identifiable {
-    
+extension GymCore : Identifiable {
+
 }

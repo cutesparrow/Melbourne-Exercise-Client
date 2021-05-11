@@ -109,7 +109,6 @@ struct GymListView: View {
                     })
                 }
                 .padding()
-                
                 .padding(.top,UIApplication.shared.windows.first?.safeAreaInsets.top)
                 .background(Color(.systemBackground).shadow(color: Color.black.opacity(0.18), radius: 5, x: 0, y: 5))
                 .zIndex(0)

@@ -8,6 +8,11 @@
 import Foundation
 import Alamofire
 import MapKit
+import Mapbox
+import MapboxCoreNavigation
+import MapboxNavigation
+import MapboxDirections
+import Polyline
 
 
 
@@ -33,6 +38,39 @@ class NetworkAPI{
         switch result {
                     case let .success(data):
                         let parseResult: Result<[AboutCovid], Error> = NetworkManager.parseData(data)
+                        completion(parseResult)
+                    case let .failure(error):
+                        completion(.failure(error))
+                    }
+    }
+}
+    
+    static public func loadExerciseTips(completion: @escaping (Result<[ExerciseTip], Error>) -> Void)->DataRequest{
+        NetworkManager.shared.requestGet(path: "classedexerciseTips/", parameters: nil) { result in
+        switch result {
+                    case let .success(data):
+                        let parseResult: Result<[ExerciseTip], Error> = NetworkManager.parseData(data)
+                        completion(parseResult)
+                    case let .failure(error):
+                        completion(.failure(error))
+                    }
+    }
+}
+    
+    static public func loadRouteObject(location:CLLocationCoordinate2D,vehicle:String,distance:Double,seed:Int,key:String,completion: @escaping (Result<RouteResponseCus, Error>) -> Void)->DataRequest{
+        NetworkManager.shared.requestGetForRoute(path: "route", parameters: [
+            "point":"\(location.latitude),\(location.longitude)",
+            "vehicle":vehicle,
+            "ch.disable":"true",
+            "algorithm":"round_trip",
+            "round_trip.distance":distance * 1000,
+            "round_trip.seed":seed,
+            "points_encoded":"false",
+            "key":key
+        ]) { result in
+        switch result {
+                    case let .success(data):
+                        let parseResult: Result<RouteResponseCus, Error> = NetworkManager.parseData(data)
                         completion(parseResult)
                     case let .failure(error):
                         completion(.failure(error))

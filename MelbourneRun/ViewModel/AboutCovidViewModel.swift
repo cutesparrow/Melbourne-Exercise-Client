@@ -9,26 +9,26 @@ import Foundation
 import SwiftUI
 import CoreData
 
-@objc(AboutCovidCore)
-public class AboutCovidCore: NSManagedObject {
-
-}
-extension AboutCovidCore {
-
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<AboutCovidCore> {
-        return NSFetchRequest<AboutCovidCore>(entityName: "AboutCovidCore")
-    }
-
-    @NSManaged public var uid: Int16
-    @NSManaged public var title: String?
-    @NSManaged public var content: String?
-    @NSManaged public var background: String?
-    @NSManaged public var color: String?
-}
-
-extension AboutCovidCore : Identifiable {
-
-}
+//@objc(AboutCovidCore)
+//public class AboutCovidCore: NSManagedObject {
+//
+//}
+//extension AboutCovidCore {
+//
+//    @nonobjc public class func fetchRequest() -> NSFetchRequest<AboutCovidCore> {
+//        return NSFetchRequest<AboutCovidCore>(entityName: "AboutCovidCore")
+//    }
+//
+//    @NSManaged public var uid: Int16
+//    @NSManaged public var title: String?
+//    @NSManaged public var content: String?
+//    @NSManaged public var background: String?
+//    @NSManaged public var color: String?
+//}
+//
+//extension AboutCovidCore : Identifiable {
+//
+//}
 
 
 
@@ -57,7 +57,7 @@ class AboutCovidViewModel:ObservableObject{
     }
     
     func refreshData(context:NSManagedObjectContext){
-        let fetchRequest : NSFetchRequest<AboutCovidCore> = AboutCovidCore.fetchRequest()
+        let fetchRequest : NSFetchRequest<AboutCovidCore> = NSFetchRequest<AboutCovidCore>(entityName: "AboutCovidCore")
         let idDescriptor = NSSortDescriptor(key: "uid", ascending: true)
         fetchRequest.sortDescriptors = [idDescriptor]
         print("start")

@@ -6,7 +6,7 @@ target 'MelbExercise' do
   use_frameworks!
 
   # Pods for MelbExercise
+  # Latest stable release
   pod 'MapboxNavigation', '~> 1.4'
-  pod 'MapboxCoreNavigation', :git => 'https://github.com/mapbox/mapbox-navigation-ios.git', :tag => 'v2.0.0-beta.5'
-  pod 'MapboxNavigation', :git => 'https://github.com/mapbox/mapbox-navigation-ios.git', :tag => 'v2.0.0-beta.5'
+# Latest prerelease
 end

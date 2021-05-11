@@ -11,40 +11,97 @@ import SDWebImageSwiftUI
 import URLImage
 import CoreData
 import AlertToast
+import Mapbox
+import MapboxCoreNavigation
+import MapboxNavigation
+import MapboxDirections
+import Polyline
 
 struct WalkingRouteView: View {
     @EnvironmentObject var userData:UserData
+    @Binding var show:Bool
     @State var selectedTab:Int = 0
-    @State var showDirectionsList:Bool = false
-    @State var walkingRouteCards:[WalkingRouteCard]
+//    @State var showDirectionsList:Bool = false
+//    @State var walkingRouteCards:[WalkingRouteCard]
     @Environment(\.managedObjectContext) var context
     @State var success:Bool = false
     @State var error:Bool = false
+    @State var loading:Bool = false
     @State var showDetailMapView:Bool = false
+    @FetchRequest(entity: WalkingCore.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \WalkingCore.uid, ascending: true)]) var result: FetchedResults<WalkingCore>
+    @FetchRequest(entity: RouteCore.entity(), sortDescriptors: []) var favoriteRoute: FetchedResults<RouteCore>
+//    @State var showDirection:Bool = false
+//    @State var directionsRoute:Route?
+//    @State var routeOptions: RouteOptions?
     
-    private func saveThisRoute(){
-        let entity = RouteCore(context:context)
-        entity.length = self.walkingRouteCards[selectedTab].distance
-        entity.time = self.walkingRouteCards[selectedTab].time
-        entity.risk = self.walkingRouteCards[selectedTab].risk
-        entity.mapImage = self.walkingRouteCards[selectedTab].image
+//    func fetchDirection() -> Void {
+//        self.loading = true
+//        let matchOptions = MatchOptions(coordinates: Polyline(encodedPolyline: walkingRouteCards[selectedTab].polyline).coordinates!)
+//        matchOptions.includesSteps = true
+////        print(Polyline(encodedPolyline: walkingRouteCards[selectedTab].polyline).coordinates?.description)
+//        _ = Directions.shared.calculateRoutes(matching: matchOptions, completionHandler: { session, result in
+//            switch result {
+//            case .failure(let error):
+//                print("Error in fetch direction progross: \(error)")
+//                self.loading = false
+//                self.error = true
+//            case .success(let response):
+//                guard let route = response.routes?.first else {
+//                    return
+//                }
+//                self.directionsRoute = route
+//                print("success fetch route")
+//                self.loading = false
+//                self.showDirection.toggle()
+//            }
+//        })
+//
+//    }
+    
+
+    
+    private func saveThisRoute(card:WalkingCore){
+        if result[selectedTab].like == false{let entity = RouteCore(context:context)
+        entity.length = self.result[selectedTab].length
+        entity.time = self.result[selectedTab].time
+        entity.risk = self.result[selectedTab].risk
+        entity.mapImage = self.result[selectedTab].mapImage
         entity.type = "Walking & Dog"
-        entity.polyline = self.walkingRouteCards[selectedTab].polyline
-        self.walkingRouteCards[selectedTab].instructions.forEach { direction in
-            let directionData = Direction(context:context)
-            directionData.uid = Int16(self.walkingRouteCards[selectedTab].instructions.firstIndex(where: { $0 == direction })!)
-            directionData.directionSentence = direction
-            entity.addToDirections(directionData)
-        }
+        entity.polyline = self.result[selectedTab].polyline
+        entity.showName = ""
+        entity.addedTime = Date()
+            result[selectedTab].like.toggle()
         do {
             try context.save()
             self.success = true
             print("success")
         } catch {
             print(error.localizedDescription)
+            
             self.error = true
         }
+            
+        } else {
+            print(result[selectedTab].mapImage)
+            favoriteRoute.forEach { route in
+                if route.mapImage == result[selectedTab].mapImage{
+                    context.delete(route)
+                    print("delete")
+                }
+            }
+            result[selectedTab].like.toggle()
+            do {
+                try context.save()
+                self.success = true
+                print("success delete")
+            } catch {
+                print(error.localizedDescription)
+                self.error = true
+            }
+        }
     }
+    
+    
     var body: some View {
         VStack{
             Spacer()
@@ -58,12 +115,14 @@ struct WalkingRouteView: View {
                 Spacer()
                 
             }.padding(.leading).padding(.top).padding(.trailing)
+            .padding(.bottom,-20)
             
             
             TabView(selection: $selectedTab) {
-                ForEach(self.walkingRouteCards,id:\.id) { card in
+                ForEach(self.result,id:\.uid) { card in
 //                    DirectionMapView(directions: $directionsList, coordinatesList: card.path)
-                    WebImage(url: URL(string: NetworkManager.shared.urlBasePath + card.image))
+                    ZStack{
+                        WebImage(url: URL(string: NetworkManager.shared.urlBasePath + card.mapImage))
                         .placeholder{
                             Color.gray
                         }
@@ -72,63 +131,77 @@ struct WalkingRouteView: View {
                         .frame(width: UIScreen.main.bounds.width/1.2,height:UIScreen.main.bounds.width/1.8)
                         .clipped()
                         .cornerRadius(14)
-                        .onTapGesture {
-                            print("tap")
-                            self.showDetailMapView.toggle()
-                        }
+//
                         .shadow(radius: 4)
-                        .tag(card.id)
+                        
+                        Button(action: {saveThisRoute(card: card)}) {
+                            Image(systemName: card.like ? "heart.fill" : "heart")
+                                .foregroundColor(AppColor.shared.gymColor)
+                                .font(.title)
+                                .shadow(radius: 6)
+                        }.offset(x:UIScreen.main.bounds.width/2.4 - 25,y:-UIScreen.main.bounds.width/3.6 + 25)
+                    }.tag(Int(card.uid))
                         
                         
                 }
             }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
             .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
-            .padding(.vertical,-15)
+            .frame(height: 340)
+            .offset(y:-20)
+//            .background(Color.blue)
+//            .padding(.vertical,-15)
             
-            PathInformationView(imageName: "timer", text: "Time", data: self.walkingRouteCards[selectedTab].time)
+            
+            PathInformationView(imageName: "timer", text: "Time", data: self.result[selectedTab].time)
                 .padding(.vertical,-15)
-            PathInformationView(imageName: "playpause", text: "Length", data: String(self.walkingRouteCards[selectedTab].distance)+" KM")
+            PathInformationView(imageName: "playpause", text: "Length", data: String(self.result[selectedTab].length)+" KM")
                 .padding(.vertical,-15)
-            PathInformationView(imageName: "pills", text: "Risk", data: self.walkingRouteCards[selectedTab].risk+" risk")
+            PathInformationView(imageName: "pills", text: "Risk", data: self.result[selectedTab].risk.uppercased()+" RISK")
                 .padding(.vertical,-15)
+            
+            Spacer(minLength: 0)
             HStack{
-                ZStack{
-                    RoundedRectangle(cornerRadius: 15.0)
-                        .fill(AppColor.shared.joggingColor)
-                        .frame(width: 130, height: 50, alignment: .center)
-                        .padding()
-                    Button(action: {self.showDirectionsList.toggle()}, label: {
+                Spacer(minLength: 0)
+                    Button(action: {
+                        withAnimation {
+                            show = false
+                        }
+                    }, label: {
                         
-                       HStack{
-                        Image(systemName: "location.north")
-                            .foregroundColor(.white)
-                            .font(.system(size: 24))
-                        Text("Directions")
-                            .foregroundColor(Color(.white))}
+                        HStack{
+                            Image(systemName: "pip.exit")
+                                .font(.system(size: 16,weight: .regular))
+                                .foregroundColor(Color(.white))
+                            Text("Close")
+                                .foregroundColor(Color(.white))
+                        }.padding(.horizontal)
+                        .padding(.vertical,5)
                         
-                    })
+                    }).background(Capsule().fill(Color(.systemGray3)))
+                    .frame(width:UIScreen.main.bounds.width/2.5)
                     
-                }
-                ZStack{
-                    RoundedRectangle(cornerRadius: 15.0)
-                        .fill(Color(.systemGray4))
-                        .frame(width: 130, height: 50, alignment: .center)
-                        .padding()
-                    Button(action: saveThisRoute, label: {
-                        
-                       HStack{
-                        Image(systemName: "heart.fill")
-                            .foregroundColor(AppColor.shared.gymColor)
-                            .font(.system(size: 24))
-                        Text("Favorites")
-                            .foregroundColor(Color(.white))}
-                        
-                    })
-                    
-                }
                 
+                Spacer(minLength: 0)
+                    Button(action: {
+//                        fetchDirection()
+//                        fetchDirection2()
+                        self.showDetailMapView = true
+                    }, label: {
+                        
+                        HStack{
+                            Image(systemName: "arrow.triangle.turn.up.right.diamond.fill")
+                                .font(.system(size: 16,weight: .regular))
+                                .foregroundColor(Color(.white))
+                            Text("Show Map")
+                                .foregroundColor(Color(.white))
+                        }.padding(.horizontal)
+                        .padding(.vertical,5)
+                        
+                    }).background(Capsule().fill(Color.blue))
+                    .frame(width:UIScreen.main.bounds.width/2.5)
+                Spacer(minLength: 0)
             }
-            .padding(.vertical,-15)
+            
            
         }
         
@@ -140,32 +213,39 @@ struct WalkingRouteView: View {
         }, completion: {_ in
             self.success = false
         })
-        .sheet(isPresented: $showDirectionsList, content: {
-            VStack{
-                Text("Directions")
-                          .font(.largeTitle)
-                          .bold()
-                          .padding()
-                
-                List(self.walkingRouteCards[selectedTab].instructions, id:\.self){i in
-                    Text(i)
-                    
-            }}
-        })
+//        .sheet(isPresented: $showDirectionsList, content: {
+//            VStack{
+//                Text("Directions")
+//                          .font(.largeTitle)
+//                          .bold()
+//                          .padding()
+//
+//                List(self.result[selectedTab].instructions, id:\.self){i in
+//                    Text(i)
+//
+//            }}
+//        })
+//        .sheet(isPresented: $showDirection, content: {
+//            DirectionView(directionsRoute: $directionsRoute, routeOptions: $routeOptions, showNavigation: $showDirection)
+////            Color.blue
+//        })
+        
         .fullScreenCover(isPresented: $showDetailMapView, content: {
             ZStack{
-                MapView(polyline: walkingRouteCards[selectedTab].polyline)
+                MapView(polyline: result[selectedTab].polyline)
+                    
                 Button {
-                    self.showDetailMapView.toggle()
+                    self.showDetailMapView = false
                         
                 } label:{
                         Image(systemName: "xmark.circle.fill")
                             .foregroundColor(Color(.label).opacity(0.85))
                             .font(.system(size: 32)).padding()
-                }.offset(x: UIScreen.main.bounds.width/2 - 30, y: -UIScreen.main.bounds.height/2 + 60)
-
+                }.offset(x: -UIScreen.main.bounds.width/2 + 30, y: -UIScreen.main.bounds.height/2 + 60)
             }.ignoresSafeArea(.all)
+            .environmentObject(userData)
         })
+       
 //        .onAppear(perform: {
 //       
 //        })

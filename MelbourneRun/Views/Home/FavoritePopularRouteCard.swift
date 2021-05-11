@@ -12,7 +12,7 @@ struct FavoritePopularRouteCard: View {
     @Environment(\.managedObjectContext) var context
     @ObservedObject var popularRoute:PopularRouteCore
     @State var showDetail:Bool = false
-    
+    @EnvironmentObject var userData:UserData
     var body: some View {
         HStack{ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)) {
 //            NavigationLink(destination: GymRecordView(fetchedGym:gym))
@@ -40,7 +40,17 @@ struct FavoritePopularRouteCard: View {
                         .lineLimit(1)
                     Spacer(minLength: 0)
                     
-                }.padding(.top,20)
+                }.padding(.top,10)
+                HStack{
+                    Text(popularRoute.addedTime != nil ? popularRoute.addedTime! : Date(),style: .date)
+                        .font(.caption)
+                        .foregroundColor(.white)
+                        .bold()
+                        
+                        .lineLimit(1)
+                    Spacer(minLength: 0)
+                    
+                }
             }
             .padding(.horizontal,10)
             .padding(.vertical,10)
@@ -70,7 +80,7 @@ struct FavoritePopularRouteCard: View {
         }}
         .sheet(isPresented: $showDetail, content: {
             HomePagePopularJoggingRouteDetailVIew(popularRoute: popularRoute)
-               
+                .environmentObject(userData)
 //                            .clearModalBackground()
         })
         .frame(width: 150,height: 100)

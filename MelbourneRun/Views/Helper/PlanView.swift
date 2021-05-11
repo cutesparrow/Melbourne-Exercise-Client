@@ -32,7 +32,8 @@ struct PlanView: View,PositionScrollViewDelegate {
     )
     @State var currentColor:Color = Color(.blue)
     @State var pageNow = 0
-    @Binding var isShown:Bool
+    @Binding var isShownPlan:Bool
+    @Binding var isShow:Bool
     @State var showAlertX:Bool = false
     @State var saveSuccess:Bool = false
     @State var saveFailure:Bool = false
@@ -45,12 +46,13 @@ struct PlanView: View,PositionScrollViewDelegate {
                 .frame(width: 350, height: 160)
                 .cornerRadius(20.0)
                 .padding(.bottom,10)
+                .shadow(radius: 3)
             HStack(spacing: 15) {
             Image("logo")
                   .resizable()
                   .aspectRatio(contentMode: ContentMode.fill)
                   .frame(width: 60, height: 60)
-                .padding(.trailing,-10)
+                .padding(.trailing,-5)
             VStack(alignment: .leading, spacing: 2) {
                   Text("User Guide")
                     .foregroundColor(Color(.label))
@@ -127,7 +129,10 @@ struct PlanView: View,PositionScrollViewDelegate {
             .padding()
             HStack{
                 Spacer()
-                Button(action: {isShown.toggle()}, label: {
+                Button(action: {
+                    isShownPlan.toggle()
+                    isShow.toggle()
+                }, label: {
                     DirectButtonView(color: Color.gray, text: "Cancel")
                 })
                 Spacer()

@@ -44,6 +44,7 @@ class GymViewModel:ObservableObject{
             entity.long = data.long
             entity.limitation = Int16(data.limitation)
             entity.name = data.name
+            entity.showName = ""
             data.Images.forEach { (image) in
                 let imageCore = ImageCore(context: context)
                 imageCore.name = image
@@ -120,6 +121,7 @@ class GymViewModel:ObservableObject{
                             gymCore.address = data.address
                             gymCore.classType = data.classType
                             gymCore.images = nil
+//                            gymCore.showName = ""
                             data.Images.forEach { (image) in
                                 let imageCore = ImageCore(context: context)
                                 imageCore.name = image

@@ -101,7 +101,7 @@ struct GymNewHomeView: View {
         
         if !result.isEmpty{
             ZStack{
-                Map(coordinateRegion: $region, interactionModes: .all, showsUserLocation: true, userTrackingMode: $trackingMode, annotationItems: result.filter({userData.hasMemberShip == "No membership" ? true : $0.classType == userData.hasMemberShip}).filter({search == "" ? true : ($0.name.localizedCaseInsensitiveContains(search)) || ($0.address.localizedCaseInsensitiveContains(search)) || ($0.classType.localizedCaseInsensitiveContains(search)) || (search.caseInsensitiveCompare("star") == .orderedSame ? $0.star : false)})
+                Map(coordinateRegion: $region, interactionModes: .all, showsUserLocation: true, userTrackingMode: $trackingMode, annotationItems: result.filter({userData.hasMemberShip == "No membership" ? true : $0.classType == userData.hasMemberShip}).filter({search == "" ? true : ($0.name.localizedCaseInsensitiveContains(search)) || ($0.address.localizedCaseInsensitiveContains(search)) || ($0.classType.localizedCaseInsensitiveContains(search)) || ((search.caseInsensitiveCompare("favorite") == .orderedSame || search.caseInsensitiveCompare("favourite") == .orderedSame) ? $0.star : false)})
 //                        .filter({checkLocationNear(gymLocation: CLLocationCoordinate2D(latitude: $0.lat, longitude: $0.long))})
                     , annotationContent: { mark in
                     MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: mark.lat, longitude: mark.long)) {

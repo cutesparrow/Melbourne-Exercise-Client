@@ -20,4 +20,5 @@ struct PopularJoggingRoute:Identifiable,Codable {
     var longitude:Double
     var detail_text:String
     var safety_tips:String
+    var images:[String]
 }

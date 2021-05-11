@@ -51,6 +51,13 @@ class PopularRouteViewModel:ObservableObject{
             entity.detail_text = data.detail_text
             entity.safety_tips = data.safety_tips
             entity.star = false
+            data.images.forEach { image in
+                let imageCore = ImageCore(context: context)
+                imageCore.name = image
+                imageCore.uid = Int16(data.images.firstIndex(where: { $0 == image})!)
+                entity.addToImages(imageCore)
+            }
+            
         }
         do {
             try context.save()
@@ -108,6 +115,13 @@ class PopularRouteViewModel:ObservableObject{
                             popularRouteCore.longitude = data.longitude
                             popularRouteCore.detail_text = data.detail_text
                             popularRouteCore.safety_tips = data.safety_tips
+                            popularRouteCore.images = nil
+                            data.images.forEach { image in
+                                let imageCore = ImageCore(context: context)
+                                imageCore.name = image
+                                imageCore.uid = Int16(data.images.firstIndex(where: { $0 == image})!)
+                                popularRouteCore.addToImages(imageCore)
+                            }
                             try? context.save()
                         }
                         print("update one + \(popularRouteCore.uid)")
@@ -130,6 +144,12 @@ class PopularRouteViewModel:ObservableObject{
                     entity.detail_text = data.detail_text
                     entity.safety_tips = data.safety_tips
                     entity.star = false
+                    data.images.forEach { image in
+                        let imageCore = ImageCore(context: context)
+                        imageCore.name = image
+                        imageCore.uid = Int16(data.images.firstIndex(where: { $0 == image})!)
+                        entity.addToImages(imageCore)
+                    }
                     try? context.save()
                 }
             }

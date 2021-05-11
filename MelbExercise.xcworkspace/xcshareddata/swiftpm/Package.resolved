@@ -1,0 +1,214 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "ActionOver",
+        "repositoryURL": "https://github.com/AndreaMiotto/ActionOver.git",
+        "state": {
+          "branch": null,
+          "revision": "06b0918c491232af1ce483ed528802522b9f201d",
+          "version": "1.0.3"
+        }
+      },
+      {
+        "package": "ActivityIndicatorView",
+        "repositoryURL": "https://github.com/exyte/ActivityIndicatorView.git",
+        "state": {
+          "branch": null,
+          "revision": "ad484c6e645c41eb298e48f663ac1ed76aedde00",
+          "version": "0.0.6"
+        }
+      },
+      {
+        "package": "Alamofire",
+        "repositoryURL": "https://github.com/Alamofire/Alamofire.git",
+        "state": {
+          "branch": null,
+          "revision": "f96b619bcb2383b43d898402283924b80e2c4bae",
+          "version": "5.4.3"
+        }
+      },
+      {
+        "package": "AlertKit",
+        "repositoryURL": "https://github.com/rebeloper/AlertKit.git",
+        "state": {
+          "branch": null,
+          "revision": "be3d9f6ca6ff5962057634795c9335b14b16ebdc",
+          "version": "0.2.0"
+        }
+      },
+      {
+        "package": "AlertToast",
+        "repositoryURL": "https://github.com/elai950/AlertToast.git",
+        "state": {
+          "branch": null,
+          "revision": "c9f59ac4d187fc876fd778b28cad9f9fe94e4554",
+          "version": "1.2.7"
+        }
+      },
+      {
+        "package": "BottomSheet",
+        "repositoryURL": "https://github.com/weitieda/bottom-sheet.git",
+        "state": {
+          "branch": null,
+          "revision": "98e2ae0b47875faef28e181cf968b9645f7678af",
+          "version": "1.0.6"
+        }
+      },
+      {
+        "package": "ConcentricOnboarding",
+        "repositoryURL": "https://github.com/exyte/ConcentricOnboarding.git",
+        "state": {
+          "branch": null,
+          "revision": "8ec6051f638f7de72c629368014777ad1346d653",
+          "version": "0.0.6"
+        }
+      },
+      {
+        "package": "FloatingButton",
+        "repositoryURL": "https://github.com/exyte/FloatingButton.git",
+        "state": {
+          "branch": null,
+          "revision": "c7b4e753286f0462a0adcb23a6fac7d94917b605",
+          "version": "0.0.3"
+        }
+      },
+      {
+        "package": "LocationProvider",
+        "repositoryURL": "https://github.com/himbeles/LocationProvider.git",
+        "state": {
+          "branch": null,
+          "revision": "970f00b5f7294f2af0bb55dadd160a2eba9b8890",
+          "version": "1.5.0"
+        }
+      },
+      {
+        "package": "PermissionsSwiftUI",
+        "repositoryURL": "https://github.com/jevonmao/PermissionsSwiftUI.git",
+        "state": {
+          "branch": null,
+          "revision": "f76d4cdeccf189545f7af96d0ddcb914e9de956b",
+          "version": "1.4.1"
+        }
+      },
+      {
+        "package": "Polyline",
+        "repositoryURL": "https://github.com/raphaelmor/Polyline.git",
+        "state": {
+          "branch": null,
+          "revision": "36f7b1222aaf8fa741d0d179c12e186998d97f42",
+          "version": "5.0.2"
+        }
+      },
+      {
+        "package": "PositionScrollView",
+        "repositoryURL": "https://github.com/kazuooooo/PositionScrollView.git",
+        "state": {
+          "branch": null,
+          "revision": "27cac224d2a483a727e3cd168e31186f095d35b2",
+          "version": "1.0.2"
+        }
+      },
+      {
+        "package": "PullUpController",
+        "repositoryURL": "https://github.com/MarioIannotta/PullUpController.git",
+        "state": {
+          "branch": null,
+          "revision": "6192b4745a4423e8fd2dc0a4eb8d34ca247a5163",
+          "version": "0.8.0"
+        }
+      },
+      {
+        "package": "Refresh",
+        "repositoryURL": "https://github.com/wxxsw/Refresh.git",
+        "state": {
+          "branch": "master",
+          "revision": "05a4667b8250c7cce0156882bf6385a5108ae6f0",
+          "version": null
+        }
+      },
+      {
+        "package": "SDWebImage",
+        "repositoryURL": "https://github.com/SDWebImage/SDWebImage.git",
+        "state": {
+          "branch": null,
+          "revision": "76dd4b49110b8624317fc128e7fa0d8a252018bc",
+          "version": "5.11.1"
+        }
+      },
+      {
+        "package": "SDWebImageSwiftUI",
+        "repositoryURL": "https://github.com/SDWebImage/SDWebImageSwiftUI.git",
+        "state": {
+          "branch": null,
+          "revision": "cd8625b7cf11a97698e180d28bb7d5d357196678",
+          "version": "2.0.2"
+        }
+      },
+      {
+        "package": "SSToastMessage",
+        "repositoryURL": "https://github.com/SimformSolutionsPvtLtd/SSToastMessage.git",
+        "state": {
+          "branch": null,
+          "revision": "6f8c15ae5347655a22651c94ed29a651c172e6ce",
+          "version": "1.0.0"
+        }
+      },
+      {
+        "package": "Introspect",
+        "repositoryURL": "https://github.com/siteline/SwiftUI-Introspect.git",
+        "state": {
+          "branch": null,
+          "revision": "2e09be8af614401bc9f87d40093ec19ce56ccaf2",
+          "version": "0.1.3"
+        }
+      },
+      {
+        "package": "Sliders",
+        "repositoryURL": "https://github.com/spacenation/swiftui-sliders.git",
+        "state": {
+          "branch": null,
+          "revision": "5109792d45a53c3c41680b8bdb0602b5dde39c9a",
+          "version": "1.0.0"
+        }
+      },
+      {
+        "package": "SwiftUIRefresh",
+        "repositoryURL": "https://github.com/siteline/SwiftUIRefresh.git",
+        "state": {
+          "branch": null,
+          "revision": "fa8fac7b5eb5c729983a8bef65f094b5e0d12014",
+          "version": "0.0.3"
+        }
+      },
+      {
+        "package": "SwiftyJSON",
+        "repositoryURL": "https://github.com/SwiftyJSON/SwiftyJSON.git",
+        "state": {
+          "branch": null,
+          "revision": "b3dcd7dbd0d488e1a7077cb33b00f2083e382f07",
+          "version": "5.0.1"
+        }
+      },
+      {
+        "package": "UBottomSheet",
+        "repositoryURL": "https://github.com/OfTheWolf/UBottomSheet.git",
+        "state": {
+          "branch": null,
+          "revision": "35071cb950fe40b3835075e3035e18b9d270c749",
+          "version": "1.0.9"
+        }
+      },
+      {
+        "package": "URLImage",
+        "repositoryURL": "https://github.com/dmytro-anokhin/url-image",
+        "state": {
+          "branch": null,
+          "revision": "ccab89ad1cedb04f25dd4df1776dd8c8583b914a",
+          "version": "2.2.5"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

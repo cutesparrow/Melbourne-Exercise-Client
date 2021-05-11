@@ -15,6 +15,7 @@ typealias NetworkRequestCompletion = (NetworkRequestResult) -> Void
 
 //"http://192.168.50.25:8000/"//
 let NetworkAPIBaseURL = "http://www.melbournesafeexercise.tk/" //base url
+let NetworkAPIBaseURLForMapRoute = "http://192.168.50.25:8888/api/1/"
 let weatherWebsite = "http://api.weatherapi.com/v1/current.json" //weather url
 let parameter:Parameters = ["key":"6ea4cd893fce4e32812101751212803","q":"Melbourne","aqi":"no"] //api token for weather
 
@@ -27,10 +28,27 @@ class NetworkManager {
     
     private init() {}
     
+    
+    
     @discardableResult
     func requestGet(path: String, parameters: Parameters?, completion: @escaping NetworkRequestCompletion) -> DataRequest { //get json request
         
         AF.request(NetworkAPIBaseURL + path,
+                   parameters: parameters,
+                   headers: commonHeaders,
+                   requestModifier: { $0.timeoutInterval = 15 })
+            .responseData { response in
+                switch response.result {
+                case let .success(data): completion(.success(data))
+                case let .failure(error): completion(self.handleError(error))
+                }
+        }
+    }
+    
+    @discardableResult
+    func requestGetForRoute(path: String, parameters: Parameters?, completion: @escaping NetworkRequestCompletion) -> DataRequest { //get json request
+        
+        AF.request(NetworkAPIBaseURLForMapRoute + path,
                    parameters: parameters,
                    headers: commonHeaders,
                    requestModifier: { $0.timeoutInterval = 15 })

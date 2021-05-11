@@ -23,18 +23,26 @@ struct MapView: UIViewRepresentable {
     }
     
     func makeUIView(context: Context) -> MKMapView {
-        let mapView = MKMapView()
+        let mapView = MKMapView(frame: UIScreen.main.bounds)
+       
         mapView.isZoomEnabled = true
         mapView.isScrollEnabled = true
         mapView.isUserInteractionEnabled = true
-        mapView.showsUserLocation = false
+        mapView.showsUserLocation = true
 //        mapView.centerCoordinate = CLLocationCoordinate2D(latitude: -37.81048913607042, longitude: 144.962441682062)
         mapView.delegate = context.coordinator
+        let centerButton = MKUserTrackingButton(mapView: mapView)
+        centerButton.frame.origin.y = UIScreen.main.bounds.height - 80
+        centerButton.frame.origin.x = UIScreen.main.bounds.width - 80
+        mapView.insertSubview(centerButton, at: 1)
+        
+        
         return mapView
     }
     
     func updateUIView(_ uiView: MKMapView, context: UIViewRepresentableContext<MapView>) {
         updateOverlays(from: uiView)
+        
     }
     
     private func updateOverlays(from mapView: MKMapView) {
@@ -46,6 +54,9 @@ struct MapView: UIViewRepresentable {
     
     private func setMapZoomArea(map: MKMapView, polyline: MKPolyline, edgeInsets: UIEdgeInsets, animated: Bool = false) {
         map.setVisibleMapRect(polyline.boundingMapRect, edgePadding: edgeInsets, animated: animated)
+        DispatchQueue.main.async {
+        map.userTrackingMode = .followWithHeading
+        }
     }
 }
 

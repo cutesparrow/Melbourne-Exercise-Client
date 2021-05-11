@@ -16,14 +16,55 @@ import SwiftUI
 import SDWebImageSwiftUI
 import MapKit
 import CoreLocation
+import AlertToast
+import Mapbox
+import MapboxCoreNavigation
+import MapboxNavigation
+import MapboxDirections
+import Polyline
 
 struct GymCardOnHomePage: View {
     @ObservedObject var gym:GymCore
     @Binding var showThisCard:Bool
+    @State var loading:Bool = false
     @Environment(\.managedObjectContext) var context
     @EnvironmentObject var userData:UserData
     @State var roadSituation:RecentlyRoadSituation = RecentlyRoadSituation(list: [])
     @State var bottomSheetIsShow:Bool = false
+    @State var directionsRoute:Route?
+    @State var routeOptions: RouteOptions?
+    @State var showDirection:Bool = false
+    @State var showSheet:Bool = false
+    @State var showPlan:Bool = false
+    func fetchDirection() -> Void{
+        self.loading = true
+        let waypoints = [
+            Waypoint(coordinate: checkUserLocation(lat: LocationFetcher.share.lastKnownLocation?.latitude ?? -37.810489070978186, long: LocationFetcher.share.lastKnownLocation?.longitude ?? 144.96290632581503) ? CLLocationCoordinate2D(latitude: LocationFetcher.share.lastKnownLocation?.latitude ?? -37.810489070978186, longitude: LocationFetcher.share.lastKnownLocation?.longitude ?? 144.96290632581503) : CLLocationCoordinate2D(latitude: -37.810489070978186, longitude: 144.96290632581503), name: "source"),
+            Waypoint(coordinate: CLLocationCoordinate2D(latitude: gym.lat, longitude: gym.long), name: gym.name),
+        ]
+        let options = RouteOptions(waypoints: waypoints)
+        options.includesSteps = true
+        options.includesVisualInstructions = true
+        self.routeOptions = options
+        let _ = Directions.shared.calculate(options) { (session, result) in
+            switch result {
+            case .failure(let error):
+                print("Error calculating directions: \(error)")
+                self.loading = false
+            case .success(let response):
+                guard let route = response.routes?.first else {
+                    return
+                }
+                self.directionsRoute = route
+                
+                DispatchQueue.main.async{self.showDirection = true}
+                self.showSheet = true
+                print(route.description)
+                self.loading = false
+            }
+        }
+        
+    }
 
     func loadRoadSituation(location:CLLocationCoordinate2D,gymId:Int){
         let completion: (Result<RecentlyRoadSituation,Error>) -> Void = { result in
@@ -32,16 +73,23 @@ struct GymCardOnHomePage: View {
                 DispatchQueue.main.async{
                     self.roadSituation = list
                     debugPrint(list)
-                    self.bottomSheetIsShow.toggle()
+                    
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now()+0.3) {
+                    DispatchQueue.main.async{self.showPlan = true}
+                    self.loading = false
+                    self.showSheet = true
                 }
                 
 //                self.showLoadingIndicator = false
             case let .failure(error): print(error)
+                self.loading = false
 //                self.showLoadingIndicator = false
 //                self.networkError = true
             }
         }
 //        self.showLoadingIndicator = true
+        self.loading = true
         _ = NetworkAPI.loadRoadSituation(location: location,gymId: gymId, completion: completion)
     }
     
@@ -69,19 +117,19 @@ struct GymCardOnHomePage: View {
                 let toEnd = calculateTime(time1: currentTime, time2: close! == "0:00" ? "24:00" : close!)
                 if toStart < 0 && toEnd > 0 {
                     if toEnd < 30{
-                        return ("Closing soon",Color(.orange),start!,close!)
+                        return ("Closing soon",Color(hex:0xe15d03),start!,close!)
                     } else {
-                        return ("Open",Color(.green),start!,close!)
+                        return ("Open",Color(hex:0x339933),start!,close!)
                     }
                 } else if toStart > 0 {
                     if toStart < 30{
-                        return ("Opening soon",Color(.orange),start!,close!)
+                        return ("Opening soon",Color(hex:0xe15d03),start!,close!)
                     } else {
-                        return ("Closed",Color(.red),start!,close!)
+                        return ("Closed",Color(hex:0xcf0000),start!,close!)
                     }
                     
                 } else if toEnd < 0 {
-                    return ("Closed",Color(.red),start!,close!)
+                    return ("Closed",Color(hex:0xcf0000),start!,close!)
                 }
                 
                 
@@ -92,19 +140,19 @@ struct GymCardOnHomePage: View {
                 let toEnd = calculateTime(time1: currentTime, time2: close! == "0:00" ? "24:00" : close!)
                 if toStart < 0 && toEnd > 0 {
                     if toEnd < 30{
-                        return ("Closing soon",Color(.orange),start!,close!)
+                        return ("Closing soon",Color(hex:0xe15d03),start!,close!)
                     } else {
-                        return ("Open",Color(.green),start!,close!)
+                        return ("Open",Color(hex:0x339933),start!,close!)
                     }
                 } else if toStart > 0 {
                     if toStart < 30{
-                        return ("Opening soon",Color(.orange),start!,close!)
+                        return ("Opening soon",Color(hex:0xe15d03),start!,close!)
                     } else {
-                        return ("Closed",Color(.red),start!,close!)
+                        return ("Closed",Color(hex:0xcf0000),start!,close!)
                     }
                     
                 } else if toEnd < 0 {
-                    return ("Closed",Color(.red),start!,close!)
+                    return ("Closed",Color(hex:0xcf0000),start!,close!)
                 }
             case 3:
                 let start = gym.gymTime?.tuesday_start
@@ -113,19 +161,19 @@ struct GymCardOnHomePage: View {
                 let toEnd = calculateTime(time1: currentTime, time2: close! == "0:00" ? "24:00" : close!)
                 if toStart < 0 && toEnd > 0 {
                     if toEnd < 30{
-                        return ("Closing soon",Color(.orange),start!,close!)
+                        return ("Closing soon",Color(hex:0xe15d03),start!,close!)
                     } else {
-                        return ("Open",Color(.green),start!,close!)
+                        return ("Open",Color(hex:0x339933),start!,close!)
                     }
                 } else if toStart > 0 {
                     if toStart < 30{
-                        return ("Opening soon",Color(.orange),start!,close!)
+                        return ("Opening soon",Color(hex:0xe15d03),start!,close!)
                     } else {
-                        return ("Closed",Color(.red),start!,close!)
+                        return ("Closed",Color(hex:0xcf0000),start!,close!)
                     }
                     
                 } else if toEnd < 0 {
-                    return ("Closed",Color(.red),start!,close!)
+                    return ("Closed",Color(hex:0xcf0000),start!,close!)
                 }
             case 4:
                 let start = gym.gymTime?.wednesday_start
@@ -134,19 +182,19 @@ struct GymCardOnHomePage: View {
                 let toEnd = calculateTime(time1: currentTime, time2: close! == "0:00" ? "24:00" : close!)
                 if toStart < 0 && toEnd > 0 {
                     if toEnd < 30{
-                        return ("Closing soon",Color(.orange),start!,close!)
+                        return ("Closing soon",Color(hex:0xe15d03),start!,close!)
                     } else {
-                        return ("Open",Color(.green),start!,close!)
+                        return ("Open",Color(hex:0x339933),start!,close!)
                     }
                 } else if toStart > 0 {
                     if toStart < 30{
-                        return ("Opening soon",Color(.orange),start!,close!)
+                        return ("Opening soon",Color(hex:0xe15d03),start!,close!)
                     } else {
-                        return ("Closed",Color(.red),start!,close!)
+                        return ("Closed",Color(hex:0xcf0000),start!,close!)
                     }
                     
                 } else if toEnd < 0 {
-                    return ("Closed",Color(.red),start!,close!)
+                    return ("Closed",Color(hex:0xcf0000),start!,close!)
                 }
             case 5:
                 let start = gym.gymTime?.thursday_start
@@ -155,19 +203,19 @@ struct GymCardOnHomePage: View {
                 let toEnd = calculateTime(time1: currentTime, time2: close! == "0:00" ? "24:00" : close!)
                 if toStart < 0 && toEnd > 0 {
                     if toEnd < 30{
-                        return ("Closing soon",Color(.orange),start!,close!)
+                        return ("Closing soon",Color(hex:0xe15d03),start!,close!)
                     } else {
-                        return ("Open",Color(.green),start!,close!)
+                        return ("Open",Color(hex:0x339933),start!,close!)
                     }
                 } else if toStart > 0 {
                     if toStart < 30{
-                        return ("Opening soon",Color(.orange),start!,close!)
+                        return ("Opening soon",Color(hex:0xe15d03),start!,close!)
                     } else {
-                        return ("Closed",Color(.red),start!,close!)
+                        return ("Closed",Color(hex:0xcf0000),start!,close!)
                     }
                     
                 } else if toEnd < 0 {
-                    return ("Closed",Color(.red),start!,close!)
+                    return ("Closed",Color(hex:0xcf0000),start!,close!)
                 }
             case 6:
                 let start = gym.gymTime?.friday_start
@@ -176,19 +224,19 @@ struct GymCardOnHomePage: View {
                 let toEnd = calculateTime(time1: currentTime, time2: close! == "0:00" ? "24:00" : close!)
                 if toStart < 0 && toEnd > 0 {
                     if toEnd < 30{
-                        return ("Closing soon",Color(.orange),start!,close!)
+                        return ("Closing soon",Color(hex:0xe15d03),start!,close!)
                     } else {
-                        return ("Open",Color(.green),start!,close!)
+                        return ("Open",Color(hex:0x339933),start!,close!)
                     }
                 } else if toStart > 0 {
                     if toStart < 30{
-                        return ("Opening soon",Color(.orange),start!,close!)
+                        return ("Opening soon",Color(hex:0xe15d03),start!,close!)
                     } else {
-                        return ("Closed",Color(.red),start!,close!)
+                        return ("Closed",Color(hex:0xcf0000),start!,close!)
                     }
                     
                 } else if toEnd < 0 {
-                    return ("Closed",Color(.red),start!,close!)
+                    return ("Closed",Color(hex:0xcf0000),start!,close!)
                 }
             case 7:
                 let start = gym.gymTime?.saturday_start
@@ -197,19 +245,19 @@ struct GymCardOnHomePage: View {
                 let toEnd = calculateTime(time1: currentTime, time2: close! == "0:00" ? "24:00" : close!)
                 if toStart < 0 && toEnd > 0 {
                     if toEnd < 30{
-                        return ("Closing soon",Color(.orange),start!,close!)
+                        return ("Closing soon",Color(hex:0xe15d03),start!,close!)
                     } else {
-                        return ("Open",Color(.green),start!,close!)
+                        return ("Open",Color(hex:0x339933),start!,close!)
                     }
                 } else if toStart > 0 {
                     if toStart < 30{
-                        return ("Opening soon",Color(.orange),start!,close!)
+                        return ("Opening soon",Color(hex:0xe15d03),start!,close!)
                     } else {
-                        return ("Closed",Color(.red),start!,close!)
+                        return ("Closed",Color(hex:0xcf0000),start!,close!)
                     }
                     
                 } else if toEnd < 0 {
-                    return ("Closed",Color(.red),start!,close!)
+                    return ("Closed",Color(hex:0xcf0000),start!,close!)
                 }
             default:
                 return ("",Color(.blue),"","")
@@ -220,11 +268,12 @@ struct GymCardOnHomePage: View {
     
     var body: some View {
         let gymStatus = getStatus(gym:gym)
-        VStack{
+        return
+            VStack{
             Spacer()
                 .frame(height:UIScreen.main.bounds.height/2 - 70)
             ZStack{
-            VisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
+            VisualEffectView(effect: UIBlurEffect(style: .systemThickMaterial))
                 .cornerRadius(20.0)
                 .shadow(radius: 6)
             VStack(alignment:.leading,spacing:0){
@@ -291,7 +340,11 @@ struct GymCardOnHomePage: View {
                 .padding(.vertical,10)
                 HStack{
                     Button(action: {
-                        UserLocationManager.share.openMapApp(destination: CLLocationCoordinate2D(latitude: gym.lat, longitude: gym.long))
+                        DispatchQueue.main.async{
+                            
+                            fetchDirection()
+                        }
+                        
                     }, label: {
 //                        DetailPageButton(icon: "arrow.up.circle", color: .blue, text: "GO")
                         HStack{
@@ -339,9 +392,12 @@ struct GymCardOnHomePage: View {
             }.cornerRadius(20)
         }
         .frame(width:UIScreen.main.bounds.width - 30, height: UIScreen.main.bounds.height/3-10, alignment: .center)
-            .sheet(isPresented: $bottomSheetIsShow, content: {
-                PlanView(name: gym.name,address:gym.address,start:gymStatus.2,close:gymStatus.3 == "0:00" ? "23:59" : gymStatus.3,roadSituation: $roadSituation, isShown: $bottomSheetIsShow).environmentObject(userData)
-            })}
+            .fullScreenCover(isPresented: $showSheet, content: {
+                GymPlanOrNavigationSwitchView(showSheet: $showSheet, showDirection: $showDirection, directionsRoute: $directionsRoute, routeOptions: $routeOptions, gym: gym, showPlan: $showPlan, roadSituation: $roadSituation, start: gymStatus.2, close: gymStatus.3 == "0:00" ? "23:59" : gymStatus.3)
+                    .environmentObject(userData)
+            })
+            .toast(isPresenting: $loading, alert: {AlertToast(displayMode: .alert, type: .loading, title: "loading")})
+        }
         
     }
 }

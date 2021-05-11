@@ -14,7 +14,6 @@ struct MelbourneRunApp: App {
     @StateObject private var userData = UserData()
     let persistenceController = PersistenceController.shared
     var body: some Scene {
-        
         WindowGroup {
             PreLaunch()
 //            RoundedGymIconOnMapView()
