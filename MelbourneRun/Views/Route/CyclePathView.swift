@@ -119,7 +119,7 @@ struct CyclePathView: View {
             
             PathInformationView(imageName: "timer", text: "Time", data: result[selectedTab].time)
                 .padding(.vertical,-15)
-            PathInformationView(imageName: "playpause", text: "Length", data: String(result[selectedTab].length)+" KM")
+            PathInformationView(imageName: "playpause", text: "Distance", data: String(result[selectedTab].length)+" KM")
                 .padding(.vertical,-15)
             Spacer(minLength: 0)
             HStack{

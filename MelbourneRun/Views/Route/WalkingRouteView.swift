@@ -154,7 +154,7 @@ struct WalkingRouteView: View {
             
             PathInformationView(imageName: "timer", text: "Time", data: self.result[selectedTab].time)
                 .padding(.vertical,-15)
-            PathInformationView(imageName: "playpause", text: "Length", data: String(self.result[selectedTab].length)+" KM")
+            PathInformationView(imageName: "playpause", text: "Distance", data: String(self.result[selectedTab].length)+" KM")
                 .padding(.vertical,-15)
             PathInformationView(imageName: "pills", text: "Risk", data: self.result[selectedTab].risk.uppercased()+" RISK")
                 .padding(.vertical,-15)

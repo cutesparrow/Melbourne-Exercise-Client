@@ -86,7 +86,7 @@ struct HomePageRouteDetailView: View {
                         
             NarrowPathInformationView(imageName: "timer", text: "Time", data: self.route.time)
                 .padding(.vertical,-15)
-            NarrowPathInformationView(imageName: "playpause", text: "Length", data: String(self.route.length)+" KM")
+            NarrowPathInformationView(imageName: "playpause", text: "Distance", data: String(self.route.length)+" KM")
                 .padding(.vertical,-15)
             if self.route.type == "Walking & Dog"{NarrowPathInformationView(imageName: "pills", text: "Risk", data: self.route.risk.uppercased()+" RISK")
                 .padding(.vertical,-15)}

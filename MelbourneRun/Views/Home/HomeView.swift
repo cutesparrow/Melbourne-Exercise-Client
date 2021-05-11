@@ -268,7 +268,7 @@ struct TopView: View {
                                         .bold()
                                         .lineLimit(1)
                                     Text("The Fact You Need To Know About Covid-19")
-                                        .foregroundColor(.black.opacity(0.6))
+                                        .foregroundColor(.black)
                                         .bold()
                                         .font(.title2)
                                         .lineLimit(2)

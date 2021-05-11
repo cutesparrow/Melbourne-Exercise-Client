@@ -366,7 +366,7 @@ struct GymCardOnHomePage: View {
                             Image(systemName: "text.book.closed.fill")
                                 .font(.system(size: 16,weight: .regular))
                                 .foregroundColor(Color(.white))
-                            Text("Plans")
+                            Text("Plan")
                                 .foregroundColor(Color(.white))
                         }.padding(.horizontal)
                         .padding(.vertical,5)

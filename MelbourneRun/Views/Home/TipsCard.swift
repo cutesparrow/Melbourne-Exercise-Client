@@ -218,7 +218,7 @@ struct TopPartView: View {
 //                                Spacer()
 //                                    .frame(height:70)
                                 Text("Tips For Exercising")
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.black)
                                     .bold()
                                     .font(.title2)
                                     .lineLimit(2)
