@@ -229,12 +229,12 @@ struct TopView: View {
                                 .frame(maxWidth: geometry.size.width, maxHeight: geometry.size.height)
                                 .clipped()
                         }
-                        if !isSelected{
-                            VStack {
-                                Spacer()
-                                SystemMaterialView(style: .regular)
-                                    .frame(height: 35)
-                            }}
+//                        if !isSelected{
+//                            VStack {
+//                                Spacer()
+//                                SystemMaterialView(style: .regular)
+//                                    .frame(height: 35)
+//                            }}
                     }
                     VStack(alignment: .center, spacing: 0) {
                         if self.isSelected {
@@ -286,17 +286,17 @@ struct TopView: View {
                         
                         
                         //MARK: Bottom part
-                        if !isSelected{HStack(alignment: .center) {
-                            Text("Most Recent Update")
-                                .foregroundColor(Color(.label).opacity(0.5))
-                                .font(.body)
-                                .bold()
-                                .lineLimit(1)
-                                .padding(.horizontal,22)
-                                .padding(.bottom, 6)
-                            Spacer()
-                        }
-                        }
+//                        if !isSelected{HStack(alignment: .center) {
+//                            Text("Most Recent Update")
+//                                .foregroundColor(Color(.label).opacity(0.5))
+//                                .font(.body)
+//                                .bold()
+//                                .lineLimit(1)
+//                                .padding(.horizontal,22)
+//                                .padding(.bottom, 6)
+//                            Spacer()
+//                        }
+//                        }
                         
                     }
                 }
@@ -408,8 +408,8 @@ struct HomeView: View {
                 
                 if !isSelected && !isSelected2{
                     ZStack{
-                        Color(hex:0x87ceeb)
-                        VisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
+                        Color(hex:0xeef7f2)
+                        VisualEffectView(effect: UIBlurEffect(style: .systemThinMaterial))
                         HStack{
                         Button {
                             withAnimation{

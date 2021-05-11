@@ -202,10 +202,11 @@ struct TopPartView: View {
                                         self.showBottomBar = true
                                     }}) {
                                 Image(systemName: "xmark.circle.fill")
-                                    .foregroundColor(Color(.white))
+                                    .foregroundColor(Color(.black))
                                     .font(.system(size: 30, weight: .medium))
                                     .opacity(0.7)
-                            }
+                                    
+                            }.offset(y:44)
                         }
                         if !self.isSelected{
                             VStack(alignment:.leading){
