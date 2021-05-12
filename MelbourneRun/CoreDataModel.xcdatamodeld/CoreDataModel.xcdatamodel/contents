@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AboutCovidCore" representedClassName="AboutCovidCore" syncable="YES">
+        <attribute name="background" optional="YES" attributeType="String"/>
+        <attribute name="color" optional="YES" attributeType="String"/>
+        <attribute name="content" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="Direction" representedClassName="Direction" syncable="YES">
+        <attribute name="directionSentence" optional="YES" attributeType="String"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="route" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RouteCore" inverseName="directions" inverseEntity="RouteCore"/>
+    </entity>
+    <entity name="GymCore" representedClassName="GymCore" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="classType" optional="YES" attributeType="String"/>
+        <attribute name="distance" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="limitation" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="long" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="star" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ImageCore" inverseName="gym" inverseEntity="ImageCore"/>
+    </entity>
+    <entity name="ImageCore" representedClassName="ImageCore" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="gym" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GymCore" inverseName="images" inverseEntity="GymCore"/>
+    </entity>
+    <entity name="PopularRouteCore" representedClassName="PopularRouteCore" syncable="YES">
+        <attribute name="background" optional="YES" attributeType="String"/>
+        <attribute name="detail_text" optional="YES" attributeType="String"/>
+        <attribute name="distance" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="intruduction" optional="YES" attributeType="String"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="length" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="map" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="postcode" optional="YES" attributeType="String"/>
+        <attribute name="safety_tips" optional="YES" attributeType="String"/>
+        <attribute name="star" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="suburb" optional="YES" attributeType="String"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="RouteCore" representedClassName="RouteCore" syncable="YES">
+        <attribute name="length" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="mapImage" optional="YES" attributeType="String"/>
+        <attribute name="risk" optional="YES" attributeType="String"/>
+        <attribute name="time" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <relationship name="directions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Direction" inverseName="route" inverseEntity="Direction"/>
+    </entity>
+    <entity name="SensorMarkCore" representedClassName="SensorMarkCore" syncable="YES">
+        <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="long" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="risk" optional="YES" attributeType="String"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <elements>
+        <element name="Direction" positionX="-36" positionY="81" width="128" height="74"/>
+        <element name="GymCore" positionX="-54" positionY="-9" width="128" height="179"/>
+        <element name="ImageCore" positionX="-36" positionY="9" width="128" height="74"/>
+        <element name="PopularRouteCore" positionX="-36" positionY="81" width="128" height="239"/>
+        <element name="RouteCore" positionX="-45" positionY="72" width="128" height="119"/>
+        <element name="SensorMarkCore" positionX="-27" positionY="153" width="128" height="89"/>
+        <element name="AboutCovidCore" positionX="-36" positionY="144" width="128" height="104"/>
+    </elements>
+</model>
