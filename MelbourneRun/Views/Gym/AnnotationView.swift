@@ -7,14 +7,29 @@
 
 import SwiftUI
 
-struct AnnotationView: View {
+struct AnnotationView: View,Equatable {
+    static func == (lhs: AnnotationView, rhs: AnnotationView) -> Bool {
+        return lhs.mark.uid == lhs.mark.uid
+    }
+    
+    
+    @Binding var selectedGymUid:Int
+    var mark:GymCore
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        Button {
+            withAnimation {
+                self.selectedGymUid = Int(mark.uid)
+            }
+    } label: {
+        RoundedGymIconOnMapView(name:mark.name)
+            .clipShape(Circle())
+                .overlay(Circle().stroke(selectedGymUid == Int(mark.uid) ? Color(.green).opacity(0.5) : AppColor.shared.joggingColor.opacity(0.5),lineWidth: 1.4))
+            .scaleEffect(selectedGymUid == Int(mark.uid) ? 2 : 1)
+            .shadow(radius: 5)
+            
+    }
     }
 }
 
-struct AnnotationView_Previews: PreviewProvider {
-    static var previews: some View {
-        AnnotationView()
-    }
-}
+

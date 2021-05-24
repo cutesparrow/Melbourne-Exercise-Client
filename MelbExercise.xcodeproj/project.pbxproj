@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D6014D7526553AA50007C788 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6014D7426553AA50007C788 /* AnnotationView.swift */; };
+		D6014D7726553E7E0007C788 /* GymImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6014D7626553E7E0007C788 /* GymImage.swift */; };
 		D60FC23D2602EC0D0038E9E5 /* GymRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60FC23C2602EC0D0038E9E5 /* GymRecordView.swift */; };
 		D60FC2432602EC360038E9E5 /* GymListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60FC2422602EC360038E9E5 /* GymListView.swift */; };
 		D60FC2472602EC510038E9E5 /* GymCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60FC2462602EC510038E9E5 /* GymCellView.swift */; };
@@ -209,6 +211,8 @@
 		4D2F6B9A50B1341B1D733A84 /* Pods-MelbExercise.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MelbExercise.release.xcconfig"; path = "Target Support Files/Pods-MelbExercise/Pods-MelbExercise.release.xcconfig"; sourceTree = "<group>"; };
 		9D94D0121E44911F1B3B3BDD /* Pods-MelbExercise.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MelbExercise.debug.xcconfig"; path = "Target Support Files/Pods-MelbExercise/Pods-MelbExercise.debug.xcconfig"; sourceTree = "<group>"; };
 		AD62964F0003026A3F669FCF /* Pods_MelbExercise.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MelbExercise.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6014D7426553AA50007C788 /* AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
+		D6014D7626553E7E0007C788 /* GymImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymImage.swift; sourceTree = "<group>"; };
 		D60FC23C2602EC0D0038E9E5 /* GymRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymRecordView.swift; sourceTree = "<group>"; };
 		D60FC2422602EC360038E9E5 /* GymListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymListView.swift; sourceTree = "<group>"; };
 		D60FC2462602EC510038E9E5 /* GymCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymCellView.swift; sourceTree = "<group>"; };
@@ -439,6 +443,8 @@
 				D6146C60263EE14700693042 /* GymCard.swift */,
 				D6146C8B263FF45700693042 /* GymListCardTabView.swift */,
 				D6AB6FD726413B65003CE3BD /* MapViewCustom.swift */,
+				D6014D7426553AA50007C788 /* AnnotationView.swift */,
+				D6014D7626553E7E0007C788 /* GymImage.swift */,
 			);
 			path = Gym;
 			sourceTree = "<group>";
@@ -1015,6 +1021,7 @@
 				D60FC28F26044B7F0038E9E5 /* JoggingGoalInputView.swift in Sources */,
 				D690A45B2647BFC900876237 /* GymFullSreenOptionView.swift in Sources */,
 				D60FC2432602EC360038E9E5 /* GymListView.swift in Sources */,
+				D6014D7726553E7E0007C788 /* GymImage.swift in Sources */,
 				D60FC254260304B50038E9E5 /* CircleImagePlusView.swift in Sources */,
 				D60FC257260306990038E9E5 /* LocationMapView.swift in Sources */,
 				D6977BBE260F5F63001F4B48 /* OnboardingShowView.swift in Sources */,
@@ -1132,6 +1139,7 @@
 				D6146C8A263FE68800693042 /* SearchBar.swift in Sources */,
 				D6708FE62614736A008FDD79 /* Window.swift in Sources */,
 				D6226EE9262034EA003F4D9F /* SensorMapAnnotationView.swift in Sources */,
+				D6014D7526553AA50007C788 /* AnnotationView.swift in Sources */,
 				D6F883C72634384200673552 /* ImageCore+CoreDataProperties.swift in Sources */,
 				D60FC25B260309050038E9E5 /* MapHelper.swift in Sources */,
 				D6977BB0260C5A56001F4B48 /* NoDivider.swift in Sources */,

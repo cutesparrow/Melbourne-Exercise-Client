@@ -15,6 +15,25 @@ class GymViewModel:ObservableObject{
     @Published var success:Bool = false
     @Published var loading:Bool = false
     
+    
+    func initialGyms(location:CLLocationCoordinate2D,context:NSManagedObjectContext) {
+        reloadGymListData(location: location, context: context)
+        let fetchRequest : NSFetchRequest<GymCore> = GymCore.fetchRequest()
+        let idDescriptor = NSSortDescriptor(key: "uid", ascending: true)
+        fetchRequest.sortDescriptors = [idDescriptor]
+        do {
+            let result = try context.fetch(fetchRequest) as [GymCore]
+            self.gyms = GymList(list: [])
+            result.forEach { gym in
+                let gym = Gym(id: Int(gym.uid), lat: gym.lat, long: gym.long, name: gym.name, Images: [], limitation: Int(gym.limitation), distance: gym.distance, star: gym.star, address: gym.address, classType: gym.classType, gymTime: GymTime(monday_start: (gym.gymTime?.monday_start)!, tuesday_start: (gym.gymTime?.tuesday_start)!, wednesday_start: (gym.gymTime?.wednesday_start)!, thursday_start: (gym.gymTime?.thursday_start)!, friday_start: (gym.gymTime?.friday_start)!, saturday_start: (gym.gymTime?.saturday_start)!, sunday_start: (gym.gymTime?.sunday_start)!, monday_close: (gym.gymTime?.monday_close)!, tuesday_close: (gym.gymTime?.tuesday_close)!, wednesday_close: (gym.gymTime?.wednesday_close)!, thursday_close: (gym.gymTime?.thursday_close)!, friday_close: (gym.gymTime?.friday_start)!, saturday_close: (gym.gymTime?.saturday_close)!, sunday_close: (gym.gymTime?.sunday_close)!))
+                gyms.list.append(gym)
+            }
+        } catch  {
+            print(error.localizedDescription)
+        }
+    }
+    
+    
     func loadGymListData(location:CLLocationCoordinate2D,context:NSManagedObjectContext){
         let completion: (Result<GymList, Error>) -> Void = { result in
             switch result {

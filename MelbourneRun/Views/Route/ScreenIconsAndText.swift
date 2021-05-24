@@ -90,17 +90,19 @@ struct IconAndTextButton: View {
             ZStack {
                 Color.white
                 HStack {
-                    Image(systemName: self.imageName)
-                        .resizable()
-                        .aspectRatio(1, contentMode: .fill)
-                        .foregroundColor(Color(hex: "778ca3"))
-                        .frame(width: self.imageWidth, height: self.imageWidth)
-                        .clipped()
-                    Spacer()
+//                    Image(systemName: self.imageName)
+//                        .resizable()
+//                        .aspectRatio(1, contentMode: .fill)
+//                        .foregroundColor(Color(hex: "778ca3"))
+//                        .frame(width: self.imageWidth, height: self.imageWidth)
+//                        .clipped()
+                    Text(self.imageName)
+                        .font(.system(size: 16,weight: .semibold,design: .default))
+                    Spacer(minLength: 0)
                     Text(buttonText)
                         .font(.system(size: 16, weight: .semibold, design: .default))
                         .foregroundColor(Color(hex: "4b6584"))
-                    Spacer()
+//                    Spacer()
                 }.padding(.leading, 15).padding(.trailing, 15)
             }
             .frame(width: 160, height: 45)
@@ -118,14 +120,16 @@ struct IconAndTextButton: View {
 struct MockData {
 
     static let iconAndTextImageNames = [
-        "bicycle.circle",
-        "figure.walk.circle",
+        "🚴🏻‍♂️",
+        "🚶🏻‍♂️",
+        "🦮",
         
     ]
 
     static let iconAndTextTitles = [
         "Cycling",
-        "Walk & Dog",
+        "Walking",
+        "Walking Dog"
     ]
 }
 

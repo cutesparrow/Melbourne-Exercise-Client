@@ -6,15 +6,23 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
-struct GymImage: View {
+struct GymImage: View,Equatable {
+    static func == (lhs: GymImage, rhs: GymImage) -> Bool {
+        return lhs.image.uid == lhs.image.uid
+    }
+    var image:ImageCore
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        WebImage(url: URL(string: NetworkManager.shared.urlBasePath + image.name + ".jpg"))
+            .placeholder{
+                Color.gray
+            }
+            .resizable()
+            .scaledToFill()
+            .frame(width:230,height:110)
+            .clipped()
     }
 }
 
-struct GymImage_Previews: PreviewProvider {
-    static var previews: some View {
-        GymImage()
-    }
-}
+

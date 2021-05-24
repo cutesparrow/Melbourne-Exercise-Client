@@ -52,7 +52,7 @@ struct JoggingHomeView: View {
                      .foregroundColor(Color(.label))
                       .fontWeight(.bold)
                       .lineLimit(3)
-                  Text("You can explore the map to see the real time pedestrian flow around the city. Have a try on the “Walk&Dog” or “cycling” options if you want to plan your route for a walk, walk a dog, or a bike ride.")
+                  Text("You can explore the map to see the real time pedestrian flow around the city. Have a try on the “Walk&Dog” or “Cycling” options if you want to plan your route for a walk, walk dog, or a bike ride.")
                       .font(.system(size: 14))
                       .foregroundColor(Color(.label))
               }
@@ -104,7 +104,7 @@ struct JoggingHomeView: View {
     var body: some View {
         
         let textButtons = [AnyView(IconAndTextButton(loading:self.$recommandedRoutes.loading,networkError:self.$recommandedRoutes.error,selectedSheet: "cycle", mainswitch: $isopenManue, isshow: $showSheet, sheetKind: $sheetKind, customizedCards: $customizedCards, popularCards: $popularCards, loaded: self.$recommandedRoutes.successCycling, showDistanceInput: $showDistanceInput, type: $type, imageName: MockData.iconAndTextImageNames[0], buttonText: MockData.iconAndTextTitles[0]).environmentObject(userData)
-        ),AnyView(IconAndTextButton(loading:self.$recommandedRoutes.loading,networkError:self.$recommandedRoutes.error,selectedSheet: "walk", mainswitch: $isopenManue, isshow: $showSheet, sheetKind: $sheetKind, customizedCards: $customizedCards, popularCards: $popularCards, loaded: self.$recommandedRoutes.successWalking, showDistanceInput: $showDistanceInput, type: $type, imageName: MockData.iconAndTextImageNames[1], buttonText: MockData.iconAndTextTitles[1]).environmentObject(userData))]
+        ),AnyView(IconAndTextButton(loading:self.$recommandedRoutes.loading,networkError:self.$recommandedRoutes.error,selectedSheet: "walk", mainswitch: $isopenManue, isshow: $showSheet, sheetKind: $sheetKind, customizedCards: $customizedCards, popularCards: $popularCards, loaded: self.$recommandedRoutes.successWalking, showDistanceInput: $showDistanceInput, type: $type, imageName: MockData.iconAndTextImageNames[2], buttonText: MockData.iconAndTextTitles[2]).environmentObject(userData)),AnyView(IconAndTextButton(loading:self.$recommandedRoutes.loading,networkError:self.$recommandedRoutes.error,selectedSheet: "walk", mainswitch: $isopenManue, isshow: $showSheet, sheetKind: $sheetKind, customizedCards: $customizedCards, popularCards: $popularCards, loaded: self.$recommandedRoutes.successWalking, showDistanceInput: $showDistanceInput, type: $type, imageName: MockData.iconAndTextImageNames[1], buttonText: MockData.iconAndTextTitles[1]).environmentObject(userData))]
         
         let mainButton1 = AnyView(MainButton(imageName: "plus", color:AppColor.shared.joggingColor, width: 60))
         
